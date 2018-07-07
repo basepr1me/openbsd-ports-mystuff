@@ -1,0 +1,11 @@
+@comment $OpenBSD: PLIST,v$
+@newgroup _busybeed:813
+@newuser _busybeed:813:_busybeed:daemon:busybeed account:/nonexistent:/sbin/nologin
+@man man/man5/busybeed.conf.5
+@man man/man8/busybeed.8
+@bin sbin/busybeed
+share/examples/busybeed/
+share/examples/busybeed/busybeed.conf
+@mode 640
+@sample ${SYSCONFDIR}/busybeed.conf
+@rcscript ${RCDIR}/busybeed
