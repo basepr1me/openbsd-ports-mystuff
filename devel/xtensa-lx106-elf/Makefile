@@ -1,7 +1,8 @@
 # $OpenBSD$
 
+V =			1.0
 COMMENT =		xtensa-lx106-elf cross compiler
-DISTNAME =		xtensa-lx106-elf
+DISTNAME =		xtensa-lx106-elf-${V}
 
 GH_ACCOUNT =		jcmvbkbc
 GH_PROJECT =		crosstool-NG
