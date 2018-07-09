@@ -1,0 +1,4 @@
+@comment $OpenBSD: PLIST,v$
+bin/espefuse.py
+bin/espsecure.py
+bin/esptool.py
