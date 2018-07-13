@@ -7,6 +7,6 @@
 @bin sbin/busybeed
 share/examples/busybeed/
 share/examples/busybeed/busybeed.conf
-@mode 640
+@mode 500
 @sample ${SYSCONFDIR}/busybeed.conf
 @rcscript ${RCDIR}/busybeed
