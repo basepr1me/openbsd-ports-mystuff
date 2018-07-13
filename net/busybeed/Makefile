@@ -1,6 +1,6 @@
 # $OpenBSD$
 
-V =		1.04
+V =		1.05
 COMMENT =	device packet subscription and routing for OpenBSD
 DISTNAME =	busybeed-${V}
 CATEGORIES =	net
@@ -13,7 +13,7 @@ PERMIT_PACKAGE_CDROM =	Yes
 
 WANTLIB += c pthread util event
 
-MASTER_SITES =	https://github.com/spoollord/busybeed/releases/download/v${V}/
+MASTER_SITES =	https://github.com/spoollord/busybeed/archive/v${V}/
 
 MAKE_FLAGS =	CC="${CC}"
 
