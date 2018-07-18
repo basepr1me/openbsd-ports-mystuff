@@ -24,7 +24,7 @@ RUN_DEPENDS +=		devel/arduino \
 
 WRKDIST =		${WRKDIR}/Arduino-2.4.1
 WRKSRC =		${WRKDIST}
-INSTALLDIR =		${PREFIX}/share/esp8266com/esp8266
+INSTALLDIR =		${PREFIX}/share/espressif/esp8266
 SPIFFSDIR =		tools/mkspiffs
 ESPTOOLDIR =		tools/esptool
 XTENSADIR =		tools/xtensa-lx106-elf/bin
