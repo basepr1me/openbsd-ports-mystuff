@@ -1,5 +1,4 @@
 @comment $OpenBSD: PLIST,v$
-share/espressif/
 share/espressif/esp32/
 share/espressif/esp32/CMakeLists.txt
 share/espressif/esp32/Kconfig.projbuild
@@ -818,6 +817,7 @@ share/espressif/esp32/tools/espota.exe
 share/espressif/esp32/tools/espota.py
 share/espressif/esp32/tools/esptool/
 share/espressif/esp32/tools/esptool.py
+share/espressif/esp32/tools/esptool/esptool
 share/espressif/esp32/tools/esptool/esptool.py
 share/espressif/esp32/tools/gen_esp32part.exe
 share/espressif/esp32/tools/gen_esp32part.py

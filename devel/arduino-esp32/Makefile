@@ -19,6 +19,7 @@ NO_BUILD =		Yes
 BUILD_DEPENDS =		devel/git
 
 RUN_DEPENDS +=		devel/arduino \
+			devel/arduino-esp8266 \
 			devel/esptool-ck \
 			devel/esptool-py \
 			devel/mkspiffs \
@@ -61,7 +62,8 @@ post-install:
 .for i in ${BINFILES}
 	@ln -s ${LOCALBASE}/bin/${i} ${INSTALLDIR}/${XTENSADIR}/${i}
 .endfor
+	@ln -s ${LOCALBASE}/bin/esptool ${INSTALLDIR}/${ESPTOOLDIR}/esptool
 	@ln -s ${LOCALBASE}/bin/esptool.py ${INSTALLDIR}/${ESPTOOLDIR}/esptool.py
-	@ln -s ${LOCALBASE}/bin/${i} ${INSTALLDIR}/${SPIFFSDIR}/mkspiffs
+	@ln -s ${LOCALBASE}/bin/mkspiffs ${INSTALLDIR}/${SPIFFSDIR}/mkspiffs
 
 .include <bsd.port.mk>

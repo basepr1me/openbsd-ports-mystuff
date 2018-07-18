@@ -29,6 +29,9 @@ SPIFFSDIR =		tools/mkspiffs
 ESPTOOLDIR =		tools/esptool
 XTENSADIR =		tools/xtensa-lx106-elf/bin
 
+pre-install:
+	@rm ${WRKSRC}/cores/esp8266/core_esp8266_sigma_delta.c.unused
+
 do-install:
 	@mkdir -p ${INSTALLDIR}
 	@mkdir -p ${INSTALLDIR}/${SPIFFSDIR}
@@ -55,7 +58,8 @@ post-install:
 .for i in ${BINFILES}
 	@ln -s ${LOCALBASE}/bin/${i} ${INSTALLDIR}/${XTENSADIR}/${i}
 .endfor
+	@ln -s ${LOCALBASE}/bin/esptool ${INSTALLDIR}/${ESPTOOLDIR}/esptool
 	@ln -s ${LOCALBASE}/bin/esptool.py ${INSTALLDIR}/${ESPTOOLDIR}/esptool.py
-	@ln -s ${LOCALBASE}/bin/${i} ${INSTALLDIR}/${SPIFFSDIR}/mkspiffs
+	@ln -s ${LOCALBASE}/bin/mkspiffs ${INSTALLDIR}/${SPIFFSDIR}/mkspiffs
 
 .include <bsd.port.mk>
