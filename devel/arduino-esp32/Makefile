@@ -23,14 +23,16 @@ RUN_DEPENDS +=		devel/arduino \
 			devel/esptool-ck \
 			devel/esptool-py \
 			devel/mkspiffs \
-			devel/xtensa-lx106-elf-g++
+			devel/xtensa-lx106-elf-g++ \
+			devel/xtensa-esp32-elf
 
 WRKDIST =		${WRKDIR}/arduino-esp32-1.0.0-rc3
 WRKSRC =		${WRKDIST}
 INSTALLDIR =		${PREFIX}/share/espressif/esp32
 SPIFFSDIR =		tools/mkspiffs
 ESPTOOLDIR =		tools/esptool
-XTENSADIR =		tools/xtensa-lx106-elf/bin
+XTENSAPRE =		xtensa-esp32-elf
+XTENSADIR =		tools/${XTENSAPRE}/bin
 
 do-install:
 	@mkdir -p ${INSTALLDIR}
@@ -43,20 +45,16 @@ do-install:
 			AzureIoT && \
 		git clone https://github.com/nkolban/ESP32_BLE_Arduino.git BLE
 
-BINFILES =	xtensa-lx106-elf-addr2line xtensa-lx106-elf-c++filt \
-		xtensa-lx106-elf-elfedit xtensa-lx106-elf-gcc-ar \
-		xtensa-lx106-elf-gdb xtensa-lx106-elf-nm \
-		xtensa-lx106-elf-readelf xtensa-lx106-elf-ar \
-		xtensa-lx106-elf-cc xtensa-lx106-elf-g++ \
-		xtensa-lx106-elf-gcc-nm xtensa-lx106-elf-gprof \
-		xtensa-lx106-elf-objcopy xtensa-lx106-elf-size \
-		xtensa-lx106-elf-as xtensa-lx106-elf-cpp \
-		xtensa-lx106-elf-gcc xtensa-lx106-elf-gcc-ranlib \
-		xtensa-lx106-elf-ld xtensa-lx106-elf-objdump \
-		xtensa-lx106-elf-strings xtensa-lx106-elf-c++ \
-		xtensa-lx106-elf-ct-ng.config xtensa-lx106-elf-gcc-4.8.2 \
-		xtensa-lx106-elf-gcov xtensa-lx106-elf-ld.bfd \
-		xtensa-lx106-elf-ranlib xtensa-lx106-elf-strip
+BINFILES = ${XTENSAPRE}-addr2line ${XTENSAPRE}-cc ${XTENSAPRE}-gcc \
+	   ${XTENSAPRE}-gcov ${XTENSAPRE}-ld.bfd ${XTENSAPRE}-readelf \
+	   ${XTENSAPRE}-ar ${XTENSAPRE}-cpp ${XTENSAPRE}-gcc-5.2.0 \
+	   ${XTENSAPRE}-gcov-tool ${XTENSAPRE}-nm ${XTENSAPRE}-size \
+	   ${XTENSAPRE}-as ${XTENSAPRE}-ct-ng.config ${XTENSAPRE}-gcc-ar \
+	   ${XTENSAPRE}-gdb ${XTENSAPRE}-objcopy ${XTENSAPRE}-strings \
+	   ${XTENSAPRE}-c++ ${XTENSAPRE}-elfedit ${XTENSAPRE}-gcc-nm \
+	   ${XTENSAPRE}-gprof ${XTENSAPRE}-objdump ${XTENSAPRE}-strip \
+	   ${XTENSAPRE}-c++filt ${XTENSAPRE}-g++ ${XTENSAPRE}-gcc-ranlib \
+	   ${XTENSAPRE}-ld ${XTENSAPRE}-ranlib
 
 post-install:
 .for i in ${BINFILES}

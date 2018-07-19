@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: config/debug/gdb.in.cross
+--- config/debug/gdb.in.cross.orig
++++ config/debug/gdb.in.cross
+@@ -39,7 +39,7 @@ config GDB_CROSS_PYTHON
+     prompt "Enable python scripting"
+     depends on GDB_HAS_PYTHON
+     depends on ! GDB_CROSS_STATIC
+-    default y
++    default n
+     help
+       Say 'y' if you want to use Python scripting inside gdb.
+       Say 'n' if you do not want to.
