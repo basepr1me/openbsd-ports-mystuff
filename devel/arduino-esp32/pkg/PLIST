@@ -1,4 +1,5 @@
 @comment $OpenBSD: PLIST,v$
+share/espressif/
 share/espressif/esp32/
 share/espressif/esp32/CMakeLists.txt
 share/espressif/esp32/Kconfig.projbuild

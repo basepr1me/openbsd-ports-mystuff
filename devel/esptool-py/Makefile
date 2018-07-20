@@ -9,6 +9,8 @@ HOMEPAGE =		https://github.com/espressif/esptool
 
 MASTER_SITES =		https://github.com/espressif/esptool/archive/v${V}/
 
+MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
+
 #GPLv2
 PERMIT_PACKAGE_CDROM =	Yes
 

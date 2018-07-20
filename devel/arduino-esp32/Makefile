@@ -2,12 +2,14 @@
 
 V =			1.0.0-rc3
 DISTNAME =		arduino-esp32-${V}
-COMMENT =		esp8266 arduino toolset
+COMMENT =		esp32 arduino toolset
 CATEGORIES =		devel
 
 HOMEPAGE =		https://github.com/espressif/arduino-esp32
 
 MASTER_SITES =		https://github.com/espressif/arduino-esp32/archive/${V}/
+
+MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
 
 #GPLv2.1
 PERMIT_PACKAGE_CDROM =	Yes
@@ -19,11 +21,9 @@ NO_BUILD =		Yes
 BUILD_DEPENDS =		devel/git
 
 RUN_DEPENDS +=		devel/arduino \
-			devel/arduino-esp8266 \
 			devel/esptool-ck \
 			devel/esptool-py \
 			devel/mkspiffs \
-			devel/xtensa-lx106-elf \
 			devel/xtensa-esp32-elf
 
 WRKDIST =		${WRKDIR}/arduino-esp32-1.0.0-rc3

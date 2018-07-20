@@ -6,11 +6,13 @@ V =			4.8.5
 COMMENT =		${XTENSAPRE} cross compiler
 DISTNAME =		${XTENSAPRE}-${V}
 
-GH_ACCOUNT =		espressif
+GH_ACCOUNT =		jcmvbkbc
 GH_PROJECT =		crosstool-NG
 GH_TAGNAME =		xtensa-1.22.x
 
 CATEGORIES =		devel
+
+MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
 
 WANTLIB +=		c curses expat m stdc++ z
 
@@ -82,8 +84,6 @@ post-configure:
 		${WRKSRC}/scripts/build/libc/newlib.sh \
 		${WRKSRC}/scripts/build/libc/uClibc.sh \
 		${WRKSRC}/scripts/build/test_suite/gcc.sh
-#	@sed -i "s,CT_GDB_CROSS_PYTHON=y,CT_GDB_CROSS_PYTHON=n," \
-#		${WRKSRC}/.config
 
 do-build:
 	@sed -i "s,ln -sfv,ln -sf," \

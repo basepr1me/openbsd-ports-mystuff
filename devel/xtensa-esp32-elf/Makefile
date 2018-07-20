@@ -12,6 +12,8 @@ GH_TAGNAME =		xtensa-1.22.x
 
 CATEGORIES =		devel
 
+MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
+
 WANTLIB +=		c curses expat m stdc++ z
 
 #multiple licenses ... figure out how to list
@@ -32,8 +34,6 @@ BUILD_DEPENDS ?=	${MODGNU_AUTOCONF_DEPENDS} \
 			shells/bash \
 			sysutils/ggrep \
 			textproc/gsed
-
-#RUN_DEPENDS ?=		devel/xtensa-lx106-elf
 
 USE_GMAKE =		Yes
 
@@ -84,8 +84,6 @@ post-configure:
 		${WRKSRC}/scripts/build/libc/newlib.sh \
 		${WRKSRC}/scripts/build/libc/uClibc.sh \
 		${WRKSRC}/scripts/build/test_suite/gcc.sh
-#	@sed -i "s,CT_GDB_CROSS_PYTHON=y,CT_GDB_CROSS_PYTHON=n," \
-#		${WRKSRC}/.config
 
 do-build:
 	@sed -i "s,ln -sfv,ln -sf," \

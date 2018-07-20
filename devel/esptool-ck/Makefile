@@ -9,6 +9,8 @@ HOMEPAGE =		https://github.com/igrr/esptool-ck
 
 MASTER_SITES =		https://github.com/igrr/esptool-ck/archive/${V}/
 
+MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
+
 #GPLv2
 PERMIT_PACKAGE_CDROM =	Yes
 

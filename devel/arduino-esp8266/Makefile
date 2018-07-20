@@ -9,6 +9,8 @@ HOMEPAGE =		https://github.com/esp8266/Arduino
 
 MASTER_SITES =		https://github.com/esp8266/Arduino/archive/${V}/
 
+MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
+
 #GPLv2.1
 PERMIT_PACKAGE_CDROM =	Yes
 
