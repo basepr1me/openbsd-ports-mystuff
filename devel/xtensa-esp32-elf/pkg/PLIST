@@ -28,6 +28,7 @@ bin/xtensa-esp32-elf-ct-ng.config
 @bin bin/xtensa-esp32-elf-size
 @bin bin/xtensa-esp32-elf-strings
 @bin bin/xtensa-esp32-elf-strip
+lib/gcc/
 lib/gcc/xtensa-esp32-elf/
 lib/gcc/xtensa-esp32-elf/5.2.0/
 lib/gcc/xtensa-esp32-elf/5.2.0/crtbegin.o
@@ -428,6 +429,7 @@ lib/gcc/xtensa-esp32-elf/5.2.0/plugin/include/wide-int-print.h
 lib/gcc/xtensa-esp32-elf/5.2.0/plugin/include/wide-int.h
 lib/gcc/xtensa-esp32-elf/5.2.0/plugin/include/xcoff.h
 lib/gcc/xtensa-esp32-elf/5.2.0/plugin/include/xcoffout.h
+libexec/gcc/
 libexec/gcc/xtensa-esp32-elf/
 libexec/gcc/xtensa-esp32-elf/5.2.0/
 @bin libexec/gcc/xtensa-esp32-elf/5.2.0/cc1

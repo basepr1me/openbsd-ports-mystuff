@@ -20,7 +20,7 @@ RUN_DEPENDS +=		devel/arduino \
 			devel/esptool-ck \
 			devel/esptool-py \
 			devel/mkspiffs \
-			devel/xtensa-lx106-elf-g++
+			devel/xtensa-lx106-elf
 
 WRKDIST =		${WRKDIR}/Arduino-2.4.1
 WRKSRC =		${WRKDIST}

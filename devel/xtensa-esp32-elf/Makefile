@@ -1,16 +1,16 @@
 # $OpenBSD$
 
-V =			1.0
-COMMENT =		xtensa-esp32-elf cross compiler
-DISTNAME =		xtensa-esp32-elf-${V}
+XTENSAPRE =		xtensa-esp32-elf
+
+V =			5.2.0
+COMMENT =		${XTENSAPRE} cross compiler
+DISTNAME =		${XTENSAPRE}-${V}
 
 GH_ACCOUNT =		espressif
 GH_PROJECT =		crosstool-NG
 GH_TAGNAME =		xtensa-1.22.x
 
 CATEGORIES =		devel
-
-XTENSAPRE =		xtensa-esp32-elf
 
 WANTLIB +=		c curses expat m stdc++ z
 
@@ -33,7 +33,7 @@ BUILD_DEPENDS ?=	${MODGNU_AUTOCONF_DEPENDS} \
 			sysutils/ggrep \
 			textproc/gsed
 
-RUN_DEPENDS ?=		devel/xtensa-lx106-elf-g++
+#RUN_DEPENDS ?=		devel/xtensa-lx106-elf
 
 USE_GMAKE =		Yes
 
@@ -54,14 +54,14 @@ pre-configure:
 	@cd ${WRKSRC} && env AUTOCONF_VERSION=${AUTOCONF_VERSION} \
 		sh ./bootstrap
 
-INSTALL_DIR =		${WRKSRC}/lib/ct-ng.1.20.0
+INSTALL_DIR =		${WRKSRC}/lib/ct-ng.1.22.x
 
 post-configure:
 	@mkdir -p ${INSTALL_DIR}
 	@cp -r ${WRKSRC}/local-patches ${INSTALL_DIR}
 	@cp -r ${WRKSRC}/overlays ${INSTALL_DIR}
 	@cd ${WRKSRC} && gmake && gmake install && \
-		./ct-ng xtensa-esp32-elf
+		./ct-ng ${XTENSAPRE}
 	@cat ${FILESDIR}/crosstool-config-overrides >> ${WRKSRC}/.config
 	@sed -i "s,patch ,gpatch ," \
 		${WRKSRC}/scripts/functions

@@ -23,7 +23,7 @@ RUN_DEPENDS +=		devel/arduino \
 			devel/esptool-ck \
 			devel/esptool-py \
 			devel/mkspiffs \
-			devel/xtensa-lx106-elf-g++ \
+			devel/xtensa-lx106-elf \
 			devel/xtensa-esp32-elf
 
 WRKDIST =		${WRKDIR}/arduino-esp32-1.0.0-rc3
