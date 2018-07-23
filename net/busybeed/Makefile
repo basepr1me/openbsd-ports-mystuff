@@ -1,6 +1,6 @@
 # $OpenBSD$
 
-V =		1.05
+V =		1.06
 COMMENT =	device packet subscription and routing for OpenBSD
 DISTNAME =	busybeed-${V}
 CATEGORIES =	net
