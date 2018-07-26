@@ -58,8 +58,8 @@ INSTALL_DIR =		${WRKSRC}/lib/ct-ng.1.22.x
 
 post-configure:
 	@mkdir -p ${INSTALL_DIR}
-	@cp -r ${WRKSRC}/local-patches ${INSTALL_DIR}
-	@cp -r ${WRKSRC}/overlays ${INSTALL_DIR}
+	${SUDO} cp -r ${WRKSRC}/local-patches ${INSTALL_DIR}
+	${SUDO} cp -r ${WRKSRC}/overlays ${INSTALL_DIR}
 	@cd ${WRKSRC} && gmake && gmake install && \
 		./ct-ng ${XTENSAPRE}
 	@cat ${FILESDIR}/crosstool-config-overrides >> ${WRKSRC}/.config
@@ -108,15 +108,15 @@ do-install:
 	${INSTALL_PROGRAM} ${BUILDDIR}/bin/${i} \
 		${PREFIX}/bin/
 .endfor
-	@cp -r ${BUILDDIR}/lib/gcc \
+	${SUDO} cp -r ${BUILDDIR}/lib/gcc \
 		${PREFIX}/lib/
-	@cp -r ${BUILDDIR}/lib/ldscripts \
+	${SUDO} cp -r ${BUILDDIR}/lib/ldscripts \
 		${PREFIX}/lib/
-	@cp ${BUILDDIR}/libexec/gcc/${XTENSAPRE}/${V}/liblto_plugin.so.0.0 \
+	${SUDO} cp ${BUILDDIR}/libexec/gcc/${XTENSAPRE}/${V}/liblto_plugin.so.0.0 \
 		${BUILDDIR}/libexec/gcc/${XTENSAPRE}/${V}/liblto_plugin.so
-	@cp -r ${BUILDDIR}/libexec/gcc \
+	${SUDO} cp -r ${BUILDDIR}/libexec/gcc \
 		${PREFIX}/libexec/
-	@cp -r ${BUILDDIR}/${XTENSAPRE} \
+	${SUDO} cp -r ${BUILDDIR}/${XTENSAPRE} \
 		${PREFIX}/
 
 .include <bsd.port.mk>

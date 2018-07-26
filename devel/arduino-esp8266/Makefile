@@ -29,7 +29,8 @@ WRKSRC =		${WRKDIST}
 INSTALLDIR =		${PREFIX}/share/espressif/esp8266
 SPIFFSDIR =		tools/mkspiffs
 ESPTOOLDIR =		tools/esptool
-XTENSADIR =		tools/xtensa-lx106-elf/bin
+XTENSAPRE =             xtensa-lx106-elf
+XTENSADIR =		tools/${XTENSAPRE}/bin
 
 pre-install:
 	@rm ${WRKSRC}/cores/esp8266/core_esp8266_sigma_delta.c.unused
@@ -41,20 +42,20 @@ do-install:
 	@mkdir -p ${INSTALLDIR}/${XTENSADIR}
 	@cp -r ${WRKDIST}/* ${INSTALLDIR}
 
-BINFILES =	xtensa-lx106-elf-addr2line xtensa-lx106-elf-c++filt \
-		xtensa-lx106-elf-elfedit xtensa-lx106-elf-gcc-ar \
-		xtensa-lx106-elf-gdb xtensa-lx106-elf-nm \
-		xtensa-lx106-elf-readelf xtensa-lx106-elf-ar \
-		xtensa-lx106-elf-cc xtensa-lx106-elf-g++ \
-		xtensa-lx106-elf-gcc-nm xtensa-lx106-elf-gprof \
-		xtensa-lx106-elf-objcopy xtensa-lx106-elf-size \
-		xtensa-lx106-elf-as xtensa-lx106-elf-cpp \
-		xtensa-lx106-elf-gcc xtensa-lx106-elf-gcc-ranlib \
-		xtensa-lx106-elf-ld xtensa-lx106-elf-objdump \
-		xtensa-lx106-elf-strings xtensa-lx106-elf-c++ \
-		xtensa-lx106-elf-ct-ng.config xtensa-lx106-elf-gcc-4.8.2 \
-		xtensa-lx106-elf-gcov xtensa-lx106-elf-ld.bfd \
-		xtensa-lx106-elf-ranlib xtensa-lx106-elf-strip
+BINFILES =	${XTENSAPRE}-addr2line ${XTENSAPRE}-c++filt \
+		${XTENSAPRE}-elfedit ${XTENSAPRE}-gcc-ar \
+		${XTENSAPRE}-gdb ${XTENSAPRE}-nm \
+		${XTENSAPRE}-readelf ${XTENSAPRE}-ar \
+		${XTENSAPRE}-cc ${XTENSAPRE}-g++ \
+		${XTENSAPRE}-gcc-nm ${XTENSAPRE}-gprof \
+		${XTENSAPRE}-objcopy ${XTENSAPRE}-size \
+		${XTENSAPRE}-as ${XTENSAPRE}-cpp \
+		${XTENSAPRE}-gcc ${XTENSAPRE}-gcc-ranlib \
+		${XTENSAPRE}-ld ${XTENSAPRE}-objdump \
+		${XTENSAPRE}-strings ${XTENSAPRE}-c++ \
+		${XTENSAPRE}-ct-ng.config ${XTENSAPRE}-gcc-4.8.2 \
+		${XTENSAPRE}-gcov ${XTENSAPRE}-ld.bfd \
+		${XTENSAPRE}-ranlib ${XTENSAPRE}-strip
 
 post-install:
 .for i in ${BINFILES}
