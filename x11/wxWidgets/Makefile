@@ -8,22 +8,22 @@ GH_PROJECT = 	wxWidgets
 GH_TAGNAME = 	v${V}
 CATEGORIES =	x11
 
-SHARED_LIBS +=  wx_base-3.0              0.0 # 0.0
-SHARED_LIBS +=  wx_base_net-3.0          0.0 # 0.0
-SHARED_LIBS +=  wx_base_xml-3.0          0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_adv-3.0          0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_aui-3.0          0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_core-3.0         0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_gl-3.0           0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_html-3.0         0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_media-3.0        0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_propgrid-3.0     0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_qa-3.0           0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_ribbon-3.0       0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_richtext-3.0     0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_stc-3.0          0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_webview-3.0      0.0 # 0.0
-SHARED_LIBS +=  wx_gtk3_xrc-3.0          0.0 # 0.0
+SHARED_LIBS +=  wx_baseu-3.0              0.0 # 0.0
+SHARED_LIBS +=  wx_baseu_net-3.0          0.0 # 0.0
+SHARED_LIBS +=  wx_baseu_xml-3.0          0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_adv-3.0          0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_aui-3.0          0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_core-3.0         0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_gl-3.0           0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_html-3.0         0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_media-3.0        0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_propgrid-3.0     0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_qa-3.0           0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_ribbon-3.0       0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_richtext-3.0     0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_stc-3.0          0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_webview-3.0      0.0 # 0.0
+SHARED_LIBS +=  wx_gtk3u_xrc-3.0          0.0 # 0.0
 
 HOMEPAGE =	http://www.wxwidgets.org/
 
@@ -40,35 +40,27 @@ LIB_DEPENDS =   devel/gettext \
 
 TEST_DEPENDS = 	${BUILD_PKGPATH}>=${V}
 
-#WANTLIB = GL GLU SDL2 SM X11 Xcomposite Xcursor Xdamage Xext Xfixes
-#WANTLIB += Xi Xinerama Xrandr Xrender Xxf86vm atk-1.0 c expat
-#WANTLIB += fontconfig freetype gdk-3 gdk_pixbuf-2.0
-#WANTLIB += glib-2.0 gobject-2.0 gthread-2.0 iconv
-#WANTLIB += gstreamer-1.0 iconv intl iodbc jpeg m mspack pango-1.0
-#WANTLIB += cairo cairo-gobject gtk-3 gstbase-1.0 gio-2.0
-#WANTLIB += pangocairo-1.0 pangoft2-1.0 png pthread gstvideo-1.0
-#WANTLIB += ${COMPILER_LIBCXX} tiff xml2 z
 WANTLIB += ${COMPILER_LIBCXX} GL GLU SM X11 Xxf86vm atk-1.0 c
 WANTLIB += cairo cairo-gobject expat fribidi gdk-3 gdk_pixbuf-2.0
 WANTLIB += gio-2.0 glib-2.0 gmodule-2.0 gobject-2.0 gthread-2.0
 WANTLIB += gtk-3 iconv intl jpeg m pango-1.0 pangocairo-1.0 png
 WANTLIB += tiff xml2 z
 
-MAKE_FLAGS =	WXUNICODEFLAG=""
+MAKE_FLAGS =	WXUNICODEFLAG="u"
 
 USE_GMAKE =	Yes
 AUTOCONF_VERSION = 2.69
-CONFIGURE_STYLE =autoconf no-autoheader
-CONFIGURE_ARGS =--disable-backtrace \
-		--enable-mediactrl \
-		--enable-unicode \
-		--with-odbc \
-		--with-opengl \
-		--with-sdl \
-		--with-gtk=3 \
-		--without-webkit \
-		--without-gnomeprint \
-		--enable-graphics_ctx
+CONFIGURE_STYLE =	autoconf no-autoheader
+CONFIGURE_ARGS =	--disable-backtrace \
+			--enable-mediactrl \
+			--enable-unicode \
+			--with-odbc \
+			--with-opengl \
+			--with-sdl \
+			--with-gtk=3 \
+			--without-webkit \
+			--without-gnomeprint \
+			--enable-graphics_ctx
 CONFIGURE_ENV =	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib" \
 		WXCONFIG_CPPFLAGS="-I${X11BASE}/include" \
@@ -81,7 +73,7 @@ CONFIGURE_ENV += wx_cv_version_script=no
 .ifdef DEBUG
 CONFIGURE_ARGS += --enable-debug
 .endif
-MODPY_ADJ_FILES =src/stc/gen_iface.py
+MODPY_ADJ_FILES = src/stc/gen_iface.py
 
 pre-configure:
 	perl -pi -e 's/\r$$//' ${WRKSRC}/src/stc/gen_iface.py
@@ -97,8 +89,8 @@ post-install:
 	perl -pi -e 's/\r$$//' ${PREFIX}/lib/wx/config/gtk3-unicode-3.0
 	find ${PREFIX}/lib/ -type l -name libwx\* -exec rm {} \;
 
-#do-test:
-#	@cd ${WRKSRC}/tests && \
-#		${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} && ./test
+do-test:
+	@cd ${WRKSRC}/tests && \
+		${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} && ./test
 
 .include <bsd.port.mk>
