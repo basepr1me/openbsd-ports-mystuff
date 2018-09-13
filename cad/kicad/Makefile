@@ -21,11 +21,12 @@ WANTLIB += ssl ${COMPILER_LIBCXX}
 #WANTLIB += wx_baseu wx_baseu_net wx_gtk2u_adv wx_gtk2u_aui
 #WANTLIB += wx_gtk2u_core wx_gtk2u_gl wx_gtk2u_html z
 
-MASTER_SITES =		https://github.com/KiCad/kicad-source-mirror/archive/${V}/
-
+#MASTER_SITES =		https://github.com/KiCad/kicad-source-mirror/archive/${V}/
+MASTER_SITES =		https://launchpad.net/kicad/${V:R}/${V}/+download/
 COMPILER =		ports-clang
 MODULES =		devel/cmake
 #only for scripting			lang/python
+EXTRACT_SUFX =		.tar.xz
 
 BUILD_DEPENDS =		devel/boost \
 			devel/cmake \
@@ -58,30 +59,33 @@ SHARED_LIBS +=		kicad_3dsg                2.0 # 2.0
 CONFIGURE_ARGS +=	-DwxWidgets_CONFIG_EXECUTABLE=${LOCALBASE}/bin/wx-config \
 			-DwxWidgets_LIBRARIES="${LOCALBASE}/lib/wx" \
 			-DwxWidgets_INCLUDE_DIRS="${LOCALBASE}/include/wx-3.0" \
-			-DUSE_WX_GRAPHICS_CONTEXT=OFF \
-			-DUSE_WX_OVERLAY=OFF \
-			-DBUILD_GITHUB_PLUGIN=OFF \
 			-DCMAKE_BUILD_TYPE=Release \
-			-DKICAD_SKIP_BOOST=ON \
-			-DKICAD_SCRIPTING_ACTION_MENU=OFF \
-			-DKICAD_SPICE=OFF \
-			-DKICAD_SCRIPTING=OFF \
-			-DKICAD_SCRIPTING_MODULES=OFF \
-			-DKICAD_SCRIPTING_WXPYTHON=OFF
+			-DKICAD_SCRIPTING_WXPYTHON=OFF \
+			-DKICAD_SKIP_BOOST=ON
 
+#
+#			-DUSE_WX_GRAPHICS_CONTEXT=OFF \
+#			-DUSE_WX_OVERLAY=OFF \
+#			-DBUILD_GITHUB_PLUGIN=OFF \
+#			-DKICAD_SCRIPTING_ACTION_MENU=OFF \
+#			-DKICAD_SPICE=OFF \
+#			-DKICAD_SCRIPTING=OFF \
+#			-DKICAD_SCRIPTING_MODULES=OFF \
+#
+#
 NO_TEST =		Yes
 
-WRKDIST =		${WRKDIR}/kicad-source-mirror-${V}
-WRKSRC =		${WRKDIST}
+#WRKDIST =		${WRKDIR}/kicad-source-mirror-${V}
+#WRKSRC =		${WRKDIST}
 
 pre-configure:
 	@cd ${WRKSRC}/eeschema/qa && mv CMakeLists.txt CMakeLists.txt.orig
 
-pre-build:
-	@sed -i "s,-lrt,," \
-		${WRKDIR}/build-amd64/build.ninja
 #pre-build:
-#	@sed -i "s,-lrt,-lpthread," \
+#	@sed -i "s,-lrt,," \
 #		${WRKDIR}/build-amd64/build.ninja
+pre-build:
+	@sed -i "s,-lrt,-lpthread," \
+		${WRKDIR}/build-amd64/build.ninja
 
 .include <bsd.port.mk>
