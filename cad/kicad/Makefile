@@ -47,7 +47,8 @@ RUN_DEPENDS =		cad/kicad-symbols \
 			cad/kicad-templates \
 			devel/desktop-file-utils \
 			misc/shared-mime-info \
-			x11/gtk+3,-guic
+			x11/gtk+3,-guic \
+			x11/wxWidgets
 
 LIB_DEPENDS =		cad/oce \
 			graphics/cairo \
