@@ -16,6 +16,8 @@ PERMIT_PACKAGE_CDROM =	Yes
 
 NO_TEST =		Yes
 
+WANTLIB += c
+
 USE_GMAKE =		Yes
 
 do-install:

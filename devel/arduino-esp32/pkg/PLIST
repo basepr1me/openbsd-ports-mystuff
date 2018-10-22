@@ -176,8 +176,8 @@ share/espressif/esp32/libraries/AzureIoT/.git/logs/refs/remotes/origin/HEAD
 share/espressif/esp32/libraries/AzureIoT/.git/objects/
 share/espressif/esp32/libraries/AzureIoT/.git/objects/info/
 share/espressif/esp32/libraries/AzureIoT/.git/objects/pack/
-share/espressif/esp32/libraries/AzureIoT/.git/objects/pack/pack-a25d54450f0eba72c3994c039733fca0ac0294a6.idx
-share/espressif/esp32/libraries/AzureIoT/.git/objects/pack/pack-a25d54450f0eba72c3994c039733fca0ac0294a6.pack
+share/espressif/esp32/libraries/AzureIoT/.git/objects/pack/pack-070bc4d2735e50dfce572346f3016b874e20a06b.idx
+share/espressif/esp32/libraries/AzureIoT/.git/objects/pack/pack-070bc4d2735e50dfce572346f3016b874e20a06b.pack
 share/espressif/esp32/libraries/AzureIoT/.git/packed-refs
 share/espressif/esp32/libraries/AzureIoT/.git/refs/
 share/espressif/esp32/libraries/AzureIoT/.git/refs/heads/
@@ -391,8 +391,8 @@ share/espressif/esp32/libraries/BLE/.git/logs/refs/remotes/origin/HEAD
 share/espressif/esp32/libraries/BLE/.git/objects/
 share/espressif/esp32/libraries/BLE/.git/objects/info/
 share/espressif/esp32/libraries/BLE/.git/objects/pack/
-share/espressif/esp32/libraries/BLE/.git/objects/pack/pack-f587cf528499fdd30ab443f686b5bb8969d7d783.idx
-share/espressif/esp32/libraries/BLE/.git/objects/pack/pack-f587cf528499fdd30ab443f686b5bb8969d7d783.pack
+share/espressif/esp32/libraries/BLE/.git/objects/pack/pack-0a67ff1bc90b6c4764e6418d002f53a7d5f04d3f.idx
+share/espressif/esp32/libraries/BLE/.git/objects/pack/pack-0a67ff1bc90b6c4764e6418d002f53a7d5f04d3f.pack
 share/espressif/esp32/libraries/BLE/.git/packed-refs
 share/espressif/esp32/libraries/BLE/.git/refs/
 share/espressif/esp32/libraries/BLE/.git/refs/heads/

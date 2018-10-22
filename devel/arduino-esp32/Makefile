@@ -18,7 +18,11 @@ NO_TEST =		Yes
 
 NO_BUILD =		Yes
 
-BUILD_DEPENDS =		devel/git
+BUILD_DEPENDS =		devel/esptool-ck \
+			devel/esptool-py \
+			devel/git \
+			devel/mkspiffs \
+			devel/xtensa-esp32-elf
 
 RUN_DEPENDS +=		devel/arduino \
 			devel/esptool-ck \

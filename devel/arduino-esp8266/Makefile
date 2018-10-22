@@ -18,6 +18,11 @@ NO_TEST =		Yes
 
 NO_BUILD =		Yes
 
+BUILD_DEPENDS +=	devel/esptool-ck \
+			devel/esptool-py \
+			devel/mkspiffs \
+			devel/xtensa-lx106-elf
+
 RUN_DEPENDS +=		devel/arduino \
 			devel/esptool-ck \
 			devel/esptool-py \

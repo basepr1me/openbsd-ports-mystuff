@@ -25,6 +25,7 @@ BUILD_DEPENDS ?=	${MODGNU_AUTOCONF_DEPENDS} \
 			archivers/gtar \
 			archivers/unzip \
 			devel/bison \
+			devel/help2man \
 			devel/git \
 			devel/gpatch \
 			devel/gperf \
@@ -58,8 +59,8 @@ INSTALL_DIR =		${WRKSRC}/lib/ct-ng.1.22.x
 
 post-configure:
 	@mkdir -p ${INSTALL_DIR}
-	${SUDO} cp -r ${WRKSRC}/local-patches ${INSTALL_DIR}
-	${SUDO} cp -r ${WRKSRC}/overlays ${INSTALL_DIR}
+	@cp -r ${WRKSRC}/local-patches ${INSTALL_DIR}
+	@cp -r ${WRKSRC}/overlays ${INSTALL_DIR}
 	@cd ${WRKSRC} && gmake && gmake install && \
 		./ct-ng ${XTENSAPRE}
 	@cat ${FILESDIR}/crosstool-config-overrides >> ${WRKSRC}/.config

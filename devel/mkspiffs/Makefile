@@ -14,6 +14,8 @@ GH_TAGNAME =		${V}
 
 BUILD_DEPS =		devel/git
 
+WANTLIB += c m
+
 #MIT
 PERMIT_PACKAGE_CDROM =	Yes
 
