@@ -1,0 +1,9 @@
+@comment $OpenBSD: PLIST,v$
+@rcscript ${RCDIR}/thingsd
+@man man/man5/thingsd.conf.5
+@man man/man8/thingsctl.8
+@man man/man8/thingsd.8
+@bin sbin/thingsctl
+@bin sbin/thingsd
+share/examples/thingsd/
+share/examples/thingsd/thingsd.conf

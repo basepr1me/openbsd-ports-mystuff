@@ -2,7 +2,7 @@
 #
 # $OpenBSD$
 
-daemon="${TRUEPREFIX}/sbin/busybeed"
+daemon="${TRUEPREFIX}/sbin/thingsd"
 
 . /etc/rc.d/rc.subr
 

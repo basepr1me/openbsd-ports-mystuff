@@ -1,0 +1,5 @@
+The thingsd OpenBSD proxy daemon provides a mechanism for clients and client
+processes to communicate with an array of serial and IoT things. At its core,
+thingsd is primarily a packet repeater in that it waits for packets to swap
+between subscriber clients and things. However, thingsd also provides password
+control over those connections, including client limits.
