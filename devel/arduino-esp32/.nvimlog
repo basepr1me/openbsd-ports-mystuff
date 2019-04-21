@@ -1,3 +1,0 @@
-2019/03/01 16:04:56 ERROR 78654 os_proc_tree_kill:104: getpgid(4293) returned -1
-2019/03/07 16:00:47 ERROR 499 os_proc_tree_kill:104: getpgid(73020) returned -1
-2019/03/07 16:00:47 ERROR 499 os_proc_tree_kill:104: getpgid(14144) returned -1

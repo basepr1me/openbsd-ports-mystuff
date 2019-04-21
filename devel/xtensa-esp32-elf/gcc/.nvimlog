@@ -1,3 +1,0 @@
-2019/03/06 14:42:49 ERROR 55470 os_proc_tree_kill:104: getpgid(25294) returned -1
-2019/03/07 09:42:52 ERROR 27524 os_proc_tree_kill:104: getpgid(50902) returned -1
-2019/03/07 10:01:20 ERROR 8746 os_proc_tree_kill:104: getpgid(72959) returned -1
