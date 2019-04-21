@@ -1,0 +1,20 @@
+$OpenBSD$
+
+Index: newlib/libc/reent/getreent.c
+--- newlib/libc/reent/getreent.c.orig
++++ newlib/libc/reent/getreent.c
+@@ -2,7 +2,7 @@
+ 
+ #include <_ansi.h>
+ #include <reent.h>
+-
++#if 0
+ #ifdef __getreent
+ #undef __getreent
+ #endif
+@@ -12,3 +12,4 @@ _DEFUN_VOID(__getreent)
+ {
+   return _impure_ptr;
+ }
++#endif
+\ No newline at end of file
