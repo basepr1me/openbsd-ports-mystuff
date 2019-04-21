@@ -1,6 +1,6 @@
 # $OpenBSD$
 
-V =			1.2
+V =			2.1
 COMMENT =		things proxy daemon for OpenBSD
 DISTNAME =		thingsd-${V}
 CATEGORIES =		net
