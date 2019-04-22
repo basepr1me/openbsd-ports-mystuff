@@ -47,6 +47,8 @@ share/kicad/library/CPU_NXP_6800.dcm
 share/kicad/library/CPU_NXP_6800.lib
 share/kicad/library/CPU_NXP_68000.dcm
 share/kicad/library/CPU_NXP_68000.lib
+share/kicad/library/CPU_NXP_IMX.dcm
+share/kicad/library/CPU_NXP_IMX.lib
 share/kicad/library/CPU_PowerPC.dcm
 share/kicad/library/CPU_PowerPC.lib
 share/kicad/library/Comparator.dcm
@@ -89,6 +91,8 @@ share/kicad/library/Driver_Display.dcm
 share/kicad/library/Driver_Display.lib
 share/kicad/library/Driver_FET.dcm
 share/kicad/library/Driver_FET.lib
+share/kicad/library/Driver_Haptic.dcm
+share/kicad/library/Driver_Haptic.lib
 share/kicad/library/Driver_LED.dcm
 share/kicad/library/Driver_LED.lib
 share/kicad/library/Driver_Motor.dcm
@@ -113,6 +117,8 @@ share/kicad/library/FPGA_Xilinx_Virtex6.dcm
 share/kicad/library/FPGA_Xilinx_Virtex6.lib
 share/kicad/library/FPGA_Xilinx_Virtex7.dcm
 share/kicad/library/FPGA_Xilinx_Virtex7.lib
+share/kicad/library/Fiber_Optic.dcm
+share/kicad/library/Fiber_Optic.lib
 share/kicad/library/Filter.dcm
 share/kicad/library/Filter.lib
 share/kicad/library/GPU.dcm
@@ -129,6 +135,8 @@ share/kicad/library/Interface_Ethernet.dcm
 share/kicad/library/Interface_Ethernet.lib
 share/kicad/library/Interface_Expansion.dcm
 share/kicad/library/Interface_Expansion.lib
+share/kicad/library/Interface_HDMI.dcm
+share/kicad/library/Interface_HDMI.lib
 share/kicad/library/Interface_HID.dcm
 share/kicad/library/Interface_HID.lib
 share/kicad/library/Interface_LineDriver.dcm
@@ -181,6 +189,8 @@ share/kicad/library/MCU_Microchip_PIC24.dcm
 share/kicad/library/MCU_Microchip_PIC24.lib
 share/kicad/library/MCU_Microchip_PIC32.dcm
 share/kicad/library/MCU_Microchip_PIC32.lib
+share/kicad/library/MCU_Microchip_SAMD.dcm
+share/kicad/library/MCU_Microchip_SAMD.lib
 share/kicad/library/MCU_Microchip_SAME.dcm
 share/kicad/library/MCU_Microchip_SAME.lib
 share/kicad/library/MCU_Microchip_SAML.dcm
@@ -279,8 +289,12 @@ share/kicad/library/RF_Amplifier.dcm
 share/kicad/library/RF_Amplifier.lib
 share/kicad/library/RF_Bluetooth.dcm
 share/kicad/library/RF_Bluetooth.lib
+share/kicad/library/RF_Filter.dcm
+share/kicad/library/RF_Filter.lib
 share/kicad/library/RF_GPS.dcm
 share/kicad/library/RF_GPS.lib
+share/kicad/library/RF_GSM.dcm
+share/kicad/library/RF_GSM.lib
 share/kicad/library/RF_Mixer.dcm
 share/kicad/library/RF_Mixer.lib
 share/kicad/library/RF_Module.dcm
@@ -311,6 +325,8 @@ share/kicad/library/Relay.dcm
 share/kicad/library/Relay.lib
 share/kicad/library/Relay_SolidState.dcm
 share/kicad/library/Relay_SolidState.lib
+share/kicad/library/Security.dcm
+share/kicad/library/Security.lib
 share/kicad/library/Sensor.dcm
 share/kicad/library/Sensor.lib
 share/kicad/library/Sensor_Audio.dcm
@@ -337,6 +353,8 @@ share/kicad/library/Sensor_Touch.dcm
 share/kicad/library/Sensor_Touch.lib
 share/kicad/library/Sensor_Voltage.dcm
 share/kicad/library/Sensor_Voltage.lib
+share/kicad/library/Simulation_SPICE.dcm
+share/kicad/library/Simulation_SPICE.lib
 share/kicad/library/Switch.dcm
 share/kicad/library/Switch.lib
 share/kicad/library/Timer.dcm

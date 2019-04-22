@@ -1,7 +1,7 @@
 # $OpenBSD$
 
-COMMENT =		3D packages for Kicad 5.0.0
-V =			5.0.0
+COMMENT =		3D packages for Kicad 5.1.0
+V =			5.1.0
 DISTNAME =		kicad-packages3D-${V}
 CATEGORIES =		cad
 

@@ -3,7 +3,7 @@ $OpenBSD$
 Index: kicad/kicad.cpp
 --- kicad/kicad.cpp.orig
 +++ kicad/kicad.cpp
-@@ -241,7 +241,7 @@ struct APP_KICAD : public wxApp
+@@ -252,7 +252,7 @@ struct APP_KICAD : public wxApp
      {
          program.OnPgmExit();
  

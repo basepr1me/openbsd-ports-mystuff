@@ -1,0 +1,12 @@
+$OpenBSD$
+
+Index: common/CMakeLists.txt
+--- common/CMakeLists.txt.orig
++++ common/CMakeLists.txt
+@@ -1,4 +1,6 @@
+ # .cpp files are compiled with extra ${WSHADOW_FLAGS}
++find_package(Boost COMPONENTS context REQUIRED)
++find_package(Boost COMPONENTS coroutine REQUIRED)
+ if( COMPILER_SUPPORTS_WSHADOW )
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WSHADOW_FLAGS}")
+ endif()

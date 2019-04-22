@@ -1,7 +1,7 @@
 # $OpenBSD$
 
-COMMENT =		language translations for Kicad 5.0.0
-V =			5.0.0
+COMMENT =		language translations for Kicad 5.1.0
+V =			5.1.0
 DISTNAME =		kicad-i18n-${V}
 CATEGORIES =		cad
 

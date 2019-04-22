@@ -1,10 +1,4 @@
 @comment $OpenBSD: PLIST,v$
-bin/_cvpcb.kiface
-bin/_eeschema.kiface
-bin/_gerbview.kiface
-bin/_pcb_calculator.kiface
-bin/_pcbnew.kiface
-bin/_pl_editor.kiface
 @bin bin/bitmap2component
 @bin bin/dxf2idf
 @bin bin/eeschema
@@ -15,6 +9,12 @@ bin/_pl_editor.kiface
 @bin bin/kicad
 @bin bin/kicad-ogltest
 @bin bin/kicad2step
+bin/libcvpcb.a
+bin/libeeschema.a
+bin/libgerbview.a
+bin/libpcb_calculator.a
+bin/libpcbnew.a
+bin/libpl_editor.a
 @bin bin/pcb_calculator
 @bin bin/pcbnew
 @bin bin/pl_editor
@@ -25,10 +25,13 @@ lib/kicad/plugins/3d/libs3d_plugin_idf.so
 lib/kicad/plugins/3d/libs3d_plugin_oce.so
 lib/kicad/plugins/3d/libs3d_plugin_vrml.so
 @lib lib/libkicad_3dsg.so.${LIBkicad_3dsg_VERSION}
+lib/python2.7/
+lib/python2.7/site-packages/
 lib/python2.7/site-packages/_pcbnew.so
 lib/python2.7/site-packages/pcbnew.py
 share/appdata/
 share/appdata/kicad.appdata.xml
+share/applications/
 share/applications/bitmap2component.desktop
 share/applications/eeschema.desktop
 share/applications/gerbview.desktop
@@ -38,11 +41,7 @@ share/applications/pcbnew.desktop
 share/doc/kicad/
 share/doc/kicad/scripts/
 share/doc/kicad/scripts/ddr3_length_match.py
-share/doc/kicad/scripts/get_libngspice_so.sh
 share/doc/kicad/scripts/lib_convert.py
-share/doc/kicad/scripts/library-repos-install.sh
-share/doc/kicad/scripts/mk_macos_icons.py
-share/doc/kicad/scripts/mk_mime_icons.py
 share/doc/kicad/scripts/test_kicad_plugin.py
 share/doc/kicad/scripts/test_plugin.py
 share/icons/hicolor/128x128/apps/bitmap2component.png
@@ -337,10 +336,10 @@ share/kicad/scripting/plugins/PadArray.py
 share/kicad/scripting/plugins/__init__.py
 share/kicad/scripting/plugins/bga_wizard.py
 share/kicad/scripting/plugins/circular_pad_array_wizard.py
+share/kicad/scripting/plugins/kicad_qrcode.py
 share/kicad/scripting/plugins/microMatch_connectors.py
 share/kicad/scripting/plugins/qfn_wizard.py
 share/kicad/scripting/plugins/qfp_wizard.py
-share/kicad/scripting/plugins/qrcode.py
 share/kicad/scripting/plugins/qrcode_footprint_wizard.py
 share/kicad/scripting/plugins/sdip_wizard.py
 share/kicad/scripting/plugins/touch_slider_wizard.py
@@ -349,6 +348,6 @@ share/kicad/scripting/plugins/zip_wizard.py
 share/kicad/template/kicad.pro
 share/mime/packages/kicad-gerbers.xml
 share/mime/packages/kicad-kicad.xml
-@tag update-desktop-database
 @tag update-mime-database
+@comment @tag update-desktop-database
 @tag gtk-update-icon-cache %D/share/icons/hicolor

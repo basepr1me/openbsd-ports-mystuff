@@ -1,7 +1,7 @@
 # $OpenBSD$
 
-COMMENT =		footprint modules for Kicad 5.0.0
-V =			5.0.0
+COMMENT =		footprint modules for Kicad 5.1.0
+V =			5.1.0
 DISTNAME =		kicad-footprints-${V}
 CATEGORIES =		cad
 

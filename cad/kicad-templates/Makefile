@@ -1,7 +1,7 @@
 # $OpenBSD$
 
-COMMENT =		templates for Kicad 5.0.0
-V =			5.0.0
+COMMENT =		templates for Kicad 5.1.0
+V =			5.1.0
 DISTNAME =		kicad-templates-${V}
 CATEGORIES =		cad
 

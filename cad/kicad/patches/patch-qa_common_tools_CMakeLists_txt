@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: qa/common_tools/CMakeLists.txt
+--- qa/common_tools/CMakeLists.txt.orig
++++ qa/common_tools/CMakeLists.txt
+@@ -20,6 +20,8 @@
+ # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+ 
+ find_package( wxWidgets 3.0.0 COMPONENTS gl aui adv html core net base xml stc REQUIRED )
++find_package(Boost COMPONENTS context REQUIRED)
++find_package(Boost COMPONENTS coroutine REQUIRED)
+ 
+ add_executable( qa_common_tools
+ 

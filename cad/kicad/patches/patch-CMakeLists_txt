@@ -1,0 +1,31 @@
+$OpenBSD$
+
+Index: CMakeLists.txt
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -340,8 +340,8 @@ if( CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID 
+ 
+     elseif( NOT APPLE )
+         # Thou shalt not link vaporware and tell us it's a valid DSO (apple ld doesn't support it)
+-        set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
+-        set( CMAKE_MODULE_LINKER_FLAGS "-Wl,--no-undefined" )
++	#set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
++	#set( CMAKE_MODULE_LINKER_FLAGS "-Wl,--no-undefined" )
+ 
+         set( CMAKE_EXE_LINKER_FLAGS_RELEASE "-s" )
+ 
+@@ -419,12 +419,12 @@ if( false )
+     set( KIFACE_SUFFIX  ${CMAKE_SHARED_MODULE_SUFFIX} )
+ else()
+     # Temporary situation until we can dovetail the python DSO into the kiface DSO.
+-    set( KIFACE_SUFFIX  ".kiface" )
++    set( KIFACE_SUFFIX  ".a" )
+ endif()
+ 
+ # KIFACE_PREFIX is a basename prefix used for top level program modules which
+ # implement the KIFACE.
+-set( KIFACE_PREFIX  "_" )
++set( KIFACE_PREFIX  "lib" )
+ #message( STATUS "KIFACE_SUFFIX:${KIFACE_SUFFIX}  KIFACE_PREFIX:${KIFACE_PREFIX}" )
+ 
+ 

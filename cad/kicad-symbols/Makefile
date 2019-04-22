@@ -1,7 +1,7 @@
 # $OpenBSD$
 
-COMMENT =		symbol modules for Kicad 5.0.0
-V =			5.0.0
+COMMENT =		symbol modules for Kicad 5.1.0
+V =			5.1.0
 DISTNAME =		kicad-symbols-${V}
 CATEGORIES =		cad
 

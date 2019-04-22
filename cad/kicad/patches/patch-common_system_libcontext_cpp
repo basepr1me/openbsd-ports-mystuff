@@ -3,147 +3,25 @@ $OpenBSD$
 Index: common/system/libcontext.cpp
 --- common/system/libcontext.cpp.orig
 +++ common/system/libcontext.cpp
-@@ -401,7 +401,143 @@ __asm (
- );
- 
- #endif
-+#if defined(LIBCONTEXT_PLATFORM_openbsd_amd64) && defined(LIBCONTEXT_COMPILER_gcc)
-+__asm (
-+".text\n"
-+".globl jump_fcontext\n"
-+".type jump_fcontext,@function\n"
-+".align 16\n"
-+"jump_fcontext:\n"
-+"    pushq   %rbp\n"
-+"    pushq   %rbx\n"
-+"    pushq   %r15\n"
-+"    pushq   %r14\n"
-+"    pushq   %r13\n"
-+"    pushq   %r12\n"
-+"    leaq   0xfffffffffffffff8(%rsp),%rsp\n"
-+"    cmp    $0x0,%rcx\n"
-+"    je     jone\n"
-+"    stmxcsr (%rsp)\n"
-+"    fnstcw 0x4(%rsp)\n"
-+"jone:\n"
-+"    movq    %rsp,(%rdi)\n"
-+"    movq    %rsi,%rsp\n"
-+"    cmp    $0x0,%rcx\n"
-+"    je     jtwo\n"
-+"    ldmxcsr (%rsp)\n"
-+"    fldcw  0x4(%rsp)\n"
-+"jtwo:\n"
-+"    leaq    0x8(%rsp),%rsp\n"
-+"    popq    %r12\n"
-+"    popq    %r13\n"
-+"    popq    %r14\n"
-+"    popq    %r15\n"
-+"    popq    %rbx\n"
-+"    popq    %rbp\n"
-+"    popq    %r8\n"
-+"    movq    %rdx,%rax\n"
-+"    movq    %rdx,%rdi\n"
-+"    jmpq    *%r8\n"
-+".size jump_fcontext,.-jump_fcontext\n"
-+".section .note.GNU-stack,\"\",%progbits\n"
-+);
- 
-+#endif
-+
-+#if defined(LIBCONTEXT_PLATFORM_openbsd_amd64) && defined(LIBCONTEXT_COMPILER_gcc)
-+__asm (
-+".text\n"
-+".globl make_fcontext\n"
-+".type make_fcontext,@function\n"
-+".align 16\n"
-+"make_fcontext:\n"
-+"    movq    %rdi,%rax\n"
-+"    andq    $0xfffffffffffffff0,%rax\n"
-+"    leaq    0xffffffffffffffb8(%rax),%rax\n"
-+"    movq    %rdx,0x38(%rax)\n"
-+"    stmxcsr (%rax)\n"
-+"    fnstcw 0x4(%rax)\n"
-+"    leaq    finish(%rip),%rcx\n"
-+"    movq    %rcx,0x40(%rax)\n"
-+"    retq\n"
-+"finish:\n"
-+"    xorq    %rdi,%rdi\n"
-+"    call   _exit@PLT\n"
-+"    hlt\n"
-+".size make_fcontext,.-make_fcontext\n"
-+".section .note.GNU-stack,\"\",%progbits\n"
-+);
-+
-+#endif
-+/*
-+#if defined(LIBCONTEXT_PLATFORM_openbsd_amd64) && defined(LIBCONTEXT_COMPILER_gcc)
-+__asm (
-+".text\n"
-+".globl jump_fcontext\n"
-+".type jump_fcontext,@function\n"
-+".align 16\n"
-+"jump_fcontext:\n"
-+"    leaq    0xffffffffffffffc8(%rsp),%rsp\n"
-+"    stmxcsr (%rsp)\n"
-+"    fnstcw 0x4(%rsp)\n"
-+"    movq    %r12,0x8(%rsp)\n"
-+"    movq    %r13,0x10(%rsp)\n"
-+"    movq    %r14,0x18(%rsp)\n"
-+"    movq    %r15,0x20(%rsp)\n"
-+"    movq    %rbx,0x28(%rsp)\n"
-+"    movq    %rbp,0x30(%rsp)\n"
-+"    movq    %rsp,%rax\n"
-+"    movq    %rdi,%rsp\n"
-+"    movq    0x38(%rsp),%r8\n"
-+"    ldmxcsr (%rsp)\n"
-+"    fldcw  0x4(%rsp)\n"
-+"    movq    0x8(%rsp),%r12\n"
-+"    movq    0x10(%rsp),%r13\n"
-+"    movq    0x18(%rsp),%r14\n"
-+"    movq    0x20(%rsp),%r15\n"
-+"    movq    0x28(%rsp),%rbx\n"
-+"    movq    0x30(%rsp),%rbp\n"
-+"    leaq    0x40(%rsp),%rsp\n"
-+"    movq    %rsi,%rdx\n"
-+"    movq    %rax,%rdi\n"
-+"    jmpq   *%r8\n"
-+".size jump_fcontext,.-jump_fcontext\n"
-+".section .note.GNU-stack,\"\",%progbits\n"
-+);
-+
-+#endif
-+
-+#if defined(LIBCONTEXT_PLATFORM_openbsd_amd64) && defined(LIBCONTEXT_COMPILER_gcc)
-+__asm (
-+".text\n"
-+".globl make_fcontext\n"
-+".type make_fcontext,@function\n"
-+".align 16\n"
-+"make_fcontext:\n"
-+"    movq    %rdi,%rax\n"
-+"    andq    $0xfffffffffffffff0,%rax\n"
-+"    leaq    0xffffffffffffffc0(%rax),%rax\n"
-+"    movq    %rdx,0x28(%rax)\n"
-+"    stmxcsr (%rax)\n"
-+"    fnstcw 0x4(%rax)\n"
-+"    leaq    trampoline(%rip),%rcx\n"
-+"    movq    %rcx,0x38(%rax)\n"
-+"    leaq    finish(%rip),%rcx\n"
-+"    movq    %rcx,0x30(%rax)\n"
-+"    retq\n"
+@@ -385,13 +385,18 @@ __asm (
+ "make_fcontext:\n"
+ "    movq  %rdi, %rax\n"
+ "    andq  $-16, %rax\n"
+-"    leaq  -0x48(%rax), %rax\n"
+-"    movq  %rdx, 0x38(%rax)\n"
++"    leaq  -0x40(%rax), %rax\n"
++"    movq  %rdx, 0x28(%rax)\n"
+ "    stmxcsr  (%rax)\n"
+ "    fnstcw   0x4(%rax)\n"
++"    leaq  trampoline(%rip), %rcx\n"
++"    movq  %rcx, 0x38(%rax)\n"
+ "    leaq  finish(%rip), %rcx\n"
+-"    movq  %rcx, 0x40(%rax)\n"
++"    movq  %rcx, 0x30(%rax)\n"
+ "    ret \n"
 +"trampoline:\n"
-+"    pushq   %rbp\n"
-+"    jmpq   *%rbx\n"
-+"finish:\n"
-+"    xor    %rdi,%rdi\n"
-+"    call  _exit@PLT\n"
-+"    hlt\n"
-+".size make_fcontext,.-make_fcontext\n"
-+".section .note.GNU-stack,\"\",%progbits\n"
-+);
-+
-+#endif
-+*/
- #if defined(LIBCONTEXT_PLATFORM_apple_x86_64) && defined(LIBCONTEXT_COMPILER_gcc)
- __asm (
- ".text\n"
++"    push %rbp\n"
++"    jmp *%rbx\n"
+ "finish:\n"
+ "    xorq  %rdi, %rdi\n"
+ "    call  _exit@PLT\n"

@@ -1,0 +1,13 @@
+$OpenBSD$
+
+Index: common/tool/tool_manager.cpp
+--- common/tool/tool_manager.cpp.orig
++++ common/tool/tool_manager.cpp
+@@ -26,6 +26,7 @@
+ #include <map>
+ #include <stack>
+ #include <algorithm>
++#include <functional>
+ 
+ #include <core/optional.h>
+ 
