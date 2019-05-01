@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Index: newlib/libc/include/stdlib.h
+--- newlib/libc/include/stdlib.h.orig
++++ newlib/libc/include/stdlib.h
+@@ -55,6 +55,10 @@ typedef struct
+ typedef int (*__compar_fn_t) (const _PTR, const _PTR);
+ #endif
+ 
++#ifndef NULL
++#define NULL 0
++#endif
++
+ #define EXIT_FAILURE 1
+ #define EXIT_SUCCESS 0
+ 

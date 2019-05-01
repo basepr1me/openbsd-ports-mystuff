@@ -1,0 +1,23 @@
+$OpenBSD$
+
+Index: newlib/libm/machine/configure
+--- newlib/libm/machine/configure.orig
++++ newlib/libm/machine/configure
+@@ -572,7 +572,7 @@ PACKAGE_STRING='newlib 2.2.0'
+ PACKAGE_BUGREPORT=''
+ PACKAGE_URL=''
+ 
+-ac_unique_file="i386"
++ac_unique_file="xtensa"
+ # Factoring default headers for most tests.
+ ac_includes_default="\
+ #include <stdio.h>
+@@ -11794,6 +11794,8 @@ subdirs="$subdirs aarch64"
+ 	nds32) subdirs="$subdirs nds32"
+  ;;
+ 	spu) subdirs="$subdirs spu"
++ ;;
++	xtensa) subdirs="$subdirs xtensa"
+  ;;
+   esac;
+   if test "${use_libtool}" = "yes"; then
