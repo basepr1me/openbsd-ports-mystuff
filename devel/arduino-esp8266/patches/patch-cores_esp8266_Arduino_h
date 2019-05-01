@@ -1,0 +1,13 @@
+$OpenBSD$
+
+Index: cores/esp8266/Arduino.h
+--- cores/esp8266/Arduino.h.orig
++++ cores/esp8266/Arduino.h
+@@ -22,6 +22,7 @@
+ 
+ #ifdef __cplusplus
+ extern "C" {
++#include <cmath>
+ #endif
+ 
+ #include <stdlib.h>

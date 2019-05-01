@@ -21,13 +21,13 @@ NO_BUILD =		Yes
 BUILD_DEPENDS +=	devel/esptool-ck \
 			devel/esptool-py \
 			devel/mkspiffs \
-			devel/xtensa-lx106-elf
+			devel/xtensa-lx106-elf/gcc-lx106
 
 RUN_DEPENDS +=		devel/arduino \
 			devel/esptool-ck \
 			devel/esptool-py \
 			devel/mkspiffs \
-			devel/xtensa-lx106-elf
+			devel/xtensa-lx106-elf/gcc-lx106
 
 WRKDIST =		${WRKDIR}/Arduino-2.4.1
 WRKSRC =		${WRKDIST}
