@@ -1,6 +1,6 @@
 # $OpenBSD$
 
-V =			2.6
+V =			2.7.0
 COMMENT =		things proxy daemon for OpenBSD
 DISTNAME =		thingsd-${V}
 CATEGORIES =		net
@@ -13,9 +13,7 @@ PERMIT_PACKAGE_CDROM =	Yes
 
 WANTLIB +=		c pthread util event crypto ssl tls
 
-MASTER_SITES =		https://github.com/basepr1me/thingsd/archive/v${V}/
-
-# COMPILER =		ports-gcc
+MASTER_SITES =		https://github.com/basepr1me/thingsd/archive/${V}/
 
 MAKE_FLAGS =		CC="${CC}"
 
