@@ -1,19 +1,21 @@
 # $OpenBSD$
 
-V =			2.7.0
+GH_ACCOUNT =		basepr1me
+GH_PROJECT =		thingsd
+GH_TAGNAME =		2.7.0
+
 COMMENT =		things proxy daemon for OpenBSD
-DISTNAME =		thingsd-${V}
 CATEGORIES =		net
 
-HOMEPAGE =		https://github.com/basepr1me/thingsd/
 MAINTAINER =		Tracey Emery <tracey@traceyemery.net>
 
 # ISC
 PERMIT_PACKAGE_CDROM =	Yes
 
-WANTLIB +=		c pthread util event crypto ssl tls
+# uses pledge()
+# uses unveil()
 
-MASTER_SITES =		https://github.com/basepr1me/thingsd/archive/${V}/
+WANTLIB +=		c pthread util event crypto ssl tls
 
 MAKE_FLAGS =		CC="${CC}"
 

@@ -1,4 +1,6 @@
 @comment $OpenBSD: PLIST,v$
+@newgroup _thingsd:834
+@newuser _thingsd:834:_thingsd:daemon:Thingsd User:/var/empty:/sbin/nologin
 @rcscript ${RCDIR}/thingsd
 @man man/man5/thingsd.conf.5
 @man man/man8/thingsctl.8
@@ -7,3 +9,5 @@
 @bin sbin/thingsd
 share/examples/thingsd/
 share/examples/thingsd/thingsd.conf
+@mode 640
+@sample ${SYSCONFDIR}/thingsd.conf
