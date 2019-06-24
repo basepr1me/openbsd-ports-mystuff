@@ -2,23 +2,16 @@
 
 COMMENT=	gdb for ${CONFIG} cross-development
 
-# VERSION=	7.9.1
-VERSION=	8.1
+VERSION=	7.9.1
 DISTNAME=	gdb-${VERSION}
-
-GH_ACCOUNT =	espressif
-GH_PROJECT =	binutils-gdb
-GH_TAGNAME =	esp32-2019r1_gdb-8_1
-
+EXTRACT_SUFX=	.tar.xz
 PKGNAME=        ${CONFIG}-${DISTNAME}
-
-CONFIGURE_ENV=CC_FOR_TARGET="${LOCALBASE}/${CONFIG}/bootstrap/bin/${CONFIG}-gcc"
 
 HOMEPAGE=	https://www.gnu.org/software/gdb/
 
 WANTLIB=	c curses expat m pthread z
 
-# MASTER_SITES=	${MASTER_SITE_GNU:=gdb/}
+MASTER_SITES=	${MASTER_SITE_GNU:=gdb/}
 DIST_SUBDIR=	gdb
 
 USE_GMAKE=	Yes
@@ -33,10 +26,10 @@ MODULES=	lang/python
 
 TEST_DEPENDS=	devel/dejagnu
 
-# post-extract:
-# 	@cp -r ${FILESDIR}/bfd ${WRKSRC}/
-# 	@cp -r ${FILESDIR}/gdb ${WRKSRC}/
-# 	@cp -r ${FILESDIR}/include ${WRKSRC}/
+post-extract:
+	@cp -r ${FILESDIR}/bfd ${WRKSRC}/
+	@cp -r ${FILESDIR}/gdb ${WRKSRC}/
+	@cp -r ${FILESDIR}/include ${WRKSRC}/
 
 post-install:
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
