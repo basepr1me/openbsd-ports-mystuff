@@ -9,7 +9,7 @@ HOMEPAGE =		https://github.com/espressif/arduino-esp32
 
 MASTER_SITES =		https://github.com/espressif/arduino-esp32/archive/${V}/
 
-PKG_NAME =		arduino-${DISTNAME}
+PKGNAME =		arduino-esp32-${V}
 MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
 
 #GPLv2.1
