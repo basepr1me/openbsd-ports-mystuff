@@ -13,6 +13,7 @@ GH_TAGNAME =	esp32-2019r1_newlib-3_0_0
 CONFIGURE_ENV=CC_FOR_TARGET="${LOCALBASE}/${CONFIG}/bootstrap/bin/${CONFIG}-gcc"
 
 MAKE_ENV+=	${CONFIGURE_ENV}
+MAKE_ENV+=	MACHINE_ARCH=xtensa
 
 HOMEPAGE=	http://sourceware.org/newlib/
 
@@ -31,10 +32,17 @@ USE_GROFF=	No
 CONFIGURE_ARGS+=--enable-interwork \
 		--enable-multilib \
 		--enable-languages=c,c++ \
-		--disable-newlib-supplied-syscalls
+			--enable-newlib-io-long-long \
+        		--enable-newlib-io-long-double \
+        		--enable-newlib-io-pos-args \
+        		--enable-newlib-reent-small \
+        		--enable-target-optspace
+
+#		--disable-newlib-supplied-syscalls
+pre-install:
+	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/newlib
 
 post-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/newlib
 	${INSTALL_DATA} ${WRKDIST}/COPYING.NEWLIB \
 		${PREFIX}/share/doc/newlib
 

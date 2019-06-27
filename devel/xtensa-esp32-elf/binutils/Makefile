@@ -21,6 +21,8 @@ USE_LIBTOOL=	No
 
 CONFIGURE_ARGS+=--enable-commonbfdlib=no \
 		--enable-interwork	 \
-		--enable-multilib
+		--enable-multilib	 \
+			--disable-werror \
+			--enable-shared
 
 .include <bsd.port.mk>

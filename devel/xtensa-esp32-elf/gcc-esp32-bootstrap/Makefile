@@ -14,6 +14,8 @@ PKGNAME=	${CONFIG}-gcc-bootstrap-${VERSION}
 
 SUBST_VARS+=	VERSION GCC_V
 
+# SHARED_LIBS +=  lto_plugin                0.0 # 0.
+
 WANTLIB=	${COMPILER_LIBCXX} c gmp m mpc mpfr
 DIST_SUBDIR=	gcc-elf32
 
@@ -38,52 +40,44 @@ CFLAGS=		-O2 -g
 
 CONFIGURE_ARGS+=--enable-languages=c \
 		--without-headers \
-		--disable-lto \
 		--exec-prefix=${PREFIX}/${CONFIG}/bootstrap	\
 		--with-local-prefix=${PREFIX}/${CONFIG}/bootstrap \
 		--with-as=${LOCALBASE}/bin/${CONFIG}-as \
-		--with-ld=${LOCALBASE}/bin/${CONFIG}-ld
-# CONFIGURE_ARGS+=--with-system-zlib \
-# 		--enable-multilib \
-# 		--disable-decimal-float \
-# 		--disable-libffi \
-# 		--disable-libgomp \
-# 		--disable-libmudflap \
-# 		--disable-libquadmath \
-# 		--disable-libquadmath-support \
-# 		--disable-libssp \
-# 		--disable-libstdcxx-pch \
-# 		--disable-libstdc++-v3 \
-# 		--disable-nls \
-# 		--disable-shared \
-# 		--disable-threads \
-# 		--disable-tls \
+		--with-ld=${LOCALBASE}/bin/${CONFIG}-ld \
+			--enable-threads=no \
+			--disable-shared \
+			--disable-__cxa_atexit \
+			--enable-cxx-flags='-fno-rtti -ffunction-sections' \
+			--disable-lto \
+			--enable-target-optspace \
+			--without-long-double-128 \
+			--disable-libgomp \
+			--disable-libmudflap \
+			--disable-libssp \
+			--disable-libquadmath \
+			--disable-libquadmath-support \
+			--disable-nls \
+			--disable-libstdcxx-verbose \
+			--enable-gcov-custom-rtio
+
+# CONFIGURE_ARGS+=--enable-languages=c \
+# 		--without-headers \
 # 		--disable-lto \
-# 		--enable-target-optspace \
-# 		--disable-__cxa_atexit \
-# 		--without-long-double-128 \
-# 		--enable-cxx-flags=-fno-exceptions \
-# 		--with-gnu-as \
-# 		--with-gnu-ld \
-# 		--with-headers=no \
-# 		--without-newlib \
-# 		--without-included-gettext \
-# 		--exec-prefix=${PREFIX}/${CONFIG}/bootstrap \
+# 		--exec-prefix=${PREFIX}/${CONFIG}/bootstrap	\
 # 		--with-local-prefix=${PREFIX}/${CONFIG}/bootstrap \
-# 		--with-ar=${LOCALBASE}/bin/${CONFIG}-ar \
 # 		--with-as=${LOCALBASE}/bin/${CONFIG}-as \
-# 		--with-nm=${LOCALBASE}/bin/${CONFIG}-nm \
 # 		--with-ld=${LOCALBASE}/bin/${CONFIG}-ld
 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+		LDFLAGS="-L${LOCALBASE}/lib" \
+		MACHINE_ARCH=xtensa
 
 ALL_TARGET=	all-gcc all-target-libgcc
 INSTALL_TARGET=	install-gcc install-target-libgcc
 
 # cope with user settings in /etc/mk.conf
 MAKE_FLAGS=	LANGUAGES="c" CFLAGS="-I${LOCALBASE}/include"
-MAKE_ENV=	MACHINE_ARCH=${CONFIG}
+MAKE_ENV=	MACHINE_ARCH=xtensa
 
 SEPARATE_BUILD=	Yes
 USE_GMAKE=	Yes
