@@ -479,7 +479,6 @@ libexec/gcc/xtensa-esp32-elf/${VERSION}/install-tools/fixinc.sh
 libexec/gcc/xtensa-esp32-elf/${VERSION}/install-tools/mkheaders
 libexec/gcc/xtensa-esp32-elf/${VERSION}/install-tools/mkinstalldirs
 libexec/gcc/xtensa-esp32-elf/${VERSION}/liblto_plugin.la
-libexec/gcc/xtensa-esp32-elf/${VERSION}/liblto_plugin.so
 @lib libexec/gcc/xtensa-esp32-elf/${VERSION}/liblto_plugin.so.${LIBlto_plugin_VERSION}
 @bin libexec/gcc/xtensa-esp32-elf/${VERSION}/lto-wrapper
 @bin libexec/gcc/xtensa-esp32-elf/${VERSION}/lto1
@@ -498,14 +497,10 @@ share/gcc-${VERSION}/
 share/gcc-${VERSION}/python/
 share/gcc-${VERSION}/python/libstdcxx/
 share/gcc-${VERSION}/python/libstdcxx/__init__.py
-share/gcc-${VERSION}/python/libstdcxx/__init__.pyc
 share/gcc-${VERSION}/python/libstdcxx/v6/
 share/gcc-${VERSION}/python/libstdcxx/v6/__init__.py
-share/gcc-${VERSION}/python/libstdcxx/v6/__init__.pyc
 share/gcc-${VERSION}/python/libstdcxx/v6/printers.py
-share/gcc-${VERSION}/python/libstdcxx/v6/printers.pyc
 share/gcc-${VERSION}/python/libstdcxx/v6/xmethods.py
-share/gcc-${VERSION}/python/libstdcxx/v6/xmethods.pyc
 xtensa-esp32-elf/include/c++/
 xtensa-esp32-elf/include/c++/${VERSION}/
 xtensa-esp32-elf/include/c++/${VERSION}/algorithm
@@ -1323,11 +1318,13 @@ xtensa-esp32-elf/include/c++/${VERSION}/xtensa-esp32-elf/ext/
 xtensa-esp32-elf/include/c++/${VERSION}/xtensa-esp32-elf/ext/opt_random.h
 xtensa-esp32-elf/lib/esp32-psram/libstdc++.a
 xtensa-esp32-elf/lib/esp32-psram/libstdc++.a-gdb.py
+xtensa-esp32-elf/lib/esp32-psram/libstdc++.a-gdb.pyc
 xtensa-esp32-elf/lib/esp32-psram/libstdc++.la
 xtensa-esp32-elf/lib/esp32-psram/libsupc++.a
 xtensa-esp32-elf/lib/esp32-psram/libsupc++.la
 xtensa-esp32-elf/lib/libstdc++.a
 xtensa-esp32-elf/lib/libstdc++.a-gdb.py
+xtensa-esp32-elf/lib/libstdc++.a-gdb.pyc
 xtensa-esp32-elf/lib/libstdc++.la
 xtensa-esp32-elf/lib/libsupc++.a
 xtensa-esp32-elf/lib/libsupc++.la

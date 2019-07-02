@@ -5,7 +5,6 @@
 @comment @info info/gccinstall.info
 @comment @info info/gccint.info
 @man man/man1/xtensa-esp32-elf-cpp.1
-@man man/man1/xtensa-esp32-elf-g++.1
 @man man/man1/xtensa-esp32-elf-gcc.1
 @man man/man1/xtensa-esp32-elf-gcov-dump.1
 @man man/man1/xtensa-esp32-elf-gcov-tool.1
@@ -15,9 +14,7 @@
 @comment @man man/man7/gpl.7
 xtensa-esp32-elf/bootstrap/
 xtensa-esp32-elf/bootstrap/bin/
-@bin xtensa-esp32-elf/bootstrap/bin/xtensa-esp32-elf-c++
 @bin xtensa-esp32-elf/bootstrap/bin/xtensa-esp32-elf-cpp
-@bin xtensa-esp32-elf/bootstrap/bin/xtensa-esp32-elf-g++
 @bin xtensa-esp32-elf/bootstrap/bin/xtensa-esp32-elf-gcc
 @bin xtensa-esp32-elf/bootstrap/bin/xtensa-esp32-elf-gcc-${VERSION}
 @bin xtensa-esp32-elf/bootstrap/bin/xtensa-esp32-elf-gcc-ar
@@ -138,11 +135,6 @@ xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/co
 xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/coverage.h
 xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cp/
 xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cp/cp-tree.def
-xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cp/cp-tree.h
-xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cp/cxx-pretty-print.h
-xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cp/name-lookup.h
-xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cp/operators.def
-xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cp/type-utils.h
 xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cppbuiltin.h
 xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cppdefault.h
 xtensa-esp32-elf/bootstrap/lib/gcc/xtensa-esp32-elf/${VERSION}/plugin/include/cpplib.h
@@ -490,6 +482,9 @@ xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/install-tools
 @bin xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/install-tools/fixincl
 xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/install-tools/mkheaders
 xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/install-tools/mkinstalldirs
+xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/liblto_plugin.la
+@lib xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/liblto_plugin.so.${LIBlto_plugin_VERSION}
 @bin xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/lto-wrapper
+@bin xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/lto1
 xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/plugin/
 @bin xtensa-esp32-elf/bootstrap/libexec/gcc/xtensa-esp32-elf/${VERSION}/plugin/gengtype

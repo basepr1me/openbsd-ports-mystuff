@@ -3,8 +3,6 @@
 COMMENT=	gcc for ${CONFIG} cross-development
 
 VERSION=	8.2.0
-# DISTNAME=	gcc-${VERSION}
-# DISTFILES=	${DISTNAME}.tar.xz
 
 GH_ACCOUNT =	espressif
 GH_PROJECT =	gcc
@@ -12,12 +10,13 @@ GH_TAGNAME =	esp32-2019r1_gcc-8_2_0
 
 PKGNAME=	${CONFIG}-gcc-${VERSION}
 
+SHARED_LIBS +=  lto_plugin                0.0 # 0.0
+
 SUBST_VARS+=	VERSION GCC_V
 
-# SHARED_LIBS +=  lto_plugin                0.0 # 0.
-
 WANTLIB=	${COMPILER_LIBCXX} c gmp m mpc mpfr
-DIST_SUBDIR=	gcc-elf32
+
+DIST_SUBDIR=	gcc-esp32
 
 MAKE_GXX=	Yes
 MAKE_FORTRAN=	No
@@ -25,7 +24,6 @@ MAKE_OBJC=	No
 MAKE_JAVA=	No
 MAKE_ADA=	No
 
-# MASTER_SITES= 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
 MODULES=	lang/python
 
 BUILD_DEPENDS+=	devel/bison \
@@ -39,41 +37,42 @@ RUN_DEPENDS =	devel/${CONFIG}/binutils \
 		devel/${CONFIG}/newlib
 
 CFLAGS=		-O2 -g
-# CFLAGS +=               -mlongcall -mtext-section-literals
-# CXXFLAGS +=             -mlongcall -mtext-section-literals
-CONFIGURE_ARGS+=--enable-languages=${LANGS} \
-		--enable-multilib \
-		--enable-interwork \
-		--with-newlib \
-		--enable-cpp \
-		--datarootdir=${PREFIX}/${CONFIG}/share \
-			--enable-threads=no \
-			--disable-shared \
-			--disable-__cxa_atexit \
-		--enable-cxx-flags='-fno-rtti -ffunction-sections -mlongcalls -mtext-section-literals' \
-		--enable-long-long \
-			--disable-lto \
-			--enable-target-optspace \
-			--without-long-double-128 \
-			--disable-libgomp \
-			--disable-libmudflap \
-			--disable-libssp \
-			--disable-libquadmath \
-			--disable-libquadmath-support \
-			--disable-nls \
-			--disable-libstdcxx-verbose \
-			--enable-gcov-custom-rtio
+
+CONFIGURE_ARGS+=--with-headers=${LOCALBASE}/${CONFIG}/include  \
+		--with-local-prefix=${LOCALBASE}/${CONFIG} \
+		--with-as="${LOCALBASE}/bin/${CONFIG}-as" \
+		--with-ld="${LOCALBASE}/bin/${CONFIG}-ld" \
+		--with-newlib  \
+		--enable-threads=no  \
+		--disable-shared  \
+		--disable-__cxa_atexit  \
+		--enable-cxx-flags="-fno-rtti -ffunction-sections -mlongcalls -mtext-section-literals" \
+		--disable-libgomp  \
+		--disable-libmudflap  \
+		--disable-libmpx  \
+		--disable-libssp  \
+		--disable-libquadmath  \
+		--disable-libquadmath-support  \
+		--enable-lto  \
+		--enable-target-optspace  \
+		--without-long-double-128  \
+		--disable-nls  \
+		--enable-multiarch  \
+		--disable-libstdcxx-verbose  \
+		--enable-gcov-custom-rtio  \
+		--enable-libstdcxx-time=yes  \
+		--enable-languages=c,c++,lto  \
+		--disable-option-checking
 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
-		MACHINE_ARCH=xtensa
 
 ALL_TARGET=	all-gcc all-target-libgcc all-target-libstdc++-v3
 INSTALL_TARGET=	install-gcc install-target-libgcc install-target-libstdc++-v3
 
 # cope with user settings in /etc/mk.conf
 MAKE_FLAGS=	LANGUAGES="c c++" CFLAGS="-I${LOCALBASE}/include"
-MAKE_ENV=	MACHINE_ARCH=xtensa
+MAKE_ENV=	MACHINE_ARCH=${CONFIG}
 
 SEPARATE_BUILD=	Yes
 USE_GMAKE=	Yes
@@ -85,16 +84,14 @@ post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \
 		${PREFIX}/lib/gcc/${CONFIG}/${VERSION}/
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/xtensa-esp32-elf/lib/esp32-psram/libstdc++.a-gdb.py
+		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/__init__.py
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/xtensa-esp32-elf/lib/libstdc++.a-gdb.py
+		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/v6/__init__.py
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/xtensa-esp32-elf/share/gcc-8.2.0/python/libstdcxx/__init__.py
+		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/v6/printers.py
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/xtensa-esp32-elf/share/gcc-8.2.0/python/libstdcxx/v6/__init__.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/xtensa-esp32-elf/share/gcc-8.2.0/python/libstdcxx/v6/printers.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/xtensa-esp32-elf/share/gcc-8.2.0/python/libstdcxx/v6/xmethods.py
+		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/v6/xmethods.py
+	@ln -s ${PREFIX}/libexec/gcc/${CONFIG}/${VERSION}/liblto_plugin.so.0.0 \
+		${PREFIX}/libexec/gcc/${CONFIG}/${VERSION}/liblto_plugin.so
 
 .include <bsd.port.mk>
