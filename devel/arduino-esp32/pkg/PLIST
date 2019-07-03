@@ -1,5 +1,4 @@
 @comment $OpenBSD: PLIST,v$
-share/arduino/
 share/arduino/hardware/
 share/arduino/hardware/espressif/
 share/arduino/hardware/espressif/esp32/
@@ -637,16 +636,11 @@ share/arduino/hardware/espressif/esp32/tools/common.sh
 share/arduino/hardware/espressif/esp32/tools/deploy.sh
 share/arduino/hardware/espressif/esp32/tools/espota.exe
 share/arduino/hardware/espressif/esp32/tools/espota.py
-share/arduino/hardware/espressif/esp32/tools/esptool/
 share/arduino/hardware/espressif/esp32/tools/esptool.py
-share/arduino/hardware/espressif/esp32/tools/esptool/esptool
-share/arduino/hardware/espressif/esp32/tools/esptool/esptool.py
 share/arduino/hardware/espressif/esp32/tools/gen_esp32part.exe
 share/arduino/hardware/espressif/esp32/tools/gen_esp32part.py
 share/arduino/hardware/espressif/esp32/tools/get.exe
 share/arduino/hardware/espressif/esp32/tools/get.py
-share/arduino/hardware/espressif/esp32/tools/mkspiffs/
-share/arduino/hardware/espressif/esp32/tools/mkspiffs/mkspiffs
 share/arduino/hardware/espressif/esp32/tools/partitions/
 share/arduino/hardware/espressif/esp32/tools/partitions/boot_app0.bin
 share/arduino/hardware/espressif/esp32/tools/partitions/default.bin
@@ -2300,8 +2294,6 @@ share/arduino/hardware/espressif/esp32/tools/sdk/lib/libwpa_supplicant.a
 share/arduino/hardware/espressif/esp32/tools/sdk/lib/libwps.a
 share/arduino/hardware/espressif/esp32/tools/sdk/lib/libxtensa-debug-module.a
 share/arduino/hardware/espressif/esp32/tools/sdk/sdkconfig
-share/arduino/hardware/espressif/esp32/tools/xtensa-esp32-elf/
-share/arduino/hardware/espressif/esp32/tools/xtensa-esp32-elf/bin/
 share/arduino/hardware/espressif/esp32/variants/
 share/arduino/hardware/espressif/esp32/variants/Microduino-esp32/
 share/arduino/hardware/espressif/esp32/variants/Microduino-esp32/pins_arduino.h
