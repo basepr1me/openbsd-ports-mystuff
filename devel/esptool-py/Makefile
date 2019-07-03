@@ -1,6 +1,6 @@
 # $OpenBSD$
 
-V =			2.4.1
+V =			2.6
 DISTNAME =		esptool-py-${V}
 COMMENT =		esp8266 and esp32 rom bootloader communication tool
 CATEGORIES =		devel
@@ -9,10 +9,8 @@ HOMEPAGE =		https://github.com/espressif/esptool
 
 MASTER_SITES =		https://github.com/espressif/esptool/archive/v${V}/
 
-MAINTAINER =            Tracey Emery <tracey@traceyemery.net>
-
 #GPLv2
-PERMIT_PACKAGE_CDROM =	Yes
+PERMIT_PACKAGE =	Yes
 
 NO_TEST =		Yes
 
