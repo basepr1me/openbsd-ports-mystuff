@@ -91,7 +91,7 @@ post-install:
 		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/v6/printers.py
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
 		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/v6/xmethods.py
-	@ln -s ${PREFIX}/libexec/gcc/${CONFIG}/${VERSION}/liblto_plugin.so.0.0 \
-		${PREFIX}/libexec/gcc/${CONFIG}/${VERSION}/liblto_plugin.so
+	cd ${PREFIX}/libexec/gcc/${CONFIG}/${VERSION} && \
+		ln -s liblto_plugin.so.0.0 liblto_plugin.so
 
 .include <bsd.port.mk>
