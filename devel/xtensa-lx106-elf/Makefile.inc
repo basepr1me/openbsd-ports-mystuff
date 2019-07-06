@@ -1,0 +1,16 @@
+# $OpenBSD$
+
+CONFIG=		xtensa-lx106-elf
+PKGNAME?=	${CONFIG}-${DISTNAME}
+CATEGORIES+=	devel
+
+# GPLv3
+# For newlib: multiple copyrights, but basically BSD.
+#   See: ${PREFIX}/share/doc/newlib
+PERMIT_PACKAGE=   Yes
+
+# XXX at least gmkdir gets picked up if present
+BUILD_DEPENDS+=	sysutils/coreutils
+
+CONFIGURE_STYLE=gnu
+CONFIGURE_ARGS+=--target=${CONFIG}

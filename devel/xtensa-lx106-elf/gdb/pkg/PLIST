@@ -1,0 +1,53 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/xtensa-lx106-elf-gdb
+include/gdb/
+@comment include/gdb/jit-reader.h
+@comment lib/charset.alias
+@man man/man1/xtensa-lx106-elf-gdb.1
+@man man/man1/xtensa-lx106-elf-gdbserver.1
+@man man/man5/xtensa-lx106-elf-gdbinit.5
+share/gdb/
+share/gdb/python/
+share/gdb/python/gdb/
+@comment share/gdb/python/gdb/FrameDecorator.py
+@comment share/gdb/python/gdb/FrameIterator.py
+@comment share/gdb/python/gdb/__init__.py
+share/gdb/python/gdb/command/
+@comment share/gdb/python/gdb/command/__init__.py
+@comment share/gdb/python/gdb/command/explore.py
+@comment share/gdb/python/gdb/command/frame_filters.py
+@comment share/gdb/python/gdb/command/pretty_printers.py
+@comment share/gdb/python/gdb/command/prompt.py
+@comment share/gdb/python/gdb/command/type_printers.py
+@comment share/gdb/python/gdb/command/xmethods.py
+@comment share/gdb/python/gdb/frames.py
+share/gdb/python/gdb/function/
+@comment share/gdb/python/gdb/function/__init__.py
+@comment share/gdb/python/gdb/function/caller_is.py
+@comment share/gdb/python/gdb/function/strfns.py
+share/gdb/python/gdb/printer/
+@comment share/gdb/python/gdb/printer/__init__.py
+@comment share/gdb/python/gdb/printer/bound_registers.py
+@comment share/gdb/python/gdb/printing.py
+@comment share/gdb/python/gdb/prompt.py
+@comment share/gdb/python/gdb/types.py
+@comment share/gdb/python/gdb/xmethod.py
+share/gdb/syscalls/
+@comment share/gdb/syscalls/amd64-linux.xml
+@comment share/gdb/syscalls/arm-linux.xml
+@comment share/gdb/syscalls/gdb-syscalls.dtd
+@comment share/gdb/syscalls/i386-linux.xml
+@comment share/gdb/syscalls/mips-n32-linux.xml
+@comment share/gdb/syscalls/mips-n64-linux.xml
+@comment share/gdb/syscalls/mips-o32-linux.xml
+@comment share/gdb/syscalls/ppc-linux.xml
+@comment share/gdb/syscalls/ppc64-linux.xml
+@comment share/gdb/syscalls/s390-linux.xml
+@comment share/gdb/syscalls/s390x-linux.xml
+@comment share/gdb/syscalls/sparc-linux.xml
+@comment share/gdb/syscalls/sparc64-linux.xml
+share/gdb/system-gdbinit/
+@comment share/gdb/system-gdbinit/elinos.py
+share/gdb/system-gdbinit/elinos.pyc
+@comment share/gdb/system-gdbinit/wrs-linux.py
+share/gdb/system-gdbinit/wrs-linux.pyc
