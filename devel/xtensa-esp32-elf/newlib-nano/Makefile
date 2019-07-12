@@ -3,18 +3,21 @@
 COMMENT=	newlib-nano for ${CONFIG} cross-development
 
 VERSION=	3.0.0
+DISTNAME=	newlib-esp32-${VERSION}
 PKGNAME=	${CONFIG}-newlib-nano-${VERSION}
 
-GH_ACCOUNT =	espressif
-GH_PROJECT =	newlib-esp32
-GH_TAGNAME =	esp32-2019r1_newlib-3_0_0
+# GH_ACCOUNT =	espressif
+# GH_PROJECT =	newlib-esp32
+# GH_TAGNAME =	esp32-2019r1_newlib-3_0_0
+
+MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 
 DIST_SUBDIR=	newlib-esp32
 
-CONFIGURE_ENV=CC_FOR_TARGET="${LOCALBASE}/${CONFIG}/bootstrap/bin/${CONFIG}-gcc"
-CONFIGURE_ENV+=AS_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-as"
-CONFIGURE_ENV+=AR_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ar"
-CONFIGURE_ENV+=RANLIB_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ranlib"
+CONFIGURE_ENV=	CC_FOR_TARGET="${LOCALBASE}/${CONFIG}/bootstrap/bin/${CONFIG}-gcc" \
+		AS_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-as" \
+		AR_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ar" \
+		RANLIB_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ranlib"
 
 MAKE_ENV+=	${CONFIGURE_ENV}
 MAKE_ENV+=	MACHINE_ARCH=${CONFIG}
@@ -44,6 +47,8 @@ CONFIGURE_ARGS+=--exec-prefix=${PREFIX}/${CONFIG}/newlib-nano \
 		--enable-newlib-long-time_t \
 		--enable-newlib-nano-malloc \
 		--disable-option-checking
+
+WRKDIST=	${WRKDIR}/newlib
 
 pre-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/newlib

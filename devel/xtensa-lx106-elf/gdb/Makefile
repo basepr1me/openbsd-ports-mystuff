@@ -3,7 +3,7 @@
 COMMENT=	gdb for ${CONFIG} cross-development
 
 VERSION=	7.10
-DISTNAME=	gdb-${VERSION}
+DISTNAME=	gdb-lx106-${VERSION}
 PKGNAME=        ${CONFIG}-${DISTNAME}
 
 HOMEPAGE=	https://www.gnu.org/software/gdb/

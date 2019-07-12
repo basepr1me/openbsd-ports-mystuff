@@ -3,7 +3,8 @@
 COMMENT=	binutils for ${CONFIG} cross-development
 
 VERSION=	2.25.1
-DISTNAME=	binutils-${VERSION}
+DISTNAME=	binutils-lx106-${VERSION}
+PKGNAME=	binutils-${VERSION}
 
 WANTLIB=	c
 

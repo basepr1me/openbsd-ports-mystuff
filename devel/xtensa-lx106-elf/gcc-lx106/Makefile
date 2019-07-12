@@ -3,7 +3,7 @@
 COMMENT=	gcc for ${CONFIG} cross-development
 
 VERSION=	4.8.5
-DISTNAME=	gcc-${VERSION}
+DISTNAME=	gcc-lx106-${VERSION}
 PKGNAME=	${CONFIG}-${DISTNAME}
 
 SHARED_LIBS +=  lto_plugin                0.0 # 0.0
@@ -13,7 +13,6 @@ SUBST_VARS+=	VERSION GCC_V
 MODULES=	lang/python
 
 WANTLIB=	${COMPILER_LIBCXX} c gmp m mpc mpfr
-DIST_SUBDIR=	gcc
 
 MAKE_GXX=	Yes
 MAKE_FORTRAN=	No

@@ -3,11 +3,13 @@
 COMMENT=	gdb for ${CONFIG} cross-development
 
 VERSION=	8.1
-DISTNAME=	gdb-${VERSION}
+DISTNAME=	gdb-esp32-${VERSION}
 
-GH_ACCOUNT=	espressif
-GH_PROJECT=	binutils-gdb
-GH_TAGNAME=	esp32-2019r1_gdb-8_1
+# GH_ACCOUNT=	espressif
+# GH_PROJECT=	binutils-gdb
+# GH_TAGNAME=	esp32-2019r1_gdb-8_1
+
+MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 
 PKGNAME=        ${CONFIG}-${DISTNAME}
 
@@ -15,15 +17,16 @@ HOMEPAGE=	https://www.gnu.org/software/gdb/
 
 WANTLIB=	c curses expat m pthread z
 
-DIST_SUBDIR=	gdb
+DIST_SUBDIR=	gdb-esp32
 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
-		MACHINE_ARCH=${CONFIG}
-CONFIGURE_ENV=	CC_FOR_TARGET="${LOCALBASE}/${CONFIG}/bootstrap/bin/${CONFIG}-gcc"
-CONFIGURE_ENV+=	AS_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-as"
-CONFIGURE_ENV+=	AR_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ar"
-CONFIGURE_ENV+=	RANLIB_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ranlib"
+		MACHINE_ARCH=${CONFIG} \
+		CC_FOR_TARGET="${LOCALBASE}/${CONFIG}/bin/${CONFIG}-gcc" \
+		AS_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-as" \
+		AR_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ar" \
+		RANLIB_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ranlib" \
+		CXXFLAGS="-O2 -g -pipe"
 
 
 MAKE_FLAGS=	CFLAGS="-I${LOCALBASE}/include"
@@ -47,6 +50,8 @@ CONFIGURE_ARGS+=--with-build-sysroot=${LOCALBASE}/${CONFIG} \
 		--disable-option-checking
 
 TEST_DEPENDS=	devel/dejagnu
+
+WRKDIST=	${WRKDIR}/gdb
 
 post-install:
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \

@@ -2,7 +2,7 @@
 
 COMMENT=	newlib for ${CONFIG} cross-development
 
-DISTNAME=	newlib-2.0.0
+DISTNAME=	newlib-lx106-2.0.0
 VERSION=	2.0.0
 PKGNAME=	${CONFIG}-newlib-${VERSION}
 

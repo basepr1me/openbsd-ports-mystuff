@@ -4,11 +4,13 @@ COMMENT=	bootstrap compiler for ${CONFIG} cross-development
 
 VERSION=	8.2.0
 
-GH_ACCOUNT =	espressif
-GH_PROJECT =	gcc
-GH_TAGNAME =	esp32-2019r1_gcc-8_2_0
-
+# GH_ACCOUNT =	espressif
+# GH_PROJECT =	gcc
+# GH_TAGNAME =	esp32-2019r1_gcc-8_2_0
+DISTNAME=	gcc-esp32-${VERSION}
 PKGNAME=	${CONFIG}-gcc-bootstrap-${VERSION}
+
+MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 
 SHARED_LIBS +=  lto_plugin                0.0 # 0.0
 
@@ -75,6 +77,8 @@ USE_GMAKE=	Yes
 YACC=		bison
 
 TEST_DEPENDS=	devel/dejagnu
+
+WRKDIST=	${WRKDIR}/gcc
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \

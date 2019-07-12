@@ -4,11 +4,14 @@ COMMENT=	gcc for ${CONFIG} cross-development
 
 VERSION=	8.2.0
 
-GH_ACCOUNT =	espressif
-GH_PROJECT =	gcc
-GH_TAGNAME =	esp32-2019r1_gcc-8_2_0
+# GH_ACCOUNT =	espressif
+# GH_PROJECT =	gcc
+# GH_TAGNAME =	esp32-2019r1_gcc-8_2_0
 
+DISTNAME=	gcc-esp32-${VERSION}
 PKGNAME=	${CONFIG}-gcc-${VERSION}
+
+MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 
 SHARED_LIBS +=  lto_plugin                0.0 # 0.0
 
@@ -66,6 +69,7 @@ CONFIGURE_ARGS+=--with-headers=${LOCALBASE}/${CONFIG}/include  \
 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
+		CXXFLAGS="-O2 -g -pipe"
 
 ALL_TARGET=	all-gcc all-target-libgcc all-target-libstdc++-v3
 INSTALL_TARGET=	install-gcc install-target-libgcc install-target-libstdc++-v3
@@ -79,6 +83,8 @@ USE_GMAKE=	Yes
 YACC=		bison
 
 TEST_DEPENDS=devel/dejagnu
+
+WRKDIST=	${WRKDIR}/gcc
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \

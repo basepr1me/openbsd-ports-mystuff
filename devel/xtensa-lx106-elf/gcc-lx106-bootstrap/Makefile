@@ -3,7 +3,7 @@
 COMMENT=	bootstrap compiler for ${CONFIG} cross-development
 
 VERSION=	4.8.5
-DISTNAME=	gcc-${VERSION}
+DISTNAME=	gcc-lx106-${VERSION}
 PKGNAME=	${CONFIG}-gcc-bootstrap-${VERSION}
 
 MASTER_SITES=	https://packages.traceyemery.net/distfiles/
