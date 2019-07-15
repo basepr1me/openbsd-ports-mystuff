@@ -4,10 +4,6 @@ COMMENT=	gcc for ${CONFIG} cross-development
 
 VERSION=	8.2.0
 
-# GH_ACCOUNT =	espressif
-# GH_PROJECT =	gcc
-# GH_TAGNAME =	esp32-2019r1_gcc-8_2_0
-
 DISTNAME=	gcc-esp32-${VERSION}
 PKGNAME=	${CONFIG}-gcc-${VERSION}
 
@@ -97,6 +93,10 @@ post-install:
 		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/v6/printers.py
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
 		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx/v6/xmethods.py
+	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+		${PREFIX}/xtensa-esp32-elf/lib/esp32-psram/libstdc++.a-gdb.py
+	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+		${PREFIX}/xtensa-esp32-elf/lib/libstdc++.a-gdb.py
 	cd ${PREFIX}/libexec/gcc/${CONFIG}/${VERSION} && \
 		ln -s liblto_plugin.so.0.0 liblto_plugin.so
 

@@ -150,6 +150,7 @@ share/arduino/hardware/espressif/esp8266/doc/_static/
 share/arduino/hardware/espressif/esp8266/doc/_static/.keep
 share/arduino/hardware/espressif/esp8266/doc/boards.rst
 share/arduino/hardware/espressif/esp8266/doc/conf.py
+share/arduino/hardware/espressif/esp8266/doc/conf.pyc
 share/arduino/hardware/espressif/esp8266/doc/eclipse/
 share/arduino/hardware/espressif/esp8266/doc/eclipse/1_Install_New_Software.png
 share/arduino/hardware/espressif/esp8266/doc/eclipse/2_Install_software.png
@@ -730,6 +731,7 @@ share/arduino/hardware/espressif/esp8266/package.json
 share/arduino/hardware/espressif/esp8266/package/build_boards_manager_package.sh
 share/arduino/hardware/espressif/esp8266/package/esp8266-arduino-doc.bash
 share/arduino/hardware/espressif/esp8266/package/merge_packages.py
+share/arduino/hardware/espressif/esp8266/package/merge_packages.pyc
 share/arduino/hardware/espressif/esp8266/package/package_esp8266com_index.template.json
 share/arduino/hardware/espressif/esp8266/platform.txt
 share/arduino/hardware/espressif/esp8266/programmers.txt
@@ -746,8 +748,10 @@ share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/.gitignor
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/Makefile
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/library.properties
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/mock_decorators.py
+share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/mock_decorators.pyc
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/requirements.txt
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/runner.py
+share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/runner.pyc
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/src/
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/src/BSArduino.h
 share/arduino/hardware/espressif/esp8266/tests/device/libraries/BSTest/src/BSProtocol.h
@@ -768,6 +772,7 @@ share/arduino/hardware/espressif/esp8266/tests/device/test_WiFiClient/test_WiFiC
 share/arduino/hardware/espressif/esp8266/tests/device/test_WiFiServer/
 share/arduino/hardware/espressif/esp8266/tests/device/test_WiFiServer/test_WiFiServer.ino
 share/arduino/hardware/espressif/esp8266/tests/device/test_WiFiServer/test_WiFiServer.py
+share/arduino/hardware/espressif/esp8266/tests/device/test_WiFiServer/test_WiFiServer.pyc
 share/arduino/hardware/espressif/esp8266/tests/device/test_WiFi_events/
 share/arduino/hardware/espressif/esp8266/tests/device/test_WiFi_events/test_WiFi_events.ino
 share/arduino/hardware/espressif/esp8266/tests/device/test_http_client/
@@ -776,9 +781,11 @@ share/arduino/hardware/espressif/esp8266/tests/device/test_http_client/server.cs
 share/arduino/hardware/espressif/esp8266/tests/device/test_http_client/server.key
 share/arduino/hardware/espressif/esp8266/tests/device/test_http_client/test_http_client.ino
 share/arduino/hardware/espressif/esp8266/tests/device/test_http_client/test_http_client.py
+share/arduino/hardware/espressif/esp8266/tests/device/test_http_client/test_http_client.pyc
 share/arduino/hardware/espressif/esp8266/tests/device/test_http_server/
 share/arduino/hardware/espressif/esp8266/tests/device/test_http_server/test_http_server.ino
 share/arduino/hardware/espressif/esp8266/tests/device/test_http_server/test_http_server.py
+share/arduino/hardware/espressif/esp8266/tests/device/test_http_server/test_http_server.pyc
 share/arduino/hardware/espressif/esp8266/tests/device/test_newlib/
 share/arduino/hardware/espressif/esp8266/tests/device/test_newlib/test_newlib.ino
 share/arduino/hardware/espressif/esp8266/tests/device/test_overrides/
@@ -812,10 +819,15 @@ share/arduino/hardware/espressif/esp8266/tests/host/fs/
 share/arduino/hardware/espressif/esp8266/tests/host/fs/test_fs.cpp
 share/arduino/hardware/espressif/esp8266/tools/
 share/arduino/hardware/espressif/esp8266/tools/boards.txt.py
+share/arduino/hardware/espressif/esp8266/tools/boards.txt.pyc
 share/arduino/hardware/espressif/esp8266/tools/build.py
+share/arduino/hardware/espressif/esp8266/tools/build.pyc
 share/arduino/hardware/espressif/esp8266/tools/espota.py
+share/arduino/hardware/espressif/esp8266/tools/espota.pyc
 share/arduino/hardware/espressif/esp8266/tools/get.py
+share/arduino/hardware/espressif/esp8266/tools/get.pyc
 share/arduino/hardware/espressif/esp8266/tools/platformio-build.py
+share/arduino/hardware/espressif/esp8266/tools/platformio-build.pyc
 share/arduino/hardware/espressif/esp8266/tools/sdk/
 share/arduino/hardware/espressif/esp8266/tools/sdk/License
 share/arduino/hardware/espressif/esp8266/tools/sdk/include/

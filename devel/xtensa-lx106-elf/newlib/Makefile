@@ -40,6 +40,8 @@ CONFIGURE_ARGS+=--with-system-zlib \
 		--enable-target-optspace \
 		--disable-option-checking
 
+WRKDIST=	${WRKDIR}/newlib-${VERSION}
+
 post-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/newlib
 	${INSTALL_DATA} ${WRKDIST}/COPYING.NEWLIB \

@@ -8,7 +8,7 @@ PKGNAME=	${CONFIG}-gcc-bootstrap-${VERSION}
 
 MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 
-SHARED_LIBS +=  lto_plugin                0.0 # 0.0
+SHARED_LIBS+=  lto_plugin                0.0 # 0.0
 
 SUBST_VARS+=	VERSION GCC_V
 
@@ -70,6 +70,8 @@ USE_GMAKE=	Yes
 YACC=		bison
 
 TEST_DEPENDS=	devel/dejagnu
+
+WRKDIST=	${WRKDIR}/gcc-${VERSION}
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \

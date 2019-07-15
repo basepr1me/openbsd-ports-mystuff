@@ -4,12 +4,9 @@ COMMENT=	binutils for ${CONFIG} cross-development
 
 VERSION=	2.31
 DISTNAME=	binutils-esp32-${VERSION}
+PKGNAME=	${CONFIG}-binutils-${VERSION}
 
 DIST_SUBDIR=	binutils-esp32
-
-# GH_ACCOUNT =	espressif
-# GH_PROJECT =	binutils-gdb
-# GH_TAGNAME =	esp32-2019r1_binutils-2_31
 
 MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 

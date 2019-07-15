@@ -4,7 +4,7 @@ COMMENT=	gcc for ${CONFIG} cross-development
 
 VERSION=	4.8.5
 DISTNAME=	gcc-lx106-${VERSION}
-PKGNAME=	${CONFIG}-${DISTNAME}
+PKGNAME=	${CONFIG}-gcc-${VERSION}
 
 SHARED_LIBS +=  lto_plugin                0.0 # 0.0
 
@@ -74,10 +74,14 @@ YACC=		bison
 
 TEST_DEPENDS=devel/dejagnu
 
+WRKDIST=	${WRKDIR}/gcc-${VERSION}
+
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \
 		${PREFIX}/lib/gcc/${CONFIG}/${VERSION}/
 	cd ${PREFIX}/libexec/gcc/${CONFIG}/${VERSION} && \
 		ln -s liblto_plugin.so.0.0 liblto_plugin.so
+	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+		${PREFIX}/xtensa-esp8266-elf/lib/libstdc++.a-gdb.py
 
 .include <bsd.port.mk>

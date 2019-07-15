@@ -1,7 +1,6 @@
 # $OpenBSD$
 
 CONFIG=		xtensa-esp32-elf
-PKGNAME?=	${CONFIG}-${DISTNAME}
 CATEGORIES+=	devel
 
 # GPLv3

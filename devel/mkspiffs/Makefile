@@ -6,18 +6,12 @@ DISTNAME =		mkspiffs-${V}
 COMMENT =		tool to build and unpack SPIFFS images
 CATEGORIES =		devel
 
-MAINTAINER =		Tracey Emery <tracey@traceyemery.net>
-
-GH_ACCOUNT =		igrr
-GH_PROJECT =		mkspiffs
-GH_TAGNAME =		${V}
-
-BUILD_DEPS =		devel/git
+MASTER_SITES =		https://packages.traceyemery.net/distfiles/
 
 WANTLIB += c m
 
 #MIT
-PERMIT_PACKAGE_CDROM =	Yes
+PERMIT_PACKAGE =	Yes
 
 NO_TEST =		Yes
 

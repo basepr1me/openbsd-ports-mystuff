@@ -6,10 +6,6 @@ VERSION=	3.0.0
 DISTNAME=	newlib-esp32-${VERSION}
 PKGNAME=	${CONFIG}-newlib-nano-${VERSION}
 
-# GH_ACCOUNT =	espressif
-# GH_PROJECT =	newlib-esp32
-# GH_TAGNAME =	esp32-2019r1_newlib-3_0_0
-
 MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 
 DIST_SUBDIR=	newlib-esp32

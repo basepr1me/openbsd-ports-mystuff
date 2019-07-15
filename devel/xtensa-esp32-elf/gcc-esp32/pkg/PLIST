@@ -1323,11 +1323,13 @@ xtensa-esp32-elf/include/c++/${VERSION}/xtensa-esp32-elf/ext/
 xtensa-esp32-elf/include/c++/${VERSION}/xtensa-esp32-elf/ext/opt_random.h
 xtensa-esp32-elf/lib/esp32-psram/libstdc++.a
 xtensa-esp32-elf/lib/esp32-psram/libstdc++.a-gdb.py
+xtensa-esp32-elf/lib/esp32-psram/libstdc++.a-gdb.pyc
 xtensa-esp32-elf/lib/esp32-psram/libstdc++.la
 xtensa-esp32-elf/lib/esp32-psram/libsupc++.a
 xtensa-esp32-elf/lib/esp32-psram/libsupc++.la
 xtensa-esp32-elf/lib/libstdc++.a
 xtensa-esp32-elf/lib/libstdc++.a-gdb.py
+xtensa-esp32-elf/lib/libstdc++.a-gdb.pyc
 xtensa-esp32-elf/lib/libstdc++.la
 xtensa-esp32-elf/lib/libsupc++.a
 xtensa-esp32-elf/lib/libsupc++.la

@@ -1,7 +1,6 @@
 # $OpenBSD$
 
 CONFIG=		xtensa-lx106-elf
-PKGNAME?=	${CONFIG}-${DISTNAME}
 CATEGORIES+=	devel
 
 # GPLv3

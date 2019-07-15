@@ -4,9 +4,6 @@ COMMENT=	bootstrap compiler for ${CONFIG} cross-development
 
 VERSION=	8.2.0
 
-# GH_ACCOUNT =	espressif
-# GH_PROJECT =	gcc
-# GH_TAGNAME =	esp32-2019r1_gcc-8_2_0
 DISTNAME=	gcc-esp32-${VERSION}
 PKGNAME=	${CONFIG}-gcc-bootstrap-${VERSION}
 
