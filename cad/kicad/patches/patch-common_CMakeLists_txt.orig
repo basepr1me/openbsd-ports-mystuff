@@ -3,7 +3,7 @@ $OpenBSD$
 Index: common/CMakeLists.txt
 --- common/CMakeLists.txt.orig
 +++ common/CMakeLists.txt
-@@ -390,7 +390,7 @@ endif()
+@@ -384,7 +384,7 @@ endif()
  
  set( COMMON_SRCS
      ${COMMON_SRCS}

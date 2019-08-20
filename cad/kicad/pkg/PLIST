@@ -25,10 +25,6 @@ lib/kicad/plugins/3d/libs3d_plugin_idf.so
 lib/kicad/plugins/3d/libs3d_plugin_oce.so
 lib/kicad/plugins/3d/libs3d_plugin_vrml.so
 @lib lib/libkicad_3dsg.so.${LIBkicad_3dsg_VERSION}
-lib/python2.7/
-lib/python2.7/site-packages/
-lib/python2.7/site-packages/_pcbnew.so
-lib/python2.7/site-packages/pcbnew.py
 share/appdata/
 share/appdata/kicad.appdata.xml
 share/applications/
@@ -328,26 +324,10 @@ share/kicad/plugins/netlist_form_OrcadPcb2.xsl
 share/kicad/plugins/netlist_form_cadstar-RINF.xsl
 share/kicad/plugins/netlist_form_cadstar.xsl
 share/kicad/plugins/netlist_form_pads-pcb.asc.xsl
-share/kicad/scripting/
-share/kicad/scripting/plugins/
-share/kicad/scripting/plugins/FPC_wizard.py
-share/kicad/scripting/plugins/FootprintWizardBase.py
-share/kicad/scripting/plugins/PadArray.py
-share/kicad/scripting/plugins/__init__.py
-share/kicad/scripting/plugins/bga_wizard.py
-share/kicad/scripting/plugins/circular_pad_array_wizard.py
-share/kicad/scripting/plugins/kicad_qrcode.py
-share/kicad/scripting/plugins/microMatch_connectors.py
-share/kicad/scripting/plugins/qfn_wizard.py
-share/kicad/scripting/plugins/qfp_wizard.py
-share/kicad/scripting/plugins/qrcode_footprint_wizard.py
-share/kicad/scripting/plugins/sdip_wizard.py
-share/kicad/scripting/plugins/touch_slider_wizard.py
-share/kicad/scripting/plugins/uss39_barcode.py
-share/kicad/scripting/plugins/zip_wizard.py
 share/kicad/template/kicad.pro
 share/mime/packages/kicad-gerbers.xml
 share/mime/packages/kicad-kicad.xml
 @tag update-mime-database
-@comment @tag update-desktop-database
 @tag gtk-update-icon-cache %D/share/icons/hicolor
+@comment @tag update-desktop-database
+@comment @tag update-desktop-database

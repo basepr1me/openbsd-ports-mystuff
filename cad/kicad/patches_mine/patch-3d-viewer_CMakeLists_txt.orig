@@ -1,0 +1,38 @@
+$OpenBSD$
+
+Index: 3d-viewer/CMakeLists.txt
+--- 3d-viewer/CMakeLists.txt.orig
++++ 3d-viewer/CMakeLists.txt
+@@ -106,9 +106,31 @@ add_library(3d-viewer STATIC ${3D-VIEWER_SRCS})
+ add_dependencies( 3d-viewer pcbcommon )
+ 
+ target_link_libraries( 3d-viewer
++    pcbcommon
++    pcad2kicadpcb
++    3d-viewer
++    common
++    gal
++    legacy_wx
++    pcbcommon
++    pcad2kicadpcb
++    3d-viewer
++    common
++    gal
++    legacy_wx
++    pcbcommon
++    pcad2kicadpcb
++    3d-viewer
++    common
++    gal
++    legacy_wx
++    ${wxWidgets_LIBRARIES}
++    ${GDI_PLUS_LIBRARIES}
++                       stdc++
++                       c
+                        gal
+                        polygon
+-                       ${Boost_}
++		       ${Boost_LIBRARIES}
+                        ${wxWidgets_LIBRARIES}
+                        ${OPENGL_LIBRARIES}
+                        kicad_3dsg )

@@ -1,6 +1,6 @@
 # $OpenBSD$
 
-V =			5.1.0
+V =			5.1.4
 COMMENT =		schematic and PCB editing software
 DISTNAME =		kicad-${V}
 
@@ -10,7 +10,7 @@ CATEGORIES =		cad
 
 HOMEPAGE =		https://github.com/KiCad/kicad-source-mirror
 
-PERMIT_PACKAGE_CDROM =	Yes
+PERMIT_PACKAGE =	Yes
 
 # WANTLIB += GL GLU ICE SM X11 Xext c crypto freetype m pixman-1
 # WANTLIB += GLEW PTKernel TKBO TKBRep TKBin TKBinL TKBinXCAF TKBool
@@ -38,7 +38,6 @@ BUILD_DEPENDS =		cad/libngspice \
 			devel/cmake \
 			devel/desktop-file-utils \
 			devel/doxygen \
-			devel/gettext-tools \
 			devel/ninja \
 			devel/re2c \
 			devel/swig \
@@ -51,24 +50,29 @@ BUILD_DEPENDS =		cad/libngspice \
 			x11/wxWidgets
 
 RUN_DEPENDS =		cad/kicad-symbols \
+			cad/kicad-i18n \
 			cad/kicad-footprints \
 			cad/kicad-packages3D \
-			cad/kicad-i18n \
 			cad/kicad-templates \
 			x11/gtk+3,-guic
 
+#https://lists.launchpad.net/kicad-developers/msg28514.html revert
+#COMPILER =		base-clang ports-gcc
 COMPILER =		ports-clang
 
 MODULES =		devel/cmake
 
-CXXFLAGS +=		-std=c++11 -I${LOCALBASE}/include
+#CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 
-CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
+CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Debug \
 			-DwxWidgets_CONFIG_EXECUTABLE=${LOCALBASE}/bin/wx-config \
-			-DwxWidgets_LIBRARIES="${LOCALBASE}/lib/wx" \
+			-DwxWidgets_LIBRARIES="${LOCALBASE}/lib" \
 			-DwxWidgets_INCLUDE_DIRS="${LOCALBASE}/include/wx-3.0" \
-			-DKICAD_SCRIPTING=ON \
-			-DKICAD_SCRIPTING_MODULES=ON \
+			-DKICAD_USE_OCE=ON \
+			-DOCE_DIR="${LOCALBASE}/include/oce" \
+			-DKICAD_USE_OCC=OFF \
+			-DKICAD_SCRIPTING=OFF \
+			-DKICAD_SCRIPTING_MODULES=OFF \
 			-DKICAD_SCRIPTING_WXPYTHON=OFF \
 			-DKICAD_SPICE=ON
 
@@ -77,5 +81,6 @@ NO_TEST =		Yes
 pre-build:
 	@sed -i "s,-lrt,," \
 		${WRKDIR}/build-amd64/build.ninja
-
+	# @sed -i "s,-std=gnu++11,-std=c++11," \
+	# 	${WRKDIR}/build-amd64/build.ninja
 .include <bsd.port.mk>

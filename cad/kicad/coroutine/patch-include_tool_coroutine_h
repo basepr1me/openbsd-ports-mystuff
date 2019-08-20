@@ -1,0 +1,144 @@
+$OpenBSD$
+
+Index: include/tool/coroutine.h
+--- include/tool/coroutine.h.orig
++++ include/tool/coroutine.h
+@@ -23,6 +23,10 @@
+  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+  */
+ 
++/*
++ * https://github.com/facebook/folly/blob/master/folly/fibers/BoostContextCompatibility.h
++ */
++
+ #ifndef __COROUTINE_H
+ #define __COROUTINE_H
+ 
+@@ -31,29 +35,9 @@
+ 
+ #include <type_traits>
+ 
+-#include <system/libcontext.h>
++#include <boost/context/detail/fcontext.hpp>
+ #include <memory>
+ 
+-/**
+- *  Class COROUNTINE.
+- *  Implements a coroutine. Wikipedia has a good explanation:
+- *
+- *  "Coroutines are computer program components that generalize subroutines to
+- *  allow multiple entry points for suspending and resuming execution at certain locations.
+- *  Coroutines are well-suited for implementing more familiar program components such as cooperative
+- *  tasks, exceptions, event loop, iterators, infinite lists and pipes."
+- *
+- *  In other words, a coroutine can be considered a lightweight thread - which can be
+- *  preempted only when it deliberately yields the control to the caller. This way,
+- *  we avoid concurrency problems such as locking / race conditions.
+- *
+- *  Uses libcontext library to do the actual context switching.
+- *
+- *  This particular version takes a DELEGATE as an entry point, so it can invoke
+- *  methods within a given object as separate coroutines.
+- *
+- *  See coroutine_example.cpp for sample code.
+- */
+ 
+ template <typename ReturnType, typename ArgType>
+ class COROUTINE
+@@ -77,7 +61,7 @@ class COROUTINE (private)
+                                     // call context holds a reference to the main stack context
+     };
+ 
+-    using CONTEXT_T = libcontext::fcontext_t;
++    using CONTEXT_T = boost::context::detail::fcontext_t;
+     using CALLEE_STORAGE = CONTEXT_T;
+ 
+     class CALL_CONTEXT
+@@ -93,8 +77,11 @@ class COROUTINE (private)
+             m_mainStackFunction = std::move( aFunc );
+             INVOCATION_ARGS args{ INVOCATION_ARGS::CONTINUE_AFTER_ROOT, aCor, this };
+ 
+-            libcontext::jump_fcontext( &aCor->m_callee, *m_mainStackContext,
+-                reinterpret_cast<intptr_t>( &args ) );
++            auto transfer = boost::context::detail::jump_fcontext(*m_mainStackContext, &args);
++            *m_mainStackContext = transfer.fctx;
++            reinterpret_cast<intptr_t>(&args);
++            /* boost::context::detail::jump_fcontext( &aCor->m_callee, *m_mainStackContext, */
++            /*     reinterpret_cast<intptr_t>( &args ) ); */
+         }
+ 
+         void Continue( INVOCATION_ARGS* args )
+@@ -294,17 +281,22 @@ class COROUTINE (private)
+ 
+         assert( m_stack == nullptr );
+ 
+-        // fixme: Clean up stack stuff. Add a guard
+         size_t stackSize = c_defaultStackSize;
++        void* sp = nullptr;
++
++        /* #ifndef LIBCONTEXT_HAS_OWN_STACK */
++        // fixme: Clean up stack stuff. Add a guard
+         m_stack.reset( new char[stackSize] );
+ 
+         // align to 16 bytes
+-        void* sp = (void*)((((ptrdiff_t) m_stack.get()) + stackSize - 0xf) & (~0x0f));
++        sp = (void*)((((ptrdiff_t) m_stack.get()) + stackSize - 0xf) & (~0x0f));
+ 
+         // correct the stack size
+         stackSize -= size_t( ( (ptrdiff_t) m_stack.get() + stackSize ) - (ptrdiff_t) sp );
++        /* #endif */
+ 
+-        m_callee = libcontext::make_fcontext( sp, stackSize, callerStub );
++        m_callee = boost::context::detail::make_fcontext( sp, stackSize, callerStub );
++
+         m_running = true;
+ 
+         // off we go!
+@@ -317,9 +309,9 @@ class COROUTINE (private)
+     }
+ 
+     /* real entry point of the coroutine */
+-    static void callerStub( intptr_t aData )
++    static void callerStub( boost::context::detail::transfer_t aData )
+     {
+-        INVOCATION_ARGS& args = *reinterpret_cast<INVOCATION_ARGS*>( aData );
++        INVOCATION_ARGS& args = *reinterpret_cast<INVOCATION_ARGS*>( aData.data );
+         // get pointer to self
+         COROUTINE* cor     = args.destination;
+         cor->m_callContext = args.context;
+@@ -337,11 +329,15 @@ class COROUTINE (private)
+ 
+     INVOCATION_ARGS* jumpIn( INVOCATION_ARGS* args )
+     {
+-        args = reinterpret_cast<INVOCATION_ARGS*>(
+-            libcontext::jump_fcontext( &m_caller, m_callee,
+-                                           reinterpret_cast<intptr_t>( args ) )
++        auto transfer = boost::context::detail::jump_fcontext(m_callee, args);
++        m_callee = transfer.fctx;
++	auto context = reinterpret_cast<intptr_t>(transfer.data);
++	args = reinterpret_cast<INVOCATION_ARGS*>(
++            /* boost::context::detail::jump_fcontext( &m_caller, m_callee, */
++            /*                                reinterpret_cast<intptr_t>( args ) ) */
++            /* ); */
++            context
+             );
+-
+         return args;
+     }
+ 
+@@ -349,9 +345,13 @@ class COROUTINE (private)
+     {
+         INVOCATION_ARGS args{ INVOCATION_ARGS::FROM_ROUTINE, nullptr, nullptr };
+         INVOCATION_ARGS* ret;
++        auto transfer = boost::context::detail::jump_fcontext(m_caller, nullptr);
++        m_caller = transfer.fctx;
++	auto context = reinterpret_cast<intptr_t>(transfer.data);
+         ret = reinterpret_cast<INVOCATION_ARGS*>(
+-            libcontext::jump_fcontext( &m_callee, m_caller,
+-                                           reinterpret_cast<intptr_t>( &args ) )
++            /* boost::context::detail::jump_fcontext( &m_callee, m_caller, */
++            /*                                reinterpret_cast<intptr_t>( &args ) ) */
++            context
+             );
+ 
+         m_callContext = ret->context;
