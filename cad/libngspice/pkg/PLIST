@@ -1,0 +1,18 @@
+@comment $OpenBSD: PLIST-lib,v$
+@bin bin/cmpp
+lib/libngspice.a
+lib/libngspice.la
+lib/libngspice.so.0.0
+lib/ngspice/
+@bin lib/ngspice/analog.cm
+@bin lib/ngspice/digital.cm
+@bin lib/ngspice/spice2poly.cm
+@bin lib/ngspice/table.cm
+@bin lib/ngspice/xtradev.cm
+@bin lib/ngspice/xtraevt.cm
+lib/pkgconfig/ngspice.pc
+@man man/man1/cmpp.1
+share/ngspice/dlmain.c
+share/ngspice/scripts/ciderinit
+share/ngspice/scripts/devaxis
+share/ngspice/scripts/devload
