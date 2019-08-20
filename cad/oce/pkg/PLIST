@@ -1,4 +1,5 @@
 @comment $OpenBSD: PLIST,v$
+@bin bin/DRAWEXE
 include/oce/
 include/oce/AIS.hxx
 include/oce/AIS_AngleDimension.hxx
@@ -1365,6 +1366,7 @@ include/oce/CDM_PresentationDirectory.hxx
 include/oce/CDM_Reference.hxx
 include/oce/CDM_ReferenceIterator.hxx
 include/oce/CDM_StdMapNodeOfMapOfDocument.hxx
+include/oce/COMMANDWINDOW.h
 include/oce/CPnts_AbscissaPoint.hxx
 include/oce/CPnts_AbscissaPoint.lxx
 include/oce/CPnts_MyGaussFunction.hxx
@@ -1530,9 +1532,13 @@ include/oce/DBC_VArrayTNodeOfVArrayOfReal.hxx
 include/oce/DBRep.hxx
 include/oce/DBRep_DrawableShape.hxx
 include/oce/DBRep_Edge.hxx
+include/oce/DBRep_Edge.lxx
 include/oce/DBRep_Face.hxx
+include/oce/DBRep_Face.lxx
 include/oce/DBRep_HideData.hxx
+include/oce/DBRep_HideData.lxx
 include/oce/DBRep_IsoBuilder.hxx
+include/oce/DBRep_IsoBuilder.lxx
 include/oce/DBRep_ListIteratorOfListOfEdge.hxx
 include/oce/DBRep_ListIteratorOfListOfFace.hxx
 include/oce/DBRep_ListIteratorOfListOfHideData.hxx
@@ -1543,8 +1549,10 @@ include/oce/DBRep_ListOfEdge.hxx
 include/oce/DBRep_ListOfFace.hxx
 include/oce/DBRep_ListOfHideData.hxx
 include/oce/DDF.hxx
+include/oce/DDF_AttributeBrowser.hxx
 include/oce/DDF_Browser.hxx
 include/oce/DDF_Data.hxx
+include/oce/DDF_IOStream.hxx
 include/oce/DDF_ListIteratorOfTransactionStack.hxx
 include/oce/DDF_ListNodeOfTransactionStack.hxx
 include/oce/DDF_Transaction.hxx
@@ -1608,22 +1616,34 @@ include/oce/DrawDim_PlanarRadius.hxx
 include/oce/DrawDim_Radius.hxx
 include/oce/DrawFairCurve_Batten.hxx
 include/oce/DrawFairCurve_MinimalVariation.hxx
+include/oce/DrawRessource.h
 include/oce/DrawTrSurf.hxx
 include/oce/DrawTrSurf_BSplineCurve.hxx
+include/oce/DrawTrSurf_BSplineCurve.lxx
 include/oce/DrawTrSurf_BSplineCurve2d.hxx
+include/oce/DrawTrSurf_BSplineCurve2d.lxx
 include/oce/DrawTrSurf_BSplineSurface.hxx
+include/oce/DrawTrSurf_BSplineSurface.lxx
 include/oce/DrawTrSurf_BezierCurve.hxx
+include/oce/DrawTrSurf_BezierCurve.lxx
 include/oce/DrawTrSurf_BezierCurve2d.hxx
+include/oce/DrawTrSurf_BezierCurve2d.lxx
 include/oce/DrawTrSurf_BezierSurface.hxx
+include/oce/DrawTrSurf_BezierSurface.lxx
 include/oce/DrawTrSurf_Curve.hxx
+include/oce/DrawTrSurf_Curve.lxx
 include/oce/DrawTrSurf_Curve2d.hxx
+include/oce/DrawTrSurf_Curve2d.lxx
 include/oce/DrawTrSurf_Drawable.hxx
+include/oce/DrawTrSurf_Drawable.lxx
 include/oce/DrawTrSurf_Point.hxx
 include/oce/DrawTrSurf_Polygon2D.hxx
 include/oce/DrawTrSurf_Polygon3D.hxx
 include/oce/DrawTrSurf_Surface.hxx
+include/oce/DrawTrSurf_Surface.lxx
 include/oce/DrawTrSurf_Triangulation.hxx
 include/oce/DrawTrSurf_Triangulation2D.hxx
+include/oce/Draw_Appli.hxx
 include/oce/Draw_Axis2D.hxx
 include/oce/Draw_Axis3D.hxx
 include/oce/Draw_Box.hxx
@@ -1635,14 +1655,20 @@ include/oce/Draw_ColorKind.hxx
 include/oce/Draw_Display.hxx
 include/oce/Draw_Drawable2D.hxx
 include/oce/Draw_Drawable3D.hxx
+include/oce/Draw_Drawable3D.lxx
 include/oce/Draw_Failure.hxx
 include/oce/Draw_Grid.hxx
+include/oce/Draw_Grid.lxx
 include/oce/Draw_IndexedMapNodeOfMapOfAsciiString.hxx
+include/oce/Draw_Interpretor.hxx
+include/oce/Draw_Main.hxx
 include/oce/Draw_MapOfAsciiString.hxx
 include/oce/Draw_Marker2D.hxx
 include/oce/Draw_Marker3D.hxx
 include/oce/Draw_MarkerShape.hxx
 include/oce/Draw_Number.hxx
+include/oce/Draw_PInterp.hxx
+include/oce/Draw_PluginMacro.hxx
 include/oce/Draw_Printer.hxx
 include/oce/Draw_ProgressIndicator.hxx
 include/oce/Draw_Segment2D.hxx
@@ -1651,6 +1677,9 @@ include/oce/Draw_SequenceNodeOfSequenceOfDrawable3D.hxx
 include/oce/Draw_SequenceOfDrawable3D.hxx
 include/oce/Draw_Text2D.hxx
 include/oce/Draw_Text3D.hxx
+include/oce/Draw_View.hxx
+include/oce/Draw_Viewer.hxx
+include/oce/Draw_Window.hxx
 include/oce/DsgPrs.hxx
 include/oce/DsgPrs_AnglePresentation.hxx
 include/oce/DsgPrs_ArrowSide.hxx
@@ -2713,9 +2742,13 @@ include/oce/HLRBRep_VertexList.hxx
 include/oce/HLRTest.hxx
 include/oce/HLRTest_DrawableEdgeTool.hxx
 include/oce/HLRTest_DrawablePolyEdgeTool.hxx
+include/oce/HLRTest_DrawablePolyEdgeTool.lxx
 include/oce/HLRTest_OutLiner.hxx
+include/oce/HLRTest_OutLiner.lxx
 include/oce/HLRTest_Projector.hxx
+include/oce/HLRTest_Projector.lxx
 include/oce/HLRTest_ShapeData.hxx
+include/oce/HLRTest_ShapeData.lxx
 include/oce/HLRTopoBRep_DSFiller.hxx
 include/oce/HLRTopoBRep_Data.hxx
 include/oce/HLRTopoBRep_Data.lxx
@@ -7214,6 +7247,7 @@ include/oce/LocalAnalysis.hxx
 include/oce/LocalAnalysis_CurveContinuity.hxx
 include/oce/LocalAnalysis_StatusErrorType.hxx
 include/oce/LocalAnalysis_SurfaceContinuity.hxx
+include/oce/MAINWINDOW.h
 include/oce/MAT2d_Array2OfConnexion.hxx
 include/oce/MAT2d_BiInt.hxx
 include/oce/MAT2d_Circuit.hxx
@@ -7451,6 +7485,8 @@ include/oce/MXCAFDoc_ShapeToolStorageDriver.hxx
 include/oce/MXCAFDoc_VolumeRetrievalDriver.hxx
 include/oce/MXCAFDoc_VolumeStorageDriver.hxx
 include/oce/MeshTest.hxx
+include/oce/MeshTest_CheckTopology.hxx
+include/oce/MeshTest_DrawableMesh.hxx
 include/oce/MeshVS_Array1OfSequenceOfInteger.hxx
 include/oce/MeshVS_Buffer.hxx
 include/oce/MeshVS_BuilderPriority.hxx
@@ -7566,6 +7602,7 @@ include/oce/MgtTopLoc.hxx
 include/oce/MgtTopoDS.hxx
 include/oce/MgtTopoDS_TranslateTool.hxx
 include/oce/MgtTopoDS_TranslateTool1.hxx
+include/oce/ModelDefinitions.hxx
 include/oce/MoniTool_AttrList.hxx
 include/oce/MoniTool_CaseData.hxx
 include/oce/MoniTool_DataInfo.hxx
@@ -11654,6 +11691,7 @@ include/oce/TestTopOpe.hxx
 include/oce/TestTopOpeDraw.hxx
 include/oce/TestTopOpeDraw_Array1OfDrawableMesure.hxx
 include/oce/TestTopOpeDraw_Array1OfDrawableP3D.hxx
+include/oce/TestTopOpeDraw_Displayer.hxx
 include/oce/TestTopOpeDraw_DrawableC2D.hxx
 include/oce/TestTopOpeDraw_DrawableC3D.hxx
 include/oce/TestTopOpeDraw_DrawableMesure.hxx
@@ -11666,11 +11704,16 @@ include/oce/TestTopOpeDraw_HArray1OfDrawableP3D.hxx
 include/oce/TestTopOpeDraw_ListIteratorOfListOfPnt2d.hxx
 include/oce/TestTopOpeDraw_ListNodeOfListOfPnt2d.hxx
 include/oce/TestTopOpeDraw_ListOfPnt2d.hxx
+include/oce/TestTopOpeDraw_TTOT.hxx
 include/oce/TestTopOpeTools.hxx
 include/oce/TestTopOpeTools_Array1OfMesure.hxx
 include/oce/TestTopOpeTools_HArray1OfMesure.hxx
 include/oce/TestTopOpeTools_Mesure.hxx
 include/oce/TestTopOpeTools_PMesure.hxx
+include/oce/TestTopOpeTools_Trace.hxx
+include/oce/TestTopOpe_BOOP.hxx
+include/oce/TestTopOpe_HDSDisplayer.hxx
+include/oce/TestTopOpe_VarsTopo.hxx
 include/oce/TopAbs.hxx
 include/oce/TopAbs_Orientation.hxx
 include/oce/TopAbs_ShapeEnum.hxx
@@ -12281,10 +12324,13 @@ include/oce/V3d_View.hxx
 include/oce/V3d_ViewPointer.hxx
 include/oce/V3d_Viewer.hxx
 include/oce/V3d_ViewerPointer.hxx
+include/oce/ViewerTest.hxx
+include/oce/ViewerTest_AutoUpdater.hxx
 include/oce/ViewerTest_DoubleMapIteratorOfDoubleMapOfInteractiveAndName.hxx
 include/oce/ViewerTest_DoubleMapNodeOfDoubleMapOfInteractiveAndName.hxx
 include/oce/ViewerTest_DoubleMapOfInteractiveAndName.hxx
 include/oce/ViewerTest_EventManager.hxx
+include/oce/ViewerTest_EventManager.lxx
 include/oce/Visual3d_ClipDefinitionError.hxx
 include/oce/Visual3d_ContextPick.hxx
 include/oce/Visual3d_ContextPickDefinitionError.hxx
@@ -12575,6 +12621,7 @@ include/oce/XSDRAWSTLVRML_DataSource.hxx
 include/oce/XSDRAWSTLVRML_DataSource3D.hxx
 include/oce/XSDRAWSTLVRML_DrawableMesh.hxx
 include/oce/XSDRAWSTLVRML_ElemNodesMap.hxx
+include/oce/XSDRAW_Commands.hxx
 include/oce/XSDRAW_Functions.hxx
 include/oce/XSDRAW_Vars.hxx
 include/oce/XmlDrivers.hxx
@@ -12793,6 +12840,7 @@ include/oce/gp_XY.lxx
 include/oce/gp_XYZ.hxx
 include/oce/gp_XYZ.lxx
 include/oce/igesread.h
+include/oce/init.h
 include/oce/math.hxx
 include/oce/math_Array1OfValueAndWeight.hxx
 include/oce/math_BFGS.hxx
@@ -12943,8 +12991,33 @@ lib/oce-0.18/OCE-libraries${MODCMAKE_BUILD_SUFFIX}
 lib/oce-0.18/OCE-libraries.cmake
 lib/oce-0.18/OCEConfig.cmake
 lib/oce-0.18/OCEConfigVersion.cmake
+@lib lib/oce-0.18/libTKDCAF.so.${LIBTKDCAF_VERSION}
+@lib lib/oce-0.18/libTKDraw.so.${LIBTKDraw_VERSION}
+@lib lib/oce-0.18/libTKTObjDRAW.so.${LIBTKTObjDRAW_VERSION}
+@lib lib/oce-0.18/libTKTopTest.so.${LIBTKTopTest_VERSION}
+@lib lib/oce-0.18/libTKViewerTest.so.${LIBTKViewerTest_VERSION}
+@lib lib/oce-0.18/libTKXDEDRAW.so.${LIBTKXDEDRAW_VERSION}
+@lib lib/oce-0.18/libTKXSDRAW.so.${LIBTKXSDRAW_VERSION}
 share/oce-0.18/
 share/oce-0.18/src/
+share/oce-0.18/src/DrawResources/
+share/oce-0.18/src/DrawResources/CURVES.tcl
+share/oce-0.18/src/DrawResources/CheckCommands.tcl
+share/oce-0.18/src/DrawResources/DrawDefault
+share/oce-0.18/src/DrawResources/DrawPlugin
+share/oce-0.18/src/DrawResources/DrawTK.tcl
+share/oce-0.18/src/DrawResources/Geometry.tcl
+share/oce-0.18/src/DrawResources/InitEnvironment.tcl
+share/oce-0.18/src/DrawResources/Move.tcl
+share/oce-0.18/src/DrawResources/PROFIL.tcl
+share/oce-0.18/src/DrawResources/SCAN.tcl
+share/oce-0.18/src/DrawResources/SURFACES.tcl
+share/oce-0.18/src/DrawResources/StandardCommands.tcl
+share/oce-0.18/src/DrawResources/StandardViews.tcl
+share/oce-0.18/src/DrawResources/TKTopTest.tcl
+share/oce-0.18/src/DrawResources/TestCommands.tcl
+share/oce-0.18/src/DrawResources/dftree.tcl
+share/oce-0.18/src/DrawResources/lamp.ico
 share/oce-0.18/src/OS/
 share/oce-0.18/src/OS/ApplicationFramework.tcl
 share/oce-0.18/src/OS/DataExchange.tcl
@@ -12979,6 +13052,8 @@ share/oce-0.18/src/StdResource/Standard.us
 share/oce-0.18/src/StdResource/StandardLite
 share/oce-0.18/src/StdResource/TObj
 share/oce-0.18/src/StdResource/XCAF
+share/oce-0.18/src/TObj/
+share/oce-0.18/src/TObj/TObj.msg
 share/oce-0.18/src/Textures/
 share/oce-0.18/src/Textures/1d_elevation.rgb
 share/oce-0.18/src/Textures/2d_MatraDatavision.rgb
