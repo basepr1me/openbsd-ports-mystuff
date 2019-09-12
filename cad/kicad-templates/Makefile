@@ -1,7 +1,7 @@
 # $OpenBSD$
 
-COMMENT =		templates for Kicad 5.1.0
-V =			5.1.0
+V =			5.1.4
+COMMENT =		templates for Kicad ${V}
 DISTNAME =		kicad-templates-${V}
 CATEGORIES =		cad
 
@@ -10,9 +10,9 @@ HOMEPAGE =		https://github.com/KiCad/kicad-templates
 MASTER_SITES =		https://github.com/KiCad/kicad-templates/archive/${V}/
 
 #CCA4
-PERMIT_PACKAGE_CDROM =	Yes
+PERMIT_PACKAGE =	Yes
 
-DIST_SUBDIR =		kicad
+COMPILER =		ports-clang
 
 MODULES =		devel/cmake
 

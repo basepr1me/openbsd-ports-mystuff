@@ -219,6 +219,10 @@ share/kicad/library/MCU_Nordic.dcm
 share/kicad/library/MCU_Nordic.lib
 share/kicad/library/MCU_Parallax.dcm
 share/kicad/library/MCU_Parallax.lib
+share/kicad/library/MCU_Renesas_Synergy_S1.dcm
+share/kicad/library/MCU_Renesas_Synergy_S1.lib
+share/kicad/library/MCU_STC.dcm
+share/kicad/library/MCU_STC.lib
 share/kicad/library/MCU_ST_STM32F0.dcm
 share/kicad/library/MCU_ST_STM32F0.lib
 share/kicad/library/MCU_ST_STM32F1.dcm
