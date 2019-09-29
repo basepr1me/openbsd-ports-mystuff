@@ -1,0 +1,13 @@
+$OpenBSD$
+
+Index: common/CMakeLists.txt
+--- common/CMakeLists.txt.orig
++++ common/CMakeLists.txt
+@@ -26,6 +26,7 @@ include_directories(
+ 
+ if( NOT APPLE )     # windows and linux use openssl under curl
+     find_package( OpenSSL REQUIRED )
++    find_package(Boost COMPONENTS context REQUIRED)
+ endif()
+ 
+ set( GAL_SRCS

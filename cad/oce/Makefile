@@ -81,7 +81,7 @@ PERMIT_PACKAGE =	Yes
 
 NO_TEST =		Yes
 
-COMPILER =		ports-gcc
+COMPILER =		ports-clang
 
 BUILD_DEPENDS ?=	devel/ninja
 

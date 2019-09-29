@@ -17,7 +17,7 @@ MAINTAINER =		Anthony J. Bentley <anthony@anjbe.name>
 # BSD
 PERMIT_PACKAGE =	Yes
 
-COMPILER =		ports-gcc
+COMPILER =		ports-clang
 
 RUN_DEPENDS =		cad/ngspice
 

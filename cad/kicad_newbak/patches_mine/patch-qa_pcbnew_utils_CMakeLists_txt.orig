@@ -1,0 +1,23 @@
+$OpenBSD$
+
+Index: qa/pcbnew_utils/CMakeLists.txt
+--- qa/pcbnew_utils/CMakeLists.txt.orig
++++ qa/pcbnew_utils/CMakeLists.txt
+@@ -27,6 +27,9 @@
+ # THis should really be an add_library() and all the variables instead set using
+ # target_*() functions.
+ 
++find_package(Boost COMPONENTS context REQUIRED)
++find_package(Boost COMPONENTS coroutine REQUIRED)
++
+ set( QA_PCBNEW_UTILS_SRCS
+ 
+     ${CMAKE_CURRENT_SOURCE_DIR}/board_construction_utils.cpp
+@@ -34,7 +37,6 @@ set( QA_PCBNEW_UTILS_SRCS
+ )
+ 
+ add_library( qa_pcbnew_utils STATIC ${QA_PCBNEW_UTILS_SRCS} )
+-
+ 
+ target_include_directories( qa_pcbnew_utils PUBLIC BEFORE ${INC_BEFORE} )
+ 
