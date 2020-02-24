@@ -1,0 +1,15 @@
+$OpenBSD$
+
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -22,6 +22,9 @@ else
+ 	ifeq ($(UNAME_S),FreeBSD)
+ 		TARGET_OS := freebsd
+ 	endif
++	ifeq ($(UNAME_S),OpenBSD)
++		TARGET_OS := openbsd
++	endif
+ endif
+ endif # TARGET_OS
+ 
