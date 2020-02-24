@@ -45,8 +45,8 @@ lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/include/README
 lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/include/limits.h
 lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/macro_list
 lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/mkheaders.conf
-lib/gcc/xtensa-lx106-elf/${VERSION}/libgcc.a
-lib/gcc/xtensa-lx106-elf/${VERSION}/libgcov.a
+@static-lib lib/gcc/xtensa-lx106-elf/${VERSION}/libgcc.a
+@static-lib lib/gcc/xtensa-lx106-elf/${VERSION}/libgcov.a
 lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/
 lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/gtype.state
 lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/
@@ -212,7 +212,7 @@ libexec/gcc/xtensa-lx106-elf/${VERSION}/install-tools/fixinc.sh
 libexec/gcc/xtensa-lx106-elf/${VERSION}/install-tools/mkheaders
 libexec/gcc/xtensa-lx106-elf/${VERSION}/install-tools/mkinstalldirs
 libexec/gcc/xtensa-lx106-elf/${VERSION}/liblto_plugin.la
-libexec/gcc/xtensa-lx106-elf/${VERSION}/liblto_plugin.so
+@so libexec/gcc/xtensa-lx106-elf/${VERSION}/liblto_plugin.so
 @lib libexec/gcc/xtensa-lx106-elf/${VERSION}/liblto_plugin.so.${LIBlto_plugin_VERSION}
 @bin libexec/gcc/xtensa-lx106-elf/${VERSION}/lto-wrapper
 @bin libexec/gcc/xtensa-lx106-elf/${VERSION}/lto1
@@ -943,8 +943,8 @@ xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/bits/stdtr1c++.h
 xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/bits/time_members.h
 xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/ext/
 xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/ext/opt_random.h
-xtensa-lx106-elf/lib/libstdc++.a
+@static-lib xtensa-lx106-elf/lib/libstdc++.a
 xtensa-lx106-elf/lib/libstdc++.a-gdb.py
 xtensa-lx106-elf/lib/libstdc++.la
-xtensa-lx106-elf/lib/libsupc++.a
+@static-lib xtensa-lx106-elf/lib/libsupc++.a
 xtensa-lx106-elf/lib/libsupc++.la

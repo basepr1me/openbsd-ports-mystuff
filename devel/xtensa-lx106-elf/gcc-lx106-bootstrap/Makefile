@@ -21,7 +21,7 @@ MAKE_OBJC=	No
 MAKE_JAVA=	No
 MAKE_ADA=	No
 
-MODULES=	lang/python
+COMPILER=	base-clang ports-gcc
 
 BUILD_DEPENDS+=	devel/bison \
 		devel/${CONFIG}/binutils

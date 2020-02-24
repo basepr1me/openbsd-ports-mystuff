@@ -23,6 +23,8 @@ MAKE_ADA=	No
 MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 DIST_SUBDIR=	gcc-lx106
 
+COMPILER=	base-clang ports-gcc
+
 BUILD_DEPENDS+=	devel/bison \
 		devel/${CONFIG}/binutils \
 		devel/${CONFIG}/newlib

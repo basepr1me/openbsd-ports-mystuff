@@ -55,8 +55,8 @@ xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/inc
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/include/limits.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/macro_list
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/install-tools/mkheaders.conf
-xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/libgcc.a
-xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/libgcov.a
+@static-lib xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/libgcc.a
+@static-lib xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/libgcov.a
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/gtype.state
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/

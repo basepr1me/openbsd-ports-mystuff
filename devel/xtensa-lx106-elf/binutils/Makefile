@@ -8,12 +8,11 @@ PKGNAME=	${CONFIG}-binutils-${VERSION}
 
 DIST_SUBDIR=	binutils-lx106
 
-WANTLIB=	c
+WANTLIB=	c z
 
 MASTER_SITES=	https://packages.traceyemery.net/distfiles/
 
 USE_LIBTOOL=	No
-
 
 CONFIGURE_ARGS+=--disable-werror \
 		--with-system-zlib \

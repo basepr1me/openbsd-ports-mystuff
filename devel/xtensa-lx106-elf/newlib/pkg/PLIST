@@ -113,6 +113,6 @@ xtensa-lx106-elf/include/xtensa/config/
 xtensa-lx106-elf/include/xtensa/config/core-isa.h
 xtensa-lx106-elf/lib/
 xtensa-lx106-elf/lib/crt0.o
-xtensa-lx106-elf/lib/libc.a
-xtensa-lx106-elf/lib/libg.a
-xtensa-lx106-elf/lib/libm.a
+@static-lib xtensa-lx106-elf/lib/libc.a
+@static-lib xtensa-lx106-elf/lib/libg.a
+@static-lib xtensa-lx106-elf/lib/libm.a
