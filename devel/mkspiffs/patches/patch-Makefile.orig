@@ -13,11 +13,3 @@ Index: Makefile
  endif
  endif # TARGET_OS
  
-@@ -54,7 +57,6 @@ endif
- 
- 
- VERSION ?= $(shell git describe --always)
--SPIFFS_VERSION := $(shell git -C spiffs describe --tags || echo "unknown")
- BUILD_CONFIG_NAME ?= -generic
- 
- OBJ		:= main.o \
