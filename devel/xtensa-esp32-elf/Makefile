@@ -1,9 +1,10 @@
 # $OpenBSD$
-SUBDIR=
-SUBDIR+= binutils
-SUBDIR+= gcc-esp32
-SUBDIR+= gcc-esp32-bootstrap
-SUBDIR+= newlib
-#SUBDIR+= newlib-nano
+
+SUBDIR =
+SUBDIR += binutils
+SUBDIR += gcc
+SUBDIR += gcc-bootstrap
+SUBDIR += gdb
+SUBDIR += newlib
 
 .include <bsd.port.subdir.mk>

@@ -1,2 +1,4 @@
-SHA256 (esp32-1.0.2.tar.gz) = lTupqbEFrf2D97DeEMVNW3U+0WKDq8lZIX1f1jDrD08=
-SIZE (esp32-1.0.2.tar.gz) = 35508108
+SHA256 (ESP32_AzureIoT_Arduino-67dfa4f3.tar.gz) = PG+7CA3GYZpK22xrQNJ76AhUjP10aw9IWa0sO0Y3kdk=
+SHA256 (esp32-1.0.4.tar.gz) = fyfTQNXtwVz5k6X5Fj7ry54OxRQPz/rVI9RbG4xj8bY=
+SIZE (ESP32_AzureIoT_Arduino-67dfa4f3.tar.gz) = 269720
+SIZE (esp32-1.0.4.tar.gz) = 41180853

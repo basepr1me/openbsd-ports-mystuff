@@ -1,42 +1,39 @@
 # $OpenBSD$
 
-COMMENT=	gdb for ${CONFIG} cross-development
+COMMENT =	gdb for ${CONFIG} cross-development
 
-VERSION=	8.2.1
-PKGNAME=	${CONFIG}-gdb-${VERSION}
+VERSION =	8.2.1
+PKGNAME =	${CONFIG}-gdb-${VERSION}
 
-GH_PROJECT=	binutils-gdb-xtensa
-GH_TAGNAME=	gdb-8.2.1-release
+GH_ACCOUNT =	jcmvbkbc
+GH_PROJECT =	binutils-gdb-xtensa
+GH_TAGNAME =	gdb-8.2.1-release
 
-WANTLIB= 	c curses expat ${COMPILER_LIBCXX} gmp m mpfr
+WANTLIB +=	${COMPILER_LIBCXX} c curses expat m
 
-DIST_SUBDIR=	gdb-lx106
+COMPILER =	base-clang ports-gcc base-gcc
 
-COMPILER=	base-clang ports-gcc base-gcc
+BUILD_DEPENDS = 	devel/libtool \
+			devel/bison \
+			devel/xtensa-lx106-elf/binutils
+RUN_DEPENDS +=		devel/xtensa-lx106-elf/binutils
 
-BUILD_DEPENDS= 	devel/libtool \
-		devel/bison \
-		devel/xtensa-lx106-elf/binutils
-RUN_DEPENDS+=	devel/xtensa-lx106-elf/binutils
-LIB_DEPENDS=	devel/gmp \
-		devel/mpfr
+SEPARATE_BUILD =	Yes
+USE_GMAKE = 		Yes
+YACC =			bison -y
 
-SEPARATE_BUILD=	Yes
-USE_GMAKE= 	Yes
-YACC=		bison -y
-
-CONFIGURE_ARGS+=--enable-commonbfdlib=no \
-		--with-cross-host=yes \
-		--disable-werror \
-		--disable-nls \
-		--without-guile \
-		--without-lzma \
-		--disable-binutils \
-		--disable-ld \
-		--disable-gas \
-		--disable-gprof \
-		--disable-install-libiberty \
-		--enable-gdb \
-		--enable-sim
+CONFIGURE_ARGS +=	--enable-commonbfdlib=no \
+			--with-cross-host=yes \
+			--disable-werror \
+			--disable-nls \
+			--without-guile \
+			--without-lzma \
+			--disable-binutils \
+			--disable-ld \
+			--disable-gas \
+			--disable-gprof \
+			--disable-install-libiberty \
+			--enable-gdb \
+			--enable-sim
 
 .include <bsd.port.mk>

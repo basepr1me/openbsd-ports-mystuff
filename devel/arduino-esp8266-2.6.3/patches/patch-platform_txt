@@ -1,0 +1,41 @@
+$OpenBSD$
+
+Index: platform.txt
+--- platform.txt.orig
++++ platform.txt
+@@ -8,9 +8,12 @@
+ name=ESP8266 Boards (2.6.3)
+ version=2.6.3
+ 
++compiler.path=/usr/local/bin/
++compiler.sdk.path={runtime.platform.path}/tools/sdk
++
+ # These will be removed by the packager script when doing a JSON release
+ runtime.tools.xtensa-lx106-elf-gcc.path={runtime.platform.path}/tools/xtensa-lx106-elf
+-runtime.tools.python3.path={runtime.platform.path}/tools/python3
++runtime.tools.python3.path={compiler.path}
+ 
+ runtime.tools.esptool.path={runtime.platform.path}/tools/esptool
+ runtime.tools.signing={runtime.platform.path}/tools/signing.py
+@@ -46,9 +49,6 @@ build.sdk=NONOSDK22x_190703
+ #build.sdk=NONOSDK22x_191024
+ #build.sdk=NONOSDK22x_191105
+ 
+-compiler.path={runtime.tools.xtensa-lx106-elf-gcc.path}/bin/
+-compiler.sdk.path={runtime.platform.path}/tools/sdk
+-
+ compiler.libc.path={runtime.platform.path}/tools/sdk/libc/xtensa-lx106-elf
+ compiler.cpreprocessor.flags=-D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ "-I{compiler.sdk.path}/include" "-I{compiler.sdk.path}/{build.lwip_include}" "-I{compiler.libc.path}/include" "-I{build.path}/core"
+ 
+@@ -116,9 +116,9 @@ recipe.c.combine.pattern="{compiler.path}{compiler.c.e
+ recipe.objcopy.eep.pattern=
+ 
+ ## Create hex
+-recipe.objcopy.hex.1.pattern="{runtime.tools.python3.path}/python3" "{runtime.tools.elf2bin}" --eboot "{runtime.tools.eboot}" --app "{build.path}/{build.project_name}.elf" --flash_mode {build.flash_mode} --flash_freq {build.flash_freq} --flash_size {build.flash_size} --path "{runtime.tools.xtensa-lx106-elf-gcc.path}/bin" --out "{build.path}/{build.project_name}.bin"
++recipe.objcopy.hex.1.pattern="{runtime.tools.python3.path}/python3" "{runtime.tools.elf2bin}" --eboot "{runtime.tools.eboot}" --app "{build.path}/{build.project_name}.elf" --flash_mode {build.flash_mode} --flash_freq {build.flash_freq} --flash_size {build.flash_size} --path "{compiler.path}" --out "{build.path}/{build.project_name}.bin"
+ recipe.objcopy.hex.2.pattern="{runtime.tools.python3.path}/python3" "{runtime.tools.signing}" --mode sign --privatekey "{build.source.path}/private.key" --bin "{build.path}/{build.project_name}.bin" --out "{build.path}/{build.project_name}.bin.signed" --legacy "{build.path}/{build.project_name}.bin.legacy_sig"
+-recipe.objcopy.hex.3.pattern="{runtime.tools.python3.path}/python3" "{runtime.tools.sizes}" --elf "{build.path}/{build.project_name}.elf" --path "{runtime.tools.xtensa-lx106-elf-gcc.path}/bin"
++recipe.objcopy.hex.3.pattern="{runtime.tools.python3.path}/python3" "{runtime.tools.sizes}" --elf "{build.path}/{build.project_name}.elf" --path "{compiler.path}"
+ 
+ ## Save hex
+ recipe.output.tmp_file={build.project_name}.bin

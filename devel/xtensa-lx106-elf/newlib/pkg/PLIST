@@ -1,8 +1,7 @@
 @comment $OpenBSD: PLIST,v$
 @info info/configure.info
-@comment @info info/standards.info
-share/doc/newlib/
 @comment share/doc/newlib/COPYING.NEWLIB
+@comment @info info/standards.info
 xtensa-lx106-elf/include/
 xtensa-lx106-elf/include/_ansi.h
 xtensa-lx106-elf/include/_syslist.h

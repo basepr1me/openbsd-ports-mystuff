@@ -17,9 +17,9 @@
 @bin bin/xtensa-esp32-elf-strip
 @comment @info info/as.info
 @comment @info info/bfd.info
-@info info/binutils.info
-@info info/gprof.info
-@info info/ld.info
+@comment @info info/binutils.info
+@comment @info info/gprof.info
+@comment @info info/ld.info
 lib/ldscripts/
 lib/ldscripts/elf32xtensa.x
 lib/ldscripts/elf32xtensa.xbn

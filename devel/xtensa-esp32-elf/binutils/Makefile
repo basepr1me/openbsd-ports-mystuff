@@ -1,35 +1,28 @@
 # $OpenBSD$
 
-COMMENT=	binutils for ${CONFIG} cross-development
+COMMENT =	binutils for ${CONFIG} cross-development
+VERSION =	2.33.1.2019.2
+PKGNAME =	${CONFIG}-binutils-${VERSION}
 
-VERSION=	2.31
-DISTNAME=	binutils-esp32-${VERSION}
-PKGNAME=	${CONFIG}-binutils-${VERSION}
+GH_ACCOUNT =	espressif
+GH_PROJECT =	binutils-gdb
+GH_TAGNAME =	esp-2019r2-binutils
 
-DIST_SUBDIR=	binutils-esp32
+WANTLIB =	c z
 
-MASTER_SITES=	https://packages.traceyemery.net/distfiles/
+USE_LIBTOOL =	No
 
-HOMEPAGE=	https://www.gnu.org/software/binutils/
-
-WANTLIB=	c
-
-USE_LIBTOOL=	No
-
-CONFIGURE_ENV +="CXXFLAGS=-O2 -g -pipe"
-CONFIGURE_ARGS+=--disable-werror \
-		--enable-ld=yes \
-		--enable-gold=no \
-		--enable-multilib \
-		--disable-sim \
-		--disable-gdb \
-		--disable-nls \
-		--with-sysroot=${LOCALBASE}/${CONFIG} \
-		--disable-option-checking \
-		--with-gnu-ld \
-		--with-gnu-as \
-		--with-newlib
-
-WRKDIST=	${WRKDIR}/binutils
+CONFIGURE_ARGS +=	--disable-werror \
+			--enable-ld=yes \
+			--enable-gold=no \
+			--enable-multilib \
+			--disable-sim \
+			--disable-gdb \
+			--with-sysroot=${LOCALBASE}/${CONFIG} \
+			--disable-option-checking \
+			--with-gnu-ld \
+			--with-gnu-as \
+			--with-newlib \
+			--with-system-zlib
 
 .include <bsd.port.mk>

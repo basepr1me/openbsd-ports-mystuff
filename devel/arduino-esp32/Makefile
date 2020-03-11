@@ -1,55 +1,48 @@
 # $OpenBSD$
 
-V =			1.0.2
-DISTNAME =		esp32-${V}
-COMMENT =		esp32 arduino toolset
-CATEGORIES =		devel
+COMMENT =	esp32 arduino core toolset
+V =		1.0.4
 
-HOMEPAGE =		https://github.com/espressif/arduino-esp32
+GH_ACCOUNT =	espressif
+GH_PROJECT =	arduino-esp32
+GH_TAGNAME =	${V}
 
-MASTER_SITES =		https://github.com/espressif/arduino-esp32/archive/${V}/
+DISTFILES =	esp32-${V}.tar.gz
 
-PKGNAME =		arduino-esp32-${V}
+AZURE_V =	67dfa4f31ef88b0938dd87d955612100dea5562e
+DISTFILES +=   	ESP32_AzureIoT_Arduino-${AZURE_V:C/(........).*/\1/}{${AZURE_V}}.tar.gz:0
 
-#LGPLv2.1
+CATEGORIES =	devel
+
+MASTER_SITES0 =	https://github.com/VSChina/ESP32_AzureIoT_Arduino/archive/
+
+#LGPLv2.1, MIT
 PERMIT_PACKAGE =	Yes
 
+MODPY_VERSION =		${MODPY_DEFAULT_VERSION_3}
 MODULES =		lang/python
 
-BUILD_DEPENDS =		devel/arduino
-
 RUN_DEPENDS +=		devel/arduino \
-			devel/esptool-py \
+			devel/py-esptool${MODPY_FLAVOR} \
 			devel/mkspiffs \
-			devel/xtensa-esp32-elf/gcc-esp32
+			devel/xtensa-esp32-elf/gcc
 
-WRKDIST =		${WRKDIR}/arduino-esp32-1.0.2
-WRKSRC =		${WRKDIST}
 INSTALLDIR =		${PREFIX}/share/arduino/hardware/espressif/esp32
 
 NO_TEST =		Yes
 NO_BUILD =		Yes
 
+post-extract:
+	@rmdir ${WRKSRC}/libraries/AzureIoT
+	@mv ${WRKDIR}/ESP32_AzureIoT_Arduino-* ${WRKSRC}/libraries/AzureIoT
+
+post-patch:
+	@sed -i 's,PREFIX,${LOCALBASE},' ${WRKDIST}/platform.txt
+
 do-install:
 	@mkdir -p ${INSTALLDIR}
 	@cp -r ${WRKDIST}/* ${INSTALLDIR}
-
-post-install:
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/package/merge_packages.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/tools/build.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/tools/espota.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/tools/esptool.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/tools/esptool/esptool.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/tools/gen_esp32part.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/tools/get.py
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/arduino/hardware/espressif/esp32/tools/platformio-build.py
+	 	${PREFIX}/share/arduino/hardware/espressif/esp32/tools/
 
 .include <bsd.port.mk>
