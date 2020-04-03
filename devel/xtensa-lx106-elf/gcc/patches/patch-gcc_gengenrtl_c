@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: gcc/gengenrtl.c
+--- gcc/gengenrtl.c.orig
++++ gcc/gengenrtl.c
+@@ -52,7 +52,7 @@ type_from_format (int c)
+       return "int ";
+ 
+     case 'w':
+-      return "HOST_WIDE_INT ";
++      return " HOST_WIDE_INT ";
+ 
+     case 's':
+       return "const char *";
