@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: src/zm_timer.h
+--- src/zm_timer.h.orig
++++ src/zm_timer.h
+@@ -40,6 +40,8 @@ class Timer (private)
+     long lwpid;
+     thr_self(&lwpid);
+     tid = lwpid;
++#elif __OpenBSD__
++    tid = getpid();
+ #else
+   #ifdef __FreeBSD_kernel__
+     if ( (syscall(SYS_thr_self, &tid)) < 0 ) // Thread/Process id

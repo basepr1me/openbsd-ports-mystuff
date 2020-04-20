@@ -1,0 +1,68 @@
+$OpenBSD$
+
+Index: src/zm_event.cpp
+--- src/zm_event.cpp.orig
++++ src/zm_event.cpp
+@@ -87,7 +87,7 @@ Event::Event(
+ 
+   char sql[ZM_SQL_MED_BUFSIZ];
+   struct tm *stime = localtime(&start_time.tv_sec);
+-  snprintf(sql, sizeof(sql), "INSERT INTO Events ( MonitorId, StorageId, Name, StartTime, Width, Height, Cause, Notes, StateId, Orientation, Videoed, DefaultVideo, SaveJPEGs, Scheme ) VALUES ( %d, %d, 'New Event', from_unixtime( %ld ), %d, %d, '%s', '%s', %d, %d, %d, '', %d, '%s' )",
++  snprintf(sql, sizeof(sql), "INSERT INTO Events ( MonitorId, StorageId, Name, StartTime, Width, Height, Cause, Notes, StateId, Orientation, Videoed, DefaultVideo, SaveJPEGs, Scheme ) VALUES ( %d, %d, 'New Event', from_unixtime( %lld ), %d, %d, '%s', '%s', %d, %d, %d, '', %d, '%s' )",
+       monitor->Id(), 
+       storage->Id(),
+       start_time.tv_sec,
+@@ -273,7 +273,7 @@ Event::~Event() {
+   // Should not be static because we might be multi-threaded
+   char sql[ZM_SQL_LGE_BUFSIZ];
+   snprintf(sql, sizeof(sql), 
+-      "UPDATE Events SET Name='%s %" PRIu64 "', EndTime = from_unixtime( %ld ), Length = %s%ld.%02ld, Frames = %d, AlarmFrames = %d, TotScore = %d, AvgScore = %d, MaxScore = %d, DefaultVideo = '%s' WHERE Id = %" PRIu64,
++      "UPDATE Events SET Name='%s %" PRIu64 "', EndTime = from_unixtime( %lld ), Length = %s%lld.%02ld, Frames = %d, AlarmFrames = %d, TotScore = %d, AvgScore = %d, MaxScore = %d, DefaultVideo = '%s' WHERE Id = %" PRIu64,
+       monitor->EventPrefix(), id, end_time.tv_sec,
+       delta_time.positive?"":"-", delta_time.sec, delta_time.fsec,
+       frames, alarm_frames,
+@@ -427,7 +427,7 @@ void Event::updateNotes(const StringSetMap &newNoteSet
+ 
+       /* Get the parameter count from the statement */
+       if ( mysql_stmt_param_count(stmt) != 2 ) {
+-        Error("Unexpected parameter count %ld in sql '%s'", mysql_stmt_param_count(stmt), sql);
++        Error("Unexpected parameter count %lld in sql '%s'", mysql_stmt_param_count(stmt), sql);
+       }
+ 
+       MYSQL_BIND  bind[2];
+@@ -511,7 +511,7 @@ void Event::AddFramesInternal(int n_frames, int start_
+     DELTA_TIMEVAL(delta_time, *(timestamps[i]), start_time, DT_PREC_2);
+     // Delta is Decimal(8,2) so 6 integer digits and 2 decimal digits
+     if ( delta_time.sec > 999999 ) {
+-      Warning("Invalid delta_time from_unixtime(%ld), %s%ld.%02ld", 
++      Warning("Invalid delta_time from_unixtime(%lld), %s%lld.%02ld", 
+            timestamps[i]->tv_sec,
+            (delta_time.positive?"":"-"),
+            delta_time.sec,
+@@ -520,7 +520,7 @@ void Event::AddFramesInternal(int n_frames, int start_
+     }
+ 
+     int sql_len = strlen(sql);
+-    snprintf(sql+sql_len, sizeof(sql)-sql_len, "( %" PRIu64 ", %d, from_unixtime(%ld), %s%ld.%02ld ), ",
++    snprintf(sql+sql_len, sizeof(sql)-sql_len, "( %" PRIu64 ", %d, from_unixtime(%lld), %s%lld.%02ld ), ",
+         id, frames, timestamps[i]->tv_sec, delta_time.positive?"":"-", delta_time.sec, delta_time.fsec);
+ 
+     frameCount++;
+@@ -549,7 +549,7 @@ void Event::WriteDbFrames() {
+   while ( frame_data.size() ) {
+     Frame *frame = frame_data.front();
+     frame_data.pop();
+-    sql_ptr += snprintf(sql_ptr, sizeof(sql)-(sql_ptr-(char *)&sql), "( %" PRIu64 ", %d, '%s', from_unixtime( %ld ), %s%ld.%02ld, %d ), ",
++    sql_ptr += snprintf(sql_ptr, sizeof(sql)-(sql_ptr-(char *)&sql), "( %" PRIu64 ", %d, '%s', from_unixtime( %lld ), %s%lld.%02ld, %d ), ",
+         id, frame->frame_id, frame_type_names[frame->type],
+         frame->timestamp.tv_sec,
+         frame->delta.positive?"":"-",
+@@ -664,7 +664,7 @@ void Event::AddFrame(Image *image, struct timeval time
+     // We are writing a Bulk frame
+     if ( frame_type == BULK ) {
+       snprintf(sql, sizeof(sql), 
+-          "UPDATE Events SET Length = %s%ld.%02ld, Frames = %d, AlarmFrames = %d, TotScore = %d, AvgScore = %d, MaxScore = %d WHERE Id = %" PRIu64, 
++          "UPDATE Events SET Length = %s%lld.%02ld, Frames = %d, AlarmFrames = %d, TotScore = %d, AvgScore = %d, MaxScore = %d WHERE Id = %" PRIu64, 
+           ( delta_time.positive?"":"-" ),
+           delta_time.sec, delta_time.fsec,
+           frames, 

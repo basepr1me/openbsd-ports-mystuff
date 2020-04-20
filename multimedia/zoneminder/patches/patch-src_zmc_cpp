@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: src/zmc.cpp
+--- src/zmc.cpp.orig
++++ src/zmc.cpp
+@@ -55,7 +55,7 @@ possible, this should run at more or less constant spe
+ 
+ #include <getopt.h>
+ #include <signal.h>
+-#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__OpenBSD__)
+ #include <limits.h>
+ #else
+ #include <values.h>

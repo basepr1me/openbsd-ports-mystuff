@@ -1,0 +1,13 @@
+$OpenBSD$
+
+Index: src/zm_sendfile.h
+--- src/zm_sendfile.h.orig
++++ src/zm_sendfile.h
+@@ -34,7 +34,6 @@ int zm_sendfile(int out_fd, int in_fd, off_t *offset, 
+   return -EAGAIN;
+ }
+ #else
+-#error "Your platform does not support sendfile. Sorry."
+ #endif
+ 
+ #ifdef __cplusplus

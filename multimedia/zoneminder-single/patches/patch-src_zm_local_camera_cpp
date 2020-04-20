@@ -1,0 +1,28 @@
+$OpenBSD$
+
+Index: src/zm_local_camera.cpp
+--- src/zm_local_camera.cpp.orig
++++ src/zm_local_camera.cpp
+@@ -33,7 +33,7 @@
+ #include <limits.h>
+ 
+ /* Workaround for GNU/kFreeBSD and FreeBSD */
+-#if defined(__FreeBSD_kernel__) || defined(__FreeBSD__)
++#if defined(__FreeBSD_kernel__) || defined(__FreeBSD__) || defined(__OpenBSD__)
+ #ifndef ENODATA
+ #define ENODATA ENOATTR
+ #endif
+@@ -41,7 +41,12 @@
+ 
+ static unsigned int BigEndian;
+ 
+-static int vidioctl(int fd, int request, void *arg) {
++#ifdef __OpenBSD__
++static int vidioctl( int fd, unsigned long request, void *arg )
++#else
++static int vidioctl( int fd, int request, void *arg )
++#endif
++{
+   int result = -1;
+   do {
+     result = ioctl(fd, request, arg);

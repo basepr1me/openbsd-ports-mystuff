@@ -1,0 +1,32 @@
+$OpenBSD$
+
+Index: src/zm_thread.h
+--- src/zm_thread.h.orig
++++ src/zm_thread.h
+@@ -44,6 +44,8 @@ class ThreadException : public Exception { (private)
+     long lwpid; 
+     thr_self(&lwpid); 
+     tid = lwpid; 
++#elif __OpenBSD__
++    tid = getpid();
+ #else 
+   #ifdef __FreeBSD_kernel__
+     if ( (syscall(SYS_thr_self, &tid)) < 0 ) // Thread/Process id
+@@ -57,7 +59,7 @@ class ThreadException : public Exception { (private)
+   pthread_t pid() { return( pthread_self() ); }
+ #endif
+ public:
+-  explicit ThreadException( const std::string &message ) : Exception( stringtf("(%d) ", (long int)pid())+message ) {
++  explicit ThreadException( const std::string &message ) : Exception( stringtf("(%d) ", (long int)getpid())+message ) {
+   }
+ };
+ 
+@@ -232,6 +234,8 @@ class Thread { (protected)
+     long lwpid; 
+     thr_self(&lwpid); 
+     tid = lwpid; 
++#elif __OpenBSD__
++    tid = getpid();
+ #else 
+   #ifdef __FreeBSD_kernel__
+     if ( (syscall(SYS_thr_self, &tid)) < 0 ) // Thread/Process id
