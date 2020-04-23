@@ -15,7 +15,7 @@ PERMIT_PACKAGE =	Yes
 
 RUN_DEPENDS +=		devel/arduino
 
-INSTALLDIR =		${PREFIX}/share/arduino/hardware/avr/ATTinyCore
+INSTALLDIR =		${PREFIX}/share/arduino/hardware/ATTinyCore/avr
 
 NO_TEST =		Yes
 NO_BUILD =		Yes
