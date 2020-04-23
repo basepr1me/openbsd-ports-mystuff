@@ -1,3 +1,0 @@
-@comment $OpenBSD: PLIST,v$
-share/makeEspArduino/
-share/makeEspArduino/makeEspArduino.mk
