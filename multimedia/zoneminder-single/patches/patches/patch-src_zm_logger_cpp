@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Index: src/zm_logger.cpp
+--- src/zm_logger.cpp.orig
++++ src/zm_logger.cpp
+@@ -563,8 +563,8 @@ void Logger::logPrint(bool hex, const char * const fil
+           "INSERT INTO `Logs` "
+           "( `TimeKey`, `Component`, `ServerId`, `Pid`, `Level`, `Code`, `Message`, `File`, `Line` )"
+          " VALUES "
+-         "( %ld.%06ld, '%s', %d, %d, %d, '%s', '%s', '%s', %d )",
+-         timeVal.tv_sec, timeVal.tv_usec, mId.c_str(), staticConfig.SERVER_ID, tid, level, classString, escapedString, file, line
++         "( %lld.%06ld, '%s', %d, %d, %d, '%s', '%s', '%s', %d )",
++         (long long) timeVal.tv_sec, timeVal.tv_usec, mId.c_str(), staticConfig.SERVER_ID, tid, level, classString, escapedString, file, line
+          );
+       if ( mysql_query(&dbconn, sql) ) {
+         Level tempDatabaseLevel = mDatabaseLevel;
