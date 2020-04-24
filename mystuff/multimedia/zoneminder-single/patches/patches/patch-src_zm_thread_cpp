@@ -1,0 +1,30 @@
+$OpenBSD$
+
+Index: src/zm_thread.cpp
+--- src/zm_thread.cpp.orig
++++ src/zm_thread.cpp
+@@ -220,7 +220,11 @@ template <class T> void ThreadData<T>::updateValueBroa
+ 
+ Thread::Thread() :
+   mThreadCondition( mThreadMutex ),
+-  mPid( -1 ),
++#ifdef __OpenBSD__
++    mPid( NULL ),
++#else
++    mPid( -1 ),
++#endif
+   mStarted( false ),
+   mRunning( false )
+ {
+@@ -283,7 +287,11 @@ void Thread::join() {
+   if ( isThread() )
+     throw ThreadException( "Can't self join thread" );
+   mThreadMutex.lock();
++#ifdef __OpenBSD__
++  if ( mPid != NULL ) {
++#else
+   if ( mPid >= 0 ) {
++#endif
+     if ( mStarted ) {
+       void *threadStatus = 0;
+       if ( pthread_join( mThread, &threadStatus ) < 0 )

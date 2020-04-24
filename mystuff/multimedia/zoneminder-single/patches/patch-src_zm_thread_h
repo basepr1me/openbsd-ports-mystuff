@@ -1,0 +1,76 @@
+$OpenBSD$
+
+Index: src/zm_thread.h
+--- src/zm_thread.h.orig
++++ src/zm_thread.h
+@@ -37,7 +37,9 @@ class RecursiveMutex;
+ 
+ class ThreadException : public Exception {
+ private:
+-#ifndef SOLARIS
++#if defined(SOLARIS) || defined(__OpenBSD__)
++  pthread_t pid() { return( pthread_self() ); }
++#else
+   pid_t pid() {
+     pid_t tid; 
+ #ifdef __FreeBSD__ 
+@@ -53,8 +55,6 @@ class ThreadException : public Exception { (private)
+ #endif
+     return tid;
+   }  
+-#else
+-  pthread_t pid() { return( pthread_self() ); }
+ #endif
+ public:
+   explicit ThreadException( const std::string &message ) : Exception( stringtf("(%d) ", (long int)pid())+message ) {
+@@ -212,10 +212,10 @@ class Thread { (protected)
+ 
+   Mutex mThreadMutex;
+   Condition mThreadCondition;
+-#ifndef SOLARIS
+-  pid_t mPid;
+-#else
++#if defined(SOLARIS) || defined(__OpenBSD__)
+   pthread_t mPid;
++#else
++  pid_t mPid;
+ #endif
+   bool  mStarted;
+   bool  mRunning;
+@@ -225,7 +225,12 @@ class Thread { (protected)
+   Thread();
+   virtual ~Thread();
+ 
+-#ifndef SOLARIS
++#if defined(SOLARIS) || defined(__OpenBSD__)
++  pthread_t id() const
++  {
++     return( pthread_self() );
++   }
++#else
+   pid_t id() const {
+     pid_t tid; 
+ #ifdef __FreeBSD__ 
+@@ -242,10 +247,6 @@ class Thread { (protected)
+ #endif
+     return tid;
+   }
+-#else
+-  pthread_t id() const {
+-    return pthread_self();
+-  }
+ #endif
+   void exit( int p_status = 0 ) {
+     //INFO( "Exiting" );
+@@ -260,7 +261,11 @@ class Thread { (protected)
+   void join();
+   void kill( int signal );
+   bool isThread() {
++#ifdef __OpenBSD__
++    return( mPid != NULL && pthread_equal( pthread_self(), mThread ) );
++#else
+     return( mPid > -1 && pthread_equal( pthread_self(), mThread ) );
++#endif
+   }
+   bool isStarted() const { return mStarted; }
+   bool isRunning() const { return mRunning; }
