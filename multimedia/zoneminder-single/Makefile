@@ -34,7 +34,6 @@ COMPILER =	base-clang ports-gcc
 RUN_DEPENDS = ${BUILD_DEPENDS} \
 		databases/mariadb,-server \
 		devel/desktop-file-utils \
-		multimedia/zoneminder,-web=${V} \
 		${MODPHP_RUN_DEPENDS} \
 		lang/php/${MODPHP_VERSION},-mysqli
 
