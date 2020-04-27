@@ -1,0 +1,21 @@
+$OpenBSD$
+
+Index: src/main.c
+--- src/main.c.orig
++++ src/main.c
+@@ -14,7 +14,6 @@
+ 
+ 
+ // Approximations of some Windows functions to ease portability
+-#if defined __GNU_LIBRARY__ || defined __GLIBC__
+ static int min(int l, int r) { return l < r ? l : r; }
+ static void strcat_s(char * dest, int size, char * str) {
+     unsigned int dlen = strlen(dest);
+@@ -24,7 +23,6 @@ static void strcat_s(char * dest, int size, char * str
+ void fopen_s(FILE ** f, const char * filename, const char * mode) {
+     *f = fopen(filename,mode);
+ }
+-#endif
+ 
+ void WriteWav(char* filename, char* buffer, int bufferlength)
+ {
