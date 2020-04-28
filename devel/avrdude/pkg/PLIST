@@ -10,3 +10,4 @@ share/doc/avrdude/avrdude-doc-${V}.pdf
 share/doc/pkg-readmes/${PKGSTEM}
 share/examples/avrdude/
 share/examples/avrdude/avrdude.conf
+@sample ${SYSCONFDIR}/avrdude.conf
