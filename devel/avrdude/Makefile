@@ -2,10 +2,12 @@
 
 COMMENT=	AVR microcontroller hardware in-system programmer
 
-V=		5.11
+V=		6.3
 DISTNAME=	avrdude-${V}
-REVISION=	4
 DISTFILES+=	avrdude-${V}.tar.gz avrdude-doc-${V}.pdf
+
+SHARED_LIBS +=  avrdude                   0.0 # 1.0
+
 CATEGORIES=	devel
 
 HOMEPAGE=	http://www.nongnu.org/avrdude/
@@ -13,7 +15,7 @@ HOMEPAGE=	http://www.nongnu.org/avrdude/
 # GPLv2+
 PERMIT_PACKAGE=	Yes
 
-WANTLIB += c curses ftdi m pthread readline usb usb-1.0
+WANTLIB += c curses elf ftdi1 m pthread readline usb usb-1.0
 
 MASTER_SITES=	${MASTER_SITE_SAVANNAH:=avrdude/}
 EXTRACT_ONLY=	avrdude-${V}${EXTRACT_SUFX}
@@ -23,7 +25,7 @@ CONFIGURE_STYLE=	autoconf
 CONFIGURE_ARGS+=	CPPFLAGS="-I${LOCALBASE}/include" \
 			LDFLAGS="-L${LOCALBASE}/lib -pthread"
 
-LIB_DEPENDS=		devel/libftdi \
+LIB_DEPENDS=		devel/libftdi1 \
 			devel/libusb-compat
 
 SUBST_VARS+=		V
