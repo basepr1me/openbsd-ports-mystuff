@@ -2,7 +2,6 @@
 
 COMMENT =		tool for isolation, routing, and drilling of PCBs
 V =			2.0.0
-# PKGNAME =		pcb2gcode-${V}
 
 GH_ACCOUNT =		pcb2gcode
 GH_PROJECT =		pcb2gcode
@@ -38,11 +37,11 @@ LIB_DEPENDS =		cad/gerbv \
 			graphics/cairo \
 			x11/gtk2mm
 
+MAKE_FLAGS =		GIT_VERSION="${V}"
+
 CONFIGURE_STYLE =	autoreconf
 CONFIGURE_ENV =		LDFLAGS="-L${LOCALBASE}/lib -s" \
 			CPPFLAGS="${CFLAGS} -I${LOCALBASE}/include"
-
-MAKE_FLAGS =		GIT_VERSION="${V}"
 
 AUTOCONF_VERSION =	2.69
 AUTOMAKE_VERSION =	1.16
