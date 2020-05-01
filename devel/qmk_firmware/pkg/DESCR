@@ -1,0 +1,4 @@
+Quantum Mechanical Keyboard Firmware
+This is a keyboard firmware based on the tmk_keyboard firmware with some useful
+features for Atmel AVR and ARM controllers, and more specifically, the OLKB
+product line, the ErgoDox EZ keyboard, and the Clueboard product line.
