@@ -85,12 +85,12 @@ Index: makeEspArduino.mk
  else
    CMD_LINE := $(shell tr "\0" " " </proc/$$PPID/cmdline)
  endif
-@@ -514,6 +536,8 @@ DEFAULT_GOAL ?= all
- 
+@@ -515,6 +537,8 @@ DEFAULT_GOAL ?= all
  # Build threads, default is using all cpus
  ifeq ($(OS), Darwin)
-+  BUILD_THREADS ?= $(shell sysctl -n hw.ncpu)
-+else ifeq ($(OS), OpenBSD)
    BUILD_THREADS ?= $(shell sysctl -n hw.ncpu)
++else ifeq ($(OS), OpenBSD)
++  BUILD_THREADS ?= $(shell sysctl -n hw.ncpuonline)
  else
    BUILD_THREADS ?= $(shell nproc)
+ endif
