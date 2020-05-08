@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Fix for unused variable v
+
+Index: sandbox/sandbox.cpp
+--- sandbox/sandbox.cpp.orig
++++ sandbox/sandbox.cpp
+@@ -635,7 +635,7 @@ int main()
+ 
+     std::vector<std::vector<std::string>> vec2;
+     iar( vec2 );
+-    for( auto & v : vec2 )
++    for( auto v : vec2 )
+     {
+       assert( v[0] == "hey" );
+       assert( v[1] == "there" );

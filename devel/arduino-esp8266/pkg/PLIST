@@ -1314,8 +1314,8 @@ share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdate/
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdate/httpUpdate.ino
-share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdateSPIFFS/
-share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdateSPIFFS/httpUpdateSPIFFS.ino
+share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdateLittleFS/
+share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdateLittleFS/httpUpdateLittleFS.ino
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdateSecure/
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdateSecure/httpUpdateSecure.ino
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266httpUpdate/examples/httpUpdateSigned/
@@ -1335,10 +1335,10 @@ share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/LEAmDNS/
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/LEAmDNS/mDNS_Clock/mDNS_Clock.ino
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/LEAmDNS/mDNS_ServiceMonitor/
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/LEAmDNS/mDNS_ServiceMonitor/mDNS_ServiceMonitor.ino
-share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-SPIFFS/
-share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-SPIFFS/OTA-mDNS-SPIFFS.ino
-share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-SPIFFS/data/
-share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-SPIFFS/data/cl_conf.txt
+share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-LittleFS/
+share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-LittleFS/OTA-mDNS-SPIFFS.ino
+share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-LittleFS/data/
+share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/OTA-mDNS-LittleFS/data/cl_conf.txt
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/mDNS-SD_Extended/
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/mDNS-SD_Extended/mDNS-SD_Extended.ino
 share/arduino/hardware/espressif/esp8266/libraries/ESP8266mDNS/examples/mDNS_Web_Server/
