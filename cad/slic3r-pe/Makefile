@@ -6,7 +6,7 @@ V =			2.2.0
 REVISION =		0
 GH_ACCOUNT =		prusa3d
 
-GH_PROJECT =		Slic3r
+GH_PROJECT =		PrusaSlicer
 GH_TAGNAME =		version_${V}
 DISTNAME =		Slic3r-${GH_TAGNAME}
 PKGNAME =		slic3r-pe-${V}
@@ -22,9 +22,10 @@ PERMIT_PACKAGE =	Yes
 
 MODULES =		devel/cmake
 
-BUILD_DEPENDS =		devel/hs-cereal \
+BUILD_DEPENDS =		devel/cereal \
 			devel/tbb \
-			math/eigen3
+			math/eigen3 \
+			math/nlopt
 
 WRKDIST =		${WRKDIR}/Prusa${DISTNAME:S/Slic3r/Slicer/}
 

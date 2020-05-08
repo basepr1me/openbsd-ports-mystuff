@@ -6,7 +6,7 @@ GH_ACCOUNT =		USCiLab
 GH_PROJECT =		cereal
 GH_TAGNAME =		v1.3.0
 
-PKGNAME =		cereal-${GH_TAGNAME:S/v//}
+PKGNAME =		${GC_PROJECT}-${GH_TAGNAME:S/v//}
 
 CATEGORIES =		devel
 
