@@ -10,6 +10,13 @@ PKGNAME =		${GH_PROJECT}-${GH_TAGNAME:S/v//}
 
 CATEGORIES =		devel
 
+SHARED_LIBS +=		openvdb                   0.0 # 6.0
+
+WANTLIB += GL GLU Half-2_4 Iex-2_4 IlmImf-2_4 IlmThread-2_4 X11
+WANTLIB += Xcursor Xi Xinerama Xrandr Xxf86vm blosc boost_iostreams-mt
+WANTLIB += boost_system-mt boost_thread-mt c glfw m pthread python3.7m
+WANTLIB += stdc++ tbb z
+
 #MPL-2.0
 PERMIT_PACKAGE =	Yes
 
@@ -21,21 +28,25 @@ MODULES =		devel/cmake \
 
 BUILD_DEPENDS =		archivers/blosc \
 			devel/boost \
-			devel/cppunit \
 			graphics/glew \
 			graphics/glfw \
 			graphics/openexr
+LIB_DEPENDS =		archivers/blosc \
+			devel/boost \
+			devel/tbb \
+			graphics/glfw \
+			graphics/openexr
 
-CONFIGURE_ENV =		CXXFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include -DOPENVDB_USE_GLFW_3 ${CXXFLAGS}" \
-			LDFLAGS="-L${LOCALBASE}/lib"
-
+CONFIGURE_ENV =		CXXFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include ${CXXFLAGS}"
 CONFIGURE_ARGS =	-DBLOSC_LOCATION="${LOCALBASE}" \
 			-DTBB_LOCATION="${LOCALBASE}" \
 			-DILMBASE_LOCATION="${LOCALBASE}" \
 			-DOPENEXR_LOCATION="${LOCALBASE}" \
-			-DCPPUNIT_LOCATION="${LOCALBASE}"
+			-DUSE_GLFW3=ON \
+			-DOPENVDB_BUILD_UNITTESTS=OFF \
+			-DOPENVDB_ABI_VERSION_NUMBER=6 \
+			-DGLFW3_LOCATION="${LOCALBASE}"
 
-
-SEPARATE_BUILD =	Yes
+NO_TEST =		Yes
 
 .include <bsd.port.mk>

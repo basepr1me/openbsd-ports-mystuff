@@ -23,7 +23,9 @@ PERMIT_PACKAGE =	Yes
 MODULES =		devel/cmake
 
 BUILD_DEPENDS =		devel/cereal \
+			devel/openvdb \
 			devel/tbb \
+			math/cgal \
 			math/eigen3 \
 			math/nlopt
 

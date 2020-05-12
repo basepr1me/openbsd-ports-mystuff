@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: openvdb/CMakeLists.txt
+--- openvdb/CMakeLists.txt.orig
++++ openvdb/CMakeLists.txt
+@@ -390,7 +390,7 @@ IF ( OPENVDB_BUILD_UNITTESTS )
+     )
+ 
+   TARGET_LINK_LIBRARIES ( vdb_test
+-    ${CPPUnit_cppunit_LIBRARY}
++    cppunit
+     openvdb_shared
+     m
+     stdc++
