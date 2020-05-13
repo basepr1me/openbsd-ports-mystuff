@@ -14,8 +14,8 @@ SHARED_LIBS +=		openvdb                   0.0 # 6.0
 
 WANTLIB += GL GLU Half-2_4 Iex-2_4 IlmImf-2_4 IlmThread-2_4 X11
 WANTLIB += Xcursor Xi Xinerama Xrandr Xxf86vm blosc boost_iostreams-mt
-WANTLIB += boost_system-mt boost_thread-mt c glfw m pthread python3.7m
-WANTLIB += stdc++ tbb z
+WANTLIB += boost_python-mt boost_system-mt boost_thread-mt c glfw
+WANTLIB += m pthread python3.7m stdc++ tbb z
 
 #MPL-2.0
 PERMIT_PACKAGE =	Yes
@@ -37,6 +37,7 @@ LIB_DEPENDS =		archivers/blosc \
 			graphics/glfw \
 			graphics/openexr
 
+#XXX: -DOPENVDB_BUILD_UNITTESTS=OFF set, because -lcppunit is failing to link
 CONFIGURE_ENV =		CXXFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include ${CXXFLAGS}"
 CONFIGURE_ARGS =	-DBLOSC_LOCATION="${LOCALBASE}" \
 			-DTBB_LOCATION="${LOCALBASE}" \
@@ -44,7 +45,7 @@ CONFIGURE_ARGS =	-DBLOSC_LOCATION="${LOCALBASE}" \
 			-DOPENEXR_LOCATION="${LOCALBASE}" \
 			-DUSE_GLFW3=ON \
 			-DGLFW3_LOCATION="${LOCALBASE}" \
-			-DOPENVDB_BUILD_UNITTESTS=OFF \ # not properly linking with cppunit
+			-DOPENVDB_BUILD_UNITTESTS=OFF \
 			-DOPENVDB_ABI_VERSION_NUMBER=6 \
 			-DOpenVDB_LIBRARY_DIR=${PREFIX}
 
