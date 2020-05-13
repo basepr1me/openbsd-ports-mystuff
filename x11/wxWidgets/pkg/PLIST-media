@@ -1,0 +1,2 @@
+@comment $OpenBSD: PLIST-media,v 1.5 2019/01/02 12:41:48 jca Exp $
+@conflict wxWidgets-gtk2-<2.8.12p11

@@ -29,6 +29,10 @@ BUILD_DEPENDS =		devel/cereal \
 			math/eigen3 \
 			math/nlopt
 
+CONFIGURE_ARGS =	-DSLIC3R_WX_STABLE=1 \
+			-DDEP_WX_STABLE=1 \
+			-DOPENVDB_ABI_VERSION_NUMBER=6
+
 WRKDIST =		${WRKDIR}/Prusa${DISTNAME:S/Slic3r/Slicer/}
 
 .include <bsd.port.mk>

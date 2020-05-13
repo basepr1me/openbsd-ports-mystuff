@@ -1,0 +1,17 @@
+$OpenBSD: patch-configure,v 1.5 2019/01/21 18:55:07 jca Exp $
+
+Index: configure
+--- configure.orig
++++ configure
+@@ -38897,6 +38897,11 @@ fi
+         USE_SOVERSION=1
+         USE_SOVERLINUX=1
+         USE_SOTWOSYMLINKS=1
++        case "${BAKEFILE_HOST}" in
++          *-*-openbsd*)
++            USE_SOTWOSYMLINKS=0
++          ;;
++        esac
+       ;;
+ 
+       *-*-solaris2* )
