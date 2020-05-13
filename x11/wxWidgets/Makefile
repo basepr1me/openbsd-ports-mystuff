@@ -50,22 +50,22 @@ TEST_DEPENDS = ${BUILD_PKGPATH}>=${V}
 LIB_DEPENDS-main =	${LIB_DEPENDS} \
 			archivers/libmspack \
 			devel/libnotify \
-			devel/sdl2
+			devel/sdl2 \
+			graphics/jbigkit \
+			multimedia/gstreamer1/plugins-base \
+			multimedia/gstreamer1/plugins-bad \
+			x11/gnome/libsecret
 
-WANTLIB-main += ${COMPILER_LIBCXX} GL GLU SDL2 SM X11 Xxf86vm atk-1.0
-WANTLIB-main += c cairo cairo-gobject expat gdk-3 gdk_pixbuf-2.0 gio-2.0
-WANTLIB-main += glib-2.0 gobject-2.0 gthread-2.0 gtk-3 iconv intl jpeg m
-WANTLIB-main += mspack notify pango-1.0 pangocairo-1.0 png tiff z
+WANTLIB += ${COMPILER_LIBCXX} GL GLU SDL2 SM X11 Xtst Xxf86vm
+WANTLIB += atk-1.0 c cairo cairo-gobject expat fontconfig freetype
+WANTLIB += gdk-3 gdk_pixbuf-2.0 gio-2.0 glib-2.0 gobject-2.0 gstbase-1.0
+WANTLIB += gstplayer-1.0 gstreamer-1.0 gstvideo-1.0 gthread-2.0
+WANTLIB += gtk-3 harfbuzz iconv intl jbig jpeg lzma m mspack notify
+WANTLIB += pango-1.0 pangocairo-1.0 pangoft2-1.0 png secret-1
+WANTLIB += tiff z
 
 LIB_DEPENDS-media =	${LIB_DEPENDS} \
-			multimedia/gstreamer1/plugins-base \
 			${BASE_PKGPATH},-main>=${V}
-
-WANTLIB-media += ${COMPILER_LIBCXX} SM X11 Xxf86vm atk-1.0 cairo cairo-gobject
-WANTLIB-media += gdk-3 gdk_pixbuf-2.0 gio-2.0 glib-2.0 gobject-2.0 gstbase-1.0
-WANTLIB-media += gstreamer-1.0 gstvideo-1.0 gthread-2.0 gtk-3 iconv
-WANTLIB-media += intl jpeg m notify pango-1.0 pangocairo-1.0 png tiff
-WANTLIB-media += wx_baseu-3.1 wx_gtk3u_core-3.1 z
 
 MAKE_FLAGS =	SO_VERSION="${LIBwx_baseu-3.1_VERSION}"
 
