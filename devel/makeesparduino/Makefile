@@ -1,7 +1,7 @@
 # $OpenBSD$
 
 COMMENT =		makefile for ESP8266 and ESP32 Arduino projects
-V =			5.0.1
+V =			5.0.2
 DISTNAME =		${V}
 PKGNAME =		makeesparduino-${V}
 

@@ -20,18 +20,19 @@ HOMEPAGE =		https://www.prusa3d.com/slic3r-prusa-edition/
 # AGPLv3
 PERMIT_PACKAGE =	Yes
 
+# C++17
+COMPILER =		base-clang ports-gcc
 MODULES =		devel/cmake
 
-BUILD_DEPENDS =		devel/cereal \
+BUILD_DEPENDS =		devel/boost \
+			devel/cereal \
 			devel/openvdb \
 			devel/tbb \
 			math/cgal \
 			math/eigen3 \
 			math/nlopt
 
-CONFIGURE_ARGS =	-DSLIC3R_WX_STABLE=1 \
-			-DDEP_WX_STABLE=1 \
-			-DOPENVDB_ABI_VERSION_NUMBER=6
+CONFIGURE_ARGS =	-DSLIC3R_WX_STABLE=1
 
 WRKDIST =		${WRKDIR}/Prusa${DISTNAME:S/Slic3r/Slicer/}
 
