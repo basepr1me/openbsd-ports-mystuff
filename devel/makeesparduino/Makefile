@@ -15,19 +15,14 @@ MAINTAINER =		Tracey Emery <tracey@openbsd.org>
 #LGPLv2.1
 PERMIT_PACKAGE =	Yes
 
-MODPY_VERSION =		${MODPY_DEFAULT_VERSION_3}
-MODULES =		lang/python
-
 RUN_DEPENDS +=		devel/arduino \
 			devel/gmake
 
 NO_TEST =		Yes
+NO_BUILD =		Yes
 
 post-patch:
 	${SUBST_CMD} ${WRKDIST}/makeEspArduino.mk
-
-do-build:
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py ${WRKSRC}/tools
 
 do-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/makeEspArduino

@@ -33,7 +33,8 @@ RUN_DEPENDS =		audio/jack \
 			devel/sdl2 \
 			misc/shared-mime-info \
 			x11/gtk+3,-guic \
-			x11/qt5/qtgraphicaleffects
+			x11/qt5/qtgraphicaleffects \
+			x11/qt5/qtquickcontrols
 LIB_DEPENDS =		multimedia/mlt \
 			x11/qt5/qtmultimedia \
 			x11/qt5/qtwebkit \
