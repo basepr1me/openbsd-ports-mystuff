@@ -1,0 +1,19 @@
+$OpenBSD$
+
+Index: shotcut/src/src.pro
+--- shotcut/src/src.pro.orig
++++ shotcut/src/src.pro
+@@ -1,4 +1,4 @@
+-CONFIG   += link_prl
++CONFIG   += link_prl debug
+ 
+ QT       += widgets opengl xml network printsupport qml quick sql webkitwidgets
+ QT       += multimedia websockets quickwidgets
+@@ -409,6 +409,6 @@ unix:!mac {
+     icons.files = $$PWD/../packaging/linux/org.shotcut.Shotcut.png
+     icons.path = $$PREFIX/share/icons/hicolor/64x64/apps
+     man.files = $$PWD/../packaging/linux/shotcut.1
+-    man.path = $$PREFIX/share/man/man1
++    man.path = $$PREFIX/man/man1
+     INSTALLS += metainfo desktop mime icons man
+ }

@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: shotcut/CuteLogger/CuteLogger.pro
+--- shotcut/CuteLogger/CuteLogger.pro.orig
++++ shotcut/CuteLogger/CuteLogger.pro
+@@ -3,7 +3,7 @@ QT       -= gui
+ TARGET = CuteLogger
+ TEMPLATE = lib
+ 
+-CONFIG += staticlib
++CONFIG += staticlib debug
+ CONFIG += create_prl
+ 
+ DEFINES += CUTELOGGER_LIBRARY
