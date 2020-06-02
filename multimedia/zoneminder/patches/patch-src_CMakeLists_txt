@@ -8,16 +8,9 @@ we do this later to not interfere with creating the proper config file paths
 Index: src/CMakeLists.txt
 --- src/CMakeLists.txt.orig
 +++ src/CMakeLists.txt
-@@ -26,10 +26,11 @@ target_link_libraries(zmu zm ${ZM_EXTRA_LIBS} ${ZM_BIN
- target_link_libraries(zms zm ${ZM_EXTRA_LIBS} ${ZM_BIN_LIBS} ${CMAKE_DL_LIBS} bcrypt)
- 
- # Generate man files for the binaries destined for the bin folder
--FOREACH(CBINARY zma zmc zmu)
--    POD2MAN(${CMAKE_CURRENT_SOURCE_DIR}/${CBINARY}.cpp zoneminder-${CBINARY} 8 ${ZM_MANPAGE_DEST_PREFIX})
--ENDFOREACH(CBINARY zma zmc zmu)
-+# FOREACH(CBINARY zma zmc zmu)
-+#     POD2MAN(${CMAKE_CURRENT_SOURCE_DIR}/${CBINARY}.cpp zoneminder-${CBINARY} 8 ${ZM_MANPAGE_DEST_PREFIX})
-+# ENDFOREACH(CBINARY zma zmc zmu)
+@@ -30,6 +30,7 @@ FOREACH(CBINARY zma zmc zmu)
+     POD2MAN(${CMAKE_CURRENT_SOURCE_DIR}/${CBINARY}.cpp zoneminder-${CBINARY} 8 ${ZM_MANPAGE_DEST_PREFIX})
+ ENDFOREACH(CBINARY zma zmc zmu)
  
 +set(ZM_CGIDIR "/var/www/cgi-bin/zm")
  install(TARGETS zmc zma zmu RUNTIME DESTINATION "${CMAKE_INSTALL_FULL_BINDIR}" PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)

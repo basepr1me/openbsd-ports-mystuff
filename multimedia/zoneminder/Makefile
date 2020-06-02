@@ -1,4 +1,6 @@
 # $OpenBSD:$
+# XXX needs work on manpage installation for this to succeed
+USE_NINJA =		No
 
 MULTI_PACKAGES = -main -web
 COMMENT-main =	security camera DVR/NVR recorder/alarm monitor
@@ -28,21 +30,22 @@ MASTER_SITES0 = https://github.com/ZoneMinder/CakePHP-Enum-Behavior/archive/
 MASTER_SITES1 = https://github.com/ZoneMinder/crud/archive/
 
 WANTLIB += ${COMPILER_LIBCXX} avcodec avdevice avformat avutil
-WANTLIB += c crypto curl gcrypt gnutls jpeg m mariadb pcre ssl
+WANTLIB += c crypto curl gcrypt gnutls jpeg m pcre ssl
 WANTLIB += swresample swscale vlc x264 z
+
+WANTLIB-web += ${COMPILER_LIBCXX} avcodec avdevice avformat avutil
+WANTLIB-web += c crypto curl gcrypt gnutls jpeg m pcre ssl swresample
+WANTLIB-web += swscale vlc x264 z
 
 # c++11
 COMPILER =	base-clang ports-gcc
 
 RUN_DEPENDS-main = ${BUILD_DEPENDS} \
-		databases/mariadb,-server \
 		devel/desktop-file-utils \
 		multimedia/zoneminder,-web=${V}
-
 RUN_DEPENDS-web = ${MODPHP_RUN_DEPENDS} \
 		lang/php/${MODPHP_VERSION},-mysqli \
 		lang/php/${MODPHP_VERSION},-pdo_mysql
-
 BUILD_DEPENDS =	converters/p5-DateManip \
 		databases/p5-DBI \
 		databases/p5-DBD-mysql \
@@ -53,9 +56,7 @@ BUILD_DEPENDS =	converters/p5-DateManip \
 		devel/p5-Time-TimeDate \
 		graphics/ffmpeg \
 		www/p5-LWP-UserAgent-Determined
-
-LIB_DEPENDS =	databases/mariadb \
-		devel/pcre \
+LIB_DEPENDS =	devel/pcre \
 		graphics/ffmpeg \
 		graphics/jpeg \
 		net/curl \
@@ -74,7 +75,12 @@ CONFIGURE_STYLE =	cmake
 SEPARATE_BUILD =	Yes
 NO_TEST =		Yes
 
+PREFIX-main =		${LOCALBASE}
 PREFIX-web =		${VARBASE}/www
+
+INSTDIR =		${PREFIX-web}
+
+SUBST_VARS =		INSTDIR
 
 post-extract:
 	rmdir ${WRKSRC}/web/api/app/Plugin/CakePHP-Enum-Behavior
@@ -84,17 +90,16 @@ post-extract:
 	mv ${WRKDIR}/crud-* ${WRKSRC}/web/api/app/Plugin/Crud
 
 post-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/../..${PREFIX-web}/zm/cache
-	chmod 1700 ${PREFIX}/../..${PREFIX-web}/zm/cache
-	${INSTALL_DATA_DIR} ${PREFIX}/../..${PREFIX-web}/zm/logs
-	touch ${PREFIX}/../..${PREFIX-web}/zm/logs/web_php.log
-	${INSTALL_DATA_DIR} ${PREFIX}/../..${PREFIX-web}/zm/run
-	${INSTALL_DATA_DIR} ${PREFIX}/../..${PREFIX-web}/zm/spool
-	${INSTALL_DATA_DIR} ${PREFIX}/../..${PREFIX-web}/zm/tmp
-	chmod 1700 ${PREFIX}/../..${PREFIX-web}/zm/tmp
-	chown -R www:www ${PREFIX}/../..${PREFIX-web}/zm
-	chown -R www:www ${PREFIX}/../..${PREFIX-web}/htdocs/zm
-	cd ${PREFIX}/../..${PREFIX-web}/htdocs/zm && \
-		ln -s ../../zm/cache cache
+	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/cache
+	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/logs
+	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/run
+	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/spool
+	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/tmp
+	@touch ${WRKINST}${INSTDIR}/zm/logs/web_php.log
+	@touch ${WRKINST}${INSTDIR}/zm/shm
+	@cd ${WRKINST}${INSTDIR}/htdocs/zm && ln -s ../../zm/cache cache
+	@chmod 1700 ${WRKINST}${INSTDIR}/zm/cache
+	@chmod 1700 ${WRKINST}${INSTDIR}/zm/tmp
+	@chown -R www:www ${WRKINST}${INSTDIR}/zm ${WRKINST}${INSTDIR}/htdocs/zm
 
 .include <bsd.port.mk>

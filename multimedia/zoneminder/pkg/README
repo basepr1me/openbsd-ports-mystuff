@@ -1,0 +1,20 @@
+$OpenBSD: README,v 1.7 2020/03/30 21:38:42 sthen Exp $
+
++-----------------------------------------------------------------------
+| Running ${PKGSTEM} on OpenBSD
++-----------------------------------------------------------------------
+
+Installation instructions
+=========================
+
+These are just notes right now
+
+ensure php extensions are activated
+
+How did we change location of mysql db file system wide?
+	-env MYSQL_UNIX_PORT
+
+configure mysql socket for /var/www/run/mysql/mysql.sock
+set mysqli.default_socket and pdo_mysql.default_socket
+mysql -uroot -p < ${LOCALBASE}/share/zoneminder/db/zm_create.sql
+

@@ -1,4 +1,6 @@
 @comment $OpenBSD: PLIST-web,v$
+@owner www
+@group www
 cgi-bin/zm/
 cgi-bin/zm/nph-zms
 @bin cgi-bin/zm/zms
@@ -2299,9 +2301,19 @@ htdocs/zm/views/archive.php
 htdocs/zm/views/image.php
 htdocs/zm/views/view_video.php
 zm/
+@mode 1700
 zm/cache/
+@mode
 zm/logs/
+@mode 0644
 zm/logs/web_php.log
+@mode
 zm/run/
+@owner
+@group
+zm/shm
+@owner www
+@group www
 zm/spool/
+@mode 1700
 zm/tmp/
