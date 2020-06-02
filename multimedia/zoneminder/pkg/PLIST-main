@@ -1,5 +1,7 @@
 @comment $OpenBSD: PLIST-main,v$
+@bin bin/zma
 bin/zmaudit.pl
+@bin bin/zmc
 bin/zmcamtool.pl
 bin/zmcontrol.pl
 bin/zmdc.pl
@@ -11,6 +13,7 @@ bin/zmstats.pl
 bin/zmtelemetry.pl
 bin/zmtrack.pl
 bin/zmtrigger.pl
+@bin bin/zmu
 bin/zmupdate.pl
 bin/zmvideo.pl
 bin/zmwatch.pl

@@ -1,9 +1,14 @@
 $OpenBSD$
 
+XXX: don't run POD2MAN. man pages aren't there. figure this out later
+
+set full cgi-bin install path
+we do this later to not interfere with creating the proper config file paths
+
 Index: src/CMakeLists.txt
 --- src/CMakeLists.txt.orig
 +++ src/CMakeLists.txt
-@@ -26,11 +26,11 @@ target_link_libraries(zmu zm ${ZM_EXTRA_LIBS} ${ZM_BIN
+@@ -26,10 +26,11 @@ target_link_libraries(zmu zm ${ZM_EXTRA_LIBS} ${ZM_BIN
  target_link_libraries(zms zm ${ZM_EXTRA_LIBS} ${ZM_BIN_LIBS} ${CMAKE_DL_LIBS} bcrypt)
  
  # Generate man files for the binaries destined for the bin folder
@@ -14,8 +19,7 @@ Index: src/CMakeLists.txt
 +#     POD2MAN(${CMAKE_CURRENT_SOURCE_DIR}/${CBINARY}.cpp zoneminder-${CBINARY} 8 ${ZM_MANPAGE_DEST_PREFIX})
 +# ENDFOREACH(CBINARY zma zmc zmu)
  
--install(TARGETS zmc zma zmu RUNTIME DESTINATION "${CMAKE_INSTALL_FULL_BINDIR}" PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-+install(TARGETS zmc zma zmu RUNTIME DESTINATION "/var/www/${CMAKE_INSTALL_FULL_BINDIR}" PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
++set(ZM_CGIDIR "/var/www/cgi-bin/zm")
+ install(TARGETS zmc zma zmu RUNTIME DESTINATION "${CMAKE_INSTALL_FULL_BINDIR}" PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
  install(TARGETS zms RUNTIME DESTINATION "${ZM_CGIDIR}" PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
  install(CODE "execute_process(COMMAND ln -sf zms nph-zms WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})" )
- install(FILES ${CMAKE_CURRENT_BINARY_DIR}/nph-zms DESTINATION "${ZM_CGIDIR}")

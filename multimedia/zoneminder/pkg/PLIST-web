@@ -1826,6 +1826,7 @@ htdocs/zm/api/lib/Cake/View/ViewBlock.php
 htdocs/zm/api/lib/Cake/View/XmlView.php
 htdocs/zm/api/lib/Cake/basics.php
 htdocs/zm/api/lib/Cake/bootstrap.php
+htdocs/zm/cache
 htdocs/zm/css/
 htdocs/zm/css/bootstrap.min.css
 htdocs/zm/css/bootstrap.min.css.map
@@ -2297,8 +2298,10 @@ htdocs/zm/views/
 htdocs/zm/views/archive.php
 htdocs/zm/views/image.php
 htdocs/zm/views/view_video.php
-usr/local/
-usr/local/bin/
-@bin usr/local/bin/zma
-@bin usr/local/bin/zmc
-@bin usr/local/bin/zmu
+zm/
+zm/cache/
+zm/logs/
+zm/logs/web_php.log
+zm/run/
+zm/spool/
+zm/tmp/
