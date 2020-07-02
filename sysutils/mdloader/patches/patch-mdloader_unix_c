@@ -1,0 +1,15 @@
+$OpenBSD$
+
+Index: mdloader_unix.c
+--- mdloader_unix.c.orig
++++ mdloader_unix.c
+@@ -25,6 +25,9 @@
+ #define EXAMPLE_PORT "/dev/cu.usbmodem14221"
+ #define PORT_SEARCH_STRING "cu.usbmodem"
+ #endif
++#elif defined(__OpenBSD__)
++#define EXAMPLE_PORT "/dev/ttyU0"
++#define PORT_SEARCH_STRING "ttyU"
+ #else
+ #define EXAMPLE_PORT "/dev/ttyACM0"
+ #define PORT_SEARCH_STRING "ttyACM"

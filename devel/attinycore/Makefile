@@ -10,8 +10,8 @@ PKGNAME =		attinycore-${GH_TAGNAME}
 
 CATEGORIES =		devel
 
-#LGPLv2.1
-PERMIT_PACKAGE =	Yes
+#None
+PERMIT_PACKAGE =	No
 
 RUN_DEPENDS +=		devel/arduino
 
