@@ -1,0 +1,5 @@
+@comment $OpenBSD: PLIST,v 1.2 2018/09/04 12:46:12 espie Exp $
+@bin bin/freebee
+@man man/man6/freebee.6
+share/freebee/
+share/freebee/sowpods.txt
