@@ -10,6 +10,8 @@ MAINTAINER =	Tracey Emery <tracey@openbsd.org>
 # ISC
 PERMIT_PACKAGE =	Yes
 
+# uses pledge()
+# uses unveil()
 WANTLIB +=	c curl curses
 
 MASTER_SITES =	https://github.com/ibara/freebee/releases/download/${DISTNAME}/
