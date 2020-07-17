@@ -1,7 +1,7 @@
 # $OpenBSD: $
 
 COMMENT =	free clone of The New Your Times game Spelling Bee
-DISTNAME =	freebee-1.4
+DISTNAME =	freebee-1.5
 CATEGORIES =	games
 
 HOMEPAGE =	https://freebee.fun

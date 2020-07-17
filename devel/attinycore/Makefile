@@ -4,14 +4,14 @@ COMMENT =		arduino core for modern attiny chips
 
 GH_ACCOUNT =		SpenceKonde
 GH_PROJECT =		ATTinyCore
-GH_TAGNAME =		1.3.3
+GH_TAGNAME =		1.4
 
 PKGNAME =		attinycore-${GH_TAGNAME}
 
 CATEGORIES =		devel
 
-#None
-PERMIT_PACKAGE =	No
+# LGPLv3+
+PERMIT_PACKAGE =	Yes
 
 RUN_DEPENDS +=		devel/arduino
 
