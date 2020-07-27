@@ -14,7 +14,7 @@ PERMIT_PACKAGE =	Yes
 # uses unveil()
 WANTLIB +=	c curl curses
 
-MASTER_SITES =	https://github.com/ibara/freebee/releases/download/${DISTNAME}/
+MASTER_SITES =	https://github.com/freebee-game/console-client/releases/download/${DISTNAME}/
 
 EXTRACT_SUFX =	.tar.xz
 
