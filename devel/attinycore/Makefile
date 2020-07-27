@@ -1,24 +1,26 @@
 # $OpenBSD$
 
-COMMENT =		arduino core for modern attiny chips
+COMMENT =	arduino core for modern attiny chips
 
-GH_ACCOUNT =		SpenceKonde
-GH_PROJECT =		ATTinyCore
-GH_TAGNAME =		1.4
+GH_ACCOUNT =	SpenceKonde
+GH_PROJECT =	ATTinyCore
+GH_TAGNAME =	1.4.0
 
-PKGNAME =		attinycore-${GH_TAGNAME}
+PKGNAME =	attinycore-${GH_TAGNAME}
 
-CATEGORIES =		devel
+CATEGORIES =	devel
 
-# LGPLv3+
-PERMIT_PACKAGE =	Yes
+MAINTAINER =	Tracey Emery <tracey@openbsd.org>
 
-RUN_DEPENDS +=		devel/arduino
+# LGPLv2.1
+PERMIT_PACKAGE = Yes
 
-INSTALLDIR =		${PREFIX}/share/arduino/hardware/ATTinyCore/avr
+RUN_DEPENDS +=	devel/arduino
 
-NO_TEST =		Yes
-NO_BUILD =		Yes
+INSTALLDIR =	${PREFIX}/share/arduino/hardware/ATTinyCore/avr
+
+NO_TEST =	Yes
+NO_BUILD =	Yes
 
 do-install:
 	@mkdir -p ${INSTALLDIR}
