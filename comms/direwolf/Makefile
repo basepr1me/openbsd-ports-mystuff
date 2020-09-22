@@ -9,8 +9,6 @@ GH_ACCOUNT =	wb2osz
 GH_PROJECT =	direwolf
 GH_TAGNAME =	${V}
 
-#SHARED_LIBS =	???	0.0
-
 CATEGORIES =	comms
 
 HOMEPAGE =	https://packet-radio.net/direwolf/
