@@ -14,8 +14,6 @@ SUBST_VARS +=	V
 
 WANTLIB =	${COMPILER_LIBCXX} c gmp m mpc mpfr z
 
-COMPILER =	base-clang ports-gcc
-
 BUILD_DEPENDS +=	devel/bison \
 			devel/${CONFIG}/binutils \
 			devel/${CONFIG}/newlib

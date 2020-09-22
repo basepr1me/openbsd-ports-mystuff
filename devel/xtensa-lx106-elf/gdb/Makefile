@@ -14,8 +14,6 @@ REVISION =	0
 
 WANTLIB +=	${COMPILER_LIBCXX} c curses expat m
 
-COMPILER =	base-clang ports-gcc base-gcc
-
 BUILD_DEPENDS = 	devel/libtool \
 			devel/bison \
 			devel/gmp \

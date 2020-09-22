@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: kissutil.c
+--- kissutil.c.orig
++++ kissutil.c
+@@ -46,7 +46,7 @@
+ #else 
+ 
+ #include <stdlib.h>
+-#include <sys/errno.h>
++#include <errno.h>
+ #include <sys/types.h>
+ #include <sys/socket.h>
+ 

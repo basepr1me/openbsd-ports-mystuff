@@ -14,8 +14,6 @@ SUBST_VARS +=	V
 
 WANTLIB =	${COMPILER_LIBCXX} c gmp m mpc mpfr
 
-COMPILER =	base-clang ports-gcc
-
 BUILD_DEPENDS +=	devel/bison \
 			devel/${CONFIG}/binutils
 RUN_DEPENDS =		devel/${CONFIG}/binutils
@@ -24,6 +22,7 @@ LIB_DEPENDS =		devel/gmp \
 			devel/libmpc
 
 YACC =		bison
+DEBUG_PACKAGES =	${BUILD_PACKAGES}
 
 CONFIGURE_ARGS +=	--exec-prefix=${LOCALBASE}/${CONFIG}/bootstrap \
 			--with-local-prefix=${LOCALBASE}/${CONFIG} \

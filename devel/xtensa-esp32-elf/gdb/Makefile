@@ -11,8 +11,6 @@ GH_TAGNAME =	esp-2020r3-gdb
 
 WANTLIB = 	c curses expat ${COMPILER_LIBCXX} gmp m mpfr
 
-COMPILER =	base-clang ports-gcc
-
 BUILD_DEPENDS =	devel/libtool \
 		devel/bison \
 		devel/xtensa-esp32-elf/binutils

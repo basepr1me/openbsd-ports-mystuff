@@ -14,8 +14,6 @@ WANTLIB =	${COMPILER_LIBCXX} c gmp m mpc mpfr
 
 SUBST_VARS +=	VERSION
 
-COMPILER=	base-clang ports-gcc base-gcc
-
 BUILD_DEPENDS +=	devel/bison \
 			devel/${CONFIG}/binutils
 RUN_DEPENDS =		devel/${CONFIG}/binutils
