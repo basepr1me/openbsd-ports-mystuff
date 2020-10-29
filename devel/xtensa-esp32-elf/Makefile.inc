@@ -9,6 +9,7 @@ HOMEPAGE =	https://www.espressif.com/en/products/software/esp-sdk/overview
 #   See: ${PREFIX}/share/doc/newlib
 PERMIT_PACKAGE =   Yes
 
+# permits build on sparc64
 COMPILER =	base-clang ports-clang
 
 # XXX at least gmkdir gets picked up if present

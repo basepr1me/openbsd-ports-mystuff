@@ -24,9 +24,9 @@ FAKE_FLAGS =	PREFIX="${PREFIX}"
 
 RUN_DEPENDS =	devel/desktop-file-utils
 
-USE_GMAKE =		Yes
+USE_GMAKE =	Yes
 
-NO_TEST =		Yes
+NO_TEST =	Yes
 
 post-patch:
 	${SUBST_CMD} ${WRKDIST}/Makefile.linux

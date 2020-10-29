@@ -1,7 +1,7 @@
 # $OpenBSD$
 
 COMMENT =		tool for isolation, routing, and drilling of PCBs
-V =			2.0.0
+V =			2.1.0
 
 GH_ACCOUNT =		pcb2gcode
 GH_PROJECT =		pcb2gcode
@@ -23,8 +23,6 @@ WANTLIB += graphite2 gtk-x11-2.0 harfbuzz iconv intl m pango-1.0
 WANTLIB += pangocairo-1.0 pangoft2-1.0 pangomm-1.4 pcre pixman-1
 WANTLIB += png sigc-2.0 xcb xcb-render xcb-shm z
 
-COMPILER =		base-clang ports-gcc base-gcc
-
 BUILD_DEPENDS =		cad/gerbv \
 			devel/boost \
 			x11/gnome/librsvg \
@@ -38,6 +36,8 @@ LIB_DEPENDS =		cad/gerbv \
 			x11/gtk2mm
 
 MAKE_FLAGS =		GIT_VERSION="${V}"
+
+USE_GMAKE =		Yes
 
 CONFIGURE_STYLE =	autoreconf
 CONFIGURE_ENV =		LDFLAGS="-L${LOCALBASE}/lib -s" \
