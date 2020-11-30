@@ -19,20 +19,26 @@ EXTRACT_SUFX =		.zip
 
 MODULES =		lang/python
 
-BUILD_DEPENDS =		devel/py-configobj \
-			graphics/py-opengl \
-			x11/py-qt5
+MODPY_VERSION =		${MODPY_DEFAULT_VERSION_3}
+
+BUILD_DEPENDS =		devel/py-configobj${MODPY_FLAVOR} \
+			graphics/py-opengl${MODPY_FLAVOR} \
+			x11/py-qt5${MODPY_FLAVOR}
 RUN_DEPENDS =		${BUILD_DEPENDS} \
 			print/poppler,-utils \
-			x11/py-qt5
+			x11/py-qt5${MODPY_FLAVOR}
 
-FLAVORS =		python3
-FLAVOR =		python3
+NO_TEST =		Yes
 
 do-build:
-	cd ${WRKSRC} && ${MODPY_BIN} ./make_tr.py
-	cd ${WRKSRC} && ${MODPY_BIN} ./make_py_uic.py
-	cd ${WRKSRC} && ${MODPY_BIN} ./st-setup.py build
+# make files are looking for py3 packages, which have a -3 suffix
+# workaround from sthen
+.for i in pyuic pyrcc pylupdate
+	ln -s ${LOCALBASE}/bin/$i5${MODPY_BIN_SUFFIX} ${WRKDIR}/bin/$i5
+.endfor
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MODPY_BIN} ./make_tr.py
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MODPY_BIN} ./make_py_uic.py
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MODPY_BIN} ./st-setup.py build
 
 do-install:
 	mkdir -p ${WRKINST}${MODPY_SITEPKG}

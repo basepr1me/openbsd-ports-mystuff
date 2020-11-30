@@ -1,6 +1,6 @@
 $OpenBSD$
 
-#sys.platform returns openbsd, not unix here
+# sys.platform returns openbsd, not unix here
 
 Index: make_py_uic.py
 --- make_py_uic.py.orig
