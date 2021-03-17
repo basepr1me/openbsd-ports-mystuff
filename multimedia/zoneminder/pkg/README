@@ -9,12 +9,52 @@ Installation instructions
 
 These are just notes right now
 
+PHP
 ensure php extensions are activated
+in php-fpm.conf comment out chroot = /var/www
 
 How did we change location of mysql db file system wide?
 	-env MYSQL_UNIX_PORT
 
 configure mysql socket for /var/www/run/mysql/mysql.sock
+
+slowcgi_flags="-u root -p /"
+
 set mysqli.default_socket and pdo_mysql.default_socket
+
 mysql -uroot -p < ${LOCALBASE}/share/zoneminder/db/zm_create.sql
 
+add zmuser
+
+swap /var/www/zm/shm mfs rw,nodev,nosuid,-s=2G 0 0
+
+#add to sudoers
+root	ALL=(ALL) NOPASSWD: ALL
+www	ALL=(ALL) NOPASSWD: ALL
+
+
+chroot "/"
+logdir "/var/www/logs/"
+
+server "andy.traceyemery.com" {
+	listen on * port 80
+	listen on * port 443
+
+	root "/var/www/htdocs/zm"
+
+	location "/.well-known/acme-challenge/*" {
+		root "/acme"
+		request strip 2
+	}
+	location "/cgi-bin/*" {
+		root "/var/www"
+		fastcgi socket "/var/www/run/slowcgi.sock"
+	}
+	location "/*.php" {
+		fastcgi socket "/var/www/run/php-fpm.sock"
+		directory index "inde.php"
+	}
+	location "/*" {
+		directory index "index.php"
+	}
+}

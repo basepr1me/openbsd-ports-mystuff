@@ -1,9 +1,11 @@
 $OpenBSD$
 
+fix types
+
 Index: src/zm_logger.cpp
 --- src/zm_logger.cpp.orig
 +++ src/zm_logger.cpp
-@@ -563,8 +563,8 @@ void Logger::logPrint(bool hex, const char * const fil
+@@ -566,8 +566,8 @@ void Logger::logPrint(bool hex, const char * const fil
            "INSERT INTO `Logs` "
            "( `TimeKey`, `Component`, `ServerId`, `Pid`, `Level`, `Code`, `Message`, `File`, `Line` )"
           " VALUES "

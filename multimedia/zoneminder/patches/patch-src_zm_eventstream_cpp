@@ -1,5 +1,7 @@
 $OpenBSD$
 
+fix types
+
 Index: src/zm_eventstream.cpp
 --- src/zm_eventstream.cpp.orig
 +++ src/zm_eventstream.cpp

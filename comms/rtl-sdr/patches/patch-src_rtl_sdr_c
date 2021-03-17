@@ -1,0 +1,18 @@
+$OpenBSD$
+
+Index: src/rtl_sdr.c
+--- src/rtl_sdr.c.orig
++++ src/rtl_sdr.c
+@@ -112,7 +112,12 @@ int main(int argc, char **argv)
+ 	int r, opt;
+ 	int gain = 0;
+ 	int ppm_error = 0;
++#ifdef __OpenBSD__
++	/* XXX async doesn't work yet */
++	int sync_mode = 1;
++#else
+ 	int sync_mode = 0;
++#endif
+ 	FILE *file;
+ 	uint8_t *buffer;
+ 	int dev_index = 0;

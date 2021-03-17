@@ -3,7 +3,7 @@ $OpenBSD$
 Index: cmake/Modules/Pod2Man.cmake
 --- cmake/Modules/Pod2Man.cmake.orig
 +++ cmake/Modules/Pod2Man.cmake
-@@ -58,7 +58,7 @@ MACRO(POD2MAN PODFILE MANFILE SECTION MANPAGE_DEST_PRE
+@@ -57,7 +57,7 @@ MACRO(POD2MAN PODFILE MANFILE SECTION MANPAGE_DEST_PRE
  
  	INSTALL(
  		FILES ${CMAKE_CURRENT_BINARY_DIR}/${MANFILE}.${SECTION}.gz

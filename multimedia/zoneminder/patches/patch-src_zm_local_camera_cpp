@@ -1,5 +1,7 @@
 $OpenBSD$
 
+fix for our vidioctl
+
 Index: src/zm_local_camera.cpp
 --- src/zm_local_camera.cpp.orig
 +++ src/zm_local_camera.cpp

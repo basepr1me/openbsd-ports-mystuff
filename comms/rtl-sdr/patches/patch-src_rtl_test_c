@@ -1,0 +1,18 @@
+$OpenBSD$
+
+Index: src/rtl_test.c
+--- src/rtl_test.c.orig
++++ src/rtl_test.c
+@@ -307,7 +307,12 @@ int main(int argc, char **argv)
+ 	struct sigaction sigact;
+ #endif
+ 	int n_read, r, opt, i;
++#ifdef __OpenBSD__
++	/* XXX async doesn't work yet */
++	int sync_mode = 1;
++#else
+ 	int sync_mode = 0;
++#endif
+ 	uint8_t *buffer;
+ 	int dev_index = 0;
+ 	int dev_given = 0;

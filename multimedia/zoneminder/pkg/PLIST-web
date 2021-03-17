@@ -342,9 +342,21 @@ htdocs/zm/api/app/View/View/Pages/
 htdocs/zm/api/app/View/View/Pages/home.ctp
 htdocs/zm/api/app/View/Zones/
 htdocs/zm/api/app/View/Zones/json/
+@owner
+@group
+htdocs/zm/api/app/View/Zones/json/add.ctp
+htdocs/zm/api/app/View/Zones/json/edit.ctp
+@owner www
+@group www
 htdocs/zm/api/app/View/Zones/json/index.ctp
 htdocs/zm/api/app/View/Zones/json/view.ctp
 htdocs/zm/api/app/View/Zones/xml/
+@owner
+@group
+htdocs/zm/api/app/View/Zones/xml/add.ctp
+htdocs/zm/api/app/View/Zones/xml/edit.ctp
+@owner www
+@group www
 htdocs/zm/api/app/View/Zones/xml/index.ctp
 htdocs/zm/api/app/View/Zones/xml/view.ctp
 htdocs/zm/api/app/index.php
@@ -1861,6 +1873,11 @@ htdocs/zm/includes/MontageLayout.php
 htdocs/zm/includes/Object.php
 htdocs/zm/includes/Server.php
 htdocs/zm/includes/Storage.php
+@owner
+@group
+htdocs/zm/includes/Zone.php
+@owner www
+@group www
 htdocs/zm/includes/actions/
 htdocs/zm/includes/actions/bandwidth.php
 htdocs/zm/includes/actions/console.php
@@ -1951,6 +1968,11 @@ htdocs/zm/skins/classic/css/base/views/console.css
 htdocs/zm/skins/classic/css/base/views/control.css
 htdocs/zm/skins/classic/css/base/views/controlcap.css
 htdocs/zm/skins/classic/css/base/views/controlcaps.css
+@owner
+@group
+htdocs/zm/skins/classic/css/base/views/cycle.css
+@owner www
+@group www
 htdocs/zm/skins/classic/css/base/views/devices.css
 htdocs/zm/skins/classic/css/base/views/download.css
 htdocs/zm/skins/classic/css/base/views/event.css
@@ -1974,6 +1996,11 @@ htdocs/zm/skins/classic/css/base/views/options.css
 htdocs/zm/skins/classic/css/base/views/plugin.css
 htdocs/zm/skins/classic/css/base/views/privacy.css
 htdocs/zm/skins/classic/css/base/views/server.css
+@owner
+@group
+htdocs/zm/skins/classic/css/base/views/settings.css
+@owner www
+@group www
 htdocs/zm/skins/classic/css/base/views/stats.css
 htdocs/zm/skins/classic/css/base/views/storage.css
 htdocs/zm/skins/classic/css/base/views/timeline.css
@@ -2311,9 +2338,10 @@ zm/logs/web_php.log
 zm/run/
 @owner
 @group
-zm/shm
+zm/shm/
 @owner www
 @group www
 zm/spool/
-@mode 1700
-zm/tmp/
+@owner
+@group
+zm/spool/events/

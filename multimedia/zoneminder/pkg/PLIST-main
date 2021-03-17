@@ -6239,10 +6239,12 @@ share/zoneminder/db/zm_update-1.33.9.sql
 share/zoneminder/db/zm_update-1.34.0.sql
 share/zoneminder/db/zm_update-1.34.1.sql
 share/zoneminder/db/zm_update-1.34.2.sql
+share/zoneminder/db/zm_update-1.34.20.sql
 share/zoneminder/db/zm_update-1.34.3.sql
 share/zoneminder/db/zm_update-1.34.4.sql
 share/zoneminder/db/zm_update-1.34.5.sql
 share/zoneminder/db/zm_update-1.34.6.sql
+share/zoneminder/db/zm_update-1.34.7.sql
 share/zoneminder/icons/
 share/zoneminder/icons/16x16/
 share/zoneminder/icons/16x16/icon.xpm
