@@ -43,7 +43,7 @@ DISTFILES +=	cake-${CAKE_V:C/(........).*/\1/}{${CAKE_V}}.tar.gz:0
 DISTFILES +=	crud-${CRUD_V:C/(........).*/\1/}{${CRUD_V}}.tar.gz:1
 
 # c++11
-# COMPILER =	base-clang ports-gcc
+COMPILER =	base-clang ports-gcc
 
 MODULES =	devel/cmake \
 		lang/php
@@ -104,9 +104,9 @@ post-install:
 	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/spool
 	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/spool/events
 	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/shm
-	@touch ${WRKINST}${INSTDIR}/zm/logs/web_php.log
-	@cd ${WRKINST}${INSTDIR}/htdocs/zm && ln -s ../../zm/cache cache
 	@chmod -R 1770 ${WRKINST}${INSTDIR}/zm
 	@chown -R www:www ${WRKINST}${INSTDIR}/zm ${WRKINST}${INSTDIR}/htdocs/zm
+	@touch ${WRKINST}${INSTDIR}/zm/logs/web_php.log
+	@cd ${WRKINST}${INSTDIR}/htdocs/zm && ln -s ../../zm/cache cache
 
 .include <bsd.port.mk>
