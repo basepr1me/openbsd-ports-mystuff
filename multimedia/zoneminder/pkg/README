@@ -18,7 +18,7 @@ How did we change location of mysql db file system wide?
 
 configure mysql socket for /var/www/run/mysql/mysql.sock
 
-slowcgi_flags="-u root -p /"
+slowcgi_flags="-p /"
 
 set mysqli.default_socket and pdo_mysql.default_socket
 
