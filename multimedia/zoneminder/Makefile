@@ -60,10 +60,14 @@ BUILD_DEPENDS =	converters/p5-DateManip \
 		www/p5-LWP-UserAgent-Determined
 RUN_DEPENDS-main = ${BUILD_DEPENDS} \
 		devel/desktop-file-utils \
+		devel/libmpc \
+		devel/mpfr \
+		devel/p5-Log-Agent \
 		multimedia/zoneminder,-web=${V}
 RUN_DEPENDS-web = databases/mariadb,-server \
 		${MODPHP_RUN_DEPENDS} \
 		lang/php/${MODPHP_VERSION},-mysqli \
+		lang/php/${MODPHP_VERSION},-gd \
 		lang/php/${MODPHP_VERSION},-pdo_mysql \
 		security/p5-Crypt-Eksblowfish \
 		sysutils/p5-Data-Entropy \
