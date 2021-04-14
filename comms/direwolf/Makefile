@@ -27,4 +27,6 @@ RUN_DEPENDS =	devel/desktop-file-utils
 LIB_DEPENDS =	audio/portaudio-svn \
 		comms/hamlib
 
+NO_TEST =	Yes
+
 .include <bsd.port.mk>
