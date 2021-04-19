@@ -29,6 +29,9 @@ BUILD_DEPENDS =	audio/rtaudio \
 		sysutils/libad9361 \
 		sysutils/libiio
 
+CONFIGURE_ENV =	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
+		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+
 # CONFIGURE_ARGS +=	-DINSTALL_PREFIX="${PREFIX}"
 
 .include <bsd.port.mk>

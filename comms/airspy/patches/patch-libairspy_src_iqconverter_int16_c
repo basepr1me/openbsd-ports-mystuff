@@ -14,6 +14,6 @@ Index: libairspy/src/iqconverter_int16.c
 +  #define _aligned_malloc(size, alignment) malloc(size)
 +  #define _aligned_free(mem) free(mem)
 +  #define _inline inline
- #elif defined(__GNUC__) && !defined(__MINGW64_VERSION_MAJOR)
-   #include <malloc.h>
-   #define _aligned_malloc(size, alignment) memalign(alignment, size)
+ #elif defined(__FreeBSD__)
+   #define _inline inline
+   #define _aligned_free(mem) free(mem)
