@@ -1,0 +1,8 @@
+@comment $OpenBSD: PLIST,v$
+include/RtAudio.h
+@lib lib/librtaudio.so.${LIBrtaudio_VERSION}
+lib/pkgconfig/rtaudio.pc
+share/rtaudio/
+share/rtaudio/RtAudioConfig.cmake
+share/rtaudio/RtAudioTargets${MODCMAKE_BUILD_SUFFIX}
+share/rtaudio/RtAudioTargets.cmake

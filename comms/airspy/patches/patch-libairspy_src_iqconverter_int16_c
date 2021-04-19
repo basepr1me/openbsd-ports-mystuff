@@ -1,0 +1,19 @@
+$OpenBSD$
+
+add malloc.h location
+
+Index: libairspy/src/iqconverter_int16.c
+--- libairspy/src/iqconverter_int16.c.orig
++++ libairspy/src/iqconverter_int16.c
+@@ -34,6 +34,11 @@ THE SOFTWARE.
+   #define _aligned_malloc(size, alignment) malloc(size)
+   #define _aligned_free(mem) free(mem)
+   #define _inline inline
++#elif defined(__OpenBSD__)
++  #include <sys/malloc.h>
++  #define _aligned_malloc(size, alignment) malloc(size)
++  #define _aligned_free(mem) free(mem)
++  #define _inline inline
+ #elif defined(__GNUC__) && !defined(__MINGW64_VERSION_MAJOR)
+   #include <malloc.h>
+   #define _aligned_malloc(size, alignment) memalign(alignment, size)

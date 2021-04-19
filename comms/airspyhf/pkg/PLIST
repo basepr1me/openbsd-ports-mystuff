@@ -1,0 +1,13 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/airspyhf_calibrate
+@bin bin/airspyhf_gpio
+@bin bin/airspyhf_info
+@bin bin/airspyhf_lib_version
+@bin bin/airspyhf_rx
+include/libairspyhf/
+include/libairspyhf/airspyhf.h
+include/libairspyhf/airspyhf_commands.h
+include/libairspyhf/iqbalancer.h
+@static-lib lib/libairspyhf.a
+@lib lib/libairspyhf.so.${LIBairspyhf_VERSION}
+lib/pkgconfig/libairspyhf.pc

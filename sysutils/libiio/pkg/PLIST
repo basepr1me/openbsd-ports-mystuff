@@ -1,0 +1,12 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/iio_adi_xflow_check
+@bin bin/iio_attr
+@bin bin/iio_genxml
+@bin bin/iio_info
+@bin bin/iio_readdev
+@bin bin/iio_reg
+@bin bin/iio_stresstest
+@bin bin/iio_writedev
+include/iio.h
+@lib lib/libiio.so.${LIBiio_VERSION}
+lib/pkgconfig/libiio.pc
