@@ -1,12 +1,10 @@
 # $OpenBSD:$
-# XXX needs work on manpage installation for ninja to succeed
-USE_NINJA =		No
 
 MULTI_PACKAGES = -main -web
 COMMENT-main =	security camera DVR/NVR recorder/alarm monitor
 COMMENT-web =	PHP scripts for ZoneMinder
 
-V =		1.34.23
+V =		1.34.26
 
 PKGNAME-main =	zoneminder-${V}
 PKGNAME-web =	zoneminder-web-${V}
@@ -25,18 +23,14 @@ MAINTAINER =	Tracey Emery <tracey@openbsd.org>
 PERMIT_PACKAGE =	Yes
 
 WANTLIB += ${COMPILER_LIBCXX} avcodec avdevice avformat avutil
-WANTLIB += c crypto curl gcrypt gnutls jpeg m pcre ssl
-WANTLIB += swresample swscale vlc x264 z
-
-WANTLIB-web += ${COMPILER_LIBCXX} avcodec avdevice avformat avutil
-WANTLIB-web += c crypto curl gcrypt gnutls jpeg m pcre ssl swresample
-WANTLIB-web += swscale vlc x264 z
+WANTLIB += c crypto curl gcrypt jpeg m mariadb pcre ssl swresample
+WANTLIB += swscale vlc x264 z
 
 MASTER_SITES0 = https://github.com/ZoneMinder/CakePHP-Enum-Behavior/archive/
 MASTER_SITES1 = https://github.com/FriendsOfCake/crud/archive/
 
 CAKE_V =	ea90c0cd7f6e24333a90885e563b5d30b793db29
-CRUD_V =	0bd63fb464957080ead342db58ca9e01532cf1ef
+CRUD_V =	14292374ccf1328f2d5db20897bd06f99ba4d938
 
 DISTFILES =	${V}.tar.gz
 DISTFILES +=	cake-${CAKE_V:C/(........).*/\1/}{${CAKE_V}}.tar.gz:0
@@ -51,20 +45,27 @@ MODULES =	devel/cmake \
 BUILD_DEPENDS =	converters/p5-DateManip \
 		databases/p5-DBI \
 		databases/p5-DBD-mysql \
-		devel/glib2 \
 		devel/cmake \
+		devel/glib2 \
 		devel/p5-Getargs-Long \
 		devel/p5-Sys-Mmap \
 		devel/p5-Time-TimeDate \
+		devel/pcre \
 		graphics/ffmpeg \
-		www/p5-LWP-UserAgent-Determined
+		graphics/jpeg \
+		net/curl \
+		security/libgcrypt \
+		security/gnutls \
+		www/p5-LWP-UserAgent-Determined \
+		x11/vlc
 RUN_DEPENDS-main = ${BUILD_DEPENDS} \
 		devel/desktop-file-utils \
 		devel/libmpc \
 		devel/mpfr \
 		devel/p5-Log-Agent \
 		multimedia/zoneminder,-web=${V}
-RUN_DEPENDS-web = databases/mariadb,-server \
+RUN_DEPENDS-web = ${BUILD_DEPENDS} \
+		databases/mariadb,-server \
 		${MODPHP_RUN_DEPENDS} \
 		lang/php/${MODPHP_VERSION},-mysqli \
 		lang/php/${MODPHP_VERSION},-gd \
@@ -74,13 +75,6 @@ RUN_DEPENDS-web = databases/mariadb,-server \
 		sysutils/p5-Number-Bytes-Human \
 		sysutils/p5-Sys-MemInfo \
 		security/sudo
-LIB_DEPENDS =	devel/pcre \
-		graphics/ffmpeg \
-		graphics/jpeg \
-		net/curl \
-		security/gnutls \
-		security/libgcrypt \
-		x11/vlc
 
 CONFIGURE_STYLE =	cmake
 
@@ -100,6 +94,9 @@ post-extract:
 		${WRKSRC}/web/api/app/Plugin/CakePHP-Enum-Behavior
 	rmdir ${WRKSRC}/web/api/app/Plugin/Crud
 	mv ${WRKDIR}/crud-* ${WRKSRC}/web/api/app/Plugin/Crud
+
+post-patch:
+	${SUBST_CMD} ${WRKDIST}/CMakeLists.txt
 
 post-install:
 	${INSTALL_DATA_DIR} ${WRKINST}${INSTDIR}/zm/cache

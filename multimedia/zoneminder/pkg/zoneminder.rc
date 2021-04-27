@@ -1,0 +1,22 @@
+#!/bin/ksh
+#$OpenBSD$
+
+daemon="${TRUEPREFIX}/bin/zmpkg.pl"
+
+. /etc/rc.d/rc.subr
+
+rc_reload=NO
+
+rc_start() {
+	${daemon} start
+}
+
+rc_stop() {
+	${daemon} stop
+}
+
+rc_check() {
+	${daemon} status | grep "running"
+}
+
+rc_cmd $1

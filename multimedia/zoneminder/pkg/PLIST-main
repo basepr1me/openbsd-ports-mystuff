@@ -1,4 +1,5 @@
 @comment $OpenBSD: PLIST-main,v$
+@rcscript ${RCDIR}/zoneminder
 @bin bin/zma
 bin/zmaudit.pl
 @bin bin/zmc
