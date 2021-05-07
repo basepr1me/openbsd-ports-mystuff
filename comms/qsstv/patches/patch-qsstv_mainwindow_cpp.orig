@@ -1,0 +1,13 @@
+$OpenBSD$
+
+Index: qsstv/mainwindow.cpp
+--- qsstv/mainwindow.cpp.orig
++++ qsstv/mainwindow.cpp
+@@ -25,7 +25,6 @@
+ #include "dispatch/dispatcher.h"
+ #include "ui_mainwindow.h"
+ #include "soundpulse.h"
+-#include "soundalsa.h"
+ #include "configdialog.h"
+ #include "configparams.h"
+ #include "rigcontrol.h"

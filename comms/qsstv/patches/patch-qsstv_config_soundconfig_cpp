@@ -1,0 +1,69 @@
+$OpenBSD$
+
+Index: qsstv/config/soundconfig.cpp
+--- qsstv/config/soundconfig.cpp.orig
++++ qsstv/config/soundconfig.cpp
+@@ -23,7 +23,6 @@
+ #include "ui_soundconfig.h"
+ #include "configparams.h"
+ #include "supportfunctions.h"
+-#include "soundalsa.h"
+ 
+ #include <QSettings>
+ 
+@@ -33,7 +32,6 @@ int samplingrate;
+ double rxClock;
+ double txClock;
+ bool pulseSelected;
+-bool alsaSelected;
+ bool swapChannel;
+ bool pttToneOtherChannel;
+ QString inputAudioDevice;
+@@ -71,7 +69,6 @@ void soundConfig::readSettings()
+   samplingrate=BASESAMPLERATE;
+   inputAudioDevice=qSettings.value("inputAudioDevice","default").toString();
+   outputAudioDevice=qSettings.value("outputAudioDevice","default").toString();
+-  alsaSelected=qSettings.value("alsaSelected",false).toBool();
+   pulseSelected=qSettings.value("pulseSelected",false).toBool();
+   swapChannel=qSettings.value("swapChannel",false).toBool();
+   pttToneOtherChannel=qSettings.value("pttToneOtherChannel",false).toBool();
+@@ -91,7 +88,6 @@ void soundConfig::writeSettings()
+   qSettings.setValue("txclock",txClock);
+   qSettings.setValue("inputAudioDevice",inputAudioDevice);
+   qSettings.setValue("outputAudioDevice",outputAudioDevice);
+-  qSettings.setValue("alsaSelected",alsaSelected);
+   qSettings.setValue("pulseSelected",pulseSelected);
+   qSettings.setValue("swapChannel",swapChannel);
+   qSettings.setValue("pttToneOtherChannel",pttToneOtherChannel);
+@@ -108,7 +104,6 @@ void soundConfig::setParams()
+   setValue(txClock,ui->outputClockLineEdit,9);
+   setValue(inputAudioDevice,ui->inputPCMNameComboBox);
+   setValue(outputAudioDevice,ui->outputPCMNameComboBox);
+-  setValue(alsaSelected,ui->alsaRadioButton);
+   setValue(pulseSelected,ui->pulseRadioButton);
+   setValue(swapChannel,ui->swapChannelCheckBox);
+   setValue(pttToneOtherChannel,ui->pttToneCheckBox);
+@@ -125,7 +120,6 @@ void soundConfig::getParams()
+ {
+   QString inputAudioDeviceCopy=inputAudioDevice;
+   QString  outputAudioDeviceCopy=outputAudioDevice;
+-  bool alsaSelectedCopy=alsaSelected;
+ 
+ 
+   soundBase::edataSrc soundRoutingInputCopy=soundRoutingInput;
+@@ -135,7 +129,6 @@ void soundConfig::getParams()
+   getValue(txClock,ui->inputClockLineEdit);
+   getValue(inputAudioDevice,ui->inputPCMNameComboBox);
+   getValue(outputAudioDevice,ui->outputPCMNameComboBox);
+-  getValue(alsaSelected,ui->alsaRadioButton);
+   getValue(pulseSelected,ui->pulseRadioButton);
+   getValue(swapChannel,ui->swapChannelCheckBox);
+   getValue(pttToneOtherChannel,ui->pttToneCheckBox);
+@@ -152,7 +145,6 @@ void soundConfig::getParams()
+      || outputAudioDeviceCopy!=outputAudioDevice
+      || soundRoutingInputCopy!=soundRoutingInput
+      || soundRoutingOutputCopy!=soundRoutingOutput
+-     || alsaSelectedCopy!=alsaSelected)
+   {
+     changed=true;
+   }

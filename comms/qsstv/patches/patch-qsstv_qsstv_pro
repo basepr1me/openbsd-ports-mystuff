@@ -1,0 +1,21 @@
+$OpenBSD$
+
+Index: qsstv/qsstv.pro
+--- qsstv/qsstv.pro.orig
++++ qsstv/qsstv.pro
+@@ -41,7 +41,6 @@ SOURCES += main.cpp\
+     widgets/markerwidget.cpp \
+     dsp/downsamplefilter.cpp \
+     utils/arraydumper.cpp \
+-    sound/soundalsa.cpp \
+     sound/calibration.cpp \
+     dsp/synthes.cpp \
+     dsp/filterparam.cpp \
+@@ -212,7 +211,6 @@ HEADERS  += mainwindow.h \
+     dsp/nco.h \
+     utils/macroexpansion.h \
+     utils/arraydumper.h \
+-    sound/soundalsa.h \
+     sound/calibration.h \
+     dsp/synthes.h \
+     dsp/filterparam.h \
