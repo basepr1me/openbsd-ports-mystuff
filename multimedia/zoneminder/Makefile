@@ -45,7 +45,6 @@ MODULES =	devel/cmake \
 BUILD_DEPENDS =	converters/p5-DateManip \
 		databases/p5-DBI \
 		databases/p5-DBD-mysql \
-		devel/cmake \
 		devel/glib2 \
 		devel/p5-Getargs-Long \
 		devel/p5-Sys-Mmap \
