@@ -342,21 +342,13 @@ htdocs/zm/api/app/View/View/Pages/
 htdocs/zm/api/app/View/View/Pages/home.ctp
 htdocs/zm/api/app/View/Zones/
 htdocs/zm/api/app/View/Zones/json/
-@owner
-@group
 htdocs/zm/api/app/View/Zones/json/add.ctp
 htdocs/zm/api/app/View/Zones/json/edit.ctp
-@owner www
-@group www
 htdocs/zm/api/app/View/Zones/json/index.ctp
 htdocs/zm/api/app/View/Zones/json/view.ctp
 htdocs/zm/api/app/View/Zones/xml/
-@owner
-@group
 htdocs/zm/api/app/View/Zones/xml/add.ctp
 htdocs/zm/api/app/View/Zones/xml/edit.ctp
-@owner www
-@group www
 htdocs/zm/api/app/View/Zones/xml/index.ctp
 htdocs/zm/api/app/View/Zones/xml/view.ctp
 htdocs/zm/api/app/index.php
@@ -567,11 +559,7 @@ htdocs/zm/api/lib/Cake/Console/Templates/default/views/form.ctp
 htdocs/zm/api/lib/Cake/Console/Templates/default/views/index.ctp
 htdocs/zm/api/lib/Cake/Console/Templates/default/views/view.ctp
 htdocs/zm/api/lib/Cake/Console/Templates/skel/
-@owner
-@group
 htdocs/zm/api/lib/Cake/Console/Templates/skel/.htaccess
-@owner www
-@group www
 htdocs/zm/api/lib/Cake/Console/Templates/skel/Config/
 htdocs/zm/api/lib/Cake/Console/Templates/skel/Config/Schema/
 htdocs/zm/api/lib/Cake/Console/Templates/skel/Config/Schema/db_acl.php
@@ -682,11 +670,7 @@ htdocs/zm/api/lib/Cake/Console/Templates/skel/tmp/sessions/empty
 htdocs/zm/api/lib/Cake/Console/Templates/skel/tmp/tests/
 htdocs/zm/api/lib/Cake/Console/Templates/skel/tmp/tests/empty
 htdocs/zm/api/lib/Cake/Console/Templates/skel/webroot/
-@owner
-@group
 htdocs/zm/api/lib/Cake/Console/Templates/skel/webroot/.htaccess
-@owner www
-@group www
 htdocs/zm/api/lib/Cake/Console/Templates/skel/webroot/css/
 htdocs/zm/api/lib/Cake/Console/Templates/skel/webroot/css/cake.generic.css
 htdocs/zm/api/lib/Cake/Console/Templates/skel/webroot/favicon.ico
@@ -739,11 +723,7 @@ htdocs/zm/api/lib/Cake/Controller/Component/SecurityComponent.php
 htdocs/zm/api/lib/Cake/Controller/Component/SessionComponent.php
 htdocs/zm/api/lib/Cake/Controller/ComponentCollection.php
 htdocs/zm/api/lib/Cake/Controller/Controller.php
-@owner
-@group
 htdocs/zm/api/lib/Cake/Controller/RequestHandlerComponent.php
-@owner www
-@group www
 htdocs/zm/api/lib/Cake/Controller/Scaffold.php
 htdocs/zm/api/lib/Cake/Core/
 htdocs/zm/api/lib/Cake/Core/App.php
@@ -906,11 +886,7 @@ htdocs/zm/api/lib/Cake/Test/Case/Console/ShellDispatcherTest.php
 htdocs/zm/api/lib/Cake/Test/Case/Console/ShellTest.php
 htdocs/zm/api/lib/Cake/Test/Case/Console/TaskCollectionTest.php
 htdocs/zm/api/lib/Cake/Test/Case/Controller/
-@owner
-@group
 htdocs/zm/api/lib/Cake/Test/Case/Controller/ApplicationControllerTest.php
-@owner www
-@group www
 htdocs/zm/api/lib/Cake/Test/Case/Controller/Component/
 htdocs/zm/api/lib/Cake/Test/Case/Controller/Component/Acl/
 htdocs/zm/api/lib/Cake/Test/Case/Controller/Component/Acl/DbAclTest.php
@@ -1893,11 +1869,7 @@ htdocs/zm/includes/MontageLayout.php
 htdocs/zm/includes/Object.php
 htdocs/zm/includes/Server.php
 htdocs/zm/includes/Storage.php
-@owner
-@group
 htdocs/zm/includes/Zone.php
-@owner www
-@group www
 htdocs/zm/includes/actions/
 htdocs/zm/includes/actions/bandwidth.php
 htdocs/zm/includes/actions/console.php
@@ -1988,11 +1960,7 @@ htdocs/zm/skins/classic/css/base/views/console.css
 htdocs/zm/skins/classic/css/base/views/control.css
 htdocs/zm/skins/classic/css/base/views/controlcap.css
 htdocs/zm/skins/classic/css/base/views/controlcaps.css
-@owner
-@group
 htdocs/zm/skins/classic/css/base/views/cycle.css
-@owner www
-@group www
 htdocs/zm/skins/classic/css/base/views/devices.css
 htdocs/zm/skins/classic/css/base/views/download.css
 htdocs/zm/skins/classic/css/base/views/event.css
@@ -2016,11 +1984,7 @@ htdocs/zm/skins/classic/css/base/views/options.css
 htdocs/zm/skins/classic/css/base/views/plugin.css
 htdocs/zm/skins/classic/css/base/views/privacy.css
 htdocs/zm/skins/classic/css/base/views/server.css
-@owner
-@group
 htdocs/zm/skins/classic/css/base/views/settings.css
-@owner www
-@group www
 htdocs/zm/skins/classic/css/base/views/stats.css
 htdocs/zm/skins/classic/css/base/views/storage.css
 htdocs/zm/skins/classic/css/base/views/timeline.css
@@ -2356,12 +2320,6 @@ zm/logs/
 zm/logs/web_php.log
 @mode
 zm/run/
-@owner
-@group
 zm/shm/
-@owner www
-@group www
 zm/spool/
-@owner
-@group
 zm/spool/events/

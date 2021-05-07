@@ -62,7 +62,8 @@ RUN_DEPENDS-main = ${BUILD_DEPENDS} \
 		devel/libmpc \
 		devel/mpfr \
 		devel/p5-Log-Agent \
-		multimedia/zoneminder,-web=${V}
+		multimedia/zoneminder,-web=${V}\
+		/www/p5-LWP-Protocol-https
 RUN_DEPENDS-web = ${BUILD_DEPENDS} \
 		databases/mariadb,-server \
 		${MODPHP_RUN_DEPENDS} \
