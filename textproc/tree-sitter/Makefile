@@ -6,26 +6,23 @@ GH_ACCOUNT =		tree-sitter
 GH_PROJECT =		tree-sitter
 GH_TAGNAME =		v0.19.4
 
+SHARED_LIBS +=		tree-sitter	0.0 # 0.0
+
 CATEGORIES =		textproc
 MAINTAINER =		Paco Esteban <paco@openbsd.org>
 
 # Unlicense/MIT
 PERMIT_PACKAGE =	Yes
 
-WANTLIB += c c++abi pthread
-
-SHARED_LIBS +=		tree-sitter	0.0 # 0.0
-
-USE_GMAKE =		Yes
+WANTLIB +=		c c++abi pthread
 
 # as devel/cargo MODULES adds DISTFILES, GH_* didn't
 DISTFILES +=		${DISTNAME}${EXTRACT_SUFX}
 
+# fix sparc64 build
+COMPILER =		base-clang ports-gcc
+
 MODULES =		devel/cargo
-
-CONFIGURE_STYLE =	cargo
-
-SEPARATE_BUILD =	Yes
 
 MODCARGO_CRATES +=	aho-corasick	0.7.15	# Unlicense/MIT
 MODCARGO_CRATES +=	ansi_term	0.11.0	# MIT
@@ -123,9 +120,17 @@ MODCARGO_CRATES +=	winapi-i686-pc-windows-gnu	0.4.0	# MIT/Apache-2.0
 MODCARGO_CRATES +=	winapi-util	0.1.5	# Unlicense/MIT
 MODCARGO_CRATES +=	winapi-x86_64-pc-windows-gnu	0.4.0	# MIT/Apache-2.0
 
-RELEASE_DIR =		${MODCARGO_TARGET_DIR}/release
-OUT_DIR =		${RELEASE_DIR}/build/tree-sitter-*/out
 PATCHORIG =		.openbsd.orig
+
+MAKE_ENV =		DESTDIR="" \
+			LIBDIR="${LOCALBASE}/lib" \
+			INCLUDEDIR="${LOCALBASE}/include"
+
+SEPARATE_BUILD =	Yes
+
+USE_GMAKE =		Yes
+
+CONFIGURE_STYLE =	cargo
 
 do-build:
 	cd ${WRKSRC} && \
