@@ -1,0 +1,37 @@
+$OpenBSD$
+
+Index: libstdc++-v3/libsupc++/tinfo.cc
+--- libstdc++-v3/libsupc++/tinfo.cc.orig
++++ libstdc++-v3/libsupc++/tinfo.cc
+@@ -26,6 +26,22 @@
+ #include <cstddef>
+ #include "tinfo.h"
+ 
++    // Write own version so it's compiled with mforce-l32 and won't crash
++static int strcmp_safe(const char *p1, const char *p2) {
++      const unsigned char *s1 = (const unsigned char *) p1;
++      const unsigned char *s2 = (const unsigned char *) p2;
++      unsigned char c1, c2;
++      do
++        {
++          c1 = (unsigned char) *s1++;
++          c2 = (unsigned char) *s2++;
++          if (c1 == '\0')
++            return c1 - c2;
++        }
++      while (c1 == c2);
++       return c1 - c2;
++    }
++
+ std::type_info::
+ ~type_info ()
+ { }
+@@ -43,7 +59,7 @@ operator== (const std::type_info& arg) const _GLIBCXX_
+      take care to look at __name rather than name() when looking for
+      the "pointer" prefix.  */
+   return (&arg == this)
+-    || (__name[0] != '*' && (__builtin_strcmp (name (), arg.name ()) == 0));
++    || (__name[0] != '*' && (strcmp_safe (name (), arg.name ()) == 0));
+ #endif
+ }
+ 

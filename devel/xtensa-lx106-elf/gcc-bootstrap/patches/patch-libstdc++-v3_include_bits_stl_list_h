@@ -1,0 +1,22 @@
+$OpenBSD$
+
+Index: libstdc++-v3/include/bits/stl_list.h
+--- libstdc++-v3/include/bits/stl_list.h.orig
++++ libstdc++-v3/include/bits/stl_list.h
+@@ -64,6 +64,8 @@
+ #include <ext/aligned_buffer.h>
+ #endif
+ 
++#define __EXCSTR(s) (__extension__({static const char __exception_what__[] __attribute__((section(".irom.exceptiontext,\"MS\",@progbits,1#"))) = (s); &__exception_what__[0];}))
++
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
+ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+@@ -2123,5 +2125,7 @@ _GLIBCXX_END_NAMESPACE_CONTAINER
+ 
+ _GLIBCXX_END_NAMESPACE_VERSION
+ } // namespace std
++
++#undef __EXCSTR
+ 
+ #endif /* _STL_LIST_H */

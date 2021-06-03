@@ -1,0 +1,29 @@
+$OpenBSD$
+
+Index: libstdc++-v3/libsupc++/eh_exception.cc
+--- libstdc++-v3/libsupc++/eh_exception.cc.orig
++++ libstdc++-v3/libsupc++/eh_exception.cc
+@@ -36,19 +36,21 @@ abi::__forced_unwind::~__forced_unwind() throw() { }
+ 
+ abi::__foreign_exception::~__foreign_exception() throw() { }
+ 
++#define __EXCSTR(s) (__extension__({static const char __exception_what__[] __attribute__((section(".irom.exceptiontext,\"MS\",@progbits,1#"))) = (s); &__exception_what__[0];}))
++
+ const char* 
+ std::exception::what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT
+ {
+   // NB: Another elegant option would be returning typeid(*this).name()
+   // and not overriding what() in bad_exception, bad_alloc, etc.  In
+   // that case, however, mangled names would be returned, PR 14493.
+-  return "std::exception";
++  return __EXCSTR("std::exception");
+ }
+ 
+ const char* 
+ std::bad_exception::what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT
+ {
+-  return "std::bad_exception";
++  return __EXCSTR("std::bad_exception");
+ }
+ 
+ // Transactional clones for the destructors and what().

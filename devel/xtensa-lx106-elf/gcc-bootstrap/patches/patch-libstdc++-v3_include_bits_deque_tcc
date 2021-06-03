@@ -1,0 +1,41 @@
+$OpenBSD$
+
+Index: libstdc++-v3/include/bits/deque.tcc
+--- libstdc++-v3/include/bits/deque.tcc.orig
++++ libstdc++-v3/include/bits/deque.tcc
+@@ -58,6 +58,8 @@
+ 
+ #include <bits/stl_algobase.h>
+ 
++#define __EXCSTR(s) (__extension__({static const char __exception_what__[] __attribute__((section(".irom.exceptiontext,\"MS\",@progbits,1#"))) = (s); &__exception_what__[0];}))
++
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
+ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+@@ -879,7 +881,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+     _M_new_elements_at_front(size_type __new_elems)
+     {
+       if (this->max_size() - this->size() < __new_elems)
+-	__throw_length_error(__N("deque::_M_new_elements_at_front"));
++	__throw_length_error(__EXCSTR(__N("deque::_M_new_elements_at_front")));
+ 
+       const size_type __new_nodes = ((__new_elems + _S_buffer_size() - 1)
+ 				     / _S_buffer_size());
+@@ -904,7 +906,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+     _M_new_elements_at_back(size_type __new_elems)
+     {
+       if (this->max_size() - this->size() < __new_elems)
+-	__throw_length_error(__N("deque::_M_new_elements_at_back"));
++	__throw_length_error(__EXCSTR(__N("deque::_M_new_elements_at_back")));
+ 
+       const size_type __new_nodes = ((__new_elems + _S_buffer_size() - 1)
+ 				     / _S_buffer_size());
+@@ -968,6 +970,8 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+       this->_M_impl._M_start._M_set_node(__new_nstart);
+       this->_M_impl._M_finish._M_set_node(__new_nstart + __old_num_nodes - 1);
+     }
++
++#undef __EXCSTR
+ 
+ _GLIBCXX_END_NAMESPACE_CONTAINER
+ 

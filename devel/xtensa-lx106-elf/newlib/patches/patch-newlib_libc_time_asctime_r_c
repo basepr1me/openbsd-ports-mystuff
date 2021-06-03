@@ -1,0 +1,30 @@
+$OpenBSD$
+
+# returns unknown opcode or format name 'addx3', code shows addx2 and addx4, so
+# add a space and use addx4 to fix
+
+Index: newlib/libc/time/asctime_r.c
+--- newlib/libc/time/asctime_r.c.orig
++++ newlib/libc/time/asctime_r.c
+@@ -10,15 +10,15 @@ char *
+ asctime_r (const struct tm *__restrict tim_p,
+ 	char *__restrict result)
+ {
+-  static const char day_name[7][3] PROGMEM = {
+-	"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
++  static const char day_name[7][4] PROGMEM = {
++	"Sun ", "Mon ", "Tue ", "Wed ", "Thu ", "Fri ", "Sat "
+   };
+-  static const char mon_name[12][3] PROGMEM = {
+-	"Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+-	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
++  static const char mon_name[12][4] PROGMEM = {
++	"Jan ", "Feb ", "Mar ", "Apr ", "May ", "Jun ", 
++	"Jul ", "Aug ", "Sep ", "Oct ", "Nov ", "Dec "
+   };
+ 
+-  siprintf (result, "%.3s %.3s%3d %.2d:%.2d:%.2d %d\n",
++  siprintf (result, "%.4s%.4s%3d %.2d:%.2d:%.2d %d\n",
+ 	    day_name[tim_p->tm_wday], 
+ 	    mon_name[tim_p->tm_mon],
+ 	    tim_p->tm_mday, tim_p->tm_hour, tim_p->tm_min,

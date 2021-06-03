@@ -1,0 +1,40 @@
+$OpenBSD$
+
+Index: libstdc++-v3/include/bits/hashtable_policy.h
+--- libstdc++-v3/include/bits/hashtable_policy.h.orig
++++ libstdc++-v3/include/bits/hashtable_policy.h
+@@ -35,6 +35,8 @@
+ #include <limits>		// for std::numeric_limits
+ #include <bits/stl_algobase.h>	// for std::min, std::is_permutation.
+ 
++#define __EXCSTR(s) (__extension__({static const char __exception_what__[] __attribute__((section(".irom.exceptiontext,\"MS\",@progbits,1#"))) = (s); &__exception_what__[0];}))
++
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
+ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+@@ -763,7 +765,7 @@ namespace __detail
+       __node_type* __p = __h->_M_find_node(__bkt, __k, __code);
+ 
+       if (!__p)
+-	__throw_out_of_range(__N("_Map_base::at"));
++	__throw_out_of_range(__EXCSTR(__N("_Map_base::at")));
+       return __p->_M_v().second;
+     }
+ 
+@@ -782,7 +784,7 @@ namespace __detail
+       __node_type* __p = __h->_M_find_node(__bkt, __k, __code);
+ 
+       if (!__p)
+-	__throw_out_of_range(__N("_Map_base::at"));
++	__throw_out_of_range(__EXCSTR(__N("_Map_base::at")));
+       return __p->_M_v().second;
+     }
+ 
+@@ -2103,5 +2105,7 @@ namespace __detail
+ } // namespace __detail
+ _GLIBCXX_END_NAMESPACE_VERSION
+ } // namespace std
++
++#undef __EXCSTR
+ 
+ #endif // _HASHTABLE_POLICY_H
