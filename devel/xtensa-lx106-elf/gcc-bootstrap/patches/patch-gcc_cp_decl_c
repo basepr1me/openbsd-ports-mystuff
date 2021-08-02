@@ -3,7 +3,7 @@ $OpenBSD$
 Index: gcc/cp/decl.c
 --- gcc/cp/decl.c.orig
 +++ gcc/cp/decl.c
-@@ -4643,8 +4643,7 @@ cp_make_fname_decl (location_t loc, tree id, int type_
+@@ -4641,8 +4641,7 @@ cp_make_fname_decl (location_t loc, tree id, int type_
  
    if (init)
      {

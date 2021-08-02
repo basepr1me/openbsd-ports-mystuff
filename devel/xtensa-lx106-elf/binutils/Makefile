@@ -2,12 +2,14 @@
 
 COMMENT =	binutils for ${CONFIG} cross-development
 
-VERSION =	2.36
+VERSION =	2.32
+DISTNAME =	binutils-${VERSION}
 PKGNAME =	${CONFIG}-binutils-${VERSION}
+REVISION =	0
 
-GH_ACCOUNT =	jcmvbkbc
-GH_PROJECT =	binutils-gdb-xtensa
-GH_TAGNAME =	binutils-2_36
+HOMEPAGE = https://sourceware.org/binutils/
+
+MASTER_SITES =	https://sourceware.org/pub/binutils/releases/
 
 WANTLIB =	c z
 
@@ -23,7 +25,5 @@ CONFIGURE_ARGS +=	--disable-werror \
 			--disable-nls \
 			--with-sysroot=${LOCALBASE}/${CONFIG} \
 			--disable-option-checking
-
-USE_GMAKE =	Yes
 
 .include <bsd.port.mk>

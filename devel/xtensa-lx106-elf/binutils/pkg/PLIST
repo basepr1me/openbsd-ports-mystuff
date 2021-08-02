@@ -33,8 +33,6 @@
 @comment @info info/binutils.info
 @comment @info info/gprof.info
 @comment @info info/ld.info
-lib/bfd-plugins/
-@so lib/bfd-plugins/libdep.so
 @man man/man1/xtensa-lx106-elf-addr2line.1
 @man man/man1/xtensa-lx106-elf-ar.1
 @man man/man1/xtensa-lx106-elf-as.1

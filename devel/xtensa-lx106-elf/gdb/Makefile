@@ -4,12 +4,13 @@ BROKEN-arm =	can't create dynamic relocation R_ARM_ABS32 against local symbol in
 
 COMMENT =	gdb for ${CONFIG} cross-development
 
-VERSION =	10.2
+VERSION =	8.2.1
 PKGNAME =	${CONFIG}-gdb-${VERSION}
 
 GH_ACCOUNT =	jcmvbkbc
 GH_PROJECT =	binutils-gdb-xtensa
-GH_TAGNAME =	gdb-10.2-release
+GH_TAGNAME =	gdb-8.2.1-release
+REVISION =	0
 
 WANTLIB +=	${COMPILER_LIBCXX} c curses expat m
 

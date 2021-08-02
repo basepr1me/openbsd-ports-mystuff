@@ -3,7 +3,7 @@
 # new patches collected at https://github.com/earlephilhower/esp-quick-toolchain
 COMMENT =	bootstrap compiler for ${CONFIG} cross-development
 
-VERSION =	10.2.0
+VERSION =	10.1.0
 DISTNAME =	gcc-${VERSION}
 PKGNAME =	${CONFIG}-gcc-bootstrap-${VERSION}
 

@@ -3,7 +3,7 @@
 # new patches collected at https://github.com/earlephilhower/esp-quick-toolchain
 COMMENT =	gcc for ${CONFIG} cross-development
 
-VERSION =	10.2.0
+VERSION =	10.1.0
 DISTNAME =	gcc-${VERSION}
 PKGNAME =	${CONFIG}-gcc-${VERSION}
 
@@ -51,11 +51,10 @@ CONFIGURE_ARGS +=	--with-headers=${LOCALBASE}/${CONFIG}/include  \
 			--with-as="${LOCALBASE}/bin/${CONFIG}-as" \
 			--with-ld="${LOCALBASE}/bin/${CONFIG}-ld" \
 			--with-newlib \
-			--enable-threads=no \
+			--enable-threads=yes \
 			--disable-shared \
 			--disable-__cxa_atexit \
 			--enable-cxx-flags="-fno-rtti -ffunction-sections -mlongcalls -mtext-section-literals" \
-			--disable-lto \
 			--enable-target-optspace \
 			--without-long-double-128 \
 			--disable-libgomp \

@@ -18,7 +18,6 @@ EXTRACT_SUFX =		.zip
 MODULES =		lang/python
 
 RUN_DEPENDS +=		devel/arduino \
-			devel/esptool-ck \
 			devel/py-esptool${MODPY_FLAVOR} \
 			devel/mkspiffs \
 			devel/xtensa-lx106-elf/gcc
@@ -27,7 +26,7 @@ INSTALLDIR =		${PREFIX}/share/arduino/hardware/espressif/esp8266
 
 NO_TEST =		Yes
 
-post-patch:
+pre-build:
 	${SUBST_CMD} ${WRKDIST}/platform.txt
 
 do-build:

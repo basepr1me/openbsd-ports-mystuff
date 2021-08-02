@@ -1,0 +1,101 @@
+$OpenBSD$
+
+The arg definition here conflicts with the arg variable in /usr/include/unistd.h
+function prototype swapctl(int cmd, const void *arg, int misc);
+
+Index: src/lex.c
+--- src/lex.c.orig
++++ src/lex.c
+@@ -667,7 +667,7 @@ void lex_free_all(void);
+ 
+ #define INITIAL 0
+ #define opcode 1
+-#define arg 2
++#define arg1 2
+ #define argnostr 3
+ #define argnostrnum 4
+ #define string 5
+@@ -1079,7 +1079,7 @@ YY_RULE_SETUP
+ case 27:
+ YY_RULE_SETUP
+ #line 100 "lex.l"
+-{ BEGIN(arg); return WS; }
++{ BEGIN(arg1); return WS; }
+ 	YY_BREAK
+ case 28:
+ /* rule 28 can match eol */
+@@ -1221,47 +1221,47 @@ YY_RULE_SETUP
+ case 53:
+ YY_RULE_SETUP
+ #line 159 "lex.l"
+-{ BEGIN(arg); return SHL; }
++{ BEGIN(arg1); return SHL; }
+ 	YY_BREAK
+ case 54:
+ YY_RULE_SETUP
+ #line 160 "lex.l"
+-{ BEGIN(arg); return SHR; }
++{ BEGIN(arg1); return SHR; }
+ 	YY_BREAK
+ case 55:
+ YY_RULE_SETUP
+ #line 162 "lex.l"
+-{ BEGIN(arg); return LE; }
++{ BEGIN(arg1); return LE; }
+ 	YY_BREAK
+ case 56:
+ YY_RULE_SETUP
+ #line 163 "lex.l"
+-{ BEGIN(arg); return GE; }
++{ BEGIN(arg1); return GE; }
+ 	YY_BREAK
+ case 57:
+ YY_RULE_SETUP
+ #line 164 "lex.l"
+-{ BEGIN(arg); return EQ; }
++{ BEGIN(arg1); return EQ; }
+ 	YY_BREAK
+ case 58:
+ YY_RULE_SETUP
+ #line 165 "lex.l"
+-{ BEGIN(arg); return NE; }
++{ BEGIN(arg1); return NE; }
+ 	YY_BREAK
+ case 59:
+ YY_RULE_SETUP
+ #line 166 "lex.l"
+-{ BEGIN(arg); return LAND; }
++{ BEGIN(arg1); return LAND; }
+ 	YY_BREAK
+ case 60:
+ YY_RULE_SETUP
+ #line 167 "lex.l"
+-{ BEGIN(arg); return LOR; }
++{ BEGIN(arg1); return LOR; }
+ 	YY_BREAK
+ case 61:
+ YY_RULE_SETUP
+ #line 169 "lex.l"
+-{ BEGIN(arg); return *yytext; }
++{ BEGIN(arg1); return *yytext; }
+ 	YY_BREAK
+ case 62:
+ YY_RULE_SETUP
+@@ -1271,7 +1271,7 @@ YY_RULE_SETUP
+ case 63:
+ YY_RULE_SETUP
+ #line 172 "lex.l"
+-{ BEGIN(arg); return *yytext; }
++{ BEGIN(arg1); return *yytext; }
+ 	YY_BREAK
+ case 64:
+ YY_RULE_SETUP
+@@ -1381,7 +1381,7 @@ ECHO;
+ #line 1382 "lex.c"
+ case YY_STATE_EOF(INITIAL):
+ case YY_STATE_EOF(opcode):
+-case YY_STATE_EOF(arg):
++case YY_STATE_EOF(arg1):
+ case YY_STATE_EOF(argnostr):
+ case YY_STATE_EOF(argnostrnum):
+ case YY_STATE_EOF(string):
