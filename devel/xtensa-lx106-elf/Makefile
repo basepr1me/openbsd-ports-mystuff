@@ -2,7 +2,7 @@
 SUBDIR =
 SUBDIR += binutils
 SUBDIR += gcc
-SUBDIR += gcc-bootstrap
+#SUBDIR += gcc-bootstrap
 SUBDIR += newlib
 SUBDIR += gdb
 SUBDIR += lx106-hal
