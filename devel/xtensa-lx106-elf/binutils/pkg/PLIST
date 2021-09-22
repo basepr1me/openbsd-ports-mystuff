@@ -1,0 +1,187 @@
+@comment $OpenBSD: PLIST,v 1.1.1.1 2020/03/12 15:05:20 tracey Exp $
+@bin bin/xtensa-lx106-elf-addr2line
+@bin bin/xtensa-lx106-elf-ar
+@bin bin/xtensa-lx106-elf-as
+@bin bin/xtensa-lx106-elf-c++filt
+@bin bin/xtensa-lx106-elf-elfedit
+@bin bin/xtensa-lx106-elf-gdb
+bin/xtensa-lx106-elf-gdb-add-index
+@bin bin/xtensa-lx106-elf-gprof
+@bin bin/xtensa-lx106-elf-ld
+@bin bin/xtensa-lx106-elf-ld.bfd
+@bin bin/xtensa-lx106-elf-nm
+@bin bin/xtensa-lx106-elf-objcopy
+@bin bin/xtensa-lx106-elf-objdump
+@bin bin/xtensa-lx106-elf-ranlib
+@bin bin/xtensa-lx106-elf-readelf
+@bin bin/xtensa-lx106-elf-size
+@bin bin/xtensa-lx106-elf-strings
+@bin bin/xtensa-lx106-elf-strip
+@comment lib/ldscripts/elf32xtensa.x
+@comment lib/ldscripts/elf32xtensa.xbn
+@comment lib/ldscripts/elf32xtensa.xc
+@comment lib/ldscripts/elf32xtensa.xd
+@comment lib/ldscripts/elf32xtensa.xdc
+@comment lib/ldscripts/elf32xtensa.xdw
+@comment lib/ldscripts/elf32xtensa.xn
+@comment lib/ldscripts/elf32xtensa.xr
+@comment lib/ldscripts/elf32xtensa.xs
+@comment lib/ldscripts/elf32xtensa.xsc
+@comment lib/ldscripts/elf32xtensa.xsw
+@comment lib/ldscripts/elf32xtensa.xu
+@comment lib/ldscripts/elf32xtensa.xw
+@comment include/gdb/
+@comment include/gdb/jit-reader.h
+@comment @info info/annotate.info
+@comment @info info/as.info
+@comment @info info/bfd.info
+@comment @info info/binutils.info
+@comment @info info/gdb.info
+@comment @info info/gprof.info
+@comment @info info/ld.info
+@comment @info info/stabs.info
+@comment lib/charset.alias
+@man man/man1/xtensa-lx106-elf-addr2line.1
+@man man/man1/xtensa-lx106-elf-ar.1
+@man man/man1/xtensa-lx106-elf-as.1
+@man man/man1/xtensa-lx106-elf-c++filt.1
+@man man/man1/xtensa-lx106-elf-dlltool.1
+@man man/man1/xtensa-lx106-elf-elfedit.1
+@man man/man1/xtensa-lx106-elf-gdb-add-index.1
+@man man/man1/xtensa-lx106-elf-gdb.1
+@man man/man1/xtensa-lx106-elf-gdbserver.1
+@man man/man1/xtensa-lx106-elf-gprof.1
+@man man/man1/xtensa-lx106-elf-ld.1
+@man man/man1/xtensa-lx106-elf-nm.1
+@man man/man1/xtensa-lx106-elf-objcopy.1
+@man man/man1/xtensa-lx106-elf-objdump.1
+@man man/man1/xtensa-lx106-elf-ranlib.1
+@man man/man1/xtensa-lx106-elf-readelf.1
+@man man/man1/xtensa-lx106-elf-size.1
+@man man/man1/xtensa-lx106-elf-strings.1
+@man man/man1/xtensa-lx106-elf-strip.1
+@man man/man1/xtensa-lx106-elf-windmc.1
+@man man/man1/xtensa-lx106-elf-windres.1
+@man man/man5/xtensa-lx106-elf-gdbinit.5
+@comment ${MODPY_COMMENT}share/gdb/python/gdb/${MODPY_PYCACHE}/
+@comment ${MODPY_COMMENT}share/gdb/python/gdb/command/${MODPY_PYCACHE}/
+@comment ${MODPY_COMMENT}share/gdb/python/gdb/function/${MODPY_PYCACHE}/
+@comment ${MODPY_COMMENT}share/gdb/python/gdb/printer/${MODPY_PYCACHE}/
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}/
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}/
+@comment share/gdb/python/gdb/function/${MODPY_PYCACHE}/
+@comment share/gdb/python/gdb/printer/${MODPY_PYCACHE}/
+@comment share/gdb/python/
+@comment share/gdb/python/gdb/
+@comment share/gdb/python/gdb/FrameDecorator.py
+@comment share/gdb/python/gdb/FrameIterator.py
+@comment share/gdb/python/gdb/__init__.py
+share/gdb/python/gdb/${MODPY_PYCACHE}/
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}FrameDecorator.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}FrameIterator.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}frames.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}printing.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}prompt.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}types.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}unwinder.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/${MODPY_PYCACHE}xmethod.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/
+@comment share/gdb/python/gdb/command/__init__.py
+share/gdb/python/gdb/command/${MODPY_PYCACHE}/
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}explore.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}frame_filters.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}pretty_printers.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}prompt.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}type_printers.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}unwinders.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/${MODPY_PYCACHE}xmethods.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/command/explore.py
+@comment share/gdb/python/gdb/command/frame_filters.py
+@comment share/gdb/python/gdb/command/pretty_printers.py
+@comment share/gdb/python/gdb/command/prompt.py
+@comment share/gdb/python/gdb/command/type_printers.py
+@comment share/gdb/python/gdb/command/unwinders.py
+@comment share/gdb/python/gdb/command/xmethods.py
+@comment share/gdb/python/gdb/frames.py
+@comment share/gdb/python/gdb/function/
+@comment share/gdb/python/gdb/function/__init__.py
+share/gdb/python/gdb/function/${MODPY_PYCACHE}/
+@comment share/gdb/python/gdb/function/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/function/${MODPY_PYCACHE}as_string.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/function/${MODPY_PYCACHE}caller_is.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/function/${MODPY_PYCACHE}strfns.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/function/as_string.py
+@comment share/gdb/python/gdb/function/caller_is.py
+@comment share/gdb/python/gdb/function/strfns.py
+@comment share/gdb/python/gdb/printer/
+@comment share/gdb/python/gdb/printer/__init__.py
+share/gdb/python/gdb/printer/${MODPY_PYCACHE}/
+@comment share/locale/ms/
+@comment share/locale/ms/LC_MESSAGES/
+@comment share/locale/rw/
+@comment share/locale/rw/LC_MESSAGES/
+@comment share/gdb/python/gdb/printer/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/printer/${MODPY_PYCACHE}bound_registers.${MODPY_PYC_MAGIC_TAG}pyc
+@comment share/gdb/python/gdb/printer/bound_registers.py
+@comment share/gdb/python/gdb/printing.py
+@comment share/gdb/python/gdb/prompt.py
+@comment share/gdb/python/gdb/types.py
+@comment share/gdb/python/gdb/unwinder.py
+@comment share/gdb/python/gdb/xmethod.py
+@comment share/gdb/syscalls/
+@comment share/gdb/syscalls/aarch64-linux.xml
+@comment share/gdb/syscalls/amd64-linux.xml
+@comment share/gdb/syscalls/arm-linux.xml
+@comment share/gdb/syscalls/freebsd.xml
+@comment share/gdb/syscalls/gdb-syscalls.dtd
+@comment share/gdb/syscalls/i386-linux.xml
+@comment share/gdb/syscalls/mips-n32-linux.xml
+@comment share/gdb/syscalls/mips-n64-linux.xml
+@comment share/gdb/syscalls/mips-o32-linux.xml
+@comment share/gdb/syscalls/ppc-linux.xml
+@comment share/gdb/syscalls/ppc64-linux.xml
+@comment share/gdb/syscalls/s390-linux.xml
+@comment share/gdb/syscalls/s390x-linux.xml
+@comment share/gdb/syscalls/sparc-linux.xml
+@comment share/gdb/syscalls/sparc64-linux.xml
+@comment share/gdb/system-gdbinit/
+@comment share/gdb/system-gdbinit/elinos.py
+@comment share/gdb/system-gdbinit/wrs-linux.py
+xtensa-lx106-elf/
+xtensa-lx106-elf/bin/
+@bin xtensa-lx106-elf/bin/ar
+@bin xtensa-lx106-elf/bin/as
+@bin xtensa-lx106-elf/bin/ld
+@bin xtensa-lx106-elf/bin/ld.bfd
+@bin xtensa-lx106-elf/bin/nm
+@bin xtensa-lx106-elf/bin/objcopy
+@bin xtensa-lx106-elf/bin/objdump
+@bin xtensa-lx106-elf/bin/ranlib
+@bin xtensa-lx106-elf/bin/readelf
+@bin xtensa-lx106-elf/bin/strip
+xtensa-lx106-elf/lib/
+xtensa-lx106-elf/lib/ldscripts/
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.x
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xbn
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xc
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xce
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xd
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xdc
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xdce
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xde
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xdw
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xdwe
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xe
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xn
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xr
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xs
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xsc
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xsce
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xse
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xsw
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xswe
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xu
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xw
+xtensa-lx106-elf/lib/ldscripts/elf32xtensa.xwe
