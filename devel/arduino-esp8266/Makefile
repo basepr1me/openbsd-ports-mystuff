@@ -1,10 +1,9 @@
 # $OpenBSD: Makefile,v 1.7 2021/02/23 19:39:12 sthen Exp $
 
 COMMENT =	esp8266 arduino core toolset
-V =		2.7.4
+V =		3.0.2
 DISTNAME =	esp8266-${V}
 PKGNAME =	arduino-${DISTNAME}
-REVISION =	0
 
 CATEGORIES =	devel
 
@@ -19,7 +18,6 @@ EXTRACT_SUFX =		.zip
 MODULES =		lang/python
 
 RUN_DEPENDS +=		devel/arduino \
-			devel/esptool-ck \
 			devel/py-esptool${MODPY_FLAVOR} \
 			devel/mkspiffs \
 			devel/xtensa-lx106-elf/gcc
@@ -28,7 +26,7 @@ INSTALLDIR =		${PREFIX}/share/arduino/hardware/espressif/esp8266
 
 NO_TEST =		Yes
 
-post-patch:
+pre-build:
 	${SUBST_CMD} ${WRKDIST}/platform.txt
 
 do-build:
