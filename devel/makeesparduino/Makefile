@@ -4,7 +4,7 @@ COMMENT =		makefile for ESP8266 and ESP32 Arduino projects
 
 GH_ACCOUNT =		plerup
 GH_PROJECT =		makeEspArduino
-GH_TAGNAME =		5.0.2
+GH_TAGNAME =		6.5.0
 
 PKGNAME =		makeesparduino-${GH_TAGNAME}
 
