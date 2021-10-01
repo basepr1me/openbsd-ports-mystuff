@@ -129,7 +129,7 @@ share/arduino/hardware/espressif/esp8266/cores/esp8266/eboot_command.h
 share/arduino/hardware/espressif/esp8266/cores/esp8266/esp8266_peri.h
 share/arduino/hardware/espressif/esp8266/cores/esp8266/esp8266_undocumented.h
 share/arduino/hardware/espressif/esp8266/cores/esp8266/esp_priv.h
-share/arduino/hardware/espressif/esp8266/cores/esp8266/exc-c-wrapper-handler.S
+@comment share/arduino/hardware/espressif/esp8266/cores/esp8266/exc-c-wrapper-handler.S
 share/arduino/hardware/espressif/esp8266/cores/esp8266/exc-sethandler.cpp
 share/arduino/hardware/espressif/esp8266/cores/esp8266/flash_hal.cpp
 share/arduino/hardware/espressif/esp8266/cores/esp8266/flash_hal.h
@@ -2105,6 +2105,8 @@ share/arduino/hardware/espressif/esp8266/tools/sdk/lib/fix_sdk_libs.sh
 @static-lib share/arduino/hardware/espressif/esp8266/tools/sdk/lib/liblwip6-536-feat.a
 @static-lib share/arduino/hardware/espressif/esp8266/tools/sdk/lib/libstdc++-exc.a
 @static-lib share/arduino/hardware/espressif/esp8266/tools/sdk/lib/libstdc++.a
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf
 share/arduino/hardware/espressif/esp8266/tools/sdk/lwip2/
 share/arduino/hardware/espressif/esp8266/tools/sdk/lwip2/Makefile
 share/arduino/hardware/espressif/esp8266/tools/sdk/lwip2/README.md

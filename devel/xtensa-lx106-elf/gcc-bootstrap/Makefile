@@ -16,7 +16,7 @@ SUBST_VARS +=	VERSION
 
 MASTER_SITES= 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
 MASTER_SITES0 =	https://raw.githubusercontent.com/earlephilhower/esp-quick-toolchain/master/patches/gcc10.1/
-PATCHFILES = 	gcc-ctype-inline-pgmread.patch \
+PATCHFILES0 = 	gcc-ctype-inline-pgmread.patch \
 		gcc-eh-alloc.patch \
 		gcc-enable-mforcel32-eh.patch \
 		gcc-exception-what-to-pmem.patch \

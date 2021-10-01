@@ -15,6 +15,8 @@ MAINTAINER =		Tracey Emery <tracey@openbsd.org>
 #LGPLv2.1
 PERMIT_PACKAGE =	Yes
 
+MODULES =		lang/python
+
 RUN_DEPENDS +=		devel/arduino \
 			devel/gmake
 
@@ -22,11 +24,16 @@ NO_TEST =		Yes
 NO_BUILD =		Yes
 
 post-patch:
-	${SUBST_CMD} ${WRKDIST}/makeEspArduino.mk
+	${SUBST_CMD} ${WRKDIST}/os/OpenBSD.mk
 
 do-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/makeEspArduino
 	cp -r ${WRKDIST}/*.mk ${PREFIX}/share/makeEspArduino/
+	cp -r ${WRKDIST}/os ${PREFIX}/share/makeEspArduino/
 	cp -r ${WRKDIST}/tools ${PREFIX}/share/makeEspArduino/
+
+post-install:
+	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+		${PREFIX}/share/makeEspArduino/tools
 
 .include <bsd.port.mk>
