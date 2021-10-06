@@ -3,20 +3,18 @@
 COMMENT =	binutils for ${CONFIG} cross-development
 
 VERSION =	2.32
+DISTNAME =	binutils-${VERSION}
 PKGNAME =	${CONFIG}-binutils-${VERSION}
 REVISION =	0
 
 GH_ACCOUNT =	bminor
 GH_PROJECT =	binutils-gdb
-GH_TAGNAME =	binutils-2_32
+GH_COMMIT =	2846942c7c83d007106cdcf1108ceedb50e1d4ec
 
-WANTLIB += ${COMPILER_LIBCXX} c curses expat intl m python3.8
-WANTLIB += util
+WANTLIB += ${COMPILER_LIBCXX} c curses expat m
 
-MODULES =		lang/python
-
-post-install:
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
-		${PREFIX}/share/gdb/python/gdb
+CONFIGURE_ARGS +=	--disable-multilib \
+			--with-gnu-as \
+			--with-gnu-ld
 
 .include <bsd.port.mk>

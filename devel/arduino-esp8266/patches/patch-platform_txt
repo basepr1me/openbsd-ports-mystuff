@@ -10,7 +10,7 @@ Index: platform.txt
 -
 -
 -
-+runtime.tools.xtensa-lx106-elf-gcc.path=${LOCALBASE}
++runtime.tools.xtensa-lx106-elf-gcc.path=${LOCALBASE}/xtensa-lx106-elf
 +runtime.tools.python3.path=${LOCALBASE}/bin/
 +runtime.tools.esptool.path=${LOCALBASE}/bin
  

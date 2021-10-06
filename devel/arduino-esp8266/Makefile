@@ -17,10 +17,17 @@ EXTRACT_SUFX =		.zip
 
 MODULES =		lang/python
 
+BUILD_DEPENDS =		devel/xtensa-lx106-elf/gcc \
+			devel/xtensa-lx106-elf/newlib
 RUN_DEPENDS +=		devel/arduino \
 			devel/esptool-ck \
+			devel/mklittlefs \
+			devel/mkspiffs \
 			devel/py-esptool${MODPY_FLAVOR} \
-			devel/mkspiffs
+			devel/xtensa-lx106-elf/binutils \
+			devel/xtensa-lx106-elf/gcc \
+			devel/xtensa-lx106-elf/lx106-hal \
+			devel/xtensa-lx106-elf/newlib
 
 INSTALLDIR =		${PREFIX}/share/arduino/hardware/espressif/esp8266
 
@@ -35,7 +42,8 @@ do-build:
 do-install:
 	@mkdir -p ${INSTALLDIR}
 	@cp -r ${WRKDIST}/* ${INSTALLDIR}
-	@cd ${INSTALLDIR}/tools/sdk && mkdir libc && cd libc && \
-	    ln -s ../../../../../../../../xtensa-lx106-elf xtensa-lx106-elf
+	@cd ${INSTALLDIR}/tools/sdk && mkdir -p libc/xtensa-lx106-elf && \
+	    cp -r ${LOCALBASE}/xtensa-lx106-elf/xtensa-lx106-elf/include \
+	    libc/xtensa-lx106-elf/
 
 .include <bsd.port.mk>

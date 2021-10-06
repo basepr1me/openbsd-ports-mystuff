@@ -2,34 +2,30 @@
 
 COMMENT =	bootstrap compiler for ${CONFIG} cross-development
 
-VERSION =	10.1.0
+VERSION =	10.2.0
 DISTNAME =	gcc-${VERSION}
 PKGNAME =	${CONFIG}-gcc-bootstrap-${VERSION}
 
-SHARED_LIBS +=  cc1plugin                 0.0 # 0.0
-SHARED_LIBS +=  cp1plugin                 0.0 # 0.0
-SHARED_LIBS +=  cc1                       0.0 # 0.0
-
-WANTLIB += ${COMPILER_LIBCXX} c gmp m mpc mpfr zstd
+WANTLIB += ${COMPILER_LIBCXX} c gmp isl m mpc mpfr
 
 SUBST_VARS +=	VERSION
 
 MASTER_SITES= 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
-MASTER_SITES0 =	https://raw.githubusercontent.com/earlephilhower/esp-quick-toolchain/master/patches/gcc10.1/
-PATCHFILES0 = 	gcc-ctype-inline-pgmread.patch \
-		gcc-eh-alloc.patch \
-		gcc-enable-mforcel32-eh.patch \
-		gcc-exception-what-to-pmem.patch \
-		gcc-file-shortname.patch \
-		gcc-func-sect.patch \
-		gcc-mforce-l32.patch \
-		gcc-regex-what-to-pmem.patch \
-		gcc-stdcsupp-safe.patch \
-		gcc-unwind-safe.patch \
-		gcc-xtensa-add-optimizations-for-shift-operations.patch \
-		gcc-xtensa-fix-PR-target-98285.patch \
-		gcc-xtensa-implement-bswapsi2-bswapdi2-and-helpers.patch \
-		gcc-xtensa-rearrange-DI-mode-constant-loading.patch
+MASTER_SITES0 =	https://raw.githubusercontent.com/earlephilhower/esp-quick-toolchain/master/patches/gcc10.2/
+PATCHFILES = 	gcc-ctype-inline-pgmread.patch:0 \
+		gcc-eh-alloc.patch:0 \
+		gcc-enable-mforcel32-eh.patch:0 \
+		gcc-exception-what-to-pmem.patch:0 \
+		gcc-file-shortname.patch:0 \
+		gcc-func-sect.patch:0 \
+		gcc-mforce-l32.patch:0 \
+		gcc-regex-what-to-pmem.patch:0 \
+		gcc-stdcsupp-safe.patch:0 \
+		gcc-unwind-safe.patch:0 \
+		gcc-xtensa-add-optimizations-for-shift-operations.patch:0 \
+		gcc-xtensa-fix-PR-target-98285.patch:0 \
+		gcc-xtensa-implement-bswapsi2-bswapdi2-and-helpers.patch:0 \
+		gcc-xtensa-rearrange-DI-mode-constant-loading.patch:0
 PATCH_DIST_STRIP = -p1
 
 .if ${MACHINE_ARCH} == "powerpc64"
@@ -37,28 +33,23 @@ PATCH_LIST =	patch-* vecstep-*
 .endif
 
 BUILD_DEPENDS +=	devel/${CONFIG}/binutils
-LIB_DEPENDS =		archivers/zstd \
+LIB_DEPENDS =		devel/gmp \
 			devel/libmpc \
-			devel/mpfr
+			devel/mpfr \
+			math/isl
 
-CONFIGURE_ARGS +=	--exec-prefix=${LOCALBASE}/${CONFIG}/bootstrap \
- 			--with-local-prefix=${LOCALBASE}/${CONFIG} \
- 			--with-as="${LOCALBASE}/bin/${CONFIG}-as" \
- 			--with-ld="${LOCALBASE}/bin/${CONFIG}-ld" \
+CONFIGURE_ARGS +=	--exec-prefix="${INSTALLDIR}/bootstrap" \
+			--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
+			--with-ld="${INSTALLDIR}/bin/${CONFIG}-ld" \
 			--with-gmp="${LOCALBASE}" \
-			--disable-shared \
-			--with-newlib \
-			--enable-threads=no \
-			--disable-__cxa_atexit \
-			--disable-libgomp \
-			--disable-libmudflap \
-			--disable-libssp \
-			--disable-multilib \
-			--enable-languages=c \
-			--disable-lto
+			--with-isl="${LOCALBASE}" \
+			--disable-multilib
+
+ALL_TARGET =		all-gcc
+INSTALL_TARGET =	install-gcc
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \
-		${PREFIX}/lib/gcc/${CONFIG}/${VERSION}/
+		${PREFIX}/${CONFIG}/lib/gcc/${CONFIG}/${VERSION}/
 
 .include <bsd.port.mk>
