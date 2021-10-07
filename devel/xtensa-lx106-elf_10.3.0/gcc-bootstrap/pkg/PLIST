@@ -205,6 +205,7 @@ xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gi
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gimplify-me.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gimplify.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/glimits.h
+xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gomp-constants.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/graph.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/graphds.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/graphite.h
@@ -239,6 +240,7 @@ xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/in
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-attr-common.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-attr.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-codes.h
+xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-config.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-constants.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-flags.h
 xtensa-lx106-elf/bootstrap/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-modes-inline.h

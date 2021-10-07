@@ -56,10 +56,10 @@ CONFIGURE_ARGS +=	--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 			--with-isl="${LOCALBASE}" \
 			--disable-multilib
 
-ALL_TARGET =		all-gcc all-target-libelf all-target-libgcc \
-			all-target-libssp all-target-libstdc++-v3
-INSTALL_TARGET =	install-gcc install-target-libelf install-target-libgcc \
-			install-target-libssp install-target-libstdc++-v3
+# ALL_TARGET =		all-gcc all-target-libelf all-target-libgcc \
+# 			all-target-libssp all-target-libstdc++-v3
+# INSTALL_TARGET =	install-gcc install-target-libelf install-target-libgcc \
+# 			install-target-libssp install-target-libstdc++-v3
 
 post-extract:
 	mv ${WRKDIR}/${LIBELF} ${WRKSRC}/libelf
