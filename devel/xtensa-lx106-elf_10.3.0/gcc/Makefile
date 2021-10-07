@@ -6,6 +6,10 @@ VERSION =	10.3.0
 DISTNAME =	gcc-${VERSION}
 PKGNAME =	${CONFIG}-gcc-${VERSION}
 
+SHARED_LIBS +=  cc1plugin                 0.0 # 0.0
+SHARED_LIBS +=  cp1plugin                 0.0 # 0.0
+SHARED_LIBS +=  cc1                       0.0 # 0.0
+
 WANTLIB += ${COMPILER_LIBCXX} c gmp isl m mpc mpfr
 
 MODULES =	lang/python
@@ -56,10 +60,10 @@ CONFIGURE_ARGS +=	--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 			--with-isl="${LOCALBASE}" \
 			--disable-multilib
 
-# ALL_TARGET =		all-gcc all-target-libelf all-target-libgcc \
-# 			all-target-libssp all-target-libstdc++-v3
-# INSTALL_TARGET =	install-gcc install-target-libelf install-target-libgcc \
-# 			install-target-libssp install-target-libstdc++-v3
+ALL_TARGET =		all-gcc all-target-libgcc \
+			all-target-libssp all-target-libstdc++-v3
+INSTALL_TARGET =	install-gcc install-target-libgcc \
+			install-target-libssp install-target-libstdc++-v3
 
 post-extract:
 	mv ${WRKDIR}/${LIBELF} ${WRKSRC}/libelf

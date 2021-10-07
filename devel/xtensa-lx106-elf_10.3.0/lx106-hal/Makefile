@@ -18,7 +18,7 @@ RUN_DEPENDS =		devel/xtensa-lx106-elf/binutils \
 			devel/xtensa-lx106-elf/newlib \
 			devel/xtensa-lx106-elf/gcc
 
-CONFIGURE_ENV =		CC="${INSTALLDIR}/bin/${CONFIG}-cc"
+CONFIGURE_ENV =		CC="${INSTALLDIR}/bin/${CONFIG}-gcc"
 
 AUTOCONF_VERSION =	2.69
 AUTOMAKE_VERSION =	1.11

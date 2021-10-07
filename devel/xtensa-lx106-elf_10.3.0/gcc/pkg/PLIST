@@ -215,6 +215,7 @@ xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gimple.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gimplify-me.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gimplify.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/glimits.h
+xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/gomp-constants.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/graph.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/graphds.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/graphite.h
@@ -249,6 +250,7 @@ xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-addr.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-attr-common.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-attr.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-codes.h
+xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-config.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-constants.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-flags.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/insn-modes-inline.h
@@ -508,6 +510,7 @@ xtensa-lx106-elf/libexec/gcc/xtensa-lx106-elf/${VERSION}/install-tools/mkinstall
 @bin xtensa-lx106-elf/libexec/gcc/xtensa-lx106-elf/${VERSION}/lto-wrapper
 xtensa-lx106-elf/libexec/gcc/xtensa-lx106-elf/${VERSION}/plugin/
 @bin xtensa-lx106-elf/libexec/gcc/xtensa-lx106-elf/${VERSION}/plugin/gengtype
+xtensa-lx106-elf/share/
 xtensa-lx106-elf/share/gcc-${VERSION}/
 xtensa-lx106-elf/share/gcc-${VERSION}/python/
 xtensa-lx106-elf/share/gcc-${VERSION}/python/libstdcxx/
@@ -529,6 +532,8 @@ xtensa-lx106-elf/share/gcc-${VERSION}/python/libstdcxx/v6/xmethods.py
 @info xtensa-lx106-elf/share/info/gccinstall.info
 @info xtensa-lx106-elf/share/info/gccint.info
 @info xtensa-lx106-elf/share/info/libquadmath.info
+@mandir xtensa-lx106-elf/share/man/
+xtensa-lx106-elf/share/man/man1/
 @man xtensa-lx106-elf/share/man/man1/xtensa-lx106-elf-cpp.1
 @man xtensa-lx106-elf/share/man/man1/xtensa-lx106-elf-g++.1
 @man xtensa-lx106-elf/share/man/man1/xtensa-lx106-elf-gcc.1
@@ -539,6 +544,8 @@ xtensa-lx106-elf/share/man/man7/
 @man xtensa-lx106-elf/share/man/man7/fsf-funding.7
 @man xtensa-lx106-elf/share/man/man7/gfdl.7
 @man xtensa-lx106-elf/share/man/man7/gpl.7
+xtensa-lx106-elf/xtensa-lx106-elf/
+xtensa-lx106-elf/xtensa-lx106-elf/include/
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/algorithm
@@ -597,7 +604,6 @@ xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/hash_bytes.h
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/hashtable.h
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/hashtable_policy.h
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/indirect_array.h
-xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/int_limits.h
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/invoke.h
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/ios_base.h
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/bits/istream.tcc
@@ -1345,7 +1351,8 @@ xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/bits/s
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/bits/time_members.h
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/ext/
 xtensa-lx106-elf/xtensa-lx106-elf/include/c++/${VERSION}/xtensa-lx106-elf/ext/opt_random.h
-xtensa-lx106-elf/xtensa-lx106-elf/lib/${MODPY_PYCACHE}/
+xtensa-lx106-elf/xtensa-lx106-elf/lib/
+${MODPY_COMMENT}xtensa-lx106-elf/xtensa-lx106-elf/lib/${MODPY_PYCACHE}/
 xtensa-lx106-elf/xtensa-lx106-elf/lib/${MODPY_PYCACHE}libstdc++.a-gdb.${MODPY_PYC_MAGIC_TAG}pyc
 @static-lib xtensa-lx106-elf/xtensa-lx106-elf/lib/libssp.a
 xtensa-lx106-elf/xtensa-lx106-elf/lib/libssp.la
