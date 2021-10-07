@@ -6,6 +6,10 @@ VERSION =	10.2.0
 DISTNAME =	gcc-${VERSION}
 PKGNAME =	${CONFIG}-gcc-${VERSION}
 
+SHARED_LIBS +=  cc1plugin                 0.0 # 0.0
+SHARED_LIBS +=  cp1plugin                 0.0 # 0.0
+SHARED_LIBS +=  cc1                       0.0 # 0.0
+
 WANTLIB += ${COMPILER_LIBCXX} c gmp isl m mpc mpfr
 
 MODULES =	lang/python
@@ -55,13 +59,17 @@ CONFIGURE_ARGS +=	--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 			--with-isl="${LOCALBASE}" \
 			--disable-multilib
 
-ALL_TARGET =		all-gcc all-target-libgcc \
-			all-target-libssp all-target-libstdc++-v3
-INSTALL_TARGET =	install-gcc install-target-libgcc \
-			install-target-libssp install-target-libstdc++-v3
-
 post-extract:
 	mv ${WRKDIR}/${LIBELF} ${WRKSRC}/libelf
+
+post-build:
+.for OBJ in _divsi3.o _udivsi3.o _umodsi3.o _umulsidi3.o _addsubsf3.o \
+	_mulsf3.o _fixunssfsi.o _floatsisf.o _addsubdf3.o _muldf3.o _divdf3.o \
+	_fixdfsi.o _fixunsdfsi.o _floatsidf.o _truncdfsf2.o _extendsfdf2.o \
+	_muldi3.o _divdi3.o _udivdi3.o _umoddi3.o
+	${LOCALBASE}/${CONFIG}/bin/${CONFIG}-ar d \
+		${WRKBUILD}/${CONFIG}/libgcc/libgcc.a ${OBJ}
+.endfor
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \
