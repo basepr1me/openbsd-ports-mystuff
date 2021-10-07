@@ -12,7 +12,7 @@ MODULES =	lang/python
 
 SUBST_VARS +=	VERSION
 
-MASTER_SITES= 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
+MASTER_SITES = 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
 MASTER_SITES0 =	https://raw.githubusercontent.com/earlephilhower/esp-quick-toolchain/master/patches/gcc10.2/
 PATCHFILES = 	gcc-ctype-inline-pgmread.patch:0 \
 		gcc-eh-alloc.patch:0 \
@@ -30,6 +30,10 @@ PATCHFILES = 	gcc-ctype-inline-pgmread.patch:0 \
 		gcc-xtensa-rearrange-DI-mode-constant-loading.patch:0
 PATCH_DIST_STRIP = -p1
 
+LIBELF =	libelf-0.8.13
+MASTER_SITES1 =	https://github.com/earlephilhower/esp-quick-toolchain/raw/master/blobs/
+DISTFILES =	${DISTNAME}${EXTRACT_SUFX} ${LIBELF}${EXTRACT_SUFX}
+
 .if ${MACHINE_ARCH} == "powerpc64"
 PATCH_LIST =	patch-* vecstep-*
 .endif
@@ -42,6 +46,8 @@ LIB_DEPENDS =		devel/gmp \
 			devel/mpfr \
 			math/isl
 
+CONFIGURE_ENV +=	AR_FOR_TARGET="${INSTALLDIR}/bin/${CONFIG}-ar" \
+			RANLIB_FOR_TARGET="${INSTALLDIR}/bin/${CONFIG}-ranlib"
 CONFIGURE_ARGS +=	--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 			--with-ld="${INSTALLDIR}/bin/${CONFIG}-ld" \
 			--with-sysroot="${INSTALLDIR}/${CONFIG}" \
@@ -49,12 +55,13 @@ CONFIGURE_ARGS +=	--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 			--with-isl="${LOCALBASE}" \
 			--disable-multilib
 
-#--with-headers=${LOCALBASE}/${CONFIG}/include  \
+ALL_TARGET =		all-gcc all-target-libelf all-target-libgcc \
+			all-target-libssp all-target-libstdc++-v3
+INSTALL_TARGET =	install-gcc install-target-libelf install-target-libgcc \
+			install-target-libssp install-target-libstdc++-v3
 
-ALL_TARGET =		all-gcc all-target-libgcc all-target-libstdc++-v3 \
-			all-target-libssp
-INSTALL_TARGET =	install-gcc install-target-libgcc \
-			install-target-libstdc++-v3 install-target-libssp
+post-extract:
+	mv ${WRKDIR}/${LIBELF} ${WRKSRC}/libelf
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \

@@ -484,6 +484,15 @@ xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/wide-int-pri
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/wide-int.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/xcoff.h
 xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/include/xcoffout.h
+@static-lib xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/libcc1plugin.a
+xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/libcc1plugin.la
+@lib xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/libcc1plugin.so.${LIBcc1plugin_VERSION}
+@static-lib xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/libcp1plugin.a
+xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/libcp1plugin.la
+@lib xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/${VERSION}/plugin/libcp1plugin.so.${LIBcp1plugin_VERSION}
+@static-lib xtensa-lx106-elf/lib/libcc1.a
+xtensa-lx106-elf/lib/libcc1.la
+@lib xtensa-lx106-elf/lib/libcc1.so.${LIBcc1_VERSION}
 xtensa-lx106-elf/libexec/
 xtensa-lx106-elf/libexec/gcc/
 xtensa-lx106-elf/libexec/gcc/xtensa-lx106-elf/
@@ -519,6 +528,7 @@ xtensa-lx106-elf/share/gcc-${VERSION}/python/libstdcxx/v6/xmethods.py
 @info xtensa-lx106-elf/share/info/gcc.info
 @info xtensa-lx106-elf/share/info/gccinstall.info
 @info xtensa-lx106-elf/share/info/gccint.info
+@info xtensa-lx106-elf/share/info/libquadmath.info
 @man xtensa-lx106-elf/share/man/man1/xtensa-lx106-elf-cpp.1
 @man xtensa-lx106-elf/share/man/man1/xtensa-lx106-elf-g++.1
 @man xtensa-lx106-elf/share/man/man1/xtensa-lx106-elf-gcc.1

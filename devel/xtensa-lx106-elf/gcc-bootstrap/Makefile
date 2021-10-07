@@ -10,7 +10,7 @@ WANTLIB += ${COMPILER_LIBCXX} c gmp isl m mpc mpfr
 
 SUBST_VARS +=	VERSION
 
-MASTER_SITES= 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
+MASTER_SITES = 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
 MASTER_SITES0 =	https://raw.githubusercontent.com/earlephilhower/esp-quick-toolchain/master/patches/gcc10.2/
 PATCHFILES = 	gcc-ctype-inline-pgmread.patch:0 \
 		gcc-eh-alloc.patch:0 \

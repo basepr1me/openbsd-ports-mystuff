@@ -13,6 +13,7 @@ SHA256 (gcc-xtensa-add-optimizations-for-shift-operations.patch) = O7daEYsXQxuPQ
 SHA256 (gcc-xtensa-fix-PR-target-98285.patch) = ES3Spa9vA+Y69T6/UXC4+8ZD8ysziuBot3xtCfeIQ6Q=
 SHA256 (gcc-xtensa-implement-bswapsi2-bswapdi2-and-helpers.patch) = dGhMdY0RLunOKCkHFZxX6haE17xANYUfbVEjRB6RMy4=
 SHA256 (gcc-xtensa-rearrange-DI-mode-constant-loading.patch) = cd14n+1WwEykKn5WYr2fugog4i0t+a8C7Ym0LIzvUCM=
+SHA256 (libelf-0.8.13.tar.gz) = WRqbTsgcHyBCqXqmBWTgy3nQQcUvqnQWrLOLyVvSx20=
 SIZE (gcc-10.2.0.tar.gz) = 129184377
 SIZE (gcc-ctype-inline-pgmread.patch) = 1873
 SIZE (gcc-eh-alloc.patch) = 492
@@ -28,3 +29,4 @@ SIZE (gcc-xtensa-add-optimizations-for-shift-operations.patch) = 3901
 SIZE (gcc-xtensa-fix-PR-target-98285.patch) = 3808
 SIZE (gcc-xtensa-implement-bswapsi2-bswapdi2-and-helpers.patch) = 3871
 SIZE (gcc-xtensa-rearrange-DI-mode-constant-loading.patch) = 2569
+SIZE (libelf-0.8.13.tar.gz) = 148529
