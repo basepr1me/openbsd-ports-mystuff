@@ -1,5 +1,7 @@
 $OpenBSD$
 
+Bring in required definitions from HAL.
+
 Index: include/xtensa-config.h
 --- include/xtensa-config.h.orig
 +++ include/xtensa-config.h
