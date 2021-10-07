@@ -1,0 +1,46 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/fcal
+@bin bin/fmeasure
+@bin bin/fmtave
+@bin bin/fst4sim
+@bin bin/ft8code
+@bin bin/jt4code
+@bin bin/jt65code
+@bin bin/jt9
+@bin bin/jt9code
+@bin bin/message_aggregator
+@bin bin/msk144code
+@bin bin/q65sim
+@bin bin/rigctl-wsjtx
+@bin bin/rigctlcom-wsjtx
+@bin bin/rigctld-wsjtx
+@bin bin/udp_daemon
+@bin bin/wsjtx
+@bin bin/wsjtx_app_version
+@bin bin/wsprd
+share/applications/
+share/applications/message_aggregator.desktop
+share/applications/wsjtx.desktop
+share/doc/wsjtx/
+share/doc/wsjtx/AUTHORS
+share/doc/wsjtx/BUGS
+share/doc/wsjtx/COPYING
+share/doc/wsjtx/NEWS
+share/doc/wsjtx/README
+share/doc/wsjtx/THANKS
+share/doc/wsjtx/changelog.gz
+share/doc/wsjtx/copyright
+share/doc/wsjtx/example_log_configurations/
+share/doc/wsjtx/example_log_configurations/README
+share/doc/wsjtx/example_log_configurations/wsjtx_log_config.ini.console
+share/doc/wsjtx/example_log_configurations/wsjtx_log_config.ini.debugger
+share/doc/wsjtx/example_log_configurations/wsjtx_log_config.ini.rig_control
+share/doc/wsjtx/example_log_configurations/wsjtx_log_config.ini.simple_verbose
+share/doc/wsjtx/wsjtx-main-2.4.0.html
+share/pixmaps/
+share/pixmaps/wsjtx_icon.png
+share/wsjtx/
+share/wsjtx/JPLEPH
+share/wsjtx/cty.dat
+share/wsjtx/cty.dat_copyright.txt
+@tag update-desktop-database

@@ -1,0 +1,95 @@
+$OpenBSD$
+
+Index: libstdc++-v3/include/bits/vector.tcc
+--- libstdc++-v3/include/bits/vector.tcc.orig
++++ libstdc++-v3/include/bits/vector.tcc
+@@ -56,6 +56,8 @@
+ #ifndef _VECTOR_TCC
+ #define _VECTOR_TCC 1
+ 
++#define __EXCSTR(s) (__extension__({static const char __exception_what__[] __attribute__((section(".irom.exceptiontext,\"MS\",@progbits,1#"))) = (s); &__exception_what__[0];}))
++
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
+ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+@@ -67,7 +69,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+     reserve(size_type __n)
+     {
+       if (__n > this->max_size())
+-	__throw_length_error(__N("vector::reserve"));
++	__throw_length_error(__EXCSTR(__N("vector::reserve")));
+       if (this->capacity() < __n)
+ 	{
+ 	  const size_type __old_size = size();
+@@ -433,7 +435,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+ #endif
+     {
+       const size_type __len =
+-	_M_check_len(size_type(1), "vector::_M_realloc_insert");
++	_M_check_len(size_type(1), __EXCSTR("vector::_M_realloc_insert"));
+       pointer __old_start = this->_M_impl._M_start;
+       pointer __old_finish = this->_M_impl._M_finish;
+       const size_type __elems_before = __position - begin();
+@@ -556,7 +558,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+ 	  else
+ 	    {
+ 	      const size_type __len =
+-		_M_check_len(__n, "vector::_M_fill_insert");
++		_M_check_len(__n, __EXCSTR("vector::_M_fill_insert"));
+ 	      const size_type __elems_before = __position - begin();
+ 	      pointer __new_start(this->_M_allocate(__len));
+ 	      pointer __new_finish(__new_start);
+@@ -631,7 +633,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+ 	  else
+ 	    {
+ 	      const size_type __len =
+-		_M_check_len(__n, "vector::_M_default_append");
++		_M_check_len(__n, __EXCSTR("vector::_M_default_append"));
+ 	      pointer __new_start(this->_M_allocate(__len));
+ 	      if _GLIBCXX17_CONSTEXPR (_S_use_relocate())
+ 		{
+@@ -765,7 +767,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+ 	    else
+ 	      {
+ 		const size_type __len =
+-		  _M_check_len(__n, "vector::_M_range_insert");
++		  _M_check_len(__n, __EXCSTR("vector::_M_range_insert"));
+ 		pointer __new_start(this->_M_allocate(__len));
+ 		pointer __new_finish(__new_start);
+ 		__try
+@@ -836,7 +838,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+       else
+ 	{
+ 	  const size_type __len = 
+-	    _M_check_len(__n, "vector<bool>::_M_fill_insert");
++	    _M_check_len(__n, __EXCSTR("vector<bool>::_M_fill_insert"));
+ 	  _Bit_pointer __q = this->_M_allocate(__len);
+ 	  iterator __start(std::__addressof(*__q), 0);
+ 	  iterator __i = _M_copy_aligned(begin(), __position, __start);
+@@ -871,7 +873,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+ 	    else
+ 	      {
+ 		const size_type __len =
+-		  _M_check_len(__n, "vector<bool>::_M_insert_range");
++		  _M_check_len(__n, __EXCSTR("vector<bool>::_M_insert_range"));
+ 		_Bit_pointer __q = this->_M_allocate(__len);
+ 		iterator __start(std::__addressof(*__q), 0);
+ 		iterator __i = _M_copy_aligned(begin(), __position, __start);
+@@ -900,7 +902,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+       else
+ 	{
+ 	  const size_type __len =
+-	    _M_check_len(size_type(1), "vector<bool>::_M_insert_aux");
++	    _M_check_len(size_type(1), __EXCSTR("vector<bool>::_M_insert_aux"));
+ 	  _Bit_pointer __q = this->_M_allocate(__len);
+ 	  iterator __start(std::__addressof(*__q), 0);
+ 	  iterator __i = _M_copy_aligned(begin(), __position, __start);
+@@ -997,6 +999,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+ 
+ _GLIBCXX_END_NAMESPACE_VERSION
+ } // namespace std
++
++#undef __EXCSTR
+ 
+ #endif // C++11
+ 

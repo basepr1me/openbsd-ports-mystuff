@@ -1,0 +1,19 @@
+$OpenBSD$
+
+Index: libstdc++-v3/libsupc++/eh_alloc.cc
+--- libstdc++-v3/libsupc++/eh_alloc.cc.orig
++++ libstdc++-v3/libsupc++/eh_alloc.cc
+@@ -73,6 +73,13 @@ using namespace __cxxabiv1;
+ # define EMERGENCY_OBJ_COUNT	4
+ #endif
+ 
++// ESP8266 has tiny RAM
++#undef EMERGENCY_OBJ_COUNT
++#undef EMERGENCY_OBJ_SIZE
++#define EMERGENCY_OBJ_SIZE     48
++#define EMERGENCY_OBJ_COUNT    4
++
++
+ namespace __gnu_cxx
+ {
+   void __freeres();

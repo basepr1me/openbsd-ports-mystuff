@@ -1,0 +1,27 @@
+@comment $OpenBSD: PLIST,v$
+share/arduino/
+share/arduino/hardware/
+share/arduino/hardware/espressif/
+share/arduino/hardware/espressif/esp8266/
+share/arduino/hardware/espressif/esp8266/tools/
+share/arduino/hardware/espressif/esp8266/tools/sdk/
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/cacheasm.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/
+@comment share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/core-isa.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/core-matmap.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/core.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/defs.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/specreg.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/system.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/tie-asm.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/config/tie.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/coreasm.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/corebits.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/hal.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/include/xtensa/xtensa-xer.h
+share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/lib/
+@static-lib share/arduino/hardware/espressif/esp8266/tools/sdk/libc/xtensa-lx106-elf/lib/libhal.a

@@ -1,0 +1,70 @@
+# $OpenBSD: Makefile,v 1.3 2021/01/09 21:41:16 jasper Exp $
+
+COMMENT =	gcc for ${CONFIG} cross-development
+
+VERSION =	10.3.0
+DISTNAME =	gcc-${VERSION}
+PKGNAME =	${CONFIG}-gcc-${VERSION}
+
+SHARED_LIBS +=  cc1plugin                 0.0 # 0.0
+SHARED_LIBS +=  cp1plugin                 0.0 # 0.0
+SHARED_LIBS +=  cc1                       0.0 # 0.0
+
+WANTLIB += ${COMPILER_LIBCXX} c gmp m mpc mpfr zstd
+
+MODULES =	lang/python
+
+SUBST_VARS +=	VERSION
+
+MASTER_SITES= 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
+MASTER_SITES0 =	https://raw.githubusercontent.com/earlephilhower/esp-quick-toolchain/master/patches/gcc10.3/
+PATCHFILES = 	gcc-ctype-inline-pgmread.patch:0 \
+		gcc-eh-alloc.patch:0 \
+		gcc-enable-mforcel32-eh.patch:0 \
+		gcc-exception-what-to-pmem.patch:0 \
+		gcc-file-shortname.patch:0 \
+		gcc-func-sect.patch:0 \
+		gcc-int32-is-int.patch:0 \
+		gcc-mforce-l32.patch:0 \
+		gcc-regex-what-to-pmem.patch:0 \
+		gcc-stdcsupp-safe.patch:0 \
+		gcc-unwind-safe.patch:0 \
+		gcc-xtensa-add-optimizations-for-shift-operations.patch:0 \
+		gcc-xtensa-fix-PR-target-98285.patch:0 \
+		gcc-xtensa-implement-bswapsi2-bswapdi2-and-helpers.patch:0 \
+		gcc-xtensa-rearrange-DI-mode-constant-loading.patch:0
+PATCH_DIST_STRIP = -p1
+
+.if ${MACHINE_ARCH} == "powerpc64"
+PATCH_LIST =	patch-* vecstep-*
+.endif
+
+BUILD_DEPENDS +=	devel/${CONFIG}/binutils \
+			devel/${CONFIG}/newlib
+RUN_DEPENDS =		devel/${CONFIG}/binutils \
+			devel/${CONFIG}/newlib
+LIB_DEPENDS =		archivers/zstd \
+			devel/libmpc \
+			devel/mpfr
+
+CONFIGURE_ENV +=	CC_FOR_TARGET="${LOCALBASE}/${CONFIG}/bootstrap/bin/${CONFIG}-gcc" \
+			AS_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-as" \
+			AR_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ar" \
+			RANLIB_FOR_TARGET="${LOCALBASE}/bin/${CONFIG}-ranlib"
+CONFIGURE_ARGS +=	--with-sysroot="${LOCALBASE}/${CONFIG}" \
+ 			--with-local-prefix="${LOCALBASE}/${CONFIG}" \
+ 			--with-as="${LOCALBASE}/bin/${CONFIG}-as" \
+ 			--with-ld="${LOCALBASE}/bin/${CONFIG}-ld" \
+			--with-gmp="${LOCALBASE}" \
+			--enable-languages=c,c++
+
+
+post-install:
+	chown -R ${SHAREOWN}:${SHAREGRP} \
+		${PREFIX}/lib/gcc/${CONFIG}/${VERSION}/
+	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+		${PREFIX}/share/gcc-${VERSION}/python/libstdcxx
+	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+		${PREFIX}/xtensa-lx106-elf/lib
+
+.include <bsd.port.mk>

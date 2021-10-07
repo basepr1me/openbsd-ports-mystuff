@@ -1,0 +1,159 @@
+$OpenBSD$
+
+Index: libstdc++-v3/include/bits/regex_scanner.tcc
+--- libstdc++-v3/include/bits/regex_scanner.tcc.orig
++++ libstdc++-v3/include/bits/regex_scanner.tcc
+@@ -46,6 +46,8 @@
+ //
+ // awk: http://pubs.opengroup.org/onlinepubs/000095399/utilities/awk.html
+ 
++#define __EXCSTR(s) (__extension__({static const char __exception_what__[] __attribute__((section(".irom.exceptiontext,\"MS\",@progbits,1#"))) = (s); &__exception_what__[0];}))
++
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
+ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+@@ -109,7 +111,7 @@ namespace __detail
+ 	  if (_M_current == _M_end)
+ 	    __throw_regex_error(
+ 	      regex_constants::error_escape,
+-	      "Unexpected end of regex when escaping.");
++	      __EXCSTR("Unexpected end of regex when escaping."));
+ 
+ 	  if (!_M_is_basic()
+ 	      || (*_M_current != '('
+@@ -128,7 +130,7 @@ namespace __detail
+ 	      if (++_M_current == _M_end)
+ 		__throw_regex_error(
+ 		  regex_constants::error_paren,
+-		  "Unexpected end of regex when in an open parenthesis.");
++		  __EXCSTR("Unexpected end of regex when in an open parenthesis."));
+ 
+ 	      if (*_M_current == ':')
+ 		{
+@@ -150,7 +152,7 @@ namespace __detail
+ 	      else
+ 		__throw_regex_error(
+ 		  regex_constants::error_paren,
+-		  "Invalid special open parenthesis.");
++		  __EXCSTR("Invalid special open parenthesis."));
+ 	    }
+ 	  else if (_M_flags & regex_constants::nosubs)
+ 	    _M_token = _S_token_subexpr_no_group_begin;
+@@ -206,7 +208,7 @@ namespace __detail
+       if (_M_current == _M_end)
+ 	__throw_regex_error(
+ 	  regex_constants::error_brack,
+-	  "Unexpected end of regex when in bracket expression.");
++	  __EXCSTR("Unexpected end of regex when in bracket expression."));
+ 
+       auto __c = *_M_current++;
+ 
+@@ -216,7 +218,7 @@ namespace __detail
+ 	{
+ 	  if (_M_current == _M_end)
+ 	    __throw_regex_error(regex_constants::error_brack,
+-				"Unexpected character class open bracket.");
++				__EXCSTR("Unexpected character class open bracket."));
+ 
+ 	  if (*_M_current == '.')
+ 	    {
+@@ -268,7 +270,7 @@ namespace __detail
+       if (_M_current == _M_end)
+ 	__throw_regex_error(
+ 	  regex_constants::error_brace,
+-	  "Unexpected end of regex when in brace expression.");
++	  __EXCSTR("Unexpected end of regex when in brace expression."));
+ 
+       auto __c = *_M_current++;
+ 
+@@ -293,7 +295,7 @@ namespace __detail
+ 	    }
+ 	  else
+ 	    __throw_regex_error(regex_constants::error_badbrace,
+-				"Unexpected character in brace expression.");
++				__EXCSTR("Unexpected character in brace expression."));
+ 	}
+       else if (__c == '}')
+ 	{
+@@ -302,7 +304,7 @@ namespace __detail
+ 	}
+       else
+ 	__throw_regex_error(regex_constants::error_badbrace,
+-			    "Unexpected character in brace expression.");
++			    __EXCSTR("Unexpected character in brace expression."));
+     }
+ 
+   template<typename _CharT>
+@@ -312,7 +314,7 @@ namespace __detail
+     {
+       if (_M_current == _M_end)
+ 	__throw_regex_error(regex_constants::error_escape,
+-			    "Unexpected end of regex when escaping.");
++			    __EXCSTR("Unexpected end of regex when escaping."));
+ 
+       auto __c = *_M_current++;
+       auto __pos = _M_find_escape(_M_ctype.narrow(__c, '\0'));
+@@ -348,7 +350,7 @@ namespace __detail
+ 	  if (_M_current == _M_end)
+ 	    __throw_regex_error(
+ 	      regex_constants::error_escape,
+-	      "Unexpected end of regex when reading control code.");
++	      __EXCSTR("Unexpected end of regex when reading control code."));
+ 	  _M_token = _S_token_ord_char;
+ 	  _M_value.assign(1, *_M_current++);
+ 	}
+@@ -361,7 +363,7 @@ namespace __detail
+ 		  || !_M_ctype.is(_CtypeT::xdigit, *_M_current))
+ 		__throw_regex_error(
+ 		  regex_constants::error_escape,
+-		  "Unexpected end of regex when ascii character.");
++		  __EXCSTR("Unexpected end of regex when ascii character."));
+ 	      _M_value += *_M_current++;
+ 	    }
+ 	  _M_token = _S_token_hex_num;
+@@ -391,7 +393,7 @@ namespace __detail
+     {
+       if (_M_current == _M_end)
+ 	__throw_regex_error(regex_constants::error_escape,
+-			    "Unexpected end of regex when escaping.");
++			    __EXCSTR("Unexpected end of regex when escaping."));
+ 
+       auto __c = *_M_current;
+       auto __pos = std::strchr(_M_spec_char, _M_ctype.narrow(__c, '\0'));
+@@ -417,7 +419,7 @@ namespace __detail
+ #ifdef __STRICT_ANSI__
+ 	  // POSIX says it is undefined to escape ordinary characters
+ 	  __throw_regex_error(regex_constants::error_escape,
+-			      "Unexpected escape character.");
++			      __EXCSTR("Unexpected escape character."));
+ #else
+ 	  _M_token = _S_token_ord_char;
+ 	  _M_value.assign(1, __c);
+@@ -458,7 +460,7 @@ namespace __detail
+ 	}
+       else
+ 	__throw_regex_error(regex_constants::error_escape,
+-			    "Unexpected escape character.");
++			    __EXCSTR("Unexpected escape character."));
+     }
+ 
+   // Eats a character class or throws an exception.
+@@ -478,10 +480,10 @@ namespace __detail
+ 	{
+ 	  if (__ch == ':')
+ 	    __throw_regex_error(regex_constants::error_ctype,
+-				"Unexpected end of character class.");
++				__EXCSTR("Unexpected end of character class."));
+ 	  else
+ 	    __throw_regex_error(regex_constants::error_collate,
+-				"Unexpected end of character class.");
++				__EXCSTR("Unexpected end of character class."));
+ 	}
+     }
+ 
+@@ -587,3 +589,5 @@ namespace __detail
+ } // namespace __detail
+ _GLIBCXX_END_NAMESPACE_VERSION
+ } // namespace
++
++#undef __EXCSTR

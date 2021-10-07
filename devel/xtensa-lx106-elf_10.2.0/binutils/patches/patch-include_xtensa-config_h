@@ -1,0 +1,23 @@
+$OpenBSD$
+
+Index: include/xtensa-config.h
+--- include/xtensa-config.h.orig
++++ include/xtensa-config.h
+@@ -25,7 +25,7 @@
+    macros.  */
+ 
+ #undef XCHAL_HAVE_BE
+-#define XCHAL_HAVE_BE			1
++#define XCHAL_HAVE_BE			0
+ 
+ #undef XCHAL_HAVE_DENSITY
+ #define XCHAL_HAVE_DENSITY		1
+@@ -169,7 +169,7 @@
+ #undef XSHAL_ABI
+ #undef XTHAL_ABI_WINDOWED
+ #undef XTHAL_ABI_CALL0
+-#define XSHAL_ABI			XTHAL_ABI_WINDOWED
++#define XSHAL_ABI			XTHAL_ABI_CALL0
+ #define XTHAL_ABI_WINDOWED		0
+ #define XTHAL_ABI_CALL0			1
+ 

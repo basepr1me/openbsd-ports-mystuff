@@ -1,0 +1,36 @@
+$OpenBSD$
+
+Index: libstdc++-v3/libsupc++/tinfo2.cc
+--- libstdc++-v3/libsupc++/tinfo2.cc.orig
++++ libstdc++-v3/libsupc++/tinfo2.cc
+@@ -29,6 +29,21 @@
+ using std::type_info;
+ 
+ #if !__GXX_TYPEINFO_EQUALITY_INLINE
++    // Write own version so it's compiled with mforce-l32 and won't crash
++static int strcmp_safe(const char *p1, const char *p2) {
++      const unsigned char *s1 = (const unsigned char *) p1;
++      const unsigned char *s2 = (const unsigned char *) p2;
++      unsigned char c1, c2;
++      do
++        {
++          c1 = (unsigned char) *s1++;
++          c2 = (unsigned char) *s2++;
++          if (c1 == '\0')
++            return c1 - c2;
++        }
++      while (c1 == c2);
++       return c1 - c2;
++    }
+ 
+ bool
+ type_info::before (const type_info &arg) const _GLIBCXX_NOEXCEPT
+@@ -37,7 +52,7 @@ type_info::before (const type_info &arg) const _GLIBCX
+   return name () < arg.name ();
+ #else
+   return (name ()[0] == '*') ? name () < arg.name ()
+-    :  __builtin_strcmp (name (), arg.name ()) < 0;
++    :  strcmp_safe (name (), arg.name ()) < 0;
+ #endif
+ }
+ 

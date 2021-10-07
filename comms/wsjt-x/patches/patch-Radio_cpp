@@ -1,0 +1,25 @@
+$OpenBSD$
+
+Index: Radio.cpp
+--- Radio.cpp.orig
++++ Radio.cpp
+@@ -45,7 +45,7 @@ namespace Radio
+     value *= std::pow (10., scale);
+     if (ok)
+       {
+-        if (value < 0. || value > std::numeric_limits<Frequency>::max ())
++        if (value < 0. || value > (double)std::numeric_limits<Frequency>::max ())
+           {
+             value = 0.;
+             *ok = false;
+@@ -69,8 +69,8 @@ namespace Radio
+     value *= std::pow (10., scale);
+     if (ok)
+       {
+-        if (value < -std::numeric_limits<Frequency>::max ()
+-            || value > std::numeric_limits<Frequency>::max ())
++        if (value < -(double)std::numeric_limits<Frequency>::max ()
++            || value > (double)std::numeric_limits<Frequency>::max ())
+           {
+             value = 0.;
+             *ok = false;
