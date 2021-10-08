@@ -23,9 +23,6 @@ RUN_DEPENDS +=		devel/arduino \
 NO_TEST =		Yes
 NO_BUILD =		Yes
 
-post-patch:
-	${SUBST_CMD} ${WRKDIST}/os/OpenBSD.mk
-
 do-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/makeEspArduino
 	cp -r ${WRKDIST}/*.mk ${PREFIX}/share/makeEspArduino/
