@@ -42,6 +42,8 @@ do-build:
 do-install:
 	@mkdir -p ${INSTALLDIR}
 	@cp -r ${WRKDIST}/* ${INSTALLDIR}
+	# libc is no longer supplied, so we need to get it from newlib
+	# note, a symlink doesn't work here, and I don't know why
 	@cd ${INSTALLDIR}/tools/sdk && mkdir -p libc/xtensa-lx106-elf && \
 	    cp -r ${LOCALBASE}/xtensa-lx106-elf/xtensa-lx106-elf/include \
 	    libc/xtensa-lx106-elf/

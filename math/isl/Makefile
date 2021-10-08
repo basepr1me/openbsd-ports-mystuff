@@ -8,21 +8,21 @@ DISTNAME =	isl-${VERSION}
 CATEGORIES =	math
 
 SHARED_LIBS +=  isl                       0.0 # 18.0
-WANTLIB += gmp
 
 #LGLBv2.1+
 PERMIT_PACKAGE =	Yes
 
-LIB_DEPENDS =		devel/gmp
+WANTLIB += gmp
 
 MASTER_SITES =		https://gcc.gnu.org/pub/gcc/infrastructure/
-
 EXTRACT_SUFX =		.tar.bz2
+
+LIB_DEPENDS =		devel/gmp
+
+SEPERATE_BUILD =	Yes
+USE_GMAKE =		Yes
 
 CONFIGURE_STYLE ?=	gnu
 CONFIGURE_ARGS +=	--with-gmp-prefix="${LOCALBASE}"
-
-USE_GMAKE =		Yes
-SEPERATE_BUILD =	Yes
 
 .include <bsd.port.mk>

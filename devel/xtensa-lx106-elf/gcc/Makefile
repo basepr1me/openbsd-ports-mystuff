@@ -12,8 +12,6 @@ SHARED_LIBS +=  cc1                       0.0 # 0.0
 
 WANTLIB += ${COMPILER_LIBCXX} c gmp isl m mpc mpfr
 
-MODULES =	lang/python
-
 SUBST_VARS +=	VERSION
 
 MASTER_SITES = 	${MASTER_SITE_GCC:=releases/gcc-$(VERSION)/}
@@ -41,6 +39,8 @@ DISTFILES =	${DISTNAME}${EXTRACT_SUFX} ${LIBELF}${EXTRACT_SUFX}
 .if ${MACHINE_ARCH} == "powerpc64"
 PATCH_LIST =	patch-* vecstep-*
 .endif
+
+MODULES =	lang/python
 
 BUILD_DEPENDS +=	devel/${CONFIG}/binutils \
 			devel/${CONFIG}/newlib
