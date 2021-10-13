@@ -34,7 +34,8 @@ PATCH_DIST_STRIP = -p1
 
 LIBELF =	libelf-0.8.13
 MASTER_SITES1 =	https://github.com/earlephilhower/esp-quick-toolchain/raw/master/blobs/
-DISTFILES =	${DISTNAME}${EXTRACT_SUFX} ${LIBELF}${EXTRACT_SUFX}
+DISTFILES =	${DISTNAME}${EXTRACT_SUFX}
+DISTFILES +=	${LIBELF}${EXTRACT_SUFX}:1
 
 .if ${MACHINE_ARCH} == "powerpc64"
 PATCH_LIST =	patch-* vecstep-*

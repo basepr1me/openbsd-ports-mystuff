@@ -9,7 +9,7 @@ CATEGORIES =	math
 
 SHARED_LIBS +=  isl                       0.0 # 18.0
 
-#LGLBv2.1+
+#MIT
 PERMIT_PACKAGE =	Yes
 
 WANTLIB += gmp
