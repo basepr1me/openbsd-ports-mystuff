@@ -1,3 +1,0 @@
-A little fail-safe filesystem designed for microcontrollers.
-
-This tool is specifically patched to work with Espressif ESP8266 line of chips.
