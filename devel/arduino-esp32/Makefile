@@ -1,10 +1,9 @@
 # $OpenBSD: Makefile,v 1.5 2021/02/23 19:39:12 sthen Exp $
 
 COMMENT =	esp32 arduino core toolset
-V =		1.0.4
+V =		2.0.0
 DISTNAME =	esp32-${V}
 PKGNAME =	arduino-${DISTNAME}
-REVISION =	2
 
 CATEGORIES =	devel
 
@@ -34,7 +33,7 @@ do-build:
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py ${WRKSRC}/tools
 
 do-install:
-	@mkdir -p ${INSTALLDIR}
+	${INSTALL_DATA_DIR} ${INSTALLDIR}
 	@cp -r ${WRKDIST}/* ${INSTALLDIR}
 
 .include <bsd.port.mk>
