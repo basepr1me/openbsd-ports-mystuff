@@ -3,26 +3,16 @@
 COMMENT =	binutils for ${CONFIG} cross-development
 VERSION =	2.33.1.2020.3
 PKGNAME =	${CONFIG}-binutils-${VERSION}
+REVISION =	0
 
 GH_ACCOUNT =	espressif
 GH_PROJECT =	binutils-gdb
 GH_TAGNAME =	esp-2020r3-binutils
 
-WANTLIB =	c z
+WANTLIB += ${COMPILER_LIBCXX} c curses expat m
 
-USE_LIBTOOL =	No
-
-CONFIGURE_ARGS +=	--disable-werror \
-			--enable-ld=yes \
-			--enable-gold=no \
-			--enable-multilib \
-			--disable-sim \
-			--disable-gdb \
-			--with-sysroot=${LOCALBASE}/${CONFIG} \
-			--disable-option-checking \
-			--with-gnu-ld \
+CONFIGURE_ARGS +=	--disable-multilib \
 			--with-gnu-as \
-			--with-newlib \
-			--with-system-zlib
+			--with-gnu-ld
 
 .include <bsd.port.mk>

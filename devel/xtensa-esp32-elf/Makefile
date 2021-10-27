@@ -2,9 +2,9 @@
 
 SUBDIR =
 SUBDIR += binutils
-SUBDIR += gcc
 SUBDIR += gcc-bootstrap
-SUBDIR += gdb
 SUBDIR += newlib
+SUBDIR += gcc
+SUBDIR += gdb
 
 .include <bsd.port.subdir.mk>

@@ -18,8 +18,6 @@ RUN_DEPENDS +=	devel/xtensa-esp32-elf/binutils
 LIB_DEPENDS =	devel/gmp \
 		devel/mpfr
 
-YACC =		bison -y
-
 CONFIGURE_ARGS	+=	--enable-commonbfdlib=no \
 			--with-cross-host=yes \
 			--disable-werror \
