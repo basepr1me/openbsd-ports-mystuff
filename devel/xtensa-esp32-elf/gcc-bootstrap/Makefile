@@ -3,13 +3,12 @@
 COMMENT =	bootstrap compiler for ${CONFIG} cross-development
 
 V =		8.4.0
-VERSION =	${V}.2020.3
+VERSION =	${V}.2021.2
 PKGNAME =	${CONFIG}-gcc-bootstrap-${VERSION}
-REVISION =	0
 
 GH_ACCOUNT =	espressif
 GH_PROJECT =	gcc
-GH_TAGNAME =	esp-2020r3
+GH_TAGNAME =	esp-2021r2
 
 WANTLIB =	${COMPILER_LIBCXX} c gmp isl m mpc mpfr
 

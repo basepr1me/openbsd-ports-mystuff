@@ -6,8 +6,6 @@ xtensa-esp32-elf/bin/
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-as
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-c++filt
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-elfedit
-@bin xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb
-xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb-add-index
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-gprof
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-ld
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-ld.bfd
@@ -19,11 +17,7 @@ xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb-add-index
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-size
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-strings
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-strip
-xtensa-esp32-elf/include/
-xtensa-esp32-elf/include/gdb/
-xtensa-esp32-elf/include/gdb/jit-reader.h
 xtensa-esp32-elf/lib/
-xtensa-esp32-elf/lib/charset.alias
 xtensa-esp32-elf/lib/ldscripts/
 xtensa-esp32-elf/lib/ldscripts/elf32xtensa.x
 xtensa-esp32-elf/lib/ldscripts/elf32xtensa.xbn
@@ -48,35 +42,12 @@ xtensa-esp32-elf/lib/ldscripts/elf32xtensa.xu
 xtensa-esp32-elf/lib/ldscripts/elf32xtensa.xw
 xtensa-esp32-elf/lib/ldscripts/elf32xtensa.xwe
 xtensa-esp32-elf/share/
-xtensa-esp32-elf/share/gdb/
-xtensa-esp32-elf/share/gdb/syscalls/
-xtensa-esp32-elf/share/gdb/syscalls/aarch64-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/amd64-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/arm-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/freebsd.xml
-xtensa-esp32-elf/share/gdb/syscalls/gdb-syscalls.dtd
-xtensa-esp32-elf/share/gdb/syscalls/i386-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/mips-n32-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/mips-n64-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/mips-o32-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/ppc-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/ppc64-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/s390-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/s390x-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/sparc-linux.xml
-xtensa-esp32-elf/share/gdb/syscalls/sparc64-linux.xml
-xtensa-esp32-elf/share/gdb/system-gdbinit/
-xtensa-esp32-elf/share/gdb/system-gdbinit/elinos.py
-xtensa-esp32-elf/share/gdb/system-gdbinit/wrs-linux.py
 @info xtensa-esp32-elf/share/info/
-@info xtensa-esp32-elf/share/info/annotate.info
 @info xtensa-esp32-elf/share/info/as.info
 @info xtensa-esp32-elf/share/info/bfd.info
 @info xtensa-esp32-elf/share/info/binutils.info
-@info xtensa-esp32-elf/share/info/gdb.info
 @info xtensa-esp32-elf/share/info/gprof.info
 @info xtensa-esp32-elf/share/info/ld.info
-@info xtensa-esp32-elf/share/info/stabs.info
 @mandir xtensa-esp32-elf/share/man/
 xtensa-esp32-elf/share/man/man1/
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-addr2line.1
@@ -85,9 +56,6 @@ xtensa-esp32-elf/share/man/man1/
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-c++filt.1
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-dlltool.1
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-elfedit.1
-@man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-gdb-add-index.1
-@man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-gdb.1
-@man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-gdbserver.1
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-gprof.1
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-ld.1
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-nm.1
@@ -100,8 +68,6 @@ xtensa-esp32-elf/share/man/man1/
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-strip.1
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-windmc.1
 @man xtensa-esp32-elf/share/man/man1/xtensa-esp32-elf-windres.1
-xtensa-esp32-elf/share/man/man5/
-@man xtensa-esp32-elf/share/man/man5/xtensa-esp32-elf-gdbinit.5
 xtensa-esp32-elf/xtensa-esp32-elf/
 xtensa-esp32-elf/xtensa-esp32-elf/bin/
 @bin xtensa-esp32-elf/xtensa-esp32-elf/bin/ar
