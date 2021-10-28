@@ -5,7 +5,7 @@ xtensa-modules.c file for ESP32
 Index: bfd/xtensa-modules.c
 --- bfd/xtensa-modules.c.orig
 +++ bfd/xtensa-modules.c
-@@ -1,27 +1,34 @@
+@@ -1,22 +1,25 @@
  /* Xtensa configuration-specific ISA information.
 -   Copyright (C) 2003-2020 Free Software Foundation, Inc.
  
@@ -45,16 +45,7 @@ Index: bfd/xtensa-modules.c
  
  #include "ansidecl.h"
  #include <xtensa-isa.h>
- #include "xtensa-isa-internal.h"
- 
-+int num_bypass_groups(void);
-+int num_bypass_group_chunks(void);
-+uint32 *bypass_entry(__attribute__((unused)) int);
-+
- 
- /* Sysregs.  */
- 
-@@ -36,11 +43,10 @@ static xtensa_sysreg_internal sysregs[] = {
+@@ -36,11 +39,10 @@ static xtensa_sysreg_internal sysregs[] = {
    { "M1", 33, 0 },
    { "M2", 34, 0 },
    { "M3", 35, 0 },
@@ -68,7 +59,7 @@ Index: bfd/xtensa-modules.c
    { "INTERRUPT", 226, 0 },
    { "INTCLEAR", 227, 0 },
    { "CCOUNT", 234, 0 },
-@@ -75,8 +81,8 @@ static xtensa_sysreg_internal sysregs[] = {
+@@ -75,8 +77,8 @@ static xtensa_sysreg_internal sysregs[] = {
    { "EXCVADDR", 238, 0 },
    { "WINDOWBASE", 72, 0 },
    { "WINDOWSTART", 73, 0 },
@@ -78,7 +69,7 @@ Index: bfd/xtensa-modules.c
    { "PS", 230, 0 },
    { "MISC0", 244, 0 },
    { "MISC1", 245, 0 },
-@@ -92,19 +98,21 @@ static xtensa_sysreg_internal sysregs[] = {
+@@ -92,19 +94,21 @@ static xtensa_sysreg_internal sysregs[] = {
    { "IBREAKENABLE", 96, 0 },
    { "ICOUNTLEVEL", 237, 0 },
    { "DEBUGCAUSE", 233, 0 },
@@ -106,7 +97,7 @@ Index: bfd/xtensa-modules.c
  
  
  /* Processor states.  */
-@@ -132,17 +140,16 @@ static xtensa_state_internal states[] = {
+@@ -132,17 +136,16 @@ static xtensa_state_internal states[] = {
    { "EXCSAVE5", 32, 0 },
    { "EXCSAVE6", 32, 0 },
    { "EXCSAVE7", 32, 0 },
@@ -130,7 +121,7 @@ Index: bfd/xtensa-modules.c
    { "PSEXCM", 1, 0 },
    { "DEPC", 32, 0 },
    { "EXCVADDR", 32, 0 },
-@@ -152,10 +159,9 @@ static xtensa_state_internal states[] = {
+@@ -152,10 +155,9 @@ static xtensa_state_internal states[] = {
    { "PSOWB", 4, 0 },
    { "LBEG", 32, 0 },
    { "LEND", 32, 0 },
@@ -142,7 +133,7 @@ Index: bfd/xtensa-modules.c
    { "MISC0", 32, 0 },
    { "MISC1", 32, 0 },
    { "MISC2", 32, 0 },
-@@ -176,3152 +182,2217 @@ static xtensa_state_internal states[] = {
+@@ -176,3152 +178,2217 @@ static xtensa_state_internal states[] = {
    { "CCOMPARE0", 32, 0 },
    { "CCOMPARE1", 32, 0 },
    { "CCOMPARE2", 32, 0 },
@@ -4135,7 +4126,7 @@ Index: bfd/xtensa-modules.c
  Implicit_Field_set (xtensa_insnbuf insn ATTRIBUTE_UNUSED,
  		    uint32 val ATTRIBUTE_UNUSED)
  {
-@@ -3400,35 +2471,144 @@ Implicit_Field_brall_get (const xtensa_insnbuf insn AT
+@@ -3400,35 +2467,144 @@ Implicit_Field_brall_get (const xtensa_insnbuf insn AT
    return 0;
  }
  
@@ -4292,7 +4283,932 @@ Index: bfd/xtensa-modules.c
  /* Constant tables.  */
  
  /* constant table ai4c */
-@@ -3498,1693 +2678,2276 @@ static const unsigned CONST_TBL_b4cu_0[] = {
+@@ -3494,1697 +2670,3201 @@ static const unsigned CONST_TBL_b4cu_0[] = {
+   0
+ };
+ 
++/* constant table RECIP_Data8 */
++static const unsigned CONST_TBL_RECIP_Data8_0[] = {
++  0xff & 0xff,
++  0xfd & 0xff,
++  0xfb & 0xff,
++  0xf9 & 0xff,
++  0xf7 & 0xff,
++  0xf5 & 0xff,
++  0xf4 & 0xff,
++  0xf2 & 0xff,
++  0xf0 & 0xff,
++  0xee & 0xff,
++  0xed & 0xff,
++  0xeb & 0xff,
++  0xe9 & 0xff,
++  0xe8 & 0xff,
++  0xe6 & 0xff,
++  0xe4 & 0xff,
++  0xe3 & 0xff,
++  0xe1 & 0xff,
++  0xe0 & 0xff,
++  0xde & 0xff,
++  0xdd & 0xff,
++  0xdb & 0xff,
++  0xda & 0xff,
++  0xd8 & 0xff,
++  0xd7 & 0xff,
++  0xd5 & 0xff,
++  0xd4 & 0xff,
++  0xd3 & 0xff,
++  0xd1 & 0xff,
++  0xd0 & 0xff,
++  0xcf & 0xff,
++  0xcd & 0xff,
++  0xcc & 0xff,
++  0xcb & 0xff,
++  0xca & 0xff,
++  0xc8 & 0xff,
++  0xc7 & 0xff,
++  0xc6 & 0xff,
++  0xc5 & 0xff,
++  0xc4 & 0xff,
++  0xc2 & 0xff,
++  0xc1 & 0xff,
++  0xc0 & 0xff,
++  0xbf & 0xff,
++  0xbe & 0xff,
++  0xbd & 0xff,
++  0xbc & 0xff,
++  0xbb & 0xff,
++  0xba & 0xff,
++  0xb9 & 0xff,
++  0xb8 & 0xff,
++  0xb7 & 0xff,
++  0xb6 & 0xff,
++  0xb5 & 0xff,
++  0xb4 & 0xff,
++  0xb3 & 0xff,
++  0xb2 & 0xff,
++  0xb1 & 0xff,
++  0xb0 & 0xff,
++  0xaf & 0xff,
++  0xae & 0xff,
++  0xad & 0xff,
++  0xac & 0xff,
++  0xab & 0xff,
++  0xaa & 0xff,
++  0xa9 & 0xff,
++  0xa8 & 0xff,
++  0xa8 & 0xff,
++  0xa7 & 0xff,
++  0xa6 & 0xff,
++  0xa5 & 0xff,
++  0xa4 & 0xff,
++  0xa3 & 0xff,
++  0xa3 & 0xff,
++  0xa2 & 0xff,
++  0xa1 & 0xff,
++  0xa0 & 0xff,
++  0x9f & 0xff,
++  0x9f & 0xff,
++  0x9e & 0xff,
++  0x9d & 0xff,
++  0x9c & 0xff,
++  0x9c & 0xff,
++  0x9b & 0xff,
++  0x9a & 0xff,
++  0x99 & 0xff,
++  0x99 & 0xff,
++  0x98 & 0xff,
++  0x97 & 0xff,
++  0x97 & 0xff,
++  0x96 & 0xff,
++  0x95 & 0xff,
++  0x95 & 0xff,
++  0x94 & 0xff,
++  0x93 & 0xff,
++  0x93 & 0xff,
++  0x92 & 0xff,
++  0x91 & 0xff,
++  0x91 & 0xff,
++  0x90 & 0xff,
++  0x8f & 0xff,
++  0x8f & 0xff,
++  0x8e & 0xff,
++  0x8e & 0xff,
++  0x8d & 0xff,
++  0x8c & 0xff,
++  0x8c & 0xff,
++  0x8b & 0xff,
++  0x8b & 0xff,
++  0x8a & 0xff,
++  0x89 & 0xff,
++  0x89 & 0xff,
++  0x88 & 0xff,
++  0x88 & 0xff,
++  0x87 & 0xff,
++  0x87 & 0xff,
++  0x86 & 0xff,
++  0x85 & 0xff,
++  0x85 & 0xff,
++  0x84 & 0xff,
++  0x84 & 0xff,
++  0x83 & 0xff,
++  0x83 & 0xff,
++  0x82 & 0xff,
++  0x82 & 0xff,
++  0x81 & 0xff,
++  0x81 & 0xff,
++  0x81 & 0xff,
++  0
++};
++
++/* constant table RSQRT_Data8 */
++static const unsigned CONST_TBL_RSQRT_Data8_0[] = {
++  0xb4 & 0xff,
++  0xb3 & 0xff,
++  0xb2 & 0xff,
++  0xb0 & 0xff,
++  0xaf & 0xff,
++  0xae & 0xff,
++  0xac & 0xff,
++  0xab & 0xff,
++  0xaa & 0xff,
++  0xa9 & 0xff,
++  0xa8 & 0xff,
++  0xa7 & 0xff,
++  0xa6 & 0xff,
++  0xa5 & 0xff,
++  0xa3 & 0xff,
++  0xa2 & 0xff,
++  0xa1 & 0xff,
++  0xa0 & 0xff,
++  0x9f & 0xff,
++  0x9e & 0xff,
++  0x9e & 0xff,
++  0x9d & 0xff,
++  0x9c & 0xff,
++  0x9b & 0xff,
++  0x9a & 0xff,
++  0x99 & 0xff,
++  0x98 & 0xff,
++  0x97 & 0xff,
++  0x97 & 0xff,
++  0x96 & 0xff,
++  0x95 & 0xff,
++  0x94 & 0xff,
++  0x93 & 0xff,
++  0x93 & 0xff,
++  0x92 & 0xff,
++  0x91 & 0xff,
++  0x90 & 0xff,
++  0x90 & 0xff,
++  0x8f & 0xff,
++  0x8e & 0xff,
++  0x8e & 0xff,
++  0x8d & 0xff,
++  0x8c & 0xff,
++  0x8c & 0xff,
++  0x8b & 0xff,
++  0x8a & 0xff,
++  0x8a & 0xff,
++  0x89 & 0xff,
++  0x89 & 0xff,
++  0x88 & 0xff,
++  0x87 & 0xff,
++  0x87 & 0xff,
++  0x86 & 0xff,
++  0x86 & 0xff,
++  0x85 & 0xff,
++  0x84 & 0xff,
++  0x84 & 0xff,
++  0x83 & 0xff,
++  0x83 & 0xff,
++  0x82 & 0xff,
++  0x82 & 0xff,
++  0x81 & 0xff,
++  0x81 & 0xff,
++  0x80 & 0xff,
++  0xff & 0xff,
++  0xfd & 0xff,
++  0xfb & 0xff,
++  0xf9 & 0xff,
++  0xf7 & 0xff,
++  0xf6 & 0xff,
++  0xf4 & 0xff,
++  0xf2 & 0xff,
++  0xf1 & 0xff,
++  0xef & 0xff,
++  0xed & 0xff,
++  0xec & 0xff,
++  0xea & 0xff,
++  0xe9 & 0xff,
++  0xe7 & 0xff,
++  0xe6 & 0xff,
++  0xe4 & 0xff,
++  0xe3 & 0xff,
++  0xe1 & 0xff,
++  0xe0 & 0xff,
++  0xdf & 0xff,
++  0xdd & 0xff,
++  0xdc & 0xff,
++  0xdb & 0xff,
++  0xda & 0xff,
++  0xd8 & 0xff,
++  0xd7 & 0xff,
++  0xd6 & 0xff,
++  0xd5 & 0xff,
++  0xd4 & 0xff,
++  0xd3 & 0xff,
++  0xd2 & 0xff,
++  0xd0 & 0xff,
++  0xcf & 0xff,
++  0xce & 0xff,
++  0xcd & 0xff,
++  0xcc & 0xff,
++  0xcb & 0xff,
++  0xca & 0xff,
++  0xc9 & 0xff,
++  0xc8 & 0xff,
++  0xc7 & 0xff,
++  0xc6 & 0xff,
++  0xc6 & 0xff,
++  0xc5 & 0xff,
++  0xc4 & 0xff,
++  0xc3 & 0xff,
++  0xc2 & 0xff,
++  0xc1 & 0xff,
++  0xc0 & 0xff,
++  0xbf & 0xff,
++  0xbf & 0xff,
++  0xbe & 0xff,
++  0xbd & 0xff,
++  0xbc & 0xff,
++  0xbb & 0xff,
++  0xbb & 0xff,
++  0xba & 0xff,
++  0xb9 & 0xff,
++  0xb8 & 0xff,
++  0xb8 & 0xff,
++  0xb7 & 0xff,
++  0xb6 & 0xff,
++  0xb5 & 0xff,
++  0
++};
++
++/* constant table RECIP_Data10_2 */
++static const unsigned CONST_TBL_RECIP_Data10_2_0[] = {
++  0x3fc & 0x3ff,
++  0x3f4 & 0x3ff,
++  0x3ec & 0x3ff,
++  0x3e5 & 0x3ff,
++  0x3dd & 0x3ff,
++  0x3d6 & 0x3ff,
++  0x3cf & 0x3ff,
++  0x3c7 & 0x3ff,
++  0x3c0 & 0x3ff,
++  0x3b9 & 0x3ff,
++  0x3b2 & 0x3ff,
++  0x3ac & 0x3ff,
++  0x3a5 & 0x3ff,
++  0x39e & 0x3ff,
++  0x398 & 0x3ff,
++  0x391 & 0x3ff,
++  0x38b & 0x3ff,
++  0x385 & 0x3ff,
++  0x37f & 0x3ff,
++  0x378 & 0x3ff,
++  0x373 & 0x3ff,
++  0x36c & 0x3ff,
++  0x367 & 0x3ff,
++  0x361 & 0x3ff,
++  0x35c & 0x3ff,
++  0x356 & 0x3ff,
++  0x350 & 0x3ff,
++  0x34b & 0x3ff,
++  0x345 & 0x3ff,
++  0x340 & 0x3ff,
++  0x33b & 0x3ff,
++  0x335 & 0x3ff,
++  0x330 & 0x3ff,
++  0x32c & 0x3ff,
++  0x327 & 0x3ff,
++  0x322 & 0x3ff,
++  0x31c & 0x3ff,
++  0x318 & 0x3ff,
++  0x314 & 0x3ff,
++  0x30e & 0x3ff,
++  0x30a & 0x3ff,
++  0x306 & 0x3ff,
++  0x300 & 0x3ff,
++  0x2fc & 0x3ff,
++  0x2f8 & 0x3ff,
++  0x2f4 & 0x3ff,
++  0x2f0 & 0x3ff,
++  0x2ea & 0x3ff,
++  0x2e6 & 0x3ff,
++  0x2e2 & 0x3ff,
++  0x2de & 0x3ff,
++  0x2da & 0x3ff,
++  0x2d6 & 0x3ff,
++  0x2d2 & 0x3ff,
++  0x2ce & 0x3ff,
++  0x2ca & 0x3ff,
++  0x2c6 & 0x3ff,
++  0x2c2 & 0x3ff,
++  0x2be & 0x3ff,
++  0x2ba & 0x3ff,
++  0x2b8 & 0x3ff,
++  0x2b4 & 0x3ff,
++  0x2b0 & 0x3ff,
++  0x2ac & 0x3ff,
++  0x2a8 & 0x3ff,
++  0x2a6 & 0x3ff,
++  0x2a2 & 0x3ff,
++  0x29e & 0x3ff,
++  0x29c & 0x3ff,
++  0x298 & 0x3ff,
++  0x294 & 0x3ff,
++  0x290 & 0x3ff,
++  0x28e & 0x3ff,
++  0x28a & 0x3ff,
++  0x288 & 0x3ff,
++  0x284 & 0x3ff,
++  0x280 & 0x3ff,
++  0x27e & 0x3ff,
++  0x27a & 0x3ff,
++  0x278 & 0x3ff,
++  0x274 & 0x3ff,
++  0x272 & 0x3ff,
++  0x26e & 0x3ff,
++  0x26c & 0x3ff,
++  0x268 & 0x3ff,
++  0x266 & 0x3ff,
++  0x264 & 0x3ff,
++  0x260 & 0x3ff,
++  0x25e & 0x3ff,
++  0x25a & 0x3ff,
++  0x258 & 0x3ff,
++  0x254 & 0x3ff,
++  0x252 & 0x3ff,
++  0x250 & 0x3ff,
++  0x24c & 0x3ff,
++  0x24a & 0x3ff,
++  0x248 & 0x3ff,
++  0x246 & 0x3ff,
++  0x242 & 0x3ff,
++  0x240 & 0x3ff,
++  0x23e & 0x3ff,
++  0x23c & 0x3ff,
++  0x238 & 0x3ff,
++  0x236 & 0x3ff,
++  0x234 & 0x3ff,
++  0x232 & 0x3ff,
++  0x230 & 0x3ff,
++  0x22c & 0x3ff,
++  0x22a & 0x3ff,
++  0x228 & 0x3ff,
++  0x226 & 0x3ff,
++  0x224 & 0x3ff,
++  0x220 & 0x3ff,
++  0x21e & 0x3ff,
++  0x21c & 0x3ff,
++  0x21a & 0x3ff,
++  0x218 & 0x3ff,
++  0x216 & 0x3ff,
++  0x214 & 0x3ff,
++  0x212 & 0x3ff,
++  0x210 & 0x3ff,
++  0x20e & 0x3ff,
++  0x20c & 0x3ff,
++  0x208 & 0x3ff,
++  0x208 & 0x3ff,
++  0x204 & 0x3ff,
++  0x204 & 0x3ff,
++  0x201 & 0x3ff,
++  0
++};
++
++/* constant table RSQRT_10b_256 */
++static const unsigned CONST_TBL_RSQRT_10b_256_0[] = {
++  0x1a5 & 0x3ff,
++  0x1a0 & 0x3ff,
++  0x19a & 0x3ff,
++  0x195 & 0x3ff,
++  0x18f & 0x3ff,
++  0x18a & 0x3ff,
++  0x185 & 0x3ff,
++  0x180 & 0x3ff,
++  0x17a & 0x3ff,
++  0x175 & 0x3ff,
++  0x170 & 0x3ff,
++  0x16b & 0x3ff,
++  0x166 & 0x3ff,
++  0x161 & 0x3ff,
++  0x15d & 0x3ff,
++  0x158 & 0x3ff,
++  0x153 & 0x3ff,
++  0x14e & 0x3ff,
++  0x14a & 0x3ff,
++  0x145 & 0x3ff,
++  0x140 & 0x3ff,
++  0x13c & 0x3ff,
++  0x138 & 0x3ff,
++  0x133 & 0x3ff,
++  0x12f & 0x3ff,
++  0x12a & 0x3ff,
++  0x126 & 0x3ff,
++  0x122 & 0x3ff,
++  0x11e & 0x3ff,
++  0x11a & 0x3ff,
++  0x115 & 0x3ff,
++  0x111 & 0x3ff,
++  0x10d & 0x3ff,
++  0x109 & 0x3ff,
++  0x105 & 0x3ff,
++  0x101 & 0x3ff,
++  0xfd & 0x3ff,
++  0xfa & 0x3ff,
++  0xf6 & 0x3ff,
++  0xf2 & 0x3ff,
++  0xee & 0x3ff,
++  0xea & 0x3ff,
++  0xe7 & 0x3ff,
++  0xe3 & 0x3ff,
++  0xdf & 0x3ff,
++  0xdc & 0x3ff,
++  0xd8 & 0x3ff,
++  0xd5 & 0x3ff,
++  0xd1 & 0x3ff,
++  0xce & 0x3ff,
++  0xca & 0x3ff,
++  0xc7 & 0x3ff,
++  0xc3 & 0x3ff,
++  0xc0 & 0x3ff,
++  0xbd & 0x3ff,
++  0xb9 & 0x3ff,
++  0xb6 & 0x3ff,
++  0xb3 & 0x3ff,
++  0xb0 & 0x3ff,
++  0xad & 0x3ff,
++  0xa9 & 0x3ff,
++  0xa6 & 0x3ff,
++  0xa3 & 0x3ff,
++  0xa0 & 0x3ff,
++  0x9d & 0x3ff,
++  0x9a & 0x3ff,
++  0x97 & 0x3ff,
++  0x94 & 0x3ff,
++  0x91 & 0x3ff,
++  0x8e & 0x3ff,
++  0x8b & 0x3ff,
++  0x88 & 0x3ff,
++  0x85 & 0x3ff,
++  0x82 & 0x3ff,
++  0x7f & 0x3ff,
++  0x7d & 0x3ff,
++  0x7a & 0x3ff,
++  0x77 & 0x3ff,
++  0x74 & 0x3ff,
++  0x71 & 0x3ff,
++  0x6f & 0x3ff,
++  0x6c & 0x3ff,
++  0x69 & 0x3ff,
++  0x67 & 0x3ff,
++  0x64 & 0x3ff,
++  0x61 & 0x3ff,
++  0x5f & 0x3ff,
++  0x5c & 0x3ff,
++  0x5a & 0x3ff,
++  0x57 & 0x3ff,
++  0x54 & 0x3ff,
++  0x52 & 0x3ff,
++  0x4f & 0x3ff,
++  0x4d & 0x3ff,
++  0x4a & 0x3ff,
++  0x48 & 0x3ff,
++  0x45 & 0x3ff,
++  0x43 & 0x3ff,
++  0x41 & 0x3ff,
++  0x3e & 0x3ff,
++  0x3c & 0x3ff,
++  0x3a & 0x3ff,
++  0x37 & 0x3ff,
++  0x35 & 0x3ff,
++  0x33 & 0x3ff,
++  0x30 & 0x3ff,
++  0x2e & 0x3ff,
++  0x2c & 0x3ff,
++  0x29 & 0x3ff,
++  0x27 & 0x3ff,
++  0x25 & 0x3ff,
++  0x23 & 0x3ff,
++  0x20 & 0x3ff,
++  0x1e & 0x3ff,
++  0x1c & 0x3ff,
++  0x1a & 0x3ff,
++  0x18 & 0x3ff,
++  0x16 & 0x3ff,
++  0x14 & 0x3ff,
++  0x11 & 0x3ff,
++  0xf & 0x3ff,
++  0xd & 0x3ff,
++  0xb & 0x3ff,
++  0x9 & 0x3ff,
++  0x7 & 0x3ff,
++  0x5 & 0x3ff,
++  0x3 & 0x3ff,
++  0x1 & 0x3ff,
++  0x3fc & 0x3ff,
++  0x3f4 & 0x3ff,
++  0x3ec & 0x3ff,
++  0x3e5 & 0x3ff,
++  0x3dd & 0x3ff,
++  0x3d5 & 0x3ff,
++  0x3ce & 0x3ff,
++  0x3c7 & 0x3ff,
++  0x3bf & 0x3ff,
++  0x3b8 & 0x3ff,
++  0x3b1 & 0x3ff,
++  0x3aa & 0x3ff,
++  0x3a3 & 0x3ff,
++  0x39c & 0x3ff,
++  0x395 & 0x3ff,
++  0x38e & 0x3ff,
++  0x388 & 0x3ff,
++  0x381 & 0x3ff,
++  0x37a & 0x3ff,
++  0x374 & 0x3ff,
++  0x36d & 0x3ff,
++  0x367 & 0x3ff,
++  0x361 & 0x3ff,
++  0x35a & 0x3ff,
++  0x354 & 0x3ff,
++  0x34e & 0x3ff,
++  0x348 & 0x3ff,
++  0x342 & 0x3ff,
++  0x33c & 0x3ff,
++  0x336 & 0x3ff,
++  0x330 & 0x3ff,
++  0x32b & 0x3ff,
++  0x325 & 0x3ff,
++  0x31f & 0x3ff,
++  0x31a & 0x3ff,
++  0x314 & 0x3ff,
++  0x30f & 0x3ff,
++  0x309 & 0x3ff,
++  0x304 & 0x3ff,
++  0x2fe & 0x3ff,
++  0x2f9 & 0x3ff,
++  0x2f4 & 0x3ff,
++  0x2ee & 0x3ff,
++  0x2e9 & 0x3ff,
++  0x2e4 & 0x3ff,
++  0x2df & 0x3ff,
++  0x2da & 0x3ff,
++  0x2d5 & 0x3ff,
++  0x2d0 & 0x3ff,
++  0x2cb & 0x3ff,
++  0x2c6 & 0x3ff,
++  0x2c1 & 0x3ff,
++  0x2bd & 0x3ff,
++  0x2b8 & 0x3ff,
++  0x2b3 & 0x3ff,
++  0x2ae & 0x3ff,
++  0x2aa & 0x3ff,
++  0x2a5 & 0x3ff,
++  0x2a1 & 0x3ff,
++  0x29c & 0x3ff,
++  0x298 & 0x3ff,
++  0x293 & 0x3ff,
++  0x28f & 0x3ff,
++  0x28a & 0x3ff,
++  0x286 & 0x3ff,
++  0x282 & 0x3ff,
++  0x27d & 0x3ff,
++  0x279 & 0x3ff,
++  0x275 & 0x3ff,
++  0x271 & 0x3ff,
++  0x26d & 0x3ff,
++  0x268 & 0x3ff,
++  0x264 & 0x3ff,
++  0x260 & 0x3ff,
++  0x25c & 0x3ff,
++  0x258 & 0x3ff,
++  0x254 & 0x3ff,
++  0x250 & 0x3ff,
++  0x24c & 0x3ff,
++  0x249 & 0x3ff,
++  0x245 & 0x3ff,
++  0x241 & 0x3ff,
++  0x23d & 0x3ff,
++  0x239 & 0x3ff,
++  0x235 & 0x3ff,
++  0x232 & 0x3ff,
++  0x22e & 0x3ff,
++  0x22a & 0x3ff,
++  0x227 & 0x3ff,
++  0x223 & 0x3ff,
++  0x220 & 0x3ff,
++  0x21c & 0x3ff,
++  0x218 & 0x3ff,
++  0x215 & 0x3ff,
++  0x211 & 0x3ff,
++  0x20e & 0x3ff,
++  0x20a & 0x3ff,
++  0x207 & 0x3ff,
++  0x204 & 0x3ff,
++  0x200 & 0x3ff,
++  0x1fd & 0x3ff,
++  0x1f9 & 0x3ff,
++  0x1f6 & 0x3ff,
++  0x1f3 & 0x3ff,
++  0x1f0 & 0x3ff,
++  0x1ec & 0x3ff,
++  0x1e9 & 0x3ff,
++  0x1e6 & 0x3ff,
++  0x1e3 & 0x3ff,
++  0x1df & 0x3ff,
++  0x1dc & 0x3ff,
++  0x1d9 & 0x3ff,
++  0x1d6 & 0x3ff,
++  0x1d3 & 0x3ff,
++  0x1d0 & 0x3ff,
++  0x1cd & 0x3ff,
++  0x1ca & 0x3ff,
++  0x1c7 & 0x3ff,
++  0x1c4 & 0x3ff,
++  0x1c1 & 0x3ff,
++  0x1be & 0x3ff,
++  0x1bb & 0x3ff,
++  0x1b8 & 0x3ff,
++  0x1b5 & 0x3ff,
++  0x1b2 & 0x3ff,
++  0x1af & 0x3ff,
++  0x1ac & 0x3ff,
++  0x1aa & 0x3ff,
++  0
++};
++
++/* constant table RECIP_10b_256 */
++static const unsigned CONST_TBL_RECIP_10b_256_0[] = {
++  0x3fc & 0x3ff,
++  0x3f4 & 0x3ff,
++  0x3ec & 0x3ff,
++  0x3e4 & 0x3ff,
++  0x3dd & 0x3ff,
++  0x3d5 & 0x3ff,
++  0x3cd & 0x3ff,
++  0x3c6 & 0x3ff,
++  0x3be & 0x3ff,
++  0x3b7 & 0x3ff,
++  0x3af & 0x3ff,
++  0x3a8 & 0x3ff,
++  0x3a1 & 0x3ff,
++  0x399 & 0x3ff,
++  0x392 & 0x3ff,
++  0x38b & 0x3ff,
++  0x384 & 0x3ff,
++  0x37d & 0x3ff,
++  0x376 & 0x3ff,
++  0x36f & 0x3ff,
++  0x368 & 0x3ff,
++  0x361 & 0x3ff,
++  0x35b & 0x3ff,
++  0x354 & 0x3ff,
++  0x34d & 0x3ff,
++  0x346 & 0x3ff,
++  0x340 & 0x3ff,
++  0x339 & 0x3ff,
++  0x333 & 0x3ff,
++  0x32c & 0x3ff,
++  0x326 & 0x3ff,
++  0x320 & 0x3ff,
++  0x319 & 0x3ff,
++  0x313 & 0x3ff,
++  0x30d & 0x3ff,
++  0x307 & 0x3ff,
++  0x300 & 0x3ff,
++  0x2fa & 0x3ff,
++  0x2f4 & 0x3ff,
++  0x2ee & 0x3ff,
++  0x2e8 & 0x3ff,
++  0x2e2 & 0x3ff,
++  0x2dc & 0x3ff,
++  0x2d7 & 0x3ff,
++  0x2d1 & 0x3ff,
++  0x2cb & 0x3ff,
++  0x2c5 & 0x3ff,
++  0x2bf & 0x3ff,
++  0x2ba & 0x3ff,
++  0x2b4 & 0x3ff,
++  0x2af & 0x3ff,
++  0x2a9 & 0x3ff,
++  0x2a3 & 0x3ff,
++  0x29e & 0x3ff,
++  0x299 & 0x3ff,
++  0x293 & 0x3ff,
++  0x28e & 0x3ff,
++  0x288 & 0x3ff,
++  0x283 & 0x3ff,
++  0x27e & 0x3ff,
++  0x279 & 0x3ff,
++  0x273 & 0x3ff,
++  0x26e & 0x3ff,
++  0x269 & 0x3ff,
++  0x264 & 0x3ff,
++  0x25f & 0x3ff,
++  0x25a & 0x3ff,
++  0x255 & 0x3ff,
++  0x250 & 0x3ff,
++  0x24b & 0x3ff,
++  0x246 & 0x3ff,
++  0x241 & 0x3ff,
++  0x23c & 0x3ff,
++  0x237 & 0x3ff,
++  0x232 & 0x3ff,
++  0x22e & 0x3ff,
++  0x229 & 0x3ff,
++  0x224 & 0x3ff,
++  0x21f & 0x3ff,
++  0x21b & 0x3ff,
++  0x216 & 0x3ff,
++  0x211 & 0x3ff,
++  0x20d & 0x3ff,
++  0x208 & 0x3ff,
++  0x204 & 0x3ff,
++  0x1ff & 0x3ff,
++  0x1fb & 0x3ff,
++  0x1f6 & 0x3ff,
++  0x1f2 & 0x3ff,
++  0x1ed & 0x3ff,
++  0x1e9 & 0x3ff,
++  0x1e5 & 0x3ff,
++  0x1e0 & 0x3ff,
++  0x1dc & 0x3ff,
++  0x1d8 & 0x3ff,
++  0x1d4 & 0x3ff,
++  0x1cf & 0x3ff,
++  0x1cb & 0x3ff,
++  0x1c7 & 0x3ff,
++  0x1c3 & 0x3ff,
++  0x1bf & 0x3ff,
++  0x1bb & 0x3ff,
++  0x1b6 & 0x3ff,
++  0x1b2 & 0x3ff,
++  0x1ae & 0x3ff,
++  0x1aa & 0x3ff,
++  0x1a6 & 0x3ff,
++  0x1a2 & 0x3ff,
++  0x19e & 0x3ff,
++  0x19a & 0x3ff,
++  0x197 & 0x3ff,
++  0x193 & 0x3ff,
++  0x18f & 0x3ff,
++  0x18b & 0x3ff,
++  0x187 & 0x3ff,
++  0x183 & 0x3ff,
++  0x17f & 0x3ff,
++  0x17c & 0x3ff,
++  0x178 & 0x3ff,
++  0x174 & 0x3ff,
++  0x171 & 0x3ff,
++  0x16d & 0x3ff,
++  0x169 & 0x3ff,
++  0x166 & 0x3ff,
++  0x162 & 0x3ff,
++  0x15e & 0x3ff,
++  0x15b & 0x3ff,
++  0x157 & 0x3ff,
++  0x154 & 0x3ff,
++  0x150 & 0x3ff,
++  0x14d & 0x3ff,
++  0x149 & 0x3ff,
++  0x146 & 0x3ff,
++  0x142 & 0x3ff,
++  0x13f & 0x3ff,
++  0x13b & 0x3ff,
++  0x138 & 0x3ff,
++  0x134 & 0x3ff,
++  0x131 & 0x3ff,
++  0x12e & 0x3ff,
++  0x12a & 0x3ff,
++  0x127 & 0x3ff,
++  0x124 & 0x3ff,
++  0x120 & 0x3ff,
++  0x11d & 0x3ff,
++  0x11a & 0x3ff,
++  0x117 & 0x3ff,
++  0x113 & 0x3ff,
++  0x110 & 0x3ff,
++  0x10d & 0x3ff,
++  0x10a & 0x3ff,
++  0x107 & 0x3ff,
++  0x103 & 0x3ff,
++  0x100 & 0x3ff,
++  0xfd & 0x3ff,
++  0xfa & 0x3ff,
++  0xf7 & 0x3ff,
++  0xf4 & 0x3ff,
++  0xf1 & 0x3ff,
++  0xee & 0x3ff,
++  0xeb & 0x3ff,
++  0xe8 & 0x3ff,
++  0xe5 & 0x3ff,
++  0xe2 & 0x3ff,
++  0xdf & 0x3ff,
++  0xdc & 0x3ff,
++  0xd9 & 0x3ff,
++  0xd6 & 0x3ff,
++  0xd3 & 0x3ff,
++  0xd0 & 0x3ff,
++  0xcd & 0x3ff,
++  0xca & 0x3ff,
++  0xc8 & 0x3ff,
++  0xc5 & 0x3ff,
++  0xc2 & 0x3ff,
++  0xbf & 0x3ff,
++  0xbc & 0x3ff,
++  0xb9 & 0x3ff,
++  0xb7 & 0x3ff,
++  0xb4 & 0x3ff,
++  0xb1 & 0x3ff,
++  0xae & 0x3ff,
++  0xac & 0x3ff,
++  0xa9 & 0x3ff,
++  0xa6 & 0x3ff,
++  0xa4 & 0x3ff,
++  0xa1 & 0x3ff,
++  0x9e & 0x3ff,
++  0x9c & 0x3ff,
++  0x99 & 0x3ff,
++  0x96 & 0x3ff,
++  0x94 & 0x3ff,
++  0x91 & 0x3ff,
++  0x8e & 0x3ff,
++  0x8c & 0x3ff,
++  0x89 & 0x3ff,
++  0x87 & 0x3ff,
++  0x84 & 0x3ff,
++  0x82 & 0x3ff,
++  0x7f & 0x3ff,
++  0x7c & 0x3ff,
++  0x7a & 0x3ff,
++  0x77 & 0x3ff,
++  0x75 & 0x3ff,
++  0x73 & 0x3ff,
++  0x70 & 0x3ff,
++  0x6e & 0x3ff,
++  0x6b & 0x3ff,
++  0x69 & 0x3ff,
++  0x66 & 0x3ff,
++  0x64 & 0x3ff,
++  0x61 & 0x3ff,
++  0x5f & 0x3ff,
++  0x5d & 0x3ff,
++  0x5a & 0x3ff,
++  0x58 & 0x3ff,
++  0x56 & 0x3ff,
++  0x53 & 0x3ff,
++  0x51 & 0x3ff,
++  0x4f & 0x3ff,
++  0x4c & 0x3ff,
++  0x4a & 0x3ff,
++  0x48 & 0x3ff,
++  0x45 & 0x3ff,
++  0x43 & 0x3ff,
++  0x41 & 0x3ff,
++  0x3f & 0x3ff,
++  0x3c & 0x3ff,
++  0x3a & 0x3ff,
++  0x38 & 0x3ff,
++  0x36 & 0x3ff,
++  0x33 & 0x3ff,
++  0x31 & 0x3ff,
++  0x2f & 0x3ff,
++  0x2d & 0x3ff,
++  0x2b & 0x3ff,
++  0x29 & 0x3ff,
++  0x26 & 0x3ff,
++  0x24 & 0x3ff,
++  0x22 & 0x3ff,
++  0x20 & 0x3ff,
++  0x1e & 0x3ff,
++  0x1c & 0x3ff,
++  0x1a & 0x3ff,
++  0x18 & 0x3ff,
++  0x15 & 0x3ff,
++  0x13 & 0x3ff,
++  0x11 & 0x3ff,
++  0xf & 0x3ff,
++  0xd & 0x3ff,
++  0xb & 0x3ff,
++  0x9 & 0x3ff,
++  0x7 & 0x3ff,
++  0x5 & 0x3ff,
++  0x3 & 0x3ff,
++  0x1 & 0x3ff,
++  0
++};
++
+ 
  /* Instruction operands.  */
  
  static int
@@ -7480,7 +8396,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_call12_stateArgs[] = {
-@@ -5192,8 +4955,8 @@ static xtensa_arg_internal Iclass_xt_iclass_call12_sta
+@@ -5192,8 +5872,8 @@ static xtensa_arg_internal Iclass_xt_iclass_call12_sta
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_call8_args[] = {
@@ -7491,7 +8407,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_call8_stateArgs[] = {
-@@ -5201,8 +4964,8 @@ static xtensa_arg_internal Iclass_xt_iclass_call8_stat
+@@ -5201,8 +5881,8 @@ static xtensa_arg_internal Iclass_xt_iclass_call8_stat
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_call4_args[] = {
@@ -7502,7 +8418,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_call4_stateArgs[] = {
-@@ -5210,8 +4973,8 @@ static xtensa_arg_internal Iclass_xt_iclass_call4_stat
+@@ -5210,8 +5890,8 @@ static xtensa_arg_internal Iclass_xt_iclass_call4_stat
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_callx12_args[] = {
@@ -7513,7 +8429,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_callx12_stateArgs[] = {
-@@ -5219,8 +4982,8 @@ static xtensa_arg_internal Iclass_xt_iclass_callx12_st
+@@ -5219,8 +5899,8 @@ static xtensa_arg_internal Iclass_xt_iclass_callx12_st
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_callx8_args[] = {
@@ -7524,7 +8440,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_callx8_stateArgs[] = {
-@@ -5228,8 +4991,8 @@ static xtensa_arg_internal Iclass_xt_iclass_callx8_sta
+@@ -5228,8 +5908,8 @@ static xtensa_arg_internal Iclass_xt_iclass_callx8_sta
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_callx4_args[] = {
@@ -7535,7 +8451,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_callx4_stateArgs[] = {
-@@ -5237,9 +5000,9 @@ static xtensa_arg_internal Iclass_xt_iclass_callx4_sta
+@@ -5237,9 +5917,9 @@ static xtensa_arg_internal Iclass_xt_iclass_callx4_sta
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_entry_args[] = {
@@ -7548,7 +8464,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_entry_stateArgs[] = {
-@@ -5251,8 +5014,8 @@ static xtensa_arg_internal Iclass_xt_iclass_entry_stat
+@@ -5251,8 +5931,8 @@ static xtensa_arg_internal Iclass_xt_iclass_entry_stat
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_movsp_args[] = {
@@ -7559,7 +8475,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_movsp_stateArgs[] = {
-@@ -5261,162 +5024,138 @@ static xtensa_arg_internal Iclass_xt_iclass_movsp_stat
+@@ -5261,162 +5941,138 @@ static xtensa_arg_internal Iclass_xt_iclass_movsp_stat
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rotw_args[] = {
@@ -7758,7 +8674,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_rur_threadptr_stateArgs[] = {
-@@ -5424,7 +5163,7 @@ static xtensa_arg_internal Iclass_rur_threadptr_stateA
+@@ -5424,7 +6080,7 @@ static xtensa_arg_internal Iclass_rur_threadptr_stateA
  };
  
  static xtensa_arg_internal Iclass_wur_threadptr_args[] = {
@@ -7767,7 +8683,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_wur_threadptr_stateArgs[] = {
-@@ -5432,120 +5171,115 @@ static xtensa_arg_internal Iclass_wur_threadptr_stateA
+@@ -5432,120 +6088,115 @@ static xtensa_arg_internal Iclass_wur_threadptr_stateA
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_addi_args[] = {
@@ -7940,7 +8856,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_loop_stateArgs[] = {
-@@ -5555,8 +5289,8 @@ static xtensa_arg_internal Iclass_xt_iclass_loop_state
+@@ -5555,8 +6206,8 @@ static xtensa_arg_internal Iclass_xt_iclass_loop_state
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_loopz_args[] = {
@@ -7951,7 +8867,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_loopz_stateArgs[] = {
-@@ -5566,45 +5300,51 @@ static xtensa_arg_internal Iclass_xt_iclass_loopz_stat
+@@ -5566,45 +6217,51 @@ static xtensa_arg_internal Iclass_xt_iclass_loopz_stat
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_movi_args[] = {
@@ -8021,7 +8937,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_sar_stateArgs[] = {
-@@ -5612,7 +5352,7 @@ static xtensa_arg_internal Iclass_xt_iclass_sar_stateA
+@@ -5612,7 +6269,7 @@ static xtensa_arg_internal Iclass_xt_iclass_sar_stateA
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_sari_args[] = {
@@ -8030,7 +8946,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_sari_stateArgs[] = {
-@@ -5620,8 +5360,8 @@ static xtensa_arg_internal Iclass_xt_iclass_sari_state
+@@ -5620,8 +6277,8 @@ static xtensa_arg_internal Iclass_xt_iclass_sari_state
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_shifts_args[] = {
@@ -8041,7 +8957,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_shifts_stateArgs[] = {
-@@ -5629,9 +5369,9 @@ static xtensa_arg_internal Iclass_xt_iclass_shifts_sta
+@@ -5629,9 +6286,9 @@ static xtensa_arg_internal Iclass_xt_iclass_shifts_sta
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_shiftst_args[] = {
@@ -8054,7 +8970,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_shiftst_stateArgs[] = {
-@@ -5639,8 +5379,8 @@ static xtensa_arg_internal Iclass_xt_iclass_shiftst_st
+@@ -5639,8 +6296,8 @@ static xtensa_arg_internal Iclass_xt_iclass_shiftst_st
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_shiftt_args[] = {
@@ -8065,7 +8981,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_shiftt_stateArgs[] = {
-@@ -5648,21 +5388,21 @@ static xtensa_arg_internal Iclass_xt_iclass_shiftt_sta
+@@ -5648,21 +6305,21 @@ static xtensa_arg_internal Iclass_xt_iclass_shiftt_sta
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_slli_args[] = {
@@ -8096,7 +9012,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_sync_stateArgs[] = {
-@@ -5670,22 +5410,21 @@ static xtensa_arg_internal Iclass_xt_iclass_sync_state
+@@ -5670,22 +6327,21 @@ static xtensa_arg_internal Iclass_xt_iclass_sync_state
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsil_args[] = {
@@ -8122,7 +9038,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_lend_stateArgs[] = {
-@@ -5693,7 +5432,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_lend_s
+@@ -5693,7 +6349,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_lend_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_lend_args[] = {
@@ -8131,7 +9047,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_lend_stateArgs[] = {
-@@ -5701,7 +5440,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_lend_s
+@@ -5701,7 +6357,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_lend_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_lend_args[] = {
@@ -8140,7 +9056,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_lend_stateArgs[] = {
-@@ -5709,7 +5448,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_lend_s
+@@ -5709,7 +6365,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_lend_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_lcount_args[] = {
@@ -8149,7 +9065,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_lcount_stateArgs[] = {
-@@ -5717,7 +5456,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_lcount
+@@ -5717,7 +6373,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_lcount
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_lcount_args[] = {
@@ -8158,7 +9074,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_lcount_stateArgs[] = {
-@@ -5726,7 +5465,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_lcount
+@@ -5726,7 +6382,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_lcount
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_lcount_args[] = {
@@ -8167,7 +9083,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_lcount_stateArgs[] = {
-@@ -5735,7 +5474,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_lcount
+@@ -5735,7 +6391,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_lcount
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_lbeg_args[] = {
@@ -8176,7 +9092,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_lbeg_stateArgs[] = {
-@@ -5743,7 +5482,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_lbeg_s
+@@ -5743,7 +6399,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_lbeg_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_lbeg_args[] = {
@@ -8185,7 +9101,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_lbeg_stateArgs[] = {
-@@ -5751,7 +5490,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_lbeg_s
+@@ -5751,7 +6407,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_lbeg_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_lbeg_args[] = {
@@ -8194,7 +9110,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_lbeg_stateArgs[] = {
-@@ -5759,7 +5498,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_lbeg_s
+@@ -5759,7 +6415,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_lbeg_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_sar_args[] = {
@@ -8203,7 +9119,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_sar_stateArgs[] = {
-@@ -5767,7 +5506,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_sar_st
+@@ -5767,7 +6423,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_sar_st
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_sar_args[] = {
@@ -8212,7 +9128,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_sar_stateArgs[] = {
-@@ -5776,953 +5515,798 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_sar_st
+@@ -5776,953 +6432,798 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_sar_st
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_sar_args[] = {
@@ -9304,7 +10220,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_aa_stateArgs[] = {
-@@ -6730,8 +6314,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_aa_s
+@@ -6730,8 +7231,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_aa_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_ad_args[] = {
@@ -9315,7 +10231,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_ad_stateArgs[] = {
-@@ -6739,8 +6323,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_ad_s
+@@ -6739,8 +7240,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_ad_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_da_args[] = {
@@ -9326,7 +10242,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_da_stateArgs[] = {
-@@ -6748,8 +6332,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_da_s
+@@ -6748,8 +7249,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_da_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_dd_args[] = {
@@ -9337,7 +10253,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_dd_stateArgs[] = {
-@@ -6757,8 +6341,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_dd_s
+@@ -6757,8 +7258,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16_dd_s
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_aa_args[] = {
@@ -9348,7 +10264,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_aa_stateArgs[] = {
-@@ -6766,8 +6350,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_aa_
+@@ -6766,8 +7267,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_aa_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_ad_args[] = {
@@ -9359,7 +10275,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_ad_stateArgs[] = {
-@@ -6775,8 +6359,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_ad_
+@@ -6775,8 +7276,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_ad_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_da_args[] = {
@@ -9370,7 +10286,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_da_stateArgs[] = {
-@@ -6784,8 +6368,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_da_
+@@ -6784,8 +7285,8 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_da_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_dd_args[] = {
@@ -9381,7 +10297,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16a_dd_stateArgs[] = {
-@@ -6793,10 +6377,10 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_dd_
+@@ -6793,10 +7294,10 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16a_dd_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16al_da_args[] = {
@@ -9396,7 +10312,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16al_da_stateArgs[] = {
-@@ -6804,10 +6388,10 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16al_da
+@@ -6804,10 +7305,10 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16al_da
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16al_dd_args[] = {
@@ -9411,7 +10327,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16al_dd_stateArgs[] = {
-@@ -6815,78 +6399,72 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16al_dd
+@@ -6815,78 +7316,72 @@ static xtensa_arg_internal Iclass_xt_iclass_mac16al_dd
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_mac16_l_args[] = {
@@ -9517,7 +10433,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_acclo_stateArgs[] = {
-@@ -6894,7 +6472,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_acclo_
+@@ -6894,7 +7389,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_acclo_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_acclo_args[] = {
@@ -9526,7 +10442,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_acclo_stateArgs[] = {
-@@ -6902,7 +6480,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_acclo_
+@@ -6902,7 +7397,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_acclo_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_acclo_args[] = {
@@ -9535,7 +10451,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_acclo_stateArgs[] = {
-@@ -6910,7 +6488,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_acclo_
+@@ -6910,7 +7405,7 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_acclo_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_acchi_args[] = {
@@ -9544,7 +10460,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_acchi_stateArgs[] = {
-@@ -6918,7 +6496,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_acchi_
+@@ -6918,7 +7413,7 @@ static xtensa_arg_internal Iclass_xt_iclass_rsr_acchi_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_acchi_args[] = {
@@ -9553,7 +10469,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_acchi_stateArgs[] = {
-@@ -6926,7 +6504,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_acchi_
+@@ -6926,7 +7421,7 @@ static xtensa_arg_internal Iclass_xt_iclass_wsr_acchi_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_acchi_args[] = {
@@ -9562,7 +10478,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_xsr_acchi_stateArgs[] = {
-@@ -6934,16 +6512,15 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_acchi_
+@@ -6934,16 +7429,15 @@ static xtensa_arg_internal Iclass_xt_iclass_xsr_acchi_
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rfi_args[] = {
@@ -9581,7 +10497,7 @@ Index: bfd/xtensa-modules.c
    { { STATE_PSINTLEVEL }, 'o' },
    { { STATE_EPC1 }, 'i' },
    { { STATE_EPC2 }, 'i' },
-@@ -6962,80 +6539,66 @@ static xtensa_arg_internal Iclass_xt_iclass_rfi_stateA
+@@ -6962,80 +7456,66 @@ static xtensa_arg_internal Iclass_xt_iclass_rfi_stateA
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wait_args[] = {
@@ -9671,7 +10587,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_break_stateArgs[] = {
-@@ -7044,7 +6607,7 @@ static xtensa_arg_internal Iclass_xt_iclass_break_stat
+@@ -7044,7 +7524,7 @@ static xtensa_arg_internal Iclass_xt_iclass_break_stat
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_break_n_args[] = {
@@ -9680,7 +10596,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_break_n_stateArgs[] = {
-@@ -7053,352 +6616,305 @@ static xtensa_arg_internal Iclass_xt_iclass_break_n_st
+@@ -7053,352 +7533,305 @@ static xtensa_arg_internal Iclass_xt_iclass_break_n_st
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rsr_dbreaka0_args[] = {
@@ -10086,7 +11002,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_rfdo_stateArgs[] = {
-@@ -7407,7 +6923,6 @@ static xtensa_arg_internal Iclass_xt_iclass_rfdo_state
+@@ -7407,7 +7840,6 @@ static xtensa_arg_internal Iclass_xt_iclass_rfdo_state
    { { STATE_PSWOE }, 'o' },
    { { STATE_PSCALLINC }, 'o' },
    { { STATE_PSOWB }, 'o' },
@@ -10094,7 +11010,7 @@ Index: bfd/xtensa-modules.c
    { { STATE_PSUM }, 'o' },
    { { STATE_PSEXCM }, 'o' },
    { { STATE_PSINTLEVEL }, 'o' },
-@@ -7419,613 +6934,501 @@ static xtensa_arg_internal Iclass_xt_iclass_rfdd_state
+@@ -7419,613 +7851,501 @@ static xtensa_arg_internal Iclass_xt_iclass_rfdd_state
  };
  
  static xtensa_arg_internal Iclass_xt_iclass_wsr_mmid_args[] = {
@@ -10938,7 +11854,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_rur_fcr_stateArgs[] = {
-@@ -8041,7 +7444,7 @@ static xtensa_arg_internal Iclass_rur_fcr_stateArgs[] 
+@@ -8041,7 +8361,7 @@ static xtensa_arg_internal Iclass_rur_fcr_stateArgs[] 
  };
  
  static xtensa_arg_internal Iclass_wur_fcr_args[] = {
@@ -10947,7 +11863,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_wur_fcr_stateArgs[] = {
-@@ -8057,7 +7460,7 @@ static xtensa_arg_internal Iclass_wur_fcr_stateArgs[] 
+@@ -8057,7 +8377,7 @@ static xtensa_arg_internal Iclass_wur_fcr_stateArgs[] 
  };
  
  static xtensa_arg_internal Iclass_rur_fsr_args[] = {
@@ -10956,7 +11872,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_rur_fsr_stateArgs[] = {
-@@ -8072,7 +7475,7 @@ static xtensa_arg_internal Iclass_rur_fsr_stateArgs[] 
+@@ -8072,7 +8392,7 @@ static xtensa_arg_internal Iclass_rur_fsr_stateArgs[] 
  };
  
  static xtensa_arg_internal Iclass_wur_fsr_args[] = {
@@ -10965,7 +11881,7 @@ Index: bfd/xtensa-modules.c
  };
  
  static xtensa_arg_internal Iclass_wur_fsr_stateArgs[] = {
-@@ -8086,226 +7489,164 @@ static xtensa_arg_internal Iclass_wur_fsr_stateArgs[] 
+@@ -8086,226 +8406,164 @@ static xtensa_arg_internal Iclass_wur_fsr_stateArgs[] 
    { { STATE_CPENABLE }, 'i' }
  };
  
@@ -11319,7 +12235,7 @@ Index: bfd/xtensa-modules.c
    { 2, Iclass_xt_iclass_call12_args,
      1, Iclass_xt_iclass_call12_stateArgs, 0, 0 },
    { 2, Iclass_xt_iclass_call8_args,
-@@ -8323,27 +7664,27 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8323,27 +8581,27 @@ static xtensa_iclass_internal iclasses[] = {
    { 2, Iclass_xt_iclass_movsp_args,
      2, Iclass_xt_iclass_movsp_stateArgs, 0, 0 },
    { 1, Iclass_xt_iclass_rotw_args,
@@ -11358,7 +12274,7 @@ Index: bfd/xtensa-modules.c
    { 3, Iclass_xt_iclass_add_n_args,
      0, 0, 0, 0 },
    { 3, Iclass_xt_iclass_addi_n_args,
-@@ -8405,7 +7746,7 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8405,7 +8663,7 @@ static xtensa_iclass_internal iclasses[] = {
    { 3, Iclass_xt_iclass_l32i_args,
      0, 0, 0, 0 },
    { 2, Iclass_xt_iclass_l32r_args,
@@ -11367,7 +12283,7 @@ Index: bfd/xtensa-modules.c
    { 3, Iclass_xt_iclass_l8i_args,
      0, 0, 0, 0 },
    { 2, Iclass_xt_iclass_loop_args,
-@@ -8422,10 +7763,14 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8422,10 +8680,14 @@ static xtensa_iclass_internal iclasses[] = {
      0, 0, 0, 0 },
    { 1, Iclass_xt_iclass_return_args,
      0, 0, 0, 0 },
@@ -11382,7 +12298,7 @@ Index: bfd/xtensa-modules.c
    { 3, Iclass_xt_iclass_s8i_args,
      0, 0, 0, 0 },
    { 1, Iclass_xt_iclass_sar_args,
-@@ -8453,7 +7798,7 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8453,7 +8715,7 @@ static xtensa_iclass_internal iclasses[] = {
    { 0, 0 /* xt_iclass_sync */,
      1, Iclass_xt_iclass_sync_stateArgs, 0, 0 },
    { 2, Iclass_xt_iclass_rsil_args,
@@ -11391,7 +12307,7 @@ Index: bfd/xtensa-modules.c
    { 1, Iclass_xt_iclass_rsr_lend_args,
      1, Iclass_xt_iclass_rsr_lend_stateArgs, 0, 0 },
    { 1, Iclass_xt_iclass_wsr_lend_args,
-@@ -8478,192 +7823,206 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8478,192 +8740,206 @@ static xtensa_iclass_internal iclasses[] = {
      2, Iclass_xt_iclass_wsr_sar_stateArgs, 0, 0 },
    { 1, Iclass_xt_iclass_xsr_sar_args,
      1, Iclass_xt_iclass_xsr_sar_stateArgs, 0, 0 },
@@ -11693,7 +12609,7 @@ Index: bfd/xtensa-modules.c
    { 2, Iclass_xt_iclass_mac16_aa_args,
      1, Iclass_xt_iclass_mac16_aa_stateArgs, 0, 0 },
    { 2, Iclass_xt_iclass_mac16_ad_args,
-@@ -8686,8 +8045,6 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8686,8 +8962,6 @@ static xtensa_iclass_internal iclasses[] = {
      1, Iclass_xt_iclass_mac16al_dd_stateArgs, 0, 0 },
    { 2, Iclass_xt_iclass_mac16_l_args,
      0, 0, 0, 0 },
@@ -11702,7 +12618,7 @@ Index: bfd/xtensa-modules.c
    { 2, Iclass_xt_iclass_rsr_m0_args,
      0, 0, 0, 0 },
    { 2, Iclass_xt_iclass_wsr_m0_args,
-@@ -8725,97 +8082,101 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8725,97 +8999,101 @@ static xtensa_iclass_internal iclasses[] = {
    { 1, Iclass_xt_iclass_xsr_acchi_args,
      1, Iclass_xt_iclass_xsr_acchi_stateArgs, 0, 0 },
    { 1, Iclass_xt_iclass_rfi_args,
@@ -11847,7 +12763,7 @@ Index: bfd/xtensa-modules.c
    { 3, Iclass_xt_iclass_bbool1_args,
      0, 0, 0, 0 },
    { 2, Iclass_xt_iclass_bbool4_args,
-@@ -8833,101 +8194,47 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8833,101 +9111,47 @@ static xtensa_iclass_internal iclasses[] = {
    { 2, Iclass_xt_iclass_XSR_BR_args,
      0, 0, 0, 0 },
    { 1, Iclass_xt_iclass_rsr_ccount_args,
@@ -11970,7 +12886,7 @@ Index: bfd/xtensa-modules.c
    { 3, Iclass_xt_iclass_clamp_args,
      0, 0, 0, 0 },
    { 3, Iclass_xt_iclass_minmax_args,
-@@ -8941,17 +8248,57 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8941,17 +9165,57 @@ static xtensa_iclass_internal iclasses[] = {
    { 3, Iclass_xt_iclass_s32ri_args,
      0, 0, 0, 0 },
    { 3, Iclass_xt_iclass_s32c1i_args,
@@ -12030,7 +12946,7 @@ Index: bfd/xtensa-modules.c
    { 1, Iclass_rur_fcr_args,
      9, Iclass_rur_fcr_stateArgs, 0, 0 },
    { 1, Iclass_wur_fcr_args,
-@@ -8960,580 +8307,1023 @@ static xtensa_iclass_internal iclasses[] = {
+@@ -8960,580 +9224,1023 @@ static xtensa_iclass_internal iclasses[] = {
      8, Iclass_rur_fsr_stateArgs, 0, 0 },
    { 1, Iclass_wur_fsr_args,
      8, Iclass_wur_fsr_stateArgs, 0, 0 },
@@ -13273,7 +14189,7 @@ Index: bfd/xtensa-modules.c
  Opcode_beqi_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x26;
-@@ -9696,18 +9486,6 @@ Opcode_extui_Slot_inst_encode (xtensa_insnbuf slotbuf)
+@@ -9696,18 +10403,6 @@ Opcode_extui_Slot_inst_encode (xtensa_insnbuf slotbuf)
  }
  
  static void
@@ -13292,7 +14208,7 @@ Index: bfd/xtensa-modules.c
  Opcode_ill_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0;
-@@ -9720,84 +9498,42 @@ Opcode_j_Slot_inst_encode (xtensa_insnbuf slotbuf)
+@@ -9720,84 +10415,42 @@ Opcode_j_Slot_inst_encode (xtensa_insnbuf slotbuf)
  }
  
  static void
@@ -13377,7 +14293,7 @@ Index: bfd/xtensa-modules.c
  Opcode_loop_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x8076;
-@@ -9822,190 +9558,75 @@ Opcode_movi_Slot_inst_encode (xtensa_insnbuf slotbuf)
+@@ -9822,190 +10475,75 @@ Opcode_movi_Slot_inst_encode (xtensa_insnbuf slotbuf)
  }
  
  static void
@@ -13574,7 +14490,7 @@ Index: bfd/xtensa-modules.c
  }
  
  static void
-@@ -10015,228 +9636,78 @@ Opcode_s8i_Slot_inst_encode (xtensa_insnbuf slotbuf)
+@@ -10015,228 +10553,78 @@ Opcode_s8i_Slot_inst_encode (xtensa_insnbuf slotbuf)
  }
  
  static void
@@ -13803,7 +14719,7 @@ Index: bfd/xtensa-modules.c
  Opcode_memw_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x20c0;
-@@ -10351,6 +9822,24 @@ Opcode_xsr_sar_Slot_inst_encode (xtensa_insnbuf slotbu
+@@ -10351,6 +10739,24 @@ Opcode_xsr_sar_Slot_inst_encode (xtensa_insnbuf slotbu
  }
  
  static void
@@ -13828,7 +14744,7 @@ Index: bfd/xtensa-modules.c
  Opcode_rsr_litbase_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x30500;
-@@ -10369,14 +9858,20 @@ Opcode_xsr_litbase_Slot_inst_encode (xtensa_insnbuf sl
+@@ -10369,14 +10775,20 @@ Opcode_xsr_litbase_Slot_inst_encode (xtensa_insnbuf sl
  }
  
  static void
@@ -13851,7 +14767,7 @@ Index: bfd/xtensa-modules.c
    slotbuf[0] = 0x3d000;
  }
  
-@@ -10909,6 +10404,36 @@ Opcode_xsr_vecbase_Slot_inst_encode (xtensa_insnbuf sl
+@@ -10909,6 +11321,36 @@ Opcode_xsr_vecbase_Slot_inst_encode (xtensa_insnbuf sl
  }
  
  static void
@@ -13888,7 +14804,7 @@ Index: bfd/xtensa-modules.c
  Opcode_mul_aa_ll_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x740004;
-@@ -11329,42 +10854,6 @@ Opcode_ldinc_Slot_inst_encode (xtensa_insnbuf slotbuf)
+@@ -11329,42 +11771,6 @@ Opcode_ldinc_Slot_inst_encode (xtensa_insnbuf slotbuf)
  }
  
  static void
@@ -13931,7 +14847,7 @@ Index: bfd/xtensa-modules.c
  Opcode_rsr_m0_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x32000;
-@@ -11731,6 +11220,18 @@ Opcode_xsr_ddr_Slot_inst_encode (xtensa_insnbuf slotbu
+@@ -11731,6 +12137,18 @@ Opcode_xsr_ddr_Slot_inst_encode (xtensa_insnbuf slotbu
  }
  
  static void
@@ -13950,7 +14866,7 @@ Index: bfd/xtensa-modules.c
  Opcode_rfdo_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0xf1e000;
-@@ -11917,228 +11418,6 @@ Opcode_xsr_ccompare2_Slot_inst_encode (xtensa_insnbuf 
+@@ -11917,228 +12335,6 @@ Opcode_xsr_ccompare2_Slot_inst_encode (xtensa_insnbuf 
  }
  
  static void
@@ -14179,7 +15095,7 @@ Index: bfd/xtensa-modules.c
  Opcode_idtlb_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x50c000;
-@@ -12199,24 +11478,6 @@ Opcode_witlb_Slot_inst_encode (xtensa_insnbuf slotbuf)
+@@ -12199,24 +12395,6 @@ Opcode_witlb_Slot_inst_encode (xtensa_insnbuf slotbuf)
  }
  
  static void
@@ -14204,7 +15120,7 @@ Index: bfd/xtensa-modules.c
  Opcode_rsr_cpenable_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0x3e000;
-@@ -12241,108 +11502,48 @@ Opcode_clamps_Slot_inst_encode (xtensa_insnbuf slotbuf
+@@ -12241,108 +12419,48 @@ Opcode_clamps_Slot_inst_encode (xtensa_insnbuf slotbuf
  }
  
  static void
@@ -14313,7 +15229,7 @@ Index: bfd/xtensa-modules.c
  Opcode_l32ai_Slot_inst_encode (xtensa_insnbuf slotbuf)
  {
    slotbuf[0] = 0xb002;
-@@ -12379,6291 +11580,5794 @@ Opcode_xsr_scompare1_Slot_inst_encode (xtensa_insnbuf 
+@@ -12379,6291 +12497,5794 @@ Opcode_xsr_scompare1_Slot_inst_encode (xtensa_insnbuf 
  }
  
  static void
@@ -23932,7 +24848,7 @@ Index: bfd/xtensa-modules.c
    return 0;
  }
  
-@@ -18674,7 +17378,6 @@ static void
+@@ -18674,7 +18295,6 @@ static void
  Slot_x24_Format_inst_0_get (const xtensa_insnbuf insn,
  			    xtensa_insnbuf slotbuf)
  {
@@ -23940,7 +24856,7 @@ Index: bfd/xtensa-modules.c
    slotbuf[0] = (insn[0] & 0xffffff);
  }
  
-@@ -18689,7 +17392,6 @@ static void
+@@ -18689,7 +18309,6 @@ static void
  Slot_x16a_Format_inst16a_0_get (const xtensa_insnbuf insn,
  				xtensa_insnbuf slotbuf)
  {
@@ -23948,7 +24864,7 @@ Index: bfd/xtensa-modules.c
    slotbuf[0] = (insn[0] & 0xffff);
  }
  
-@@ -18704,7 +17406,6 @@ static void
+@@ -18704,7 +18323,6 @@ static void
  Slot_x16b_Format_inst16b_0_get (const xtensa_insnbuf insn,
  				xtensa_insnbuf slotbuf)
  {
@@ -23956,7 +24872,7 @@ Index: bfd/xtensa-modules.c
    slotbuf[0] = (insn[0] & 0xffff);
  }
  
-@@ -18715,86 +17416,6 @@ Slot_x16b_Format_inst16b_0_set (xtensa_insnbuf insn,
+@@ -18715,86 +18333,6 @@ Slot_x16b_Format_inst16b_0_set (xtensa_insnbuf insn,
    insn[0] = (insn[0] & ~0xffff) | (slotbuf[0] & 0xffff);
  }
  
@@ -24043,7 +24959,7 @@ Index: bfd/xtensa-modules.c
  static xtensa_get_field_fn
  Slot_inst_get_field_fns[] = {
    Field_t_Slot_inst_get,
-@@ -18852,74 +17473,22 @@ Slot_inst_get_field_fns[] = {
+@@ -18852,74 +18390,22 @@ Slot_inst_get_field_fns[] = {
    Field_r8_Slot_inst_get,
    Field_xt_wbr15_imm_Slot_inst_get,
    Field_xt_wbr18_imm_Slot_inst_get,
@@ -24134,7 +25050,7 @@ Index: bfd/xtensa-modules.c
    Implicit_Field_ar0_get,
    Implicit_Field_ar4_get,
    Implicit_Field_ar8_get,
-@@ -18991,74 +17560,22 @@ Slot_inst_set_field_fns[] = {
+@@ -18991,74 +18477,22 @@ Slot_inst_set_field_fns[] = {
    Field_r8_Slot_inst_set,
    Field_xt_wbr15_imm_Slot_inst_set,
    Field_xt_wbr18_imm_Slot_inst_set,
@@ -24225,7 +25141,7 @@ Index: bfd/xtensa-modules.c
    Implicit_Field_set,
    Implicit_Field_set,
    Implicit_Field_set,
-@@ -19132,72 +17649,20 @@ Slot_inst16a_get_field_fns[] = {
+@@ -19132,72 +18566,20 @@ Slot_inst16a_get_field_fns[] = {
    0,
    0,
    0,
@@ -24306,7 +25222,7 @@ Index: bfd/xtensa-modules.c
    Implicit_Field_ar0_get,
    Implicit_Field_ar4_get,
    Implicit_Field_ar8_get,
-@@ -19271,72 +17736,20 @@ Slot_inst16a_set_field_fns[] = {
+@@ -19271,72 +18653,20 @@ Slot_inst16a_set_field_fns[] = {
    0,
    0,
    0,
@@ -24387,7 +25303,7 @@ Index: bfd/xtensa-modules.c
    Implicit_Field_set,
    Implicit_Field_set,
    Implicit_Field_set,
-@@ -19410,72 +17823,20 @@ Slot_inst16b_get_field_fns[] = {
+@@ -19410,72 +18740,20 @@ Slot_inst16b_get_field_fns[] = {
    0,
    0,
    0,
@@ -24468,7 +25384,7 @@ Index: bfd/xtensa-modules.c
    Implicit_Field_ar0_get,
    Implicit_Field_ar4_get,
    Implicit_Field_ar8_get,
-@@ -19549,72 +17910,20 @@ Slot_inst16b_set_field_fns[] = {
+@@ -19549,72 +18827,20 @@ Slot_inst16b_set_field_fns[] = {
    0,
    0,
    0,
@@ -24549,7 +25465,7 @@ Index: bfd/xtensa-modules.c
    Implicit_Field_set,
    Implicit_Field_set,
    Implicit_Field_set,
-@@ -19629,1118 +17938,6 @@ Slot_inst16b_set_field_fns[] = {
+@@ -19629,1118 +18855,6 @@ Slot_inst16b_set_field_fns[] = {
    Implicit_Field_set
  };
  
@@ -25668,7 +26584,7 @@ Index: bfd/xtensa-modules.c
  static xtensa_slot_internal slots[] = {
    { "Inst", "x24", 0,
      Slot_x24_Format_inst_0_get, Slot_x24_Format_inst_0_set,
-@@ -20753,27 +17950,7 @@ static xtensa_slot_internal slots[] = {
+@@ -20753,27 +18867,7 @@ static xtensa_slot_internal slots[] = {
    { "Inst16b", "x16b", 0,
      Slot_x16b_Format_inst16b_0_get, Slot_x16b_Format_inst16b_0_set,
      Slot_inst16b_get_field_fns, Slot_inst16b_set_field_fns,
@@ -25697,7 +26613,7 @@ Index: bfd/xtensa-modules.c
  };
  
  
-@@ -20783,73 +17960,46 @@ static void
+@@ -20783,73 +18877,46 @@ static void
  Format_x24_encode (xtensa_insnbuf insn)
  {
    insn[0] = 0;
@@ -25776,7 +26692,7 @@ Index: bfd/xtensa-modules.c
    3,
    3,
    3,
-@@ -20864,15 +18014,255 @@ static int length_table[16] = {
+@@ -20864,15 +18931,255 @@ static int length_table[16] = {
    2,
    2,
    2,
@@ -26036,7 +26952,7 @@ Index: bfd/xtensa-modules.c
  }
  
  
-@@ -20880,17 +18270,17 @@ length_decoder (const unsigned char *insn)
+@@ -20880,17 +19187,17 @@ length_decoder (const unsigned char *insn)
  
  xtensa_isa_internal xtensa_modules = {
    0 /* little-endian */,

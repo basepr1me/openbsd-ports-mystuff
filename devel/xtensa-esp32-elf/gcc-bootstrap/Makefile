@@ -10,7 +10,7 @@ GH_ACCOUNT =	espressif
 GH_PROJECT =	gcc
 GH_TAGNAME =	esp-2021r2
 
-WANTLIB =	${COMPILER_LIBCXX} c gmp isl m mpc mpfr
+WANTLIB =	${COMPILER_LIBCXX} c gmp isl m mpc mpfr z
 
 SUBST_VARS +=	V
 
@@ -28,8 +28,7 @@ CONFIGURE_ARGS +=	--exec-prefix="${INSTALLDIR}/bootstrap" \
 			--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 			--with-ld="${INSTALLDIR}/bin/${CONFIG}-ld" \
 			--with-gmp="${LOCALBASE}" \
-			--with-isl="${LOCALBASE}" \
-			--disable-multilib
+			--with-isl="${LOCALBASE}"
 
 ALL_TARGET =		all-gcc
 INSTALL_TARGET =	install-gcc

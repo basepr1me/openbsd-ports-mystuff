@@ -8,7 +8,7 @@ Index: include/xtensa-config.h
 +++ include/xtensa-config.h
 @@ -1,5 +1,6 @@
  /* Xtensa configuration settings.
--   Copyright (C) 2001-2018 Free Software Foundation, Inc.
+-   Copyright (C) 2001-2019 Free Software Foundation, Inc.
 +   Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
 +   Free Software Foundation, Inc.
     Contributed by Bob Wilson (bob.wilson@acm.org) at Tensilica.

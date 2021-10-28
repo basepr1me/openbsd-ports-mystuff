@@ -42,6 +42,9 @@ CONFIGURE_ARGS +=	--target="${CONFIG}" \
 			--enable-languages=c,c++ \
 			--disable-lto \
 			--disable-libstdcxx-verbose \
+			--disable-option-checking \
+			--without-long-double-128 \
+			--with-system-zlib \
 			--enable-static=yes
 
 NO_TEST =		Yes

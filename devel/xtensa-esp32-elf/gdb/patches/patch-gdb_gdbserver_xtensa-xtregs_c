@@ -5,7 +5,7 @@ Index: gdb/gdbserver/xtensa-xtregs.c
 +++ gdb/gdbserver/xtensa-xtregs.c
 @@ -1,20 +1,25 @@
 -/* Table mapping between kernel xtregset and GDB register cache.
--   Copyright (C) 2007-2018 Free Software Foundation, Inc.
+-   Copyright (C) 2007-2020 Free Software Foundation, Inc.
 +/* Customized table mapping between kernel xtregset and GDB register cache.
  
 -   This file is part of GDB.

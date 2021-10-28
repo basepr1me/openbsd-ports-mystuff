@@ -53,6 +53,7 @@ xtensa-esp32-elf/xtensa-esp32-elf/include/machine/types.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/malloc.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/math.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/memory.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/ndbm.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/newlib.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/paths.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/pthread.h
@@ -84,6 +85,7 @@ xtensa-esp32-elf/xtensa-esp32-elf/include/strings.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/_default_fcntl.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/_intsup.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/sys/_locale.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/_pthreadtypes.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/_sigset.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/_stdint.h
@@ -98,6 +100,7 @@ xtensa-esp32-elf/xtensa-esp32-elf/include/sys/dirent.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/errno.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/fcntl.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/features.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/sys/fenv.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/file.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/iconvnls.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/sys/lock.h
@@ -133,17 +136,46 @@ xtensa-esp32-elf/xtensa-esp32-elf/include/utmp.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/wchar.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/wctype.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/wordexp.h
-xtensa-esp32-elf/xtensa-esp32-elf/include/xlocale.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/xtensa/
 xtensa-esp32-elf/xtensa-esp32-elf/include/xtensa/config/
 xtensa-esp32-elf/xtensa-esp32-elf/include/xtensa/config/core-isa.h
 xtensa-esp32-elf/xtensa-esp32-elf/lib/
 xtensa-esp32-elf/xtensa-esp32-elf/lib/crt0.o
 xtensa-esp32-elf/xtensa-esp32-elf/lib/default.specs
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/crt0.o
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/default.specs
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libc.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libg.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libgloss.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libm.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libnosys.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/nano.specs
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/crt0.o
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/default.specs
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libc.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libg.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libgloss.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libm.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libnosys.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/nano.specs
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/nosys.specs
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/nosys.specs
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libc.a
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libg.a
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libgloss.a
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libm.a
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libnosys.a
 xtensa-esp32-elf/xtensa-esp32-elf/lib/nano.specs
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/crt0.o
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/default.specs
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libc.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libg.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libgloss.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libm.a
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libnosys.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/nano.specs
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/nosys.specs
 xtensa-esp32-elf/xtensa-esp32-elf/lib/nosys.specs

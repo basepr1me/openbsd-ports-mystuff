@@ -11,6 +11,7 @@ xtensa-esp32-elf/bin/xtensa-esp32-elf-cc
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-gcov
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-gcov-dump
 @bin xtensa-esp32-elf/bin/xtensa-esp32-elf-gcov-tool
+xtensa-esp32-elf/include/
 xtensa-esp32-elf/lib/gcc/
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/
@@ -18,6 +19,20 @@ xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/crtbegin.o
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/crtend.o
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/crti.o
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/crtn.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/crtbegin.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/crtend.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/crti.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/crtn.o
+@static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/libgcc.a
+@static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/libgcov.a
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/no-rtti/
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/no-rtti/crtbegin.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/no-rtti/crtend.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/no-rtti/crti.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/no-rtti/crtn.o
+@static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/no-rtti/libgcc.a
+@static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/esp32-psram/no-rtti/libgcov.a
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/include/
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/include-fixed/
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/include-fixed/README
@@ -53,6 +68,13 @@ xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/install-tools/macro_list
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/install-tools/mkheaders.conf
 @static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/libgcc.a
 @static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/libgcov.a
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/no-rtti/
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/no-rtti/crtbegin.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/no-rtti/crtend.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/no-rtti/crti.o
+xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/no-rtti/crtn.o
+@static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/no-rtti/libgcc.a
+@static-lib xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/no-rtti/libgcov.a
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/plugin/
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/plugin/gtype.state
 xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/${V}/plugin/include/
@@ -1306,10 +1328,110 @@ xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/bits/os_defi
 xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/bits/stdc++.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/bits/stdtr1c++.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/bits/time_members.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/atomic_word.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/basic_file.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/c++allocator.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/c++config.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/c++io.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/c++locale.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/cpu_defines.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/ctype_base.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/ctype_inline.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/cxxabi_tweaks.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/error_constants.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/extc++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/gthr-default.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/gthr-posix.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/gthr-single.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/gthr.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/messages_members.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/opt_random.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/os_defines.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/stdc++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/stdtr1c++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/bits/time_members.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/ext/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/ext/opt_random.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/atomic_word.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/basic_file.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/c++allocator.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/c++config.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/c++io.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/c++locale.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/cpu_defines.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/ctype_base.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/ctype_inline.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/cxxabi_tweaks.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/error_constants.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/extc++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/gthr-default.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/gthr-posix.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/gthr-single.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/gthr.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/messages_members.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/opt_random.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/os_defines.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/stdc++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/stdtr1c++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/bits/time_members.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/ext/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/esp32-psram/no-rtti/ext/opt_random.h
 xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/ext/
 xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/ext/opt_random.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/atomic_word.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/basic_file.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/c++allocator.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/c++config.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/c++io.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/c++locale.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/cpu_defines.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/ctype_base.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/ctype_inline.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/cxxabi_tweaks.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/error_constants.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/extc++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/gthr-default.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/gthr-posix.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/gthr-single.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/gthr.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/messages_members.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/opt_random.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/os_defines.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/stdc++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/stdtr1c++.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/bits/time_members.h
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/ext/
+xtensa-esp32-elf/xtensa-esp32-elf/include/c++/${V}/xtensa-esp32-elf/no-rtti/ext/opt_random.h
 xtensa-esp32-elf/xtensa-esp32-elf/lib/${MODPY_PYCACHE}/
 xtensa-esp32-elf/xtensa-esp32-elf/lib/${MODPY_PYCACHE}libstdc++.a-gdb.${MODPY_PYC_MAGIC_TAG}pyc
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/${MODPY_PYCACHE}/
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/${MODPY_PYCACHE}libstdc++.a-gdb.${MODPY_PYC_MAGIC_TAG}pyc
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libssp.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libssp.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libssp_nonshared.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libssp_nonshared.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libstdc++.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libstdc++.a-gdb.py
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libstdc++.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libsupc++.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/libsupc++.la
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/${MODPY_PYCACHE}/
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/${MODPY_PYCACHE}libstdc++.a-gdb.${MODPY_PYC_MAGIC_TAG}pyc
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libssp.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libssp.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libssp_nonshared.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libssp_nonshared.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libstdc++.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libstdc++.a-gdb.py
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libstdc++.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libsupc++.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/esp32-psram/no-rtti/libsupc++.la
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libssp.a
 xtensa-esp32-elf/xtensa-esp32-elf/lib/libssp.la
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libssp_nonshared.a
@@ -1319,3 +1441,14 @@ xtensa-esp32-elf/xtensa-esp32-elf/lib/libstdc++.a-gdb.py
 xtensa-esp32-elf/xtensa-esp32-elf/lib/libstdc++.la
 @static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/libsupc++.a
 xtensa-esp32-elf/xtensa-esp32-elf/lib/libsupc++.la
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/${MODPY_PYCACHE}/
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/${MODPY_PYCACHE}libstdc++.a-gdb.${MODPY_PYC_MAGIC_TAG}pyc
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libssp.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libssp.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libssp_nonshared.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libssp_nonshared.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libstdc++.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libstdc++.a-gdb.py
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libstdc++.la
+@static-lib xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libsupc++.a
+xtensa-esp32-elf/xtensa-esp32-elf/lib/no-rtti/libsupc++.la

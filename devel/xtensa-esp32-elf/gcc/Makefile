@@ -3,9 +3,8 @@
 COMMENT =	gcc for ${CONFIG} cross-development
 
 V =		8.4.0
-VERSION =	${V}.2020.3
+VERSION =	${V}.2021.2
 PKGNAME =	${CONFIG}-gcc-${VERSION}
-REVISION =	0
 
 SHARED_LIBS +=  cc1plugin                 0.0 # 0.0
 SHARED_LIBS +=  cp1plugin                 0.0 # 0.0
@@ -13,9 +12,9 @@ SHARED_LIBS +=  cc1                       0.0 # 0.0
 
 GH_ACCOUNT =	espressif
 GH_PROJECT =	gcc
-GH_TAGNAME =	esp-2020r3
+GH_TAGNAME =	esp-2021r2
 
-WANTLIB =	${COMPILER_LIBCXX} c gmp isl m mpc mpfr
+WANTLIB =	${COMPILER_LIBCXX} c gmp isl m mpc mpfr z
 
 SUBST_VARS +=	V
 
@@ -32,7 +31,8 @@ MODULES =		lang/python
 
 BUILD_DEPENDS +=	devel/${CONFIG}/binutils \
 			devel/${CONFIG}/newlib
-RUN_DEPENDS =		${BUILD_DEPENDS}
+RUN_DEPENDS =		devel/${CONFIG}/binutils \
+			devel/${CONFIG}/newlib
 LIB_DEPENDS =		devel/gmp \
 			devel/libmpc \
 			devel/mpfr \
@@ -45,17 +45,9 @@ CONFIGURE_ARGS +=	--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 			--with-sysroot="${INSTALLDIR}/${CONFIG}" \
 			--with-gmp="${LOCALBASE}" \
 			--with-isl="${LOCALBASE}" \
-			--disable-multilib \
 			--enable-target-optspace \
-			--without-long-double-128 \
 			--enable-gcov-custom-rtio \
 			--enable-libstdcxx-time=yes
-
-#			--enable-cxx-flags="-fno-rtti -ffunction-sections -mlongcalls -mtext-section-literals" \
-
-# ALL_TARGET =		all-gcc all-target-libgcc all-target-libstdc++-v3
-# INSTALL_TARGET =	install-gcc install-target-libgcc \
-# 			install-target-libstdc++-v3
 
 post-extract:
 	mv ${WRKDIR}/${LIBELF} ${WRKSRC}/libelf

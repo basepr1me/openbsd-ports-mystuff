@@ -6,7 +6,7 @@ Index: gdb/xtensa-config.c
 @@ -1,64 +1,115 @@
  /* Configuration for the Xtensa architecture for GDB, the GNU debugger.
  
--   Copyright (C) 2003-2018 Free Software Foundation, Inc.
+-   Copyright (C) 2003-2020 Free Software Foundation, Inc.
 +   Copyright (c) 2003-2016 Tensilica Inc.
  
 -   This file is part of GDB.

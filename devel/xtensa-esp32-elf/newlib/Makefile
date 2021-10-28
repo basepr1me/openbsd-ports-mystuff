@@ -2,13 +2,12 @@
 
 COMMENT =	newlib for ${CONFIG} cross-development
 
-VERSION =	2020.3
+VERSION =	2021.2
 PKGNAME =	${CONFIG}-newlib-${VERSION}
-REVISION =	0
 
 GH_ACCOUNT =	espressif
 GH_PROJECT =	newlib-esp32
-GH_TAGNAME =	esp-2020r3
+GH_TAGNAME =	esp-2021r2
 
 BUILD_DEPENDS =	devel/${CONFIG}/binutils \
 		devel/${CONFIG}/gcc-bootstrap
