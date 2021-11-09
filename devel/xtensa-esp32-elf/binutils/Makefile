@@ -16,4 +16,6 @@ CONFIGURE_ARGS +=	--disable-multilib \
 			--disable-werror \
 			--disable-gdb
 
+BUILD_DEPENDS +=	lang/gawk
+
 .include <bsd.port.mk>

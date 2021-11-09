@@ -1,7 +1,7 @@
 # $OpenBSD: Makefile,v 1.5 2021/02/23 19:39:12 sthen Exp $
 
 COMMENT =	esp32 arduino core toolset
-V =		2.0.1-RC1
+V =		2.0.1
 DISTNAME =	esp32-${V}
 PKGNAME =	arduino-${DISTNAME}
 

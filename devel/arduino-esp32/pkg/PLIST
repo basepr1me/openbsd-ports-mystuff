@@ -409,6 +409,18 @@ share/arduino/hardware/espressif/esp32/libraries/ESPmDNS/library.properties
 share/arduino/hardware/espressif/esp32/libraries/ESPmDNS/src/
 share/arduino/hardware/espressif/esp32/libraries/ESPmDNS/src/ESPmDNS.cpp
 share/arduino/hardware/espressif/esp32/libraries/ESPmDNS/src/ESPmDNS.h
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/examples/
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/examples/ETH_LAN8720/
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/examples/ETH_LAN8720/.skip.esp32s2
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/examples/ETH_LAN8720/ETH_LAN8720.ino
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/examples/ETH_TLK110/
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/examples/ETH_TLK110/.skip.esp32s2
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/examples/ETH_TLK110/ETH_TLK110.ino
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/library.properties
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/src/
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/src/ETH.cpp
+share/arduino/hardware/espressif/esp32/libraries/Ethernet/src/ETH.h
 share/arduino/hardware/espressif/esp32/libraries/FFat/
 share/arduino/hardware/espressif/esp32/libraries/FFat/examples/
 share/arduino/hardware/espressif/esp32/libraries/FFat/examples/FFat_Test/
@@ -770,12 +782,6 @@ share/arduino/hardware/espressif/esp32/libraries/WebServer/src/uri/UriGlob.h
 share/arduino/hardware/espressif/esp32/libraries/WebServer/src/uri/UriRegex.h
 share/arduino/hardware/espressif/esp32/libraries/WiFi/
 share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/
-share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/ETH_LAN8720/
-share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/ETH_LAN8720/.skip.esp32s2
-share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/ETH_LAN8720/ETH_LAN8720.ino
-share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/ETH_TLK110/
-share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/ETH_TLK110/.skip.esp32s2
-share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/ETH_TLK110/ETH_TLK110.ino
 share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/FTM/
 share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/FTM/FTM_Initiator/
 share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/FTM/FTM_Initiator/FTM_Initiator.ino
@@ -822,8 +828,6 @@ share/arduino/hardware/espressif/esp32/libraries/WiFi/examples/WiFiUDPClient/udp
 share/arduino/hardware/espressif/esp32/libraries/WiFi/keywords.txt
 share/arduino/hardware/espressif/esp32/libraries/WiFi/library.properties
 share/arduino/hardware/espressif/esp32/libraries/WiFi/src/
-share/arduino/hardware/espressif/esp32/libraries/WiFi/src/ETH.cpp
-share/arduino/hardware/espressif/esp32/libraries/WiFi/src/ETH.h
 share/arduino/hardware/espressif/esp32/libraries/WiFi/src/WiFi.cpp
 share/arduino/hardware/espressif/esp32/libraries/WiFi/src/WiFi.h
 share/arduino/hardware/espressif/esp32/libraries/WiFi/src/WiFiAP.cpp
@@ -1626,6 +1630,13 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/i
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/iir/include/dsps_biquad.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/iir/include/dsps_biquad_gen.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/iir/include/dsps_biquad_platform.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/kalman/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/kalman/ekf/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/kalman/ekf/include/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/kalman/ekf/include/ekf.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/kalman/ekf_imu13states/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/kalman/ekf_imu13states/include/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/kalman/ekf_imu13states/include/ekf_imu13states.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/math/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/math/add/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-dsp/modules/math/add/include/
@@ -1712,6 +1723,7 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/layer/dl_layer_min2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/layer/dl_layer_model.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/layer/dl_layer_mul2d.hpp
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/layer/dl_layer_pad.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/layer/dl_layer_prelu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/layer/dl_layer_relu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/layer/dl_layer_reshape.hpp
@@ -1746,6 +1758,7 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/nn/dl_nn_max_pool2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/nn/dl_nn_min2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/nn/dl_nn_mul2d.hpp
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/nn/dl_nn_pad.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/nn/dl_nn_prelu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/nn/dl_nn_relu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/include/esp-face/include/nn/dl_nn_sub2d.hpp
@@ -3349,8 +3362,10 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/esp32.rom.spiflash.ld
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/esp32.rom.syscalls.ld
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/libbtdm_app.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/libcat_face_detect.a
+@static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/libcolor_detect.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/libdl.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/libhuman_face_detect.a
+@static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/libmfn.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/libphy.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/librtc.a
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32/ld/memory.ld
@@ -4133,6 +4148,7 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/includ
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/layer/dl_layer_min2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/layer/dl_layer_model.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/layer/dl_layer_mul2d.hpp
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/layer/dl_layer_pad.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/layer/dl_layer_prelu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/layer/dl_layer_relu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/layer/dl_layer_reshape.hpp
@@ -4167,6 +4183,7 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/includ
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/nn/dl_nn_max_pool2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/nn/dl_nn_min2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/nn/dl_nn_mul2d.hpp
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/nn/dl_nn_pad.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/nn/dl_nn_prelu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/nn/dl_nn_relu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/include/esp-face/include/nn/dl_nn_sub2d.hpp
@@ -5656,8 +5673,10 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/esp32c3.rom.version.
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libbtbb.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libbtdm_app.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libcat_face_detect.a
+@static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libcolor_detect.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libdl.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libhuman_face_detect.a
+@static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libmfn.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/libphy.a
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/memory.ld
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32c3/ld/sections.ld
@@ -5836,6 +5855,9 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/osal/osal_pico.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/osal/osal_rtthread.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/broadcom/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/broadcom/synopsys/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/broadcom/synopsys/synopsys_common.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/ehci/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/ehci/ehci.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/ehci/ehci_api.h
@@ -5857,6 +5879,14 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev_pvt_st.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/st/synopsys/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/st/synopsys/synopsys_common.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/dwc2/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/dwc2/dwc2_bcm.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/dwc2/dwc2_efm32.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/dwc2/dwc2_gd32.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/dwc2/dwc2_stm32.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/synopsys/dwc2/dwc2_type.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/valentyusb/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/valentyusb/eptri/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/arduino_tinyusb/tinyusb/src/portable/valentyusb/eptri/dcd_eptri.h
@@ -6486,6 +6516,13 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/iir/include/dsps_biquad.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/iir/include/dsps_biquad_gen.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/iir/include/dsps_biquad_platform.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/kalman/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/kalman/ekf/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/kalman/ekf/include/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/kalman/ekf/include/ekf.h
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/kalman/ekf_imu13states/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/kalman/ekf_imu13states/include/
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/kalman/ekf_imu13states/include/ekf_imu13states.h
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/math/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/math/add/
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-dsp/modules/math/add/include/
@@ -6572,6 +6609,7 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/includ
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/layer/dl_layer_min2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/layer/dl_layer_model.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/layer/dl_layer_mul2d.hpp
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/layer/dl_layer_pad.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/layer/dl_layer_prelu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/layer/dl_layer_relu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/layer/dl_layer_reshape.hpp
@@ -6606,6 +6644,7 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/includ
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/nn/dl_nn_max_pool2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/nn/dl_nn_min2d.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/nn/dl_nn_mul2d.hpp
+share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/nn/dl_nn_pad.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/nn/dl_nn_prelu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/nn/dl_nn_relu.hpp
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/include/esp-face/include/nn/dl_nn_sub2d.hpp
@@ -8194,8 +8233,10 @@ share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/esp32s2.rom.newlib-f
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/esp32s2.rom.newlib-nano.ld
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/esp32s2.rom.spiflash.ld
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/libcat_face_detect.a
+@static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/libcolor_detect.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/libdl.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/libhuman_face_detect.a
+@static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/libmfn.a
 @static-lib share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/libphy.a
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/memory.ld
 share/arduino/hardware/espressif/esp32/tools/sdk/esp32s2/ld/sections.ld

@@ -18,7 +18,9 @@ SUBST_VARS +=	V
 PATCH_LIST =	patch-* vecstep-*
 .endif
 
-BUILD_DEPENDS +=	devel/${CONFIG}/binutils
+BUILD_DEPENDS +=	devel/${CONFIG}/binutils \
+			lang/gawk \
+			textproc/gsed
 LIB_DEPENDS =		devel/gmp \
 			devel/mpfr \
 			devel/libmpc \

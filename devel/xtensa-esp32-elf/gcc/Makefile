@@ -30,7 +30,9 @@ PATCH_LIST =	patch-* vecstep-*
 MODULES =		lang/python
 
 BUILD_DEPENDS +=	devel/${CONFIG}/binutils \
-			devel/${CONFIG}/newlib
+			devel/${CONFIG}/newlib \
+			lang/gawk \
+			textproc/gsed
 RUN_DEPENDS =		devel/${CONFIG}/binutils \
 			devel/${CONFIG}/newlib
 LIB_DEPENDS =		devel/gmp \
