@@ -1,7 +1,5 @@
 # $OpenBSD: Makefile,v 1.5 2021/10/20 11:47:48 sthen Exp $
 
-REVISION =	0
-
 KICAD_PROJECT =	i18n
 COMMENT =	language translations for KiCad
 
