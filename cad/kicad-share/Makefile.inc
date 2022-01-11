@@ -1,10 +1,10 @@
-# $OpenBSD: Makefile.inc,v 1.7 2021/07/14 16:28:07 tracey Exp $
+# $OpenBSD: Makefile.inc,v 1.9 2021/11/22 14:55:53 tracey Exp $
 
 NOT_FOR_ARCHS =		powerpc
 
 PKG_ARCH ?=		*
 
-V ?=			5.1.12
+V ?=			6.0.0
 EXTRACT_SUFX ?=		.tar.bz2
 
 DISTNAME=		kicad-${KICAD_PROJECT}-$V
@@ -20,3 +20,5 @@ MASTER_SITES ?=	\
 PERMIT_PACKAGE ?=	Yes
 
 MODULES ?=		devel/cmake
+
+NO_TEST =		Yes

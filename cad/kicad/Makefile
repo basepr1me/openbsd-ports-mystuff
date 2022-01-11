@@ -1,10 +1,10 @@
-# $OpenBSD: Makefile,v 1.49 2021/11/13 13:12:31 jca Exp $
+# $OpenBSD: Makefile,v 1.50 2021/11/22 14:55:53 tracey Exp $
 
 # Sync cad/kicad-share/Makefile.inc with archs where kicad is broken
 BROKEN-powerpc =	segfaults when trying to run the PCB editor
 BROKEN-riscv64 =	kicad-5.1.10/include/system/libcontext.h:93:36: error: expected ';' after top level declarator
 
-V =			5.1.12
+V =			6.0.0
 COMMENT =		schematic and PCB editing software
 DISTNAME =		kicad-${V}
 EPOCH =			0
@@ -69,6 +69,7 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DwxWidgets_LIBRARIES="${LOCALBASE}/lib" \
 			-DwxWidgets_INCLUDE_DIRS="${LOCALBASE}/include/wx-3.0" \
 			-DOCC_INCLUDE_DIR="${LOCALBASE}/include/oce" \
+			-DOCC_LIBRARY_DIR="${LOCALBASE}/lib/oce" \
 			-DKICAD_SCRIPTING_PYTHON3=ON \
 			-DKICAD_SCRIPTING_WXPYTHON=OFF
 

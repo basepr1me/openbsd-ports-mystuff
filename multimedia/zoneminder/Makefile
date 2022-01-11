@@ -4,7 +4,7 @@ MULTI_PACKAGES = -main -web
 COMMENT-main =	security camera DVR/NVR recorder/alarm monitor
 COMMENT-web =	PHP scripts for ZoneMinder
 
-V =		1.34.26
+V =		1.36.11
 
 PKGNAME-main =	zoneminder-${V}
 PKGNAME-web =	zoneminder-web-${V}
