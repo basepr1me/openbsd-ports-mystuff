@@ -1,0 +1,25 @@
+$OpenBSD$
+
+Index: adm/qmake/OccToolkit.pri
+--- adm/qmake/OccToolkit.pri.orig
++++ adm/qmake/OccToolkit.pri
+@@ -44,7 +44,7 @@ win32 {
+   CSF_TclTkLibs  = -ltk86
+   CSF_TBB =
+ } else:mac {
+-  CSF_dl         = -ldl
++  CSF_dl         =
+   CSF_objc       = -lobjc
+   iphoneos {
+     CSF_Appkit     = -framework UIKit
+@@ -57,8 +57,8 @@ win32 {
+   CSF_TclLibs    = -framework Tcl
+   CSF_TclTkLibs  = -framework Tk
+ } else {
+-  CSF_dl = -ldl
+-  CSF_ThreadLibs = -lpthread -lrt
++  CSF_dl =
++  CSF_ThreadLibs = -lpthread
+   CSF_OpenGlLibs = -lGL
+   CSF_TclTkLibs  = -lX11 -ltk8.6
+   CSF_XwLibs     = -lX11 -lXext -lXmu -lXi
