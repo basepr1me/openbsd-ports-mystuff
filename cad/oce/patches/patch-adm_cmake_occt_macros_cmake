@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: adm/cmake/occt_macros.cmake
+--- adm/cmake/occt_macros.cmake.orig
++++ adm/cmake/occt_macros.cmake
+@@ -47,7 +47,7 @@ macro (OCCT_MAKE_OS_WITH_BITNESS)
+   elseif(APPLE)
+     set (OS_WITH_BIT "mac${COMPILER_BITNESS}")
+   else()
+-    set (OS_WITH_BIT "lin${COMPILER_BITNESS}")
++    set (OS_WITH_BIT "bsd${COMPILER_BITNESS}")
+   endif()
+ endmacro()
+ 

@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: src/DrawResources/InitEnvironment.tcl
+--- src/DrawResources/InitEnvironment.tcl.orig
++++ src/DrawResources/InitEnvironment.tcl
+@@ -30,6 +30,8 @@ proc wokstation {} {
+ 	return "lin"
+     } elseif { [ regexp FreeBSD $LINE_FROM_UNAME ] } {
+ 	return "bsd"
++    } elseif { [ regexp OpenBSD $LINE_FROM_UNAME ] } {
++	return "bsd"
+     } elseif { [ regexp Darwin $LINE_FROM_UNAME ] } {
+ 	return "mac"
+     } elseif { [ regexp AIX $LINE_FROM_UNAME ] } {
