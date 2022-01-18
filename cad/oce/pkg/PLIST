@@ -8163,21 +8163,21 @@ include/opencascade/math_Vector.hxx
 include/opencascade/step.tab.hxx
 lib/cmake/
 lib/cmake/opencascade/
-lib/cmake/opencascade/OpenCASCADEApplicationFrameworkTargets-release.cmake
+lib/cmake/opencascade/OpenCASCADEApplicationFrameworkTargets${MODCMAKE_BUILD_SUFFIX}
 lib/cmake/opencascade/OpenCASCADEApplicationFrameworkTargets.cmake
 lib/cmake/opencascade/OpenCASCADEConfig.cmake
 lib/cmake/opencascade/OpenCASCADEConfigVersion.cmake
-lib/cmake/opencascade/OpenCASCADEDataExchangeTargets-release.cmake
+lib/cmake/opencascade/OpenCASCADEDataExchangeTargets${MODCMAKE_BUILD_SUFFIX}
 lib/cmake/opencascade/OpenCASCADEDataExchangeTargets.cmake
-lib/cmake/opencascade/OpenCASCADEDrawTargets-release.cmake
+lib/cmake/opencascade/OpenCASCADEDrawTargets${MODCMAKE_BUILD_SUFFIX}
 lib/cmake/opencascade/OpenCASCADEDrawTargets.cmake
-lib/cmake/opencascade/OpenCASCADEFoundationClassesTargets-release.cmake
+lib/cmake/opencascade/OpenCASCADEFoundationClassesTargets${MODCMAKE_BUILD_SUFFIX}
 lib/cmake/opencascade/OpenCASCADEFoundationClassesTargets.cmake
-lib/cmake/opencascade/OpenCASCADEModelingAlgorithmsTargets-release.cmake
+lib/cmake/opencascade/OpenCASCADEModelingAlgorithmsTargets${MODCMAKE_BUILD_SUFFIX}
 lib/cmake/opencascade/OpenCASCADEModelingAlgorithmsTargets.cmake
-lib/cmake/opencascade/OpenCASCADEModelingDataTargets-release.cmake
+lib/cmake/opencascade/OpenCASCADEModelingDataTargets${MODCMAKE_BUILD_SUFFIX}
 lib/cmake/opencascade/OpenCASCADEModelingDataTargets.cmake
-lib/cmake/opencascade/OpenCASCADEVisualizationTargets-release.cmake
+lib/cmake/opencascade/OpenCASCADEVisualizationTargets${MODCMAKE_BUILD_SUFFIX}
 lib/cmake/opencascade/OpenCASCADEVisualizationTargets.cmake
 @lib lib/libTKBO.so.${LIBTKBO_VERSION}
 @lib lib/libTKBRep.so.${LIBTKBRep_VERSION}
@@ -8205,10 +8205,8 @@ lib/cmake/opencascade/OpenCASCADEVisualizationTargets.cmake
 @lib lib/libTKOffset.so.${LIBTKOffset_VERSION}
 @lib lib/libTKOpenGl.so.${LIBTKOpenGl_VERSION}
 @lib lib/libTKPrim.so.${LIBTKPrim_VERSION}
-lib/libTKQADraw.so.7
-lib/libTKQADraw.so.7.6.0
-lib/libTKRWMesh.so.7
-lib/libTKRWMesh.so.7.6.0
+@lib lib/libTKQADraw.so.${LIBTKQADraw_VERSION}
+@lib lib/libTKRWMesh.so.${LIBTKRWMesh_VERSION}
 @lib lib/libTKSTEP.so.${LIBTKSTEP_VERSION}
 @lib lib/libTKSTEP209.so.${LIBTKSTEP209_VERSION}
 @lib lib/libTKSTEPAttr.so.${LIBTKSTEPAttr_VERSION}
@@ -8216,17 +8214,14 @@ lib/libTKRWMesh.so.7.6.0
 @lib lib/libTKSTL.so.${LIBTKSTL_VERSION}
 @lib lib/libTKService.so.${LIBTKService_VERSION}
 @lib lib/libTKShHealing.so.${LIBTKShHealing_VERSION}
-lib/libTKStd.so.7
-lib/libTKStd.so.7.6.0
-lib/libTKStdL.so.7
-lib/libTKStdL.so.7.6.0
+@lib lib/libTKStd.so.${LIBTKStd_VERSION}
+@lib lib/libTKStdL.so.${LIBTKStdL_VERSION}
 @lib lib/libTKTObj.so.${LIBTKTObj_VERSION}
 @lib lib/libTKTObjDRAW.so.${LIBTKTObjDRAW_VERSION}
 @lib lib/libTKTopAlgo.so.${LIBTKTopAlgo_VERSION}
 @lib lib/libTKTopTest.so.${LIBTKTopTest_VERSION}
 @lib lib/libTKV3d.so.${LIBTKV3d_VERSION}
-lib/libTKVCAF.so.7
-lib/libTKVCAF.so.7.6.0
+@lib lib/libTKVCAF.so.${LIBTKVCAF_VERSION}
 @lib lib/libTKVRML.so.${LIBTKVRML_VERSION}
 @lib lib/libTKViewerTest.so.${LIBTKViewerTest_VERSION}
 @lib lib/libTKXCAF.so.${LIBTKXCAF_VERSION}
