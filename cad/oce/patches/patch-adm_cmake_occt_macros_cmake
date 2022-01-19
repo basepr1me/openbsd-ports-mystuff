@@ -5,24 +5,6 @@ Ugly hack on ALL_OCCT_TARGET_FILES: change later
 Index: adm/cmake/occt_macros.cmake
 --- adm/cmake/occt_macros.cmake.orig
 +++ adm/cmake/occt_macros.cmake
-@@ -47,7 +47,7 @@ macro (OCCT_MAKE_OS_WITH_BITNESS)
-   elseif(APPLE)
-     set (OS_WITH_BIT "mac${COMPILER_BITNESS}")
-   else()
--    set (OS_WITH_BIT "lin${COMPILER_BITNESS}")
-+    set (OS_WITH_BIT "bsd${COMPILER_BITNESS}")
-   endif()
- endmacro()
- 
-@@ -336,7 +336,7 @@ macro (COLLECT_AND_INSTALL_OCCT_HEADER_FILES ROOT_TARG
-     configure_file ("${TEMPLATE_HEADER_PATH}" "${ROOT_TARGET_OCCT_DIR}/${OCCT_INSTALL_DIR_PREFIX}/${HEADER_FILE_NAME}" @ONLY)
-   endforeach()
-   
--  install (FILES ${OCCT_HEADER_FILES_COMPLETE} DESTINATION "${INSTALL_DIR}/${OCCT_INSTALL_DIR_PREFIX}")
-+  install (FILES ${OCCT_HEADER_FILES_COMPLETE} DESTINATION "${OCCT_INSTALL_DIR_PREFIX}")
-   
-   string(TIMESTAMP CURRENT_TIME "%H:%M:%S")
-   message (STATUS "Info: \(${CURRENT_TIME}\) Checking headers in inc folder...")
 @@ -592,7 +592,8 @@ macro (OCCT_UPDATE_TARGET_FILE)
    "cmake_policy(PUSH)
    cmake_policy(SET CMP0007 NEW)

@@ -1,29 +1,30 @@
-$OpenBSD: patch-include_tool_coroutine_h,v 1.2 2020/04/02 14:48:27 tracey Exp $
-# otto@ patch for building proper stack
+$OpenBSD$
+
 Index: include/tool/coroutine.h
 --- include/tool/coroutine.h.orig
 +++ include/tool/coroutine.h
-@@ -33,6 +33,7 @@
+@@ -49,6 +49,8 @@
+ #include <trace_helpers.h>
+ #include <wx/log.h>
  
- #include <system/libcontext.h>
- #include <memory>
 +#include <sys/mman.h>
- 
++
  /**
-  *  Class COROUNTINE.
-@@ -145,6 +146,8 @@ class COROUTINE (public)
- 
-     ~COROUTINE()
+  *  Implement a coroutine.
+  *
+@@ -172,6 +174,8 @@ class COROUTINE (public)
+     COROUTINE() :
+         COROUTINE( nullptr )
      {
 +        if (m_stack)
-+            munmap(m_stack.release(), c_defaultStackSize);
++            munmap(m_stack.release(), m_stacksize);
      }
  
- public:
-@@ -296,7 +299,10 @@ class COROUTINE (public)
+     /**
+@@ -377,7 +381,10 @@ class COROUTINE (public)
+ #ifndef LIBCONTEXT_HAS_OWN_STACK
  
          // fixme: Clean up stack stuff. Add a guard
-         size_t stackSize = c_defaultStackSize;
 -        m_stack.reset( new char[stackSize] );
 +	void *p = mmap(NULL, stackSize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON | MAP_STACK, -1, 0);
 +	if (p == MAP_FAILED)
@@ -31,4 +32,4 @@ Index: include/tool/coroutine.h
 +        m_stack.reset( static_cast<char *>(p) );
  
          // align to 16 bytes
-         void* sp = (void*)((((ptrdiff_t) m_stack.get()) + stackSize - 0xf) & (~0x0f));
+         sp = (void*)((((ptrdiff_t) m_stack.get()) + stackSize - 0xf) & (~0x0f));

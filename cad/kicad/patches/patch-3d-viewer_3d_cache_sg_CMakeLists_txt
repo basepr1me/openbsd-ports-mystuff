@@ -1,4 +1,4 @@
-$OpenBSD: patch-3d-viewer_3d_cache_sg_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+$OpenBSD$
 
 Index: 3d-viewer/3d_cache/sg/CMakeLists.txt
 --- 3d-viewer/3d_cache/sg/CMakeLists.txt.orig

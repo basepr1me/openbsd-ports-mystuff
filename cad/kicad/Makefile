@@ -68,8 +68,8 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DwxWidgets_CONFIG_EXECUTABLE=${LOCALBASE}/bin/wx-config \
 			-DwxWidgets_LIBRARIES="${LOCALBASE}/lib" \
 			-DwxWidgets_INCLUDE_DIRS="${LOCALBASE}/include/wx-3.0" \
-			-DOCC_INCLUDE_DIR="${LOCALBASE}/include/oce" \
-			-DOCC_LIBRARY_DIR="${LOCALBASE}/lib/oce" \
+			-DOCC_INCLUDE_DIR="${LOCALBASE}/include/opencascade" \
+			-DOCC_LIBRARY_DIR="${LOCALBASE}/lib/opencascade" \
 			-DKICAD_SCRIPTING_PYTHON3=ON \
 			-DKICAD_SCRIPTING_WXPYTHON=OFF
 
