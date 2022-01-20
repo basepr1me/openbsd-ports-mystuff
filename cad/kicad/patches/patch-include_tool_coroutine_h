@@ -12,18 +12,21 @@ Index: include/tool/coroutine.h
  /**
   *  Implement a coroutine.
   *
-@@ -172,6 +174,8 @@ class COROUTINE (public)
-     COROUTINE() :
-         COROUTINE( nullptr )
+@@ -206,6 +208,8 @@ class COROUTINE (public)
+ 
+     ~COROUTINE()
      {
-+        if (m_stack)
-+            munmap(m_stack.release(), m_stacksize);
-     }
++	if (m_stack)
++		munmap(m_stack.release(), m_stacksize);
+ #ifdef KICAD_USE_VALGRIND
+         VALGRIND_STACK_DEREGISTER( m_valgrind_stack );
+ #endif
+@@ -374,10 +378,11 @@ class COROUTINE (public)
+         size_t stackSize = m_stacksize;
+         void* sp = nullptr;
  
-     /**
-@@ -377,7 +381,10 @@ class COROUTINE (public)
- #ifndef LIBCONTEXT_HAS_OWN_STACK
- 
+-#ifndef LIBCONTEXT_HAS_OWN_STACK
+-
          // fixme: Clean up stack stuff. Add a guard
 -        m_stack.reset( new char[stackSize] );
 +	void *p = mmap(NULL, stackSize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON | MAP_STACK, -1, 0);
@@ -33,3 +36,11 @@ Index: include/tool/coroutine.h
  
          // align to 16 bytes
          sp = (void*)((((ptrdiff_t) m_stack.get()) + stackSize - 0xf) & (~0x0f));
+@@ -387,7 +392,6 @@ class COROUTINE (public)
+ 
+ #ifdef KICAD_USE_VALGRIND
+         m_valgrind_stack = VALGRIND_STACK_REGISTER( sp, m_stack.get() );
+-#endif
+ #endif
+ 
+ #ifdef KICAD_SANITIZE_THREADS

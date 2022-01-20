@@ -12,3 +12,12 @@ Index: pcb_calculator/CMakeLists.txt
      ${wxWidgets_LIBRARIES}
      )
  
+@@ -99,6 +101,8 @@ set_target_properties( pcb_calculator_kiface PROPERTIE
+     )
+ target_link_libraries( pcb_calculator_kiface
+     common
++    stdc++
++    c
+     markdown_lib
+     ${wxWidgets_LIBRARIES}
+     )
