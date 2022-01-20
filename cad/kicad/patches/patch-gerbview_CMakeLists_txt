@@ -1,21 +1,21 @@
-$OpenBSD: patch-gerbview_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+$OpenBSD$
 
 Index: gerbview/CMakeLists.txt
 --- gerbview/CMakeLists.txt.orig
 +++ gerbview/CMakeLists.txt
-@@ -120,6 +120,8 @@ target_link_libraries( gerbview
-     common
-     gal
-     legacy_wx
+@@ -114,6 +114,8 @@ set_source_files_properties( ${CMAKE_SOURCE_DIR}/commo
+ target_link_libraries( gerbview
+     #singletop  # replaces common, giving us restrictive control and link warnings.
+     # There's way too much crap coming in from common yet.
 +    stdc++
 +    c
-     ${wxWidgets_LIBRARIES}
-     )
- 
-@@ -150,6 +152,8 @@ target_link_libraries( gerbview_kiface
-     common
      gal
-     legacy_wx
+     common
+     nlohmann_json
+@@ -156,6 +158,8 @@ set_target_properties( gerbview_kiface PROPERTIES
+ target_link_libraries( gerbview_kiface
+     gal
+     common
 +    stdc++
 +    c
      ${wxWidgets_LIBRARIES}

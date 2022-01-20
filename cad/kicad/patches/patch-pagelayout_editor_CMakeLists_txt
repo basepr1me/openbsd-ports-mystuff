@@ -1,23 +1,23 @@
-$OpenBSD: patch-pagelayout_editor_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+$OpenBSD$
 
 Index: pagelayout_editor/CMakeLists.txt
 --- pagelayout_editor/CMakeLists.txt.orig
 +++ pagelayout_editor/CMakeLists.txt
-@@ -92,6 +92,8 @@ target_link_libraries( pl_editor
-     common
+@@ -87,6 +87,8 @@ target_link_libraries( pl_editor
+     #singletop  # replaces common, giving us restrictive control and link warnings.
+     # There's way too much crap coming in from common yet.
      gal
-     legacy_wx
 +    stdc++
 +    c
+     common
      ${wxWidgets_LIBRARIES}
      )
- 
-@@ -117,6 +119,8 @@ target_link_libraries( pl_editor_kiface
-     common
+@@ -105,6 +107,8 @@ add_library( pl_editor_kiface MODULE
+     )
+ target_link_libraries( pl_editor_kiface
      gal
-     legacy_wx
 +    stdc++
 +    c
+     common
      ${wxWidgets_LIBRARIES}
      ${GDI_PLUS_LIBRARIES}
-     )
