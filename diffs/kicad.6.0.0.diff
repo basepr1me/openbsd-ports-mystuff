@@ -1,0 +1,1222 @@
+Index: Makefile
+===================================================================
+RCS file: /cvs/ports/cad/kicad/Makefile,v
+retrieving revision 1.50
+diff -u -p -u -r1.50 Makefile
+--- Makefile	22 Nov 2021 14:55:53 -0000	1.50
++++ Makefile	21 Jan 2022 17:51:56 -0000
+@@ -4,12 +4,12 @@
+ BROKEN-powerpc =	segfaults when trying to run the PCB editor
+ BROKEN-riscv64 =	kicad-5.1.10/include/system/libcontext.h:93:36: error: expected ';' after top level declarator
+ 
+-V =			5.1.12
++V =			6.0.0
+ COMMENT =		schematic and PCB editing software
+ DISTNAME =		kicad-${V}
+ EPOCH =			0
+ 
+-SHARED_LIBS +=		kicad_3dsg                0.0 # 2.0
++SHARED_LIBS +=		kicad_3dsg                1.0 # 2.0
+ 
+ CATEGORIES =		cad
+ 
+@@ -25,11 +25,13 @@ WANTLIB += TKMath TKMesh TKMeshVS TKOffs
+ WANTLIB += TKSTEP209 TKSTEPAttr TKSTEPBase TKSTL TKService TKShHealing
+ WANTLIB += TKTObj TKTopAlgo TKV3d TKVRML TKXCAF TKXDEIGES TKXDESTEP
+ WANTLIB += TKXMesh TKXSBase TKXml TKXmlL TKXmlTObj TKXmlXCAF TKernel
+-WANTLIB += boost_context-mt boost_system-mt c cairo crypto curl
+-WANTLIB += m ngspice pixman-1 python3.9 ssl wx_baseu-3.0 wx_baseu_net-3.0
+-WANTLIB += wx_baseu_xml-3.0 wx_gtk3u_adv-3.0 wx_gtk3u_aui-3.0
+-WANTLIB += wx_gtk3u_core-3.0 wx_gtk3u_gl-3.0 wx_gtk3u_html-3.0
+-WANTLIB += wx_gtk3u_stc-3.0
++WANTLIB += atk-1.0 c cairo cairo-gobject curl gdk-3 gdk_pixbuf-2.0
++WANTLIB += gio-2.0 glib-2.0 gobject-2.0 gtk-3 harfbuzz intl m
++WANTLIB += ngspice pango-1.0 pangocairo-1.0 pixman-1 python3.9
++WANTLIB += wx_baseu-3.0 wx_baseu_net-3.0 wx_baseu_xml-3.0 wx_gtk3u_adv-3.0
++WANTLIB += wx_gtk3u_aui-3.0 wx_gtk3u_core-3.0 wx_gtk3u_gl-3.0
++WANTLIB += wx_gtk3u_html-3.0 wx_gtk3u_propgrid-3.0 wx_gtk3u_richtext-3.0
++WANTLIB += wx_gtk3u_stc-3.0 z
+ 
+ MASTER_SITES =		https://gitlab.com/kicad/code/kicad/-/archive/${V}/
+ 
+@@ -57,8 +59,6 @@ RUN_DEPENDS =		cad/kicad-share/footprint
+ 
+ LIB_DEPENDS =		cad/ngspice/libngspice \
+ 			cad/oce \
+-			devel/boost \
+-			devel/boost,-md \
+ 			graphics/cairo \
+ 			graphics/glew \
+ 			net/curl \
+@@ -68,7 +68,8 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Rel
+ 			-DwxWidgets_CONFIG_EXECUTABLE=${LOCALBASE}/bin/wx-config \
+ 			-DwxWidgets_LIBRARIES="${LOCALBASE}/lib" \
+ 			-DwxWidgets_INCLUDE_DIRS="${LOCALBASE}/include/wx-3.0" \
+-			-DOCC_INCLUDE_DIR="${LOCALBASE}/include/oce" \
++			-DOCC_INCLUDE_DIR="${LOCALBASE}/include/opencascade" \
++			-DOCC_LIBRARY_DIR="${LOCALBASE}/lib/opencascade" \
+ 			-DKICAD_SCRIPTING_PYTHON3=ON \
+ 			-DKICAD_SCRIPTING_WXPYTHON=OFF
+ 
+@@ -81,6 +82,8 @@ post-install:
+ 		${PREFIX}/lib/python${MODPY_VERSION}/site-packages/
+ 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+ 		${PREFIX}/share/kicad/plugins/
++	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
++		${PREFIX}/share/kicad/scripting/kicad_pyshell/
+ 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+ 		${PREFIX}/share/kicad/scripting/plugins/
+ 
+Index: distinfo
+===================================================================
+RCS file: /cvs/ports/cad/kicad/distinfo,v
+retrieving revision 1.11
+diff -u -p -u -r1.11 distinfo
+--- distinfo	22 Nov 2021 14:55:53 -0000	1.11
++++ distinfo	21 Jan 2022 17:51:56 -0000
+@@ -1,2 +1,2 @@
+-SHA256 (kicad-5.1.12.tar.gz) = EBzAJeVcs8wEfevl5LGsH6EWzu0Uf+8bwnXY4h92qj8=
+-SIZE (kicad-5.1.12.tar.gz) = 23785717
++SHA256 (kicad-6.0.0.tar.gz) = Ais/Xyp8qhmN9+VkqO+k2TOBvklOZk01FwEyvdKNlhc=
++SIZE (kicad-6.0.0.tar.gz) = 45037889
+Index: patches/patch-3d-viewer_3d_cache_sg_CMakeLists_txt
+===================================================================
+RCS file: patches/patch-3d-viewer_3d_cache_sg_CMakeLists_txt
+diff -N patches/patch-3d-viewer_3d_cache_sg_CMakeLists_txt
+--- patches/patch-3d-viewer_3d_cache_sg_CMakeLists_txt	22 Nov 2021 14:55:53 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,17 +0,0 @@
+-$OpenBSD: patch-3d-viewer_3d_cache_sg_CMakeLists_txt,v 1.2 2021/11/22 14:55:53 tracey Exp $
+-
+-Index: 3d-viewer/3d_cache/sg/CMakeLists.txt
+---- 3d-viewer/3d_cache/sg/CMakeLists.txt.orig
+-+++ 3d-viewer/3d_cache/sg/CMakeLists.txt
+-@@ -93,7 +93,10 @@ unset( S3DSG_VERSION_FILE CACHE )
+- # Define a flag to expose the appropriate EXPORT macro at build time
+- target_compile_definitions( kicad_3dsg PRIVATE -DCOMPILE_SGLIB )
+- 
+--target_link_libraries( kicad_3dsg ${wxWidgets_LIBRARIES} )
+-+target_link_libraries( kicad_3dsg
+-+                       stdc++
+-+		       c
+-+                       ${wxWidgets_LIBRARIES} )
+- 
+- # Don't specify the ARCHIVE DESTINATION parameter to prevent
+- # the install of the import library on Windows
+Index: patches/patch-3d-viewer_CMakeLists_txt
+===================================================================
+RCS file: patches/patch-3d-viewer_CMakeLists_txt
+diff -N patches/patch-3d-viewer_CMakeLists_txt
+--- patches/patch-3d-viewer_CMakeLists_txt	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,18 +0,0 @@
+-$OpenBSD: patch-3d-viewer_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: 3d-viewer/CMakeLists.txt
+---- 3d-viewer/CMakeLists.txt.orig
+-+++ 3d-viewer/CMakeLists.txt
+-@@ -106,9 +106,11 @@ add_library(3d-viewer STATIC ${3D-VIEWER_SRCS})
+- add_dependencies( 3d-viewer pcbcommon )
+- 
+- target_link_libraries( 3d-viewer
+-+                       stdc++
+-+                       c
+-                        gal
+-                        polygon
+--                       ${Boost_}
+-+		       ${Boost_LIBRARIES}
+-                        ${wxWidgets_LIBRARIES}
+-                        ${OPENGL_LIBRARIES}
+-                        kicad_3dsg )
+Index: patches/patch-CMakeLists_txt
+===================================================================
+RCS file: patches/patch-CMakeLists_txt
+diff -N patches/patch-CMakeLists_txt
+--- patches/patch-CMakeLists_txt	19 Feb 2021 14:48:58 -0000	1.5
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,29 +0,0 @@
+-$OpenBSD: patch-CMakeLists_txt,v 1.5 2021/02/19 14:48:58 tracey Exp $
+-# assign proper lib name and add boost check
+-Index: CMakeLists.txt
+---- CMakeLists.txt.orig
+-+++ CMakeLists.txt
+-@@ -409,12 +409,12 @@ if( false )
+-     set( KIFACE_SUFFIX  ${CMAKE_SHARED_MODULE_SUFFIX} )
+- else()
+-     # Temporary situation until we can dovetail the python DSO into the kiface DSO.
+--    set( KIFACE_SUFFIX  ".kiface" )
+-+    set( KIFACE_SUFFIX  ".a" )
+- endif()
+- 
+- # KIFACE_PREFIX is a basename prefix used for top level program modules which
+- # implement the KIFACE.
+--set( KIFACE_PREFIX  "_" )
+-+set( KIFACE_PREFIX  "lib" )
+- #message( STATUS "KIFACE_SUFFIX:${KIFACE_SUFFIX}  KIFACE_PREFIX:${KIFACE_PREFIX}" )
+- 
+- 
+-@@ -582,7 +582,7 @@ find_package( Pixman 0.30 REQUIRED )
+- 
+- #
+- # Find Boost headers, required.
+--find_package( Boost 1.54.0 REQUIRED )
+-+find_package( Boost 1.54.0 REQUIRED COMPONENTS context system )
+- 
+- # Include MinGW resource compiler.
+- include( MinGWResourceCompiler )
+Index: patches/patch-CMakeModules_config_h_cmake
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-CMakeModules_config_h_cmake,v
+retrieving revision 1.1
+diff -u -p -u -r1.1 patch-CMakeModules_config_h_cmake
+--- patches/patch-CMakeModules_config_h_cmake	8 Nov 2019 14:43:53 -0000	1.1
++++ patches/patch-CMakeModules_config_h_cmake	21 Jan 2022 17:51:56 -0000
+@@ -3,7 +3,7 @@ $OpenBSD: patch-CMakeModules_config_h_cm
+ Index: CMakeModules/config.h.cmake
+ --- CMakeModules/config.h.cmake.orig
+ +++ CMakeModules/config.h.cmake
+-@@ -36,7 +36,7 @@
++@@ -38,7 +38,7 @@
+  #cmakedefine HAVE_ISO646_H
+  
+  #if defined( HAVE_ISO646_H )
+Index: patches/patch-common_CMakeLists_txt
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-common_CMakeLists_txt,v
+retrieving revision 1.3
+diff -u -p -u -r1.3 patch-common_CMakeLists_txt
+--- patches/patch-common_CMakeLists_txt	22 Nov 2021 14:55:53 -0000	1.3
++++ patches/patch-common_CMakeLists_txt	21 Jan 2022 17:51:56 -0000
+@@ -1,14 +1,12 @@
+-$OpenBSD: patch-common_CMakeLists_txt,v 1.3 2021/11/22 14:55:53 tracey Exp $
+-# get rid of -lrt linker
++$OpenBSD$
++
+ Index: common/CMakeLists.txt
+ --- common/CMakeLists.txt.orig
+ +++ common/CMakeLists.txt
+-@@ -598,7 +598,7 @@ add_dependencies( common page_layout_lexer_source_file
++@@ -682,5 +682,5 @@ make_lexer(
+  # This one gets made only when testing.
+  # to build it, first enable #define STAND_ALONE at top of dsnlexer.cpp
+  add_executable( dsntest EXCLUDE_FROM_ALL dsnlexer.cpp )
+ -target_link_libraries( dsntest common ${wxWidgets_LIBRARIES} rt )
+ +target_link_libraries( dsntest common ${wxWidgets_LIBRARIES} )
+- 
+- target_link_libraries( pcbcommon PUBLIC bitmaps )
+  
+Index: patches/patch-common_tool_tool_manager_cpp
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-common_tool_tool_manager_cpp,v
+retrieving revision 1.1
+diff -u -p -u -r1.1 patch-common_tool_tool_manager_cpp
+--- patches/patch-common_tool_tool_manager_cpp	8 Nov 2019 14:43:53 -0000	1.1
++++ patches/patch-common_tool_tool_manager_cpp	21 Jan 2022 17:51:56 -0000
+@@ -1,13 +1,14 @@
+-$OpenBSD: patch-common_tool_tool_manager_cpp,v 1.1 2019/11/08 14:43:53 sthen Exp $
++$OpenBSD$
+ 
+ Index: common/tool/tool_manager.cpp
+ --- common/tool/tool_manager.cpp.orig
+ +++ common/tool/tool_manager.cpp
+-@@ -27,6 +27,7 @@
+- #include <map>
+- #include <stack>
+- #include <algorithm>
+-+#include <functional>
++@@ -45,6 +45,8 @@
+  
+- #include <core/optional.h>
++ #include <class_draw_panel_gal.h>
+  
+++#include <functional>
+++
++ /// Struct describing the current execution state of a TOOL
++ struct TOOL_MANAGER::TOOL_STATE
++ {
+Index: patches/patch-cvpcb_CMakeLists_txt
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-cvpcb_CMakeLists_txt,v
+retrieving revision 1.2
+diff -u -p -u -r1.2 patch-cvpcb_CMakeLists_txt
+--- patches/patch-cvpcb_CMakeLists_txt	19 Feb 2021 14:48:58 -0000	1.2
++++ patches/patch-cvpcb_CMakeLists_txt	21 Jan 2022 17:51:56 -0000
+@@ -1,9 +1,9 @@
+-$OpenBSD: patch-cvpcb_CMakeLists_txt,v 1.2 2021/02/19 14:48:58 tracey Exp $
++$OpenBSD$
+ 
+ Index: cvpcb/CMakeLists.txt
+ --- cvpcb/CMakeLists.txt.orig
+ +++ cvpcb/CMakeLists.txt
+-@@ -104,7 +104,7 @@ target_link_libraries( cvpcb_kiface ${Boost_LIBRARIES}
++@@ -83,7 +83,7 @@ target_link_libraries( cvpcb_kiface ${Boost_LIBRARIES}
+  
+  if( UNIX AND NOT APPLE )
+      # -lrt must follow Boost
+Index: patches/patch-demos_python_scripts_examples_gen_gerber_and_drill_files_board_py
+===================================================================
+RCS file: patches/patch-demos_python_scripts_examples_gen_gerber_and_drill_files_board_py
+diff -N patches/patch-demos_python_scripts_examples_gen_gerber_and_drill_files_board_py
+--- patches/patch-demos_python_scripts_examples_gen_gerber_and_drill_files_board_py	2 Apr 2020 14:48:27 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,53 +0,0 @@
+-$OpenBSD: patch-demos_python_scripts_examples_gen_gerber_and_drill_files_board_py,v 1.1 2020/04/02 14:48:27 tracey Exp $
+-# fix print for python3+
+-Index: demos/python_scripts_examples/gen_gerber_and_drill_files_board.py
+---- demos/python_scripts_examples/gen_gerber_and_drill_files_board.py.orig
+-+++ demos/python_scripts_examples/gen_gerber_and_drill_files_board.py
+-@@ -92,11 +92,11 @@ for layer_info in plot_plan:
+- 
+-     pctl.SetLayer(layer_info[1])
+-     pctl.OpenPlotfile(layer_info[0], PLOT_FORMAT_GERBER, layer_info[2])
+--    print 'plot %s' % pctl.GetPlotFileName()
+-+    print('plot %s' % pctl.GetPlotFileName());
+-     if gen_job_file == True:
+-         jobfile_writer.AddGbrFile( layer_info[1], os.path.basename(pctl.GetPlotFileName()) );
+-     if pctl.PlotLayer() == False:
+--        print "plot error"
+-+        print("plot error");
+- 
+- #generate internal copper layers, if any
+- lyrcnt = board.GetCopperLayerCount();
+-@@ -106,9 +106,9 @@ for innerlyr in range ( 1, lyrcnt-1 ):
+-     pctl.SetLayer(innerlyr)
+-     lyrname = 'inner%s' % innerlyr
+-     pctl.OpenPlotfile(lyrname, PLOT_FORMAT_GERBER, "inner")
+--    print 'plot %s' % pctl.GetPlotFileName()
+-+    print('plot %s' % pctl.GetPlotFileName());
+-     if pctl.PlotLayer() == False:
+--        print "plot error"
+-+        print("plot error");
+- 
+- 
+- # At the end you have to close the last plot, otherwise you don't know when
+-@@ -133,18 +133,18 @@ drlwriter.SetFormat( metricFmt )
+- 
+- genDrl = True
+- genMap = True
+--print 'create drill and map files in %s' % pctl.GetPlotDirName()
+-+print('create drill and map files in %s' % pctl.GetPlotDirName());
+- drlwriter.CreateDrillandMapFilesSet( pctl.GetPlotDirName(), genDrl, genMap );
+- 
+- # One can create a text file to report drill statistics
+- rptfn = pctl.GetPlotDirName() + 'drill_report.rpt'
+--print 'report: %s' % rptfn
+-+print('report: %s' % rptfn);
+- drlwriter.GenDrillReportFile( rptfn );
+- 
+- if gen_job_file == True:
+-     #job_fn=os.path.splitext(pctl.GetPlotFileName())[0] + '.gbrjob'
+-     job_fn=os.path.dirname(pctl.GetPlotFileName()) + '/' + os.path.basename(filename)
+-     job_fn=os.path.splitext(job_fn)[0] + '.gbrjob'
+--    print 'create job file %s' % job_fn
+-+    print('create job file %s' % job_fn);
+-     jobfile_writer.CreateJobFile( job_fn )
+- 
+Index: patches/patch-demos_python_scripts_examples_plot_board_py
+===================================================================
+RCS file: patches/patch-demos_python_scripts_examples_plot_board_py
+diff -N patches/patch-demos_python_scripts_examples_plot_board_py
+--- patches/patch-demos_python_scripts_examples_plot_board_py	2 Apr 2020 14:48:27 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,14 +0,0 @@
+-$OpenBSD: patch-demos_python_scripts_examples_plot_board_py,v 1.1 2020/04/02 14:48:27 tracey Exp $
+-# fix print for python3+
+-Index: demos/python_scripts_examples/plot_board.py
+---- demos/python_scripts_examples/plot_board.py.orig
+-+++ demos/python_scripts_examples/plot_board.py
+-@@ -72,7 +72,7 @@ plot_plan = [
+- for layer_info in plot_plan:
+-     pctl.SetLayer(layer_info[1])
+-     pctl.OpenPlotfile(layer_info[0], PLOT_FORMAT_GERBER, layer_info[2])
+--    print layer_info[0]
+-+    print(layer_info[0]);
+-     pctl.PlotLayer()
+- 
+- # Our fabricators want two additional gerbers:
+Index: patches/patch-eeschema_CMakeLists_txt
+===================================================================
+RCS file: patches/patch-eeschema_CMakeLists_txt
+diff -N patches/patch-eeschema_CMakeLists_txt
+--- patches/patch-eeschema_CMakeLists_txt	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,32 +0,0 @@
+-$OpenBSD: patch-eeschema_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: eeschema/CMakeLists.txt
+---- eeschema/CMakeLists.txt.orig
+-+++ eeschema/CMakeLists.txt
+-@@ -332,6 +332,8 @@ target_link_libraries( eeschema
+-     common
+-     gal
+-     legacy_gal
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     )
+- 
+-@@ -353,6 +355,8 @@ target_link_libraries( eeschema_kiface
+-     common
+-     gal
+-     legacy_gal
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     ${GDI_PLUS_LIBRARIES}
+-     )
+-@@ -362,6 +366,8 @@ target_include_directories( eeschema_kiface PUBLIC
+- 
+- if( KICAD_SPICE )
+-     target_link_libraries( eeschema_kiface
+-+        stdc++
+-+        c
+-         ${NGSPICE_LIBRARY}
+-         )
+- endif()
+Index: patches/patch-gerbview_CMakeLists_txt
+===================================================================
+RCS file: patches/patch-gerbview_CMakeLists_txt
+diff -N patches/patch-gerbview_CMakeLists_txt
+--- patches/patch-gerbview_CMakeLists_txt	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,23 +0,0 @@
+-$OpenBSD: patch-gerbview_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: gerbview/CMakeLists.txt
+---- gerbview/CMakeLists.txt.orig
+-+++ gerbview/CMakeLists.txt
+-@@ -120,6 +120,8 @@ target_link_libraries( gerbview
+-     common
+-     gal
+-     legacy_wx
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     )
+- 
+-@@ -150,6 +152,8 @@ target_link_libraries( gerbview_kiface
+-     common
+-     gal
+-     legacy_wx
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     ${GDI_PLUS_LIBRARIES}
+-     )
+Index: patches/patch-include_kiway_h
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-include_kiway_h,v
+retrieving revision 1.1
+diff -u -p -u -r1.1 patch-include_kiway_h
+--- patches/patch-include_kiway_h	8 Nov 2019 14:43:53 -0000	1.1
++++ patches/patch-include_kiway_h	21 Jan 2022 17:51:56 -0000
+@@ -3,7 +3,7 @@ $OpenBSD: patch-include_kiway_h,v 1.1 20
+ Index: include/kiway.h
+ --- include/kiway.h.orig
+ +++ include/kiway.h
+-@@ -116,7 +116,7 @@ as such!  As such, it is OK to use UTF8 characters:
++@@ -114,7 +114,7 @@
+  #define KIFACE_INSTANCE_NAME_AND_VERSION   "KIFACE_1"
+  
+  #ifndef SWIG
+Index: patches/patch-include_system_libcontext_h
+===================================================================
+RCS file: patches/patch-include_system_libcontext_h
+diff -N patches/patch-include_system_libcontext_h
+--- patches/patch-include_system_libcontext_h	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,19 +0,0 @@
+-$OpenBSD: patch-include_system_libcontext_h,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: include/system/libcontext.h
+---- include/system/libcontext.h.orig
+-+++ include/system/libcontext.h
+-@@ -22,11 +22,11 @@
+- #include <stddef.h>
+- 
+- 
+--#if defined(__GNUC__) || defined(__APPLE__) || defined(__FreeBSD__)
+-+#if defined(__GNUC__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__)
+- 
+-     #define LIBCONTEXT_COMPILER_gcc
+- 
+--    #if defined(__linux__) || defined(__FreeBSD__)
+-+    #if defined(__linux__) || defined(__FreeBSD__) || defined(__OpenBSD__)
+-     #if defined(__x86_64__) || defined(__amd64__)
+-         #define LIBCONTEXT_PLATFORM_linux_x86_64
+-         #define LIBCONTEXT_CALL_CONVENTION
+Index: patches/patch-include_tool_coroutine_h
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-include_tool_coroutine_h,v
+retrieving revision 1.2
+diff -u -p -u -r1.2 patch-include_tool_coroutine_h
+--- patches/patch-include_tool_coroutine_h	2 Apr 2020 14:48:27 -0000	1.2
++++ patches/patch-include_tool_coroutine_h	21 Jan 2022 17:51:56 -0000
+@@ -1,29 +1,35 @@
+-$OpenBSD: patch-include_tool_coroutine_h,v 1.2 2020/04/02 14:48:27 tracey Exp $
+-# otto@ patch for building proper stack
++$OpenBSD$
++
++this is the otto-fu that makes this software work
++
+ Index: include/tool/coroutine.h
+ --- include/tool/coroutine.h.orig
+ +++ include/tool/coroutine.h
+-@@ -33,6 +33,7 @@
++@@ -49,6 +49,8 @@
++ #include <trace_helpers.h>
++ #include <wx/log.h>
+  
+- #include <system/libcontext.h>
+- #include <memory>
+ +#include <sys/mman.h>
+- 
+++
+  /**
+-  *  Class COROUNTINE.
+-@@ -145,6 +146,8 @@ class COROUTINE (public)
++  *  Implement a coroutine.
++  *
++@@ -206,6 +208,8 @@ class COROUTINE (public)
+  
+      ~COROUTINE()
+      {
+-+        if (m_stack)
+-+            munmap(m_stack.release(), c_defaultStackSize);
+-     }
+- 
+- public:
+-@@ -296,7 +299,10 @@ class COROUTINE (public)
+++	if (m_stack)
+++		munmap(m_stack.release(), m_stacksize);
++ #ifdef KICAD_USE_VALGRIND
++         VALGRIND_STACK_DEREGISTER( m_valgrind_stack );
++ #endif
++@@ -374,10 +378,11 @@ class COROUTINE (public)
++         size_t stackSize = m_stacksize;
++         void* sp = nullptr;
+  
++-#ifndef LIBCONTEXT_HAS_OWN_STACK
++-
+          // fixme: Clean up stack stuff. Add a guard
+-         size_t stackSize = c_defaultStackSize;
+ -        m_stack.reset( new char[stackSize] );
+ +	void *p = mmap(NULL, stackSize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON | MAP_STACK, -1, 0);
+ +	if (p == MAP_FAILED)
+@@ -31,4 +37,12 @@ Index: include/tool/coroutine.h
+ +        m_stack.reset( static_cast<char *>(p) );
+  
+          // align to 16 bytes
+-         void* sp = (void*)((((ptrdiff_t) m_stack.get()) + stackSize - 0xf) & (~0x0f));
++         sp = (void*)((((ptrdiff_t) m_stack.get()) + stackSize - 0xf) & (~0x0f));
++@@ -387,7 +392,6 @@ class COROUTINE (public)
++ 
++ #ifdef KICAD_USE_VALGRIND
++         m_valgrind_stack = VALGRIND_STACK_REGISTER( sp, m_stack.get() );
++-#endif
++ #endif
++ 
++ #ifdef KICAD_SANITIZE_THREADS
+Index: patches/patch-include_tool_tool_interactive_h
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-include_tool_tool_interactive_h,v
+retrieving revision 1.1
+diff -u -p -u -r1.1 patch-include_tool_tool_interactive_h
+--- patches/patch-include_tool_tool_interactive_h	8 Nov 2019 14:43:53 -0000	1.1
++++ patches/patch-include_tool_tool_interactive_h	21 Jan 2022 17:51:56 -0000
+@@ -1,13 +1,14 @@
+-$OpenBSD: patch-include_tool_tool_interactive_h,v 1.1 2019/11/08 14:43:53 sthen Exp $
++$OpenBSD$
+ 
+ Index: include/tool/tool_interactive.h
+ --- include/tool/tool_interactive.h.orig
+ +++ include/tool/tool_interactive.h
+-@@ -27,6 +27,7 @@
+- #define __TOOL_INTERACTIVE_H
++@@ -32,6 +32,8 @@
++ #include <tool/tool_event.h>    // Needed for CONTEXT_MENU_TRIGGER
++ #include <tool/tool_base.h>
+  
+- #include <string>
+ +#include <functional>
+++
++ class ACTION_MENU;
++ 
+  
+- #include <tool/tool_event.h>
+- #include <tool/tool_base.h>
+Index: patches/patch-kicad_kicad_cpp
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-kicad_kicad_cpp,v
+retrieving revision 1.2
+diff -u -p -u -r1.2 patch-kicad_kicad_cpp
+--- patches/patch-kicad_kicad_cpp	19 Feb 2021 14:48:58 -0000	1.2
++++ patches/patch-kicad_kicad_cpp	21 Jan 2022 17:51:56 -0000
+@@ -3,12 +3,12 @@ $OpenBSD: patch-kicad_kicad_cpp,v 1.2 20
+ Index: kicad/kicad.cpp
+ --- kicad/kicad.cpp.orig
+ +++ kicad/kicad.cpp
+-@@ -256,7 +256,7 @@ struct APP_KICAD : public wxApp
++@@ -285,7 +285,7 @@ struct APP_KICAD : public wxApp
+      {
+          program.OnPgmExit();
+  
+ -#if defined(__FreeBSD__)
+ +#if defined(__FreeBSD__) || defined(__OpenBSD__)
+-         /* Avoid wxLog crashing when used in destructors. */
++         // Avoid wxLog crashing when used in destructors.
+          wxLog::EnableLogging( false );
+  #endif
+Index: patches/patch-new_CMakeLists_txt
+===================================================================
+RCS file: patches/patch-new_CMakeLists_txt
+diff -N patches/patch-new_CMakeLists_txt
+--- patches/patch-new_CMakeLists_txt	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,16 +0,0 @@
+-$OpenBSD: patch-new_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: new/CMakeLists.txt
+---- new/CMakeLists.txt.orig
+-+++ new/CMakeLists.txt
+-@@ -60,8 +60,8 @@ if( 1 )
+- 
+-     if(CMAKE_COMPILER_IS_GNUCXX)
+-         # Set default flags for Release build.
+--        set(CMAKE_C_FLAGS_RELEASE "-Wall -O2 -DNDEBUG ")
+--        set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O2 -DNDEBUG")
+-+        set(CMAKE_C_FLAGS_RELEASE "-Wall -DNDEBUG ")
+-+        set(CMAKE_CXX_FLAGS_RELEASE "-Wall -DNDEBUG")
+-         set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-s -static-libgcc")
+- 
+-         # Set default flags for Debug build.
+Index: patches/patch-pagelayout_editor_CMakeLists_txt
+===================================================================
+RCS file: patches/patch-pagelayout_editor_CMakeLists_txt
+diff -N patches/patch-pagelayout_editor_CMakeLists_txt
+--- patches/patch-pagelayout_editor_CMakeLists_txt	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,23 +0,0 @@
+-$OpenBSD: patch-pagelayout_editor_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: pagelayout_editor/CMakeLists.txt
+---- pagelayout_editor/CMakeLists.txt.orig
+-+++ pagelayout_editor/CMakeLists.txt
+-@@ -92,6 +92,8 @@ target_link_libraries( pl_editor
+-     common
+-     gal
+-     legacy_wx
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     )
+- 
+-@@ -117,6 +119,8 @@ target_link_libraries( pl_editor_kiface
+-     common
+-     gal
+-     legacy_wx
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     ${GDI_PLUS_LIBRARIES}
+-     )
+Index: patches/patch-pcb_calculator_CMakeLists_txt
+===================================================================
+RCS file: patches/patch-pcb_calculator_CMakeLists_txt
+diff -N patches/patch-pcb_calculator_CMakeLists_txt
+--- patches/patch-pcb_calculator_CMakeLists_txt	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,23 +0,0 @@
+-$OpenBSD: patch-pcb_calculator_CMakeLists_txt,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: pcb_calculator/CMakeLists.txt
+---- pcb_calculator/CMakeLists.txt.orig
+-+++ pcb_calculator/CMakeLists.txt
+-@@ -67,6 +67,8 @@ target_link_libraries( pcb_calculator
+-     # There's way too much crap coming in from common yet.
+-     common
+-     gal
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     )
+- 
+-@@ -87,6 +89,8 @@ set_target_properties( pcb_calculator_kiface PROPERTIE
+-     )
+- target_link_libraries( pcb_calculator_kiface
+-     common
+-+    stdc++
+-+    c
+-     ${wxWidgets_LIBRARIES}
+-     )
+- set_source_files_properties( pcb_calculator.cpp PROPERTIES
+Index: patches/patch-pcbnew_CMakeLists_txt
+===================================================================
+RCS file: /cvs/ports/cad/kicad/patches/patch-pcbnew_CMakeLists_txt,v
+retrieving revision 1.5
+diff -u -p -u -r1.5 patch-pcbnew_CMakeLists_txt
+--- patches/patch-pcbnew_CMakeLists_txt	14 Jul 2021 16:28:06 -0000	1.5
++++ patches/patch-pcbnew_CMakeLists_txt	21 Jan 2022 17:51:56 -0000
+@@ -1,10 +1,10 @@
+-$OpenBSD: patch-pcbnew_CMakeLists_txt,v 1.5 2021/07/14 16:28:06 tracey Exp $
+-# multiple cmake changes to build, prevent multiple rules for _pcbnew.so
++$OpenBSD$
++
+ Index: pcbnew/CMakeLists.txt
+ --- pcbnew/CMakeLists.txt.orig
+ +++ pcbnew/CMakeLists.txt
+-@@ -516,7 +516,7 @@ if( BUILD_GITHUB_PLUGIN )
+- endif()
++@@ -493,7 +493,7 @@ add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}
++     )
+  
+  if( UNIX AND NOT APPLE )
+ -    list( APPEND PCBNEW_EXTRA_LIBS rt )
+@@ -12,21 +12,3 @@ Index: pcbnew/CMakeLists.txt
+  endif()
+  
+  
+-@@ -805,7 +805,7 @@ if( KICAD_SCRIPTING_MODULES )
+-         add_dependencies( ScriptingModulesPcbnewSoCopy ScriptingPythonDirectoryCreation )
+-         set( PYMOD_EXT "so" )
+-     else()  # only linux remains among supported platforms
+--        install( FILES ${CMAKE_CURRENT_BINARY_DIR}/_pcbnew.kiface DESTINATION ${PYTHON_DEST} COMPONENT binary RENAME "_pcbnew.so" )
+-+        install( FILES ${CMAKE_CURRENT_BINARY_DIR}/libpcbnew.a DESTINATION ${PYTHON_DEST} COMPONENT binary RENAME "_pcbnew.so" )
+-         set( PYMOD_EXT "so" )
+-     endif()
+- 
+-@@ -823,7 +823,7 @@ if( KICAD_SCRIPTING_MODULES )
+-         # For phase 1, copy _pcbnew.kiface to the python module.
+-         add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/_pcbnew.${PYMOD_EXT}
+-             DEPENDS pcbnew_kiface
+--            COMMAND ${CMAKE_COMMAND} -E copy _pcbnew.kiface _pcbnew.${PYMOD_EXT}
+-+            COMMAND ${CMAKE_COMMAND} -E copy libpcbnew.a _pcbnew.${PYMOD_EXT}
+-             COMMENT "Creating python's pcbnew native module _pcbnew.${PYMOD_EXT} for command line use."
+-             )
+-         add_custom_target(
+Index: patches/patch-thirdparty_libcontext_libcontext_h
+===================================================================
+RCS file: patches/patch-thirdparty_libcontext_libcontext_h
+diff -N patches/patch-thirdparty_libcontext_libcontext_h
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-thirdparty_libcontext_libcontext_h	21 Jan 2022 17:51:56 -0000
+@@ -0,0 +1,21 @@
++$OpenBSD$
++
++Index: thirdparty/libcontext/libcontext.h
++--- thirdparty/libcontext/libcontext.h.orig
+++++ thirdparty/libcontext/libcontext.h
++@@ -22,13 +22,13 @@
++ #include <cstdio>
++ 
++ 
++-#if defined(__GNUC__) || defined(__APPLE__) || defined(__FreeBSD__)
+++#if defined(__GNUC__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__)
++ 
++     #undef LIBCONTEXT_HAS_OWN_STACK
++ 
++     #define LIBCONTEXT_COMPILER_gcc
++ 
++-    #if defined(__linux__) || defined(__FreeBSD__)
+++    #if defined(__linux__) || defined(__FreeBSD__) || defined(__OpenBSD__)
++     #if defined(__x86_64__) || defined(__amd64__)
++         #define LIBCONTEXT_PLATFORM_linux_x86_64
++         #define LIBCONTEXT_CALL_CONVENTION
+Index: patches/patch-utils_kicad2step_kicad2step_cpp
+===================================================================
+RCS file: patches/patch-utils_kicad2step_kicad2step_cpp
+diff -N patches/patch-utils_kicad2step_kicad2step_cpp
+--- patches/patch-utils_kicad2step_kicad2step_cpp	8 Nov 2019 14:43:53 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,22 +0,0 @@
+-$OpenBSD: patch-utils_kicad2step_kicad2step_cpp,v 1.1 2019/11/08 14:43:53 sthen Exp $
+-
+-Index: utils/kicad2step/kicad2step.cpp
+---- utils/kicad2step/kicad2step.cpp.orig
+-+++ utils/kicad2step/kicad2step.cpp
+-@@ -305,11 +305,11 @@ int KICAD2MCAD::OnRun()
+-             if( !res )
+-                 return -1;
+-         }
+--        catch( const Standard_Failure& e )
+--        {
+--            e.Print( std::cerr );
+--            return -1;
+--        }
+-+        /* catch( const Standard_Failure& e ) */
+-+        /* { */
+-+        /*     e.Print( std::cerr ); */
+-+        /*     return -1; */
+-+        /* } */
+-         catch( ... )
+-         {
+-             std::cerr << "** (no exception information)\n";
+Index: pkg/PLIST
+===================================================================
+RCS file: /cvs/ports/cad/kicad/pkg/PLIST,v
+retrieving revision 1.5
+diff -u -p -u -r1.5 PLIST
+--- pkg/PLIST	14 Jul 2021 16:28:07 -0000	1.5
++++ pkg/PLIST	21 Jan 2022 17:51:56 -0000
+@@ -1,6 +1,13 @@
+ @comment $OpenBSD: PLIST,v 1.5 2021/07/14 16:28:07 tracey Exp $
+ @pkgpath cad/kicad,-docs
+ @pkgpath cad/kicad,-main
++bin/_cvpcb.kiface
++bin/_eeschema.kiface
++bin/_gerbview.kiface
++bin/_kipython.kiface
++bin/_pcb_calculator.kiface
++bin/_pcbnew.kiface
++bin/_pl_editor.kiface
+ @bin bin/bitmap2component
+ @bin bin/dxf2idf
+ @bin bin/eeschema
+@@ -10,12 +17,6 @@
+ @bin bin/idfrect
+ @bin bin/kicad
+ @bin bin/kicad2step
+-bin/libcvpcb.a
+-bin/libeeschema.a
+-bin/libgerbview.a
+-bin/libpcb_calculator.a
+-bin/libpcbnew.a
+-bin/libpl_editor.a
+ @bin bin/pcb_calculator
+ @bin bin/pcbnew
+ @bin bin/pl_editor
+@@ -30,17 +31,14 @@ lib/python${MODPY_VERSION}/site-packages
+ lib/python${MODPY_VERSION}/site-packages/${MODPY_PYCACHE}pcbnew.${MODPY_PYC_MAGIC_TAG}pyc
+ @so lib/python${MODPY_VERSION}/site-packages/_pcbnew.so
+ lib/python${MODPY_VERSION}/site-packages/pcbnew.py
+-share/appdata/
+-share/appdata/kicad.appdata.xml
+-share/applications/bitmap2component.desktop
+-share/applications/eeschema.desktop
+-share/applications/gerbview.desktop
+-share/applications/kicad.desktop
+-share/applications/pcbcalculator.desktop
+-share/applications/pcbnew.desktop
++share/applications/org.kicad.bitmap2component.desktop
++share/applications/org.kicad.eeschema.desktop
++share/applications/org.kicad.gerbview.desktop
++share/applications/org.kicad.kicad.desktop
++share/applications/org.kicad.pcbcalculator.desktop
++share/applications/org.kicad.pcbnew.desktop
+ share/doc/kicad/
+ share/doc/kicad/scripts/
+-share/doc/kicad/scripts/ddr3_length_match.py
+ share/doc/kicad/scripts/lib_convert.py
+ share/doc/kicad/scripts/test_kicad_plugin.py
+ share/doc/kicad/scripts/test_plugin.py
+@@ -62,15 +60,6 @@ share/icons/hicolor/16x16/apps/pcbnew.pn
+ share/icons/hicolor/16x16/mimetypes/application-x-kicad-pcb.png
+ share/icons/hicolor/16x16/mimetypes/application-x-kicad-project.png
+ share/icons/hicolor/16x16/mimetypes/application-x-kicad-schematic.png
+-share/icons/hicolor/22x22/apps/bitmap2component.png
+-share/icons/hicolor/22x22/apps/eeschema.png
+-share/icons/hicolor/22x22/apps/gerbview.png
+-share/icons/hicolor/22x22/apps/kicad.png
+-share/icons/hicolor/22x22/apps/pcbcalculator.png
+-share/icons/hicolor/22x22/apps/pcbnew.png
+-share/icons/hicolor/22x22/mimetypes/application-x-kicad-pcb.png
+-share/icons/hicolor/22x22/mimetypes/application-x-kicad-project.png
+-share/icons/hicolor/22x22/mimetypes/application-x-kicad-schematic.png
+ share/icons/hicolor/24x24/apps/bitmap2component.png
+ share/icons/hicolor/24x24/apps/eeschema.png
+ share/icons/hicolor/24x24/apps/gerbview.png
+@@ -118,84 +107,79 @@ share/icons/hicolor/scalable/mimetypes/a
+ share/icons/hicolor/scalable/mimetypes/application-x-kicad-schematic.svg
+ share/kicad/demos/
+ share/kicad/demos/complex_hierarchy/
+-share/kicad/demos/complex_hierarchy/ampli_ht.sch
+-share/kicad/demos/complex_hierarchy/complex_hierarchy-cache.lib
++share/kicad/demos/complex_hierarchy/ampli_ht.kicad_sch
+ share/kicad/demos/complex_hierarchy/complex_hierarchy.kicad_pcb
+-share/kicad/demos/complex_hierarchy/complex_hierarchy.net
+-share/kicad/demos/complex_hierarchy/complex_hierarchy.pro
+-share/kicad/demos/complex_hierarchy/complex_hierarchy.sch
+-share/kicad/demos/complex_hierarchy/complex_hierarchy_schlib.lib
++share/kicad/demos/complex_hierarchy/complex_hierarchy.kicad_pro
++share/kicad/demos/complex_hierarchy/complex_hierarchy.kicad_sch
++share/kicad/demos/complex_hierarchy/complex_hierarchy_schlib.kicad_sym
+ share/kicad/demos/complex_hierarchy/fp-lib-table
+ share/kicad/demos/complex_hierarchy/sym-lib-table
+ share/kicad/demos/custom_pads_test/
+-share/kicad/demos/custom_pads_test/custom_pads_schlib.dcm
+-share/kicad/demos/custom_pads_test/custom_pads_schlib.lib
+-share/kicad/demos/custom_pads_test/custom_pads_test-cache.lib
++share/kicad/demos/custom_pads_test/custom_pads_schlib.kicad_sym
+ share/kicad/demos/custom_pads_test/custom_pads_test.kicad_pcb
+-share/kicad/demos/custom_pads_test/custom_pads_test.lib
+-share/kicad/demos/custom_pads_test/custom_pads_test.net
+-share/kicad/demos/custom_pads_test/custom_pads_test.pro
+-share/kicad/demos/custom_pads_test/custom_pads_test.sch
++share/kicad/demos/custom_pads_test/custom_pads_test.kicad_pro
++share/kicad/demos/custom_pads_test/custom_pads_test.kicad_sch
+ share/kicad/demos/custom_pads_test/sym-lib-table
+ share/kicad/demos/ecc83/
+-share/kicad/demos/ecc83/ecc83-pp-cache.lib
++share/kicad/demos/ecc83/3d_shapes/
++share/kicad/demos/ecc83/3d_shapes/ecc83.wrl
+ share/kicad/demos/ecc83/ecc83-pp.kicad_pcb
+-share/kicad/demos/ecc83/ecc83-pp.net
+-share/kicad/demos/ecc83/ecc83-pp.pro
+-share/kicad/demos/ecc83/ecc83-pp.sch
+-share/kicad/demos/ecc83/ecc83-pp_v2-cache.lib
++share/kicad/demos/ecc83/ecc83-pp.kicad_pro
++share/kicad/demos/ecc83/ecc83-pp.kicad_sch
+ share/kicad/demos/ecc83/ecc83-pp_v2.kicad_pcb
+-share/kicad/demos/ecc83/ecc83-pp_v2.net
+-share/kicad/demos/ecc83/ecc83-pp_v2.pro
+-share/kicad/demos/ecc83/ecc83-pp_v2.sch
+-share/kicad/demos/ecc83/ecc83_schlib.dcm
+-share/kicad/demos/ecc83/ecc83_schlib.lib
++share/kicad/demos/ecc83/ecc83-pp_v2.kicad_pro
++share/kicad/demos/ecc83/ecc83-pp_v2.kicad_sch
++share/kicad/demos/ecc83/ecc83_schlib.kicad_sym
+ share/kicad/demos/ecc83/fp-lib-table
+ share/kicad/demos/ecc83/sym-lib-table
+ share/kicad/demos/electric/
+-share/kicad/demos/electric/elec-unifil.dcm
+-share/kicad/demos/electric/elec-unifil.lib
+-share/kicad/demos/electric/electric-cache.lib
+-share/kicad/demos/electric/electric.pro
+-share/kicad/demos/electric/electric.sch
++share/kicad/demos/electric/elec-unifil.kicad_sym
++share/kicad/demos/electric/electric.kicad_pro
++share/kicad/demos/electric/electric.kicad_sch
+ share/kicad/demos/electric/sym-lib-table
+ share/kicad/demos/flat_hierarchy/
+-share/kicad/demos/flat_hierarchy/flat_hierarchy-cache.lib
+ share/kicad/demos/flat_hierarchy/flat_hierarchy.kicad_pcb
+-share/kicad/demos/flat_hierarchy/flat_hierarchy.net
+-share/kicad/demos/flat_hierarchy/flat_hierarchy.pro
+-share/kicad/demos/flat_hierarchy/flat_hierarchy.sch
+-share/kicad/demos/flat_hierarchy/flat_hierarchy_schlib.lib
+-share/kicad/demos/flat_hierarchy/pic_programmer.sch
+-share/kicad/demos/flat_hierarchy/pic_sockets.sch
++share/kicad/demos/flat_hierarchy/flat_hierarchy.kicad_pro
++share/kicad/demos/flat_hierarchy/flat_hierarchy.kicad_sch
++share/kicad/demos/flat_hierarchy/fp-lib-table
++share/kicad/demos/flat_hierarchy/libs/
++share/kicad/demos/flat_hierarchy/libs/3d_shapes/
++share/kicad/demos/flat_hierarchy/libs/3d_shapes/adjustable_rx2v4.wrl
++share/kicad/demos/flat_hierarchy/libs/flat_hierarchy_schlib.kicad_sym
++share/kicad/demos/flat_hierarchy/libs/pic_programmer_fp.pretty/
++share/kicad/demos/flat_hierarchy/libs/pic_programmer_fp.pretty/RV2X4.kicad_mod
++share/kicad/demos/flat_hierarchy/pic_programmer.kicad_sch
++share/kicad/demos/flat_hierarchy/pic_sockets.kicad_sch
+ share/kicad/demos/flat_hierarchy/sym-lib-table
+ share/kicad/demos/interf_u/
+ share/kicad/demos/interf_u/fp-lib-table
+-share/kicad/demos/interf_u/interf_u-cache.lib
+ share/kicad/demos/interf_u/interf_u.kicad_pcb
+-share/kicad/demos/interf_u/interf_u.net
++share/kicad/demos/interf_u/interf_u.kicad_pro
++share/kicad/demos/interf_u/interf_u.kicad_sch
+ share/kicad/demos/interf_u/interf_u.pretty/
+ share/kicad/demos/interf_u/interf_u.pretty/BUS_PC.kicad_mod
+ share/kicad/demos/interf_u/interf_u.pretty/PGA120.kicad_mod
+-share/kicad/demos/interf_u/interf_u.pro
+-share/kicad/demos/interf_u/interf_u.sch
+-share/kicad/demos/interf_u/interf_u_schlib.dcm
+-share/kicad/demos/interf_u/interf_u_schlib.lib
++share/kicad/demos/interf_u/interf_u_schlib.kicad_sym
+ share/kicad/demos/interf_u/pagelayout_logo.kicad_wks
+ share/kicad/demos/interf_u/sym-lib-table
+ share/kicad/demos/interf_u/tux.bmp
+ share/kicad/demos/interf_u/tux.kicad_mod
+-share/kicad/demos/interf_u/tux.lib
++share/kicad/demos/interf_u/tux.kicad_sym
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/fp-lib-table
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/in_out_conn.sch
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213-cache.lib
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/in_out_conn.kicad_sch
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-coldfire_schlib.kicad_sym
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213.kicad_pcb
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213.net
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213.pro
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213.sch
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213_schlib.dcm
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213_schlib.lib
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213.kicad_pro
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire-xilinx_5213.kicad_sch
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/FSUPCMS.kicad_mod
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/JACK_ALIM.kicad_mod
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/SM1206POL.kicad_mod
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/SOT23EBC.kicad_mod
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/SOT353.kicad_mod
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/SW_PUSH_SMALL.kicad_mod
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/kit-dev-coldfire.pretty/SW_SPDT.kicad_mod
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/prj.3dshapes/
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/prj.3dshapes/Device.switch_toggle_horizontal_right_angle_PC_terminal.wings
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/prj.3dshapes/Device.switch_toggle_horizontal_right_angle_PC_terminal.wrl
+@@ -205,26 +189,25 @@ share/kicad/demos/kit-dev-coldfire-xilin
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/prj.3dshapes/push_butt_4pads.wings
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/prj.3dshapes/push_butt_4pads.wrl
+ share/kicad/demos/kit-dev-coldfire-xilinx_5213/sym-lib-table
+-share/kicad/demos/kit-dev-coldfire-xilinx_5213/xilinx.sch
++share/kicad/demos/kit-dev-coldfire-xilinx_5213/xilinx.kicad_sch
+ share/kicad/demos/microwave/
+ share/kicad/demos/microwave/microwave.kicad_pcb
+-share/kicad/demos/microwave/microwave.pro
++share/kicad/demos/microwave/microwave.kicad_pro
+ share/kicad/demos/microwave/shape1.txt
+ share/kicad/demos/pic_programmer/
+ share/kicad/demos/pic_programmer/fp-lib-table
+ share/kicad/demos/pic_programmer/libs/
++share/kicad/demos/pic_programmer/libs/3d_shapes/
++share/kicad/demos/pic_programmer/libs/3d_shapes/adjustable_rx2v4.wrl
++share/kicad/demos/pic_programmer/libs/3d_shapes/textool_40.wrl
+ share/kicad/demos/pic_programmer/libs/pic_programmer_fp.pretty/
+ share/kicad/demos/pic_programmer/libs/pic_programmer_fp.pretty/40tex-Ell600.kicad_mod
+ share/kicad/demos/pic_programmer/libs/pic_programmer_fp.pretty/RV2X4.kicad_mod
+-share/kicad/demos/pic_programmer/libs/pic_programmer_fp.pretty/TO-92_BC237_307.kicad_mod
+-share/kicad/demos/pic_programmer/libs/pic_programmer_schlib.dcm
+-share/kicad/demos/pic_programmer/libs/pic_programmer_schlib.lib
+-share/kicad/demos/pic_programmer/pic_programmer-cache.lib
++share/kicad/demos/pic_programmer/libs/pic_programmer_schlib.kicad_sym
+ share/kicad/demos/pic_programmer/pic_programmer.kicad_pcb
+-share/kicad/demos/pic_programmer/pic_programmer.net
+-share/kicad/demos/pic_programmer/pic_programmer.pro
+-share/kicad/demos/pic_programmer/pic_programmer.sch
+-share/kicad/demos/pic_programmer/pic_sockets.sch
++share/kicad/demos/pic_programmer/pic_programmer.kicad_pro
++share/kicad/demos/pic_programmer/pic_programmer.kicad_sch
++share/kicad/demos/pic_programmer/pic_sockets.kicad_sch
+ share/kicad/demos/pic_programmer/sym-lib-table
+ share/kicad/demos/python_scripts_examples/
+ ${MODPY_COMMENT}share/kicad/demos/python_scripts_examples/${MODPY_PYCACHE}/
+@@ -243,82 +226,111 @@ share/kicad/demos/simulation/laser_drive
+ share/kicad/demos/simulation/laser_driver/ad8009.lib
+ share/kicad/demos/simulation/laser_driver/fzt1049a.lib
+ share/kicad/demos/simulation/laser_driver/laser.lib
+-share/kicad/demos/simulation/laser_driver/laser_driver-cache.lib
+-share/kicad/demos/simulation/laser_driver/laser_driver.pro
+-share/kicad/demos/simulation/laser_driver/laser_driver.sch
+-share/kicad/demos/simulation/laser_driver/laser_driver_schlib.lib
++share/kicad/demos/simulation/laser_driver/laser_driver.kicad_pro
++share/kicad/demos/simulation/laser_driver/laser_driver.kicad_sch
++share/kicad/demos/simulation/laser_driver/laser_driver_schlib.kicad_sym
+ share/kicad/demos/simulation/laser_driver/sym-lib-table
+ share/kicad/demos/simulation/pspice/
+-share/kicad/demos/simulation/pspice/pspice-cache.lib
+-share/kicad/demos/simulation/pspice/pspice.pro
+-share/kicad/demos/simulation/pspice/pspice.sch
+-share/kicad/demos/simulation/pspice/schematic_libspice.dcm
+-share/kicad/demos/simulation/pspice/schematic_libspice.lib
++share/kicad/demos/simulation/pspice/pspice.kicad_pro
++share/kicad/demos/simulation/pspice/pspice.kicad_sch
++share/kicad/demos/simulation/pspice/schematic_libspice.kicad_sym
+ share/kicad/demos/simulation/pspice/sym-lib-table
+ share/kicad/demos/simulation/rectifier/
+ share/kicad/demos/simulation/rectifier/diode.mod
+-share/kicad/demos/simulation/rectifier/rectifier-cache.lib
+-share/kicad/demos/simulation/rectifier/rectifier.pro
+-share/kicad/demos/simulation/rectifier/rectifier.sch
+-share/kicad/demos/simulation/rectifier/rectifier_schlib.lib
++share/kicad/demos/simulation/rectifier/rectifier.kicad_pro
++share/kicad/demos/simulation/rectifier/rectifier.kicad_sch
++share/kicad/demos/simulation/rectifier/rectifier_schlib.kicad_sym
+ share/kicad/demos/simulation/rectifier/sym-lib-table
+ share/kicad/demos/simulation/sallen_key/
+ share/kicad/demos/simulation/sallen_key/ad8051.lib
+-share/kicad/demos/simulation/sallen_key/sallen_key-cache.lib
+-share/kicad/demos/simulation/sallen_key/sallen_key.pro
+-share/kicad/demos/simulation/sallen_key/sallen_key.sch
+-share/kicad/demos/simulation/sallen_key/sallen_key_schlib.lib
++share/kicad/demos/simulation/sallen_key/sallen_key.kicad_pro
++share/kicad/demos/simulation/sallen_key/sallen_key.kicad_sch
++share/kicad/demos/simulation/sallen_key/sallen_key_schlib.kicad_sym
+ share/kicad/demos/simulation/sallen_key/sym-lib-table
++share/kicad/demos/simulation/v_i_sources/
++share/kicad/demos/simulation/v_i_sources/sym-lib-table
++share/kicad/demos/simulation/v_i_sources/v_i_sources.kicad_pro
++share/kicad/demos/simulation/v_i_sources/v_i_sources.kicad_sch
++share/kicad/demos/simulation/v_i_sources/v_i_sources.kicad_sym
+ share/kicad/demos/sonde xilinx/
+ share/kicad/demos/sonde xilinx/fp-lib-table
+-share/kicad/demos/sonde xilinx/sonde xilinx-cache.lib
+ share/kicad/demos/sonde xilinx/sonde xilinx.kicad_pcb
+-share/kicad/demos/sonde xilinx/sonde xilinx.net
+-share/kicad/demos/sonde xilinx/sonde xilinx.pro
+-share/kicad/demos/sonde xilinx/sonde xilinx.sch
+-share/kicad/demos/sonde xilinx/sonde xilinx_schlib.lib
++share/kicad/demos/sonde xilinx/sonde xilinx.kicad_pro
++share/kicad/demos/sonde xilinx/sonde xilinx.kicad_sch
++share/kicad/demos/sonde xilinx/sonde_xilinx_schlib.kicad_sym
+ share/kicad/demos/sonde xilinx/sym-lib-table
++share/kicad/demos/stickhub/
++share/kicad/demos/stickhub/3dmodels/
++share/kicad/demos/stickhub/3dmodels/APHB1608.step
++share/kicad/demos/stickhub/3dmodels/Crystal_SMD_4P_2520.step
++share/kicad/demos/stickhub/3dmodels/JST_SH_SM04B-SRSS-TB.STEP
++share/kicad/demos/stickhub/3dmodels/TDFN-8_1.5x2mm_Fused-Lead_MO-252-W2015D.step
++share/kicad/demos/stickhub/LICENSE.md
++share/kicad/demos/stickhub/README.md
++share/kicad/demos/stickhub/RobotProtos.kicad_sym
++share/kicad/demos/stickhub/StickHub.kicad_pcb
++share/kicad/demos/stickhub/StickHub.kicad_pro
++share/kicad/demos/stickhub/StickHub.kicad_sch
++share/kicad/demos/stickhub/footprints.pretty/
++share/kicad/demos/stickhub/footprints.pretty/1005_C.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/1006_C.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/1608_C.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/1P-1.5x1.5.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/2012_C.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/CP_Elec_6.3x11_Board_Edge_Mirrored.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/Creative_Commons_BY_Mask.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/Creative_Commons_CC_Mask.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/Creative_Commons_NC_Mask.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/Creative_Commons_SA_Mask.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/Crystal_4-SMD_2.5x2mm.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/Duo_LED_1.6x0.8_Kingbright_APHB1608LZGKSURKC.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/JP-2_1.5x1.5.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/LQFP-48_7x7mm_P0.5mm.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/Plain_Hole_3mm.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/TDFN-8_1.5x2mm_Fused-Lead_JEDEC_MO-252_W2015D.kicad_mod
++share/kicad/demos/stickhub/footprints.pretty/USB_A_PCB_traces_small.kicad_mod
++share/kicad/demos/stickhub/fp-lib-table
++share/kicad/demos/stickhub/sym-lib-table
+ share/kicad/demos/test_pads_inside_pads/
+ share/kicad/demos/test_pads_inside_pads/sym-lib-table
+-share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads-cache.lib
+ share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads.kicad_pcb
+-share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads.net
+-share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads.pro
+-share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads.sch
+-share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads_schlib.dcm
+-share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads_schlib.lib
++share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads.kicad_pro
++share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads.kicad_sch
++share/kicad/demos/test_pads_inside_pads/test_pads_inside_pads_schlib.kicad_sym
+ share/kicad/demos/test_xil_95108/
+-share/kicad/demos/test_xil_95108/carte_test-cache.lib
+ share/kicad/demos/test_xil_95108/carte_test.kicad_pcb
+-share/kicad/demos/test_xil_95108/carte_test.net
+-share/kicad/demos/test_xil_95108/carte_test.pro
+-share/kicad/demos/test_xil_95108/carte_test.sch
+-share/kicad/demos/test_xil_95108/carte_test_schlib.dcm
+-share/kicad/demos/test_xil_95108/carte_test_schlib.lib
++share/kicad/demos/test_xil_95108/carte_test.kicad_pro
++share/kicad/demos/test_xil_95108/carte_test.kicad_sch
++share/kicad/demos/test_xil_95108/carte_test_schlib.kicad_sym
+ share/kicad/demos/test_xil_95108/fp-lib-table
+ share/kicad/demos/test_xil_95108/sym-lib-table
+ share/kicad/demos/video/
+-share/kicad/demos/video/bus_pci.sch
+-share/kicad/demos/video/esvideo.sch
++share/kicad/demos/video/bus_pci.kicad_sch
++share/kicad/demos/video/esvideo.kicad_sch
+ share/kicad/demos/video/fp-lib-table
+-share/kicad/demos/video/graphic.sch
++share/kicad/demos/video/graphic.kicad_sch
+ share/kicad/demos/video/libs/
+ share/kicad/demos/video/libs/footprints.pretty/
++share/kicad/demos/video/libs/footprints.pretty/CV3-30PF.kicad_mod
++share/kicad/demos/video/libs/footprints.pretty/LED_D3.0mm.kicad_mod
+ share/kicad/demos/video/libs/footprints.pretty/LRTDK.kicad_mod
+ share/kicad/demos/video/libs/footprints.pretty/PLCC68.kicad_mod
+ share/kicad/demos/video/libs/footprints.pretty/PLCC84.kicad_mod
+ share/kicad/demos/video/libs/footprints.pretty/sim72.kicad_mod
+-share/kicad/demos/video/libs/video_schlib.lib
+-share/kicad/demos/video/modul.sch
+-share/kicad/demos/video/muxdata.sch
+-share/kicad/demos/video/pal-ntsc.sch
+-share/kicad/demos/video/rams.sch
++share/kicad/demos/video/libs/footprints.pretty/subclick.kicad_mod
++share/kicad/demos/video/libs/fp.3dshapes/
++share/kicad/demos/video/libs/fp.3dshapes/subclick_horiz.wings
++share/kicad/demos/video/libs/fp.3dshapes/subclick_horiz.wrl
++share/kicad/demos/video/libs/video_schlib.kicad_sym
++share/kicad/demos/video/modul.kicad_sch
++share/kicad/demos/video/muxdata.kicad_sch
++share/kicad/demos/video/pal-ntsc.kicad_sch
++share/kicad/demos/video/rams.kicad_sch
+ share/kicad/demos/video/sym-lib-table
+-share/kicad/demos/video/video-cache.lib
+ share/kicad/demos/video/video.kicad_pcb
+-share/kicad/demos/video/video.net
+-share/kicad/demos/video/video.pro
+-share/kicad/demos/video/video.sch
++share/kicad/demos/video/video.kicad_pro
++share/kicad/demos/video/video.kicad_sch
+ share/kicad/plugins/
+ share/kicad/plugins/README-bom.txt
+ ${MODPY_COMMENT}share/kicad/plugins/${MODPY_PYCACHE}/
+@@ -327,8 +339,9 @@ share/kicad/plugins/${MODPY_PYCACHE}bom_
+ share/kicad/plugins/${MODPY_PYCACHE}bom_csv_sorted_by_ref.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/plugins/${MODPY_PYCACHE}bom_html_grouped_by_value.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/plugins/${MODPY_PYCACHE}bom_html_with_advanced_grouping.${MODPY_PYC_MAGIC_TAG}pyc
+-share/kicad/plugins/${MODPY_PYCACHE}bom_sorted_by_ref.${MODPY_PYC_MAGIC_TAG}pyc
++share/kicad/plugins/${MODPY_PYCACHE}bom_txt_sorted_by_ref.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/plugins/${MODPY_PYCACHE}kicad_netlist_reader.${MODPY_PYC_MAGIC_TAG}pyc
++share/kicad/plugins/${MODPY_PYCACHE}kicad_utils.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/plugins/bom2csv.xsl
+ share/kicad/plugins/bom2grouped_csv.xsl
+ share/kicad/plugins/bom_csv_grouped_by_value.py
+@@ -336,14 +349,22 @@ share/kicad/plugins/bom_csv_grouped_by_v
+ share/kicad/plugins/bom_csv_sorted_by_ref.py
+ share/kicad/plugins/bom_html_grouped_by_value.py
+ share/kicad/plugins/bom_html_with_advanced_grouping.py
+-share/kicad/plugins/bom_sorted_by_ref.py
++share/kicad/plugins/bom_txt_sorted_by_ref.py
+ share/kicad/plugins/bom_with_title_block_2_csv.xsl
+ share/kicad/plugins/kicad_netlist_reader.py
++share/kicad/plugins/kicad_utils.py
+ share/kicad/plugins/netlist_form_OrcadPcb2.xsl
+ share/kicad/plugins/netlist_form_cadstar-RINF.xsl
+ share/kicad/plugins/netlist_form_cadstar.xsl
+ share/kicad/plugins/netlist_form_pads-pcb.asc.xsl
++share/kicad/resources/
++share/kicad/resources/images.tar.gz
++share/kicad/schemas/
++share/kicad/schemas/pcm.v1.schema.json
+ share/kicad/scripting/
++share/kicad/scripting/kicad_pyshell/
++share/kicad/scripting/kicad_pyshell/__init__.py
++share/kicad/scripting/kicad_pyshell/kicad_pyeditor.py
+ share/kicad/scripting/plugins/
+ share/kicad/scripting/plugins/FPC_wizard.py
+ share/kicad/scripting/plugins/FootprintWizardBase.py
+@@ -354,10 +375,12 @@ share/kicad/scripting/plugins/${MODPY_PY
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}FootprintWizardBase.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}PadArray.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++share/kicad/scripting/plugins/${MODPY_PYCACHE}arc_test.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}bga_wizard.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}circular_pad_array_wizard.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}kicad_qrcode.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}microMatch_connectors.${MODPY_PYC_MAGIC_TAG}pyc
++share/kicad/scripting/plugins/${MODPY_PYCACHE}mutualcap_button_wizard.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}qfn_wizard.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}qfp_wizard.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}qrcode_footprint_wizard.${MODPY_PYC_MAGIC_TAG}pyc
+@@ -365,10 +388,12 @@ share/kicad/scripting/plugins/${MODPY_PY
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}touch_slider_wizard.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}uss39_barcode.${MODPY_PYC_MAGIC_TAG}pyc
+ share/kicad/scripting/plugins/${MODPY_PYCACHE}zip_wizard.${MODPY_PYC_MAGIC_TAG}pyc
++share/kicad/scripting/plugins/arc_test.py
+ share/kicad/scripting/plugins/bga_wizard.py
+ share/kicad/scripting/plugins/circular_pad_array_wizard.py
+ share/kicad/scripting/plugins/kicad_qrcode.py
+ share/kicad/scripting/plugins/microMatch_connectors.py
++share/kicad/scripting/plugins/mutualcap_button_wizard.py
+ share/kicad/scripting/plugins/qfn_wizard.py
+ share/kicad/scripting/plugins/qfp_wizard.py
+ share/kicad/scripting/plugins/qrcode_footprint_wizard.py
+@@ -376,7 +401,9 @@ share/kicad/scripting/plugins/sdip_wizar
+ share/kicad/scripting/plugins/touch_slider_wizard.py
+ share/kicad/scripting/plugins/uss39_barcode.py
+ share/kicad/scripting/plugins/zip_wizard.py
+-share/kicad/template/kicad.pro
++share/kicad/template/kicad.kicad_pro
++share/metainfo/
++share/metainfo/org.kicad.kicad.metainfo.xml
+ share/mime/packages/kicad-gerbers.xml
+ share/mime/packages/kicad-kicad.xml
+ @tag update-desktop-database
