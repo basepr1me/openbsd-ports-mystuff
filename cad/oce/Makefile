@@ -26,7 +26,7 @@ CATEGORIES =		cad
 PERMIT_PACKAGE =	Yes
 
 WANTLIB += ${MODTK_WANTLIB} ${COMPILER_LIBCXX} GL X11 Xext Xi c fontconfig
-WANTLIB +=  freetype m
+WANTLIB += freetype m
 
 NO_TEST =		Yes
 
@@ -40,6 +40,7 @@ LIB_DEPENDS =		${MODTK_LIB_DEPENDS}
 RUN_DEPENDS =		${MODTK_RUN_DEPENDS} \
 			shells/bash
 
-CONFIGURE_ARGS +=	-DCMAKE_CXX_FLAGS="-I${X11BASE}/include ${CXXFLAGS}"
+CONFIGURE_ARGS +=	-DCMAKE_CXX_FLAGS="-I${X11BASE}/include ${CXXFLAGS}" \
+			-DINSTALL_DIR_RESOURCE:STRING="share/opencascade/src"
 
 .include <bsd.port.mk>

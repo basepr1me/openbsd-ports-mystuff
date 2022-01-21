@@ -1,5 +1,7 @@
 $OpenBSD$
 
+this is the otto-fu that makes this software work
+
 Index: include/tool/coroutine.h
 --- include/tool/coroutine.h.orig
 +++ include/tool/coroutine.h

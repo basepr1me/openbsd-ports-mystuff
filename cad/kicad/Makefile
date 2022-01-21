@@ -83,6 +83,8 @@ post-install:
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
 		${PREFIX}/share/kicad/plugins/
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
+		${PREFIX}/share/kicad/scripting/kicad_pyshell/
+	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py \
 		${PREFIX}/share/kicad/scripting/plugins/
 
 .include <bsd.port.mk>
