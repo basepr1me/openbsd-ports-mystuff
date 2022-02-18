@@ -42,6 +42,8 @@ MODULES =		devel/cmake \
 
 BUILD_DEPENDS =		devel/doxygen \
 			devel/git \
+			devel/boost \
+			devel/boost,-md \
 			devel/re2c \
 			devel/swig \
 			graphics/freeglut \
