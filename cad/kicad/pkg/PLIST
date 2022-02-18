@@ -364,6 +364,9 @@ share/kicad/schemas/pcm.v1.schema.json
 share/kicad/scripting/
 share/kicad/scripting/kicad_pyshell/
 share/kicad/scripting/kicad_pyshell/__init__.py
+${MODPY_COMMENT}share/kicad/scripting/kicad_pyshell/${MODPY_PYCACHE}/
+share/kicad/scripting/kicad_pyshell/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+share/kicad/scripting/kicad_pyshell/${MODPY_PYCACHE}kicad_pyeditor.${MODPY_PYC_MAGIC_TAG}pyc
 share/kicad/scripting/kicad_pyshell/kicad_pyeditor.py
 share/kicad/scripting/plugins/
 share/kicad/scripting/plugins/FPC_wizard.py

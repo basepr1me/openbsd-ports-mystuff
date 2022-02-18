@@ -4,7 +4,7 @@
 BROKEN-powerpc =	segfaults when trying to run the PCB editor
 BROKEN-riscv64 =	kicad-5.1.10/include/system/libcontext.h:93:36: error: expected ';' after top level declarator
 
-V =			6.0.0
+V =			6.0.1
 COMMENT =		schematic and PCB editing software
 DISTNAME =		kicad-${V}
 EPOCH =			0
@@ -48,11 +48,10 @@ BUILD_DEPENDS =		devel/doxygen \
 			graphics/glm \
 			misc/shared-mime-info
 
-RUN_DEPENDS =		cad/kicad-share/footprints \
-			cad/kicad-share/i18n \
-			cad/kicad-share/packages3D \
-			cad/kicad-share/symbols \
-			cad/kicad-share/templates \
+RUN_DEPENDS =		cad/kicad-share/footprints>=${V} \
+			cad/kicad-share/packages3D>=${V} \
+			cad/kicad-share/symbols>=${V} \
+			cad/kicad-share/templates>=${V} \
 			devel/desktop-file-utils \
 			misc/shared-mime-info \
 			x11/gtk+3,-guic
