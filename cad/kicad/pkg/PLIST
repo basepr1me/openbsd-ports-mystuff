@@ -1,6 +1,8 @@
-@comment $OpenBSD: PLIST,v 1.5 2021/07/14 16:28:07 tracey Exp $
+@comment $OpenBSD: PLIST,v 1.6 2022/02/22 15:38:39 tracey Exp $
 @pkgpath cad/kicad,-docs
 @pkgpath cad/kicad,-main
+@pkgpath cad/kicad-share/i18n
+@conflict kicad-i18n-*
 bin/_cvpcb.kiface
 bin/_eeschema.kiface
 bin/_gerbview.kiface

@@ -1,4 +1,4 @@
-$OpenBSD: patch-include_kiway_h,v 1.1 2019/11/08 14:43:53 sthen Exp $
+$OpenBSD: patch-include_kiway_h,v 1.2 2022/02/22 15:38:39 tracey Exp $
 
 Index: include/kiway.h
 --- include/kiway.h.orig

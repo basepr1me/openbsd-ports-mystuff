@@ -1,11 +1,10 @@
-? patches
 Index: Makefile
 ===================================================================
 RCS file: /cvs/ports/cad/oce/Makefile,v
 retrieving revision 1.3
 diff -u -p -u -r1.3 Makefile
 --- Makefile	30 Apr 2020 21:05:03 -0000	1.3
-+++ Makefile	21 Jan 2022 17:51:28 -0000
++++ Makefile	18 Feb 2022 20:11:25 -0000
 @@ -1,24 +1,23 @@
  # $OpenBSD: Makefile,v 1.3 2020/04/30 21:05:03 cwen Exp $
  
@@ -76,19 +75,311 @@ RCS file: /cvs/ports/cad/oce/distinfo,v
 retrieving revision 1.1.1.1
 diff -u -p -u -r1.1.1.1 distinfo
 --- distinfo	6 Nov 2019 17:23:22 -0000	1.1.1.1
-+++ distinfo	21 Jan 2022 17:51:28 -0000
++++ distinfo	18 Feb 2022 20:11:25 -0000
 @@ -1,2 +1,2 @@
 -SHA256 (oce-OCE-0.18.3.tar.gz) = xVPWp79S95Crw7a7eh6RpllH6SpCa7GoihGWDDHwlmw=
 -SIZE (oce-OCE-0.18.3.tar.gz) = 24633768
 +SHA256 (oce-7.6.0-98a78806.tar.gz) = if3l5Vgxw8UQROIcbAjTM9kRQTXojbLrVvFoMKBi/Uw=
 +SIZE (oce-7.6.0-98a78806.tar.gz) = 47847120
+Index: patches/patch-CMakeLists_txt
+===================================================================
+RCS file: patches/patch-CMakeLists_txt
+diff -N patches/patch-CMakeLists_txt
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-CMakeLists_txt	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,30 @@
++$OpenBSD$
++
++Index: CMakeLists.txt
++--- CMakeLists.txt.orig
+++++ CMakeLists.txt
++@@ -909,12 +909,12 @@ else()
++ endif()
++ 
++  # change custom.bat/sh
++-if (EXISTS "${INSTALL_DIR}/${INSTALL_DIR_SCRIPT}/custom.${SCRIPT_EXT}")
++-  file (READ "${INSTALL_DIR}/${INSTALL_DIR_SCRIPT}/custom.${SCRIPT_EXT}" CUSTOM_CONTENT)
+++if (EXISTS "${INSTALL_DIR_SCRIPT}/custom.${SCRIPT_EXT}")
+++  file (READ "${INSTALL_DIR_SCRIPT}/custom.${SCRIPT_EXT}" CUSTOM_CONTENT)
++ 
++   set (CUSTOM_CONTENT "${CUSTOM_CONTENT} ${ADDITIONAL_CUSTOM_CONTENT}")
++ 
++-  file (WRITE "${INSTALL_DIR}/${INSTALL_DIR_SCRIPT}/custom.${SCRIPT_EXT}" "${CUSTOM_CONTENT}")
+++  file (WRITE "${INSTALL_DIR_SCRIPT}/custom.${SCRIPT_EXT}" "${CUSTOM_CONTENT}")
++ else()
++   OCCT_CONFIGURE_AND_INSTALL ("adm/templates/custom.${SCRIPT_EXT}.main" "custom.${SCRIPT_EXT}" "custom.${SCRIPT_EXT}" "${INSTALL_DIR_SCRIPT}")
++ endif()
++@@ -1156,7 +1156,7 @@ foreach (OCCT_CONFIGURATION ${CMAKE_CONFIGURATION_TYPE
++ endforeach()
++ # install OpenCASCADE config file with compile definitions and C/C++ flags ONLY for current configuration
++ install (CODE "string (TOLOWER \"\${CMAKE_INSTALL_CONFIG_NAME}\" CMAKE_INSTALL_CONFIG_NAME_LOWER)")
++-install (CODE "configure_file(\"${CMAKE_BINARY_DIR}/OpenCASCADECompileDefinitionsAndFlags-\${CMAKE_INSTALL_CONFIG_NAME_LOWER}.cmake\" \"${INSTALL_DIR}/${INSTALL_DIR_CMAKE}/OpenCASCADECompileDefinitionsAndFlags-\${CMAKE_INSTALL_CONFIG_NAME_LOWER}.cmake\" COPYONLY)")
+++install (CODE "configure_file(\"${CMAKE_BINARY_DIR}/OpenCASCADECompileDefinitionsAndFlags-\${CMAKE_INSTALL_CONFIG_NAME_LOWER}.cmake\" \"${INSTALL_DIR_CMAKE}/OpenCASCADECompileDefinitionsAndFlags-\${CMAKE_INSTALL_CONFIG_NAME_LOWER}.cmake\" COPYONLY)")
++ 
++ foreach (OCCT_MODULE ${OCCT_MODULES})
++   if (BUILD_MODULE_${OCCT_MODULE})
+Index: patches/patch-adm_cmake_occt_csf_cmake
+===================================================================
+RCS file: patches/patch-adm_cmake_occt_csf_cmake
+diff -N patches/patch-adm_cmake_occt_csf_cmake
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-adm_cmake_occt_csf_cmake	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,24 @@
++$OpenBSD$
++
++remove libraries we don't have
++
++Index: adm/cmake/occt_csf.cmake
++--- adm/cmake/occt_csf.cmake.orig
+++++ adm/cmake/occt_csf.cmake
++@@ -117,14 +117,14 @@ else()
++     set (CSF_OpenGlLibs  "EGL GLESv2")
++     set (CSF_androidlog  "log")
++   elseif (UNIX)
++-    set (CSF_ThreadLibs  "pthread rt stdc++")
+++    set (CSF_ThreadLibs  "pthread stdc++")
++     if (USE_GLES2)
++       set (CSF_OpenGlLibs  "EGL GLESv2")
++     else()
++       set (CSF_OpenGlLibs  "GL")
++     endif()
++     set (CSF_XwLibs      "X11 Xext Xi")
++-    set (CSF_dl          "dl")
+++    set (CSF_dl          "")
++     set (CSF_fontconfig  "fontconfig")
++   endif()
++ endif()
+Index: patches/patch-adm_cmake_occt_macros_cmake
+===================================================================
+RCS file: patches/patch-adm_cmake_occt_macros_cmake
+diff -N patches/patch-adm_cmake_occt_macros_cmake
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-adm_cmake_occt_macros_cmake	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,17 @@
++$OpenBSD$
++
++Ugly hack on ALL_OCCT_TARGET_FILES: change later
++
++Index: adm/cmake/occt_macros.cmake
++--- adm/cmake/occt_macros.cmake.orig
+++++ adm/cmake/occt_macros.cmake
++@@ -592,7 +592,8 @@ macro (OCCT_UPDATE_TARGET_FILE)
++   "cmake_policy(PUSH)
++   cmake_policy(SET CMP0007 NEW)
++   string (TOLOWER \"\${CMAKE_INSTALL_CONFIG_NAME}\" CMAKE_INSTALL_CONFIG_NAME_LOWERCASE)
++-  file (GLOB ALL_OCCT_TARGET_FILES \"${INSTALL_DIR}/${INSTALL_DIR_CMAKE}/OpenCASCADE*Targets-\${CMAKE_INSTALL_CONFIG_NAME_LOWERCASE}.cmake\")
+++  file (GLOB ALL_OCCT_TARGET_FILES
+++	  \"${PROJECT_BINARY_DIR}/CMakeFiles/Export/${INSTALL_DIR_CMAKE}/OpenCASCADE*Targets-\${CMAKE_INSTALL_CONFIG_NAME_LOWERCASE}.cmake\")
++   foreach(TARGET_FILENAME \${ALL_OCCT_TARGET_FILES})
++     file (STRINGS \"\${TARGET_FILENAME}\" TARGET_FILE_CONTENT)
++     file (REMOVE \"\${TARGET_FILENAME}\")
+Index: patches/patch-src_BRepMesh_delabella_cpp
+===================================================================
+RCS file: patches/patch-src_BRepMesh_delabella_cpp
+diff -N patches/patch-src_BRepMesh_delabella_cpp
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-src_BRepMesh_delabella_cpp	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,16 @@
++$OpenBSD$
++
++Index: src/BRepMesh/delabella.cpp
++--- src/BRepMesh/delabella.cpp.orig
+++++ src/BRepMesh/delabella.cpp
++@@ -36,7 +36,9 @@ SOFTWARE.
++ #if (defined(__APPLE__))
++ #include <malloc/malloc.h>
++ #else
++-#include <malloc.h>
+++  #ifndef __OpenBSD__
+++    #include <malloc.h>
+++  #endif
++ #endif
++ 
++ #include <algorithm>
+Index: patches/patch-src_OSD_OSD_Chronometer_cxx
+===================================================================
+RCS file: patches/patch-src_OSD_OSD_Chronometer_cxx
+diff -N patches/patch-src_OSD_OSD_Chronometer_cxx
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-src_OSD_OSD_Chronometer_cxx	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,14 @@
++$OpenBSD$
++
++Index: src/OSD/OSD_Chronometer.cxx
++--- src/OSD/OSD_Chronometer.cxx.orig
+++++ src/OSD/OSD_Chronometer.cxx
++@@ -51,7 +51,7 @@
++ void OSD_Chronometer::GetProcessCPU (Standard_Real& theUserSeconds,
++                                      Standard_Real& theSystemSeconds)
++ {
++-#if defined(__linux__) || defined(__FreeBSD__) || defined(__ANDROID__) || defined(__QNX__) || defined(__EMSCRIPTEN__)
+++#if defined(__linux__) || defined(__FreeBSD__) || defined(__ANDROID__) || defined(__QNX__) || defined(__EMSCRIPTEN__) || defined(__OpenBSD__)
++   static const long aCLK_TCK = sysconf(_SC_CLK_TCK);
++ #else
++   static const long aCLK_TCK = CLK_TCK;
+Index: patches/patch-src_OSD_OSD_Host_cxx
+===================================================================
+RCS file: patches/patch-src_OSD_OSD_Host_cxx
+diff -N patches/patch-src_OSD_OSD_Host_cxx
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-src_OSD_OSD_Host_cxx	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,21 @@
++$OpenBSD$
++
++Index: src/OSD/OSD_Host.cxx
++--- src/OSD/OSD_Host.cxx.orig
+++++ src/OSD/OSD_Host.cxx
++@@ -71,6 +71,7 @@ struct utsname info; 
++  if (!strcmp(info.sysname,"SunOS"))          return (OSD_UnixBSD);
++  if (!strcmp(info.sysname,"ULTRIX"))         return (OSD_UnixBSD);
++  if (!strcmp(info.sysname,"FreeBSD"))        return (OSD_UnixBSD);
+++ if (!strcmp(info.sysname,"OpenBSD"))        return (OSD_UnixBSD);
++  if (!strncmp(info.sysname,"Linux",5))       return (OSD_LinuxREDHAT);
++  if (!strncmp(info.sysname,"IRIX", 4))       return (OSD_UnixSystemV);
++  if (!strncmp(info.sysname,"OSF", 3))        return (OSD_OSF);
++@@ -152,6 +153,7 @@ struct utsname info; 
++  if (!strncmp(info.sysname,"OSF",3))        return (OSD_DEC);
++  if (!strncmp(info.sysname,"Linux",5))      return (OSD_LIN);
++  if (!strcmp(info.sysname,"FreeBSD"))       return (OSD_LIN);
+++ if (!strcmp(info.sysname,"OpenBSD"))       return (OSD_LIN);
++  if (!strncmp(info.sysname,"AIX",3))        return (OSD_AIX);
++  if (!strcmp(info.sysname,"Darwin"))        return (OSD_MAC);
++  return (OSD_Unavailable);
+Index: patches/patch-src_OSD_OSD_MemInfo_cxx
+===================================================================
+RCS file: /cvs/ports/cad/oce/patches/patch-src_OSD_OSD_MemInfo_cxx,v
+retrieving revision 1.1.1.1
+diff -u -p -u -r1.1.1.1 patch-src_OSD_OSD_MemInfo_cxx
+--- patches/patch-src_OSD_OSD_MemInfo_cxx	6 Nov 2019 17:23:22 -0000	1.1.1.1
++++ patches/patch-src_OSD_OSD_MemInfo_cxx	18 Feb 2022 20:11:25 -0000
+@@ -3,7 +3,7 @@ $OpenBSD: patch-src_OSD_OSD_MemInfo_cxx,
+ Index: src/OSD/OSD_MemInfo.cxx
+ --- src/OSD/OSD_MemInfo.cxx.orig
+ +++ src/OSD/OSD_MemInfo.cxx
+-@@ -31,7 +31,9 @@
++@@ -28,7 +28,9 @@
+    #include <malloc/malloc.h>
+  #else
+    #include <unistd.h>
+Index: patches/patch-src_OSD_OSD_Path_cxx
+===================================================================
+RCS file: patches/patch-src_OSD_OSD_Path_cxx
+diff -N patches/patch-src_OSD_OSD_Path_cxx
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-src_OSD_OSD_Path_cxx	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,18 @@
++$OpenBSD$
++
++Index: src/OSD/OSD_Path.cxx
++--- src/OSD/OSD_Path.cxx.orig
+++++ src/OSD/OSD_Path.cxx
++@@ -21,9 +21,11 @@
++ #include <Standard_ProgramError.hxx>
++ #include <TCollection_AsciiString.hxx>
++ 
+++#include <sys/utsname.h> // For 'uname'
+++
++ static OSD_SysType whereAmI()
++ {
++-#if defined(__digital__) || defined(__FreeBSD__) || defined(SUNOS) || defined(__APPLE__) || defined(__QNX__) || defined(__FreeBSD_kernel__)
+++#if defined(__digital__) || defined(__FreeBSD__) || defined(SUNOS) || defined(__APPLE__) || defined(__QNX__) || defined(__FreeBSD_kernel__) || defined(__OpenBSD__)
++   return OSD_UnixBSD;
++ #elif defined(sgi)  || defined(IRIX) || defined(__sun)  || defined(SOLARIS) ||  defined(__sco__) || defined(__hpux) || defined(HPUX)
++   return OSD_UnixSystemV;
+Index: patches/patch-src_Standard_Standard_CString_cxx
+===================================================================
+RCS file: patches/patch-src_Standard_Standard_CString_cxx
+diff -N patches/patch-src_Standard_Standard_CString_cxx
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-src_Standard_Standard_CString_cxx	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,14 @@
++$OpenBSD$
++
++Index: src/Standard/Standard_CString.cxx
++--- src/Standard/Standard_CString.cxx.orig
+++++ src/Standard/Standard_CString.cxx
++@@ -83,7 +83,7 @@ Standard_Integer HashCodes (const Standard_CString the
++     // strtod, strtol, strtoll functions. For other system with locale-depended
++     // implementations problems may appear if "C" locale is not set explicitly.
++     #if !defined(__ANDROID__) && !defined(__QNX__) && !defined(__MINGW32__)
++-      #error System does not support xlocale. Import/export could be broken if C locale did not specified by application.
+++      #warning System does not support xlocale. Import/export could be broken if C locale did not specified by application.
++     #endif
++     #define strtod_l(thePtr, theNextPtr, theLocale)              strtod(thePtr, theNextPtr)
++   #endif
+Index: patches/patch-src_Standard_Standard_MMgrOpt_cxx
+===================================================================
+RCS file: patches/patch-src_Standard_Standard_MMgrOpt_cxx
+diff -N patches/patch-src_Standard_Standard_MMgrOpt_cxx
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-src_Standard_Standard_MMgrOpt_cxx	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,14 @@
++$OpenBSD$
++
++Index: src/Standard/Standard_MMgrOpt.cxx
++--- src/Standard/Standard_MMgrOpt.cxx.orig
+++++ src/Standard/Standard_MMgrOpt.cxx
++@@ -249,7 +249,7 @@ void Standard_MMgrOpt::Initialize()
++       perror("ERR_MEMRY_FAIL");
++ #endif
++     
++-#if defined(IRIX) || defined(__sgi) || defined(SOLARIS) || defined(__sun) || defined(__linux__) || defined(__FreeBSD__) || defined(__ANDROID__)
+++#if defined(IRIX) || defined(__sgi) || defined(SOLARIS) || defined(__sun) || defined(__linux__) || defined(__FreeBSD__) || defined(__ANDROID__) || defined(__OpenBSD__)
++     if ((myMMap = open ("/dev/zero", O_RDWR)) < 0) {
++       if ((myMMap = open ("/dev/null", O_RDWR)) < 0){
++         myMMap = 0;
+Index: patches/patch-src_Standard_Standard_StackTrace_cxx
+===================================================================
+RCS file: patches/patch-src_Standard_Standard_StackTrace_cxx
+diff -N patches/patch-src_Standard_Standard_StackTrace_cxx
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ patches/patch-src_Standard_Standard_StackTrace_cxx	18 Feb 2022 20:11:25 -0000
+@@ -0,0 +1,17 @@
++$OpenBSD$
++
++Index: src/Standard/Standard_StackTrace.cxx
++--- src/Standard/Standard_StackTrace.cxx.orig
+++++ src/Standard/Standard_StackTrace.cxx
++@@ -193,7 +193,10 @@ Standard_Boolean Standard::StackTrace (char* theBuffer
++   {
++     return false;
++   }
++-
+++#if defined(__OpenBSD__)
+++  Message::SendTrace ("Standard::StackTrace() is not implemented for this platform");
+++  return false;
+++#endif
++ #if defined(__EMSCRIPTEN__)
++   // theNbTraces is ignored
++   // EM_LOG_JS_STACK?
+Index: patches/patch-src_StepFile_recfile_pc
+===================================================================
+RCS file: patches/patch-src_StepFile_recfile_pc
+diff -N patches/patch-src_StepFile_recfile_pc
+--- patches/patch-src_StepFile_recfile_pc	6 Nov 2019 17:23:22 -0000	1.1.1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,14 +0,0 @@
+-$OpenBSD: patch-src_StepFile_recfile_pc,v 1.1.1.1 2019/11/06 17:23:22 sthen Exp $
+-
+-Index: src/StepFile/recfile.pc
+---- src/StepFile/recfile.pc.orig
+-+++ src/StepFile/recfile.pc
+-@@ -16,7 +16,7 @@
+- #include "stdio.h"
+- #include "string.h"
+- #include "stdlib.h"
+--#if (!defined(_WIN32) && !defined(__APPLE__))
+-+#if (!defined(_WIN32) && !defined(__APPLE__) && !defined(__OpenBSD__))
+- #include "malloc.h"
+- #endif
+- #include "recfile.ph" 
 Index: pkg/PLIST
 ===================================================================
 RCS file: /cvs/ports/cad/oce/pkg/PLIST,v
 retrieving revision 1.1.1.1
 diff -u -p -u -r1.1.1.1 PLIST
 --- pkg/PLIST	6 Nov 2019 17:23:22 -0000	1.1.1.1
-+++ pkg/PLIST	21 Jan 2022 17:51:29 -0000
++++ pkg/PLIST	18 Feb 2022 20:11:25 -0000
 @@ -1,12937 +1,8184 @@
  @comment $OpenBSD: PLIST,v 1.1.1.1 2019/11/06 17:23:22 sthen Exp $
 -@bin bin/DRAWEXE

@@ -1,4 +1,4 @@
-$OpenBSD: patch-kicad_kicad_cpp,v 1.2 2021/02/19 14:48:58 tracey Exp $
+$OpenBSD: patch-kicad_kicad_cpp,v 1.3 2022/02/22 15:38:39 tracey Exp $
 
 Index: kicad/kicad.cpp
 --- kicad/kicad.cpp.orig

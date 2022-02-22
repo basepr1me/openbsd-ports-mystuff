@@ -1,4 +1,4 @@
-$OpenBSD$
+$OpenBSD: patch-pcbnew_CMakeLists_txt,v 1.6 2022/02/22 15:38:39 tracey Exp $
 
 Index: pcbnew/CMakeLists.txt
 --- pcbnew/CMakeLists.txt.orig

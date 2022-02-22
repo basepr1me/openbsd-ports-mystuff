@@ -1,4 +1,4 @@
-$OpenBSD: patch-CMakeModules_config_h_cmake,v 1.1 2019/11/08 14:43:53 sthen Exp $
+$OpenBSD: patch-CMakeModules_config_h_cmake,v 1.2 2022/02/22 15:38:39 tracey Exp $
 
 Index: CMakeModules/config.h.cmake
 --- CMakeModules/config.h.cmake.orig
