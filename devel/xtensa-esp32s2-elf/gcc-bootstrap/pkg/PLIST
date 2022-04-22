@@ -1,4 +1,3 @@
-@comment $OpenBSD: PLIST,v$
 xtensa-esp32s2-elf/
 xtensa-esp32s2-elf/bootstrap/
 xtensa-esp32s2-elf/bootstrap/bin/
@@ -470,8 +469,8 @@ xtensa-esp32s2-elf/bootstrap/libexec/gcc/xtensa-esp32s2-elf/${V}/install-tools/m
 @bin xtensa-esp32s2-elf/bootstrap/libexec/gcc/xtensa-esp32s2-elf/${V}/lto-wrapper
 xtensa-esp32s2-elf/bootstrap/libexec/gcc/xtensa-esp32s2-elf/${V}/plugin/
 @bin xtensa-esp32s2-elf/bootstrap/libexec/gcc/xtensa-esp32s2-elf/${V}/plugin/gengtype
-@comment xtensa-esp32s2-elf/include/
-@comment xtensa-esp32s2-elf/share/
+xtensa-esp32s2-elf/include/
+xtensa-esp32s2-elf/share/
 @comment @info xtensa-esp32s2-elf/share/info/
 @comment @info xtensa-esp32s2-elf/share/info/cpp.info
 @comment @info xtensa-esp32s2-elf/share/info/cppinternals.info

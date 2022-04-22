@@ -1,5 +1,3 @@
-# $OpenBSD: Makefile.inc,v 1.3 2020/10/29 14:10:51 tracey Exp $
-
 CONFIG =	xtensa-esp32s2-elf
 CATEGORIES +=	devel
 HOMEPAGE =	https://www.espressif.com/en/products/software/esp-sdk/overview
@@ -15,7 +13,9 @@ PERMIT_PACKAGE =   Yes
 COMPILER =	base-clang ports-clang
 
 BUILD_DEPENDS +=	devel/bison \
-			sysutils/coreutils
+			lang/gawk \
+			sysutils/coreutils \
+			textproc/gsed
 
 SEPARATE_BUILD =	Yes
 USE_GMAKE = 		Yes
