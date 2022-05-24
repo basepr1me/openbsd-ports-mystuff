@@ -1,6 +1,3 @@
-xtensa-config.h file for ESP32
-
-
 Index: include/xtensa-config.h
 --- include/xtensa-config.h.orig
 +++ include/xtensa-config.h

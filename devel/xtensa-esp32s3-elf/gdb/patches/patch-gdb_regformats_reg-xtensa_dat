@@ -1,7 +1,7 @@
 Index: gdb/regformats/reg-xtensa.dat
 --- gdb/regformats/reg-xtensa.dat.orig
 +++ gdb/regformats/reg-xtensa.dat
-@@ -33,15 +33,75 @@ expedite:pc,windowbase,windowstart
+@@ -33,15 +33,98 @@ expedite:pc,windowbase,windowstart
  32:ar29
  32:ar30
  32:ar31
@@ -58,10 +58,7 @@ Index: gdb/regformats/reg-xtensa.dat
 +32:m1
 +32:m2
 +32:m3
-+32:expstate
-+32:f64r_lo
-+32:f64r_hi
-+32:f64s
++32:gpio_out
 +32:f0
 +32:f1
 +32:f2
@@ -80,3 +77,29 @@ Index: gdb/regformats/reg-xtensa.dat
 +32:f15
 +32:fcr
 +32:fsr
++32:accx_0
++32:accx_1
++32:qacc_h_0
++32:qacc_h_1
++32:qacc_h_2
++32:qacc_h_3
++32:qacc_h_4
++32:qacc_l_0
++32:qacc_l_1
++32:qacc_l_2
++32:qacc_l_3
++32:qacc_l_4
++32:sar_byte
++32:fft_bit_width
++32:ua_state_0
++32:ua_state_1
++32:ua_state_2
++32:ua_state_3
++128:q0
++128:q1
++128:q2
++128:q3
++128:q4
++128:q5
++128:q6
++128:q7

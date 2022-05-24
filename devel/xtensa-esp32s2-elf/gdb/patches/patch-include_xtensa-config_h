@@ -21,15 +21,6 @@ Index: include/xtensa-config.h
  
  #undef XCHAL_HAVE_DENSITY
  #define XCHAL_HAVE_DENSITY		1
-@@ -49,7 +50,7 @@
- #define XSHAL_HAVE_TEXT_SECTION_LITERALS 1 /* Set if there is some memory that allows both code and literals.  */
- 
- #undef XCHAL_HAVE_MAC16
--#define XCHAL_HAVE_MAC16		0
-+#define XCHAL_HAVE_MAC16		1
- 
- #undef XCHAL_HAVE_MUL16
- #define XCHAL_HAVE_MUL16		1
 @@ -58,7 +59,7 @@
  #define XCHAL_HAVE_MUL32		1
  
@@ -39,38 +30,30 @@ Index: include/xtensa-config.h
  
  #undef XCHAL_HAVE_DIV32
  #define XCHAL_HAVE_DIV32		1
-@@ -85,30 +86,37 @@
- #define XCHAL_HAVE_S32C1I		1
+@@ -73,7 +74,7 @@
+ #define XCHAL_HAVE_SEXT			1
+ 
+ #undef XCHAL_HAVE_LOOPS
+-#define XCHAL_HAVE_LOOPS		1
++#define XCHAL_HAVE_LOOPS		0
+ 
+ #undef XCHAL_HAVE_THREADPTR
+ #define XCHAL_HAVE_THREADPTR		1
+@@ -82,7 +83,7 @@
+ #define XCHAL_HAVE_RELEASE_SYNC		1
+ 
+ #undef XCHAL_HAVE_S32C1I
+-#define XCHAL_HAVE_S32C1I		1
++#define XCHAL_HAVE_S32C1I		0
  
  #undef XCHAL_HAVE_BOOLEANS
--#define XCHAL_HAVE_BOOLEANS		0
-+#define XCHAL_HAVE_BOOLEANS		1
- 
- #undef XCHAL_HAVE_FP
--#define XCHAL_HAVE_FP			0
-+#define XCHAL_HAVE_FP			1
- 
- #undef XCHAL_HAVE_FP_DIV
--#define XCHAL_HAVE_FP_DIV		0
-+#define XCHAL_HAVE_FP_DIV		1
- 
- #undef XCHAL_HAVE_FP_RECIP
--#define XCHAL_HAVE_FP_RECIP		0
-+#define XCHAL_HAVE_FP_RECIP		1
- 
- #undef XCHAL_HAVE_FP_SQRT
--#define XCHAL_HAVE_FP_SQRT		0
-+#define XCHAL_HAVE_FP_SQRT		1
- 
+ #define XCHAL_HAVE_BOOLEANS		0
+@@ -102,13 +103,17 @@
  #undef XCHAL_HAVE_FP_RSQRT
--#define XCHAL_HAVE_FP_RSQRT		0
-+#define XCHAL_HAVE_FP_RSQRT		1
+ #define XCHAL_HAVE_FP_RSQRT		0
  
-+#undef XCHAL_HAVE_FP_POSTINC
-+#define XCHAL_HAVE_FP_POSTINC           1
-+
 +#undef XCHAL_HAVE_DFP_ACCEL
-+#define XCHAL_HAVE_DFP_ACCEL		1
++#define XCHAL_HAVE_DFP_ACCEL		0
 +/* For backward compatibility */
  #undef XCHAL_HAVE_DFP_accel
 -#define XCHAL_HAVE_DFP_accel			0
@@ -85,7 +68,7 @@ Index: include/xtensa-config.h
  
  #undef XCHAL_HAVE_WIDE_BRANCHES
  #define XCHAL_HAVE_WIDE_BRANCHES	0
-@@ -118,34 +126,31 @@
+@@ -118,34 +123,31 @@
  
  
  #undef XCHAL_ICACHE_SIZE
@@ -128,7 +111,7 @@ Index: include/xtensa-config.h
  #undef XCHAL_HAVE_DEBUG
  #define XCHAL_HAVE_DEBUG		1
  
-@@ -172,5 +177,16 @@
+@@ -172,5 +174,16 @@
  #define XSHAL_ABI			XTHAL_ABI_WINDOWED
  #define XTHAL_ABI_WINDOWED		0
  #define XTHAL_ABI_CALL0			1
@@ -138,10 +121,10 @@ Index: include/xtensa-config.h
 +#define XCHAL_M_STAGE			3
 +
 +#undef XTENSA_MARCH_LATEST
-+#define XTENSA_MARCH_LATEST		260003
++#define XTENSA_MARCH_LATEST		270009
 +
 +#undef XTENSA_MARCH_EARLIEST
-+#define XTENSA_MARCH_EARLIEST		260003
++#define XTENSA_MARCH_EARLIEST		270009
 +
  
  #endif /* !XTENSA_CONFIG_H */

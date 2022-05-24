@@ -1,5 +1,3 @@
-xtensa-modules.c file for ESP32
-
 Index: bfd/xtensa-modules.c
 --- bfd/xtensa-modules.c.orig
 +++ bfd/xtensa-modules.c

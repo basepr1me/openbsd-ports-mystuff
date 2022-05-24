@@ -1,4 +1,4 @@
-CONFIG =	xtensa-esp32c3-elf
+CONFIG =	riscv32-esp-elf
 CATEGORIES +=	devel
 HOMEPAGE =	https://www.espressif.com/en/products/software/esp-sdk/overview
 
@@ -21,7 +21,7 @@ SEPARATE_BUILD =	Yes
 USE_GMAKE = 		Yes
 YACC =			bison -y
 
-CE_VARS =		"-mlongcalls -Os -g -free -fipa-pta"
+CE_VARS =		"-Os -g -free -fipa-pta"
 
 INSTALLDIR =		"${LOCALBASE}/${CONFIG}"
 CONFIGURE_STYLE ?=	simple
@@ -32,12 +32,15 @@ CONFIGURE_ENV +=	CFLAGS_FOR_TARGET=${CE_VARS} \
 CONFIGURE_ARGS +=	--target="${CONFIG}" \
 			--prefix="${INSTALLDIR}" \
 			--disable-shared \
+			--with-arch=rv32imc \
+			--with-abi=ilp32 \
 			--with-newlib \
 			--enable-threads=no \
 			--disable-__cxa_atexit \
 			--disable-libgomp \
 			--disable-libmudflap \
 			--disable-nls \
+			--enable-multiarch \
 			--disable-bootstrap \
 			--enable-languages=c,c++ \
 			--disable-lto \
