@@ -37,17 +37,22 @@ CONFIGURE_ARGS +=	--target="${CONFIG}" \
 			--with-newlib \
 			--enable-threads=no \
 			--disable-__cxa_atexit \
+			--enable-cxx-flags=-ffunction-sections \
 			--disable-libgomp \
 			--disable-libmudflap \
+			--disable-libmpx \
+			--disable-libssp \
+			--disable-libquadmath \
+			--disable-libquadmath-support \
 			--disable-nls \
 			--enable-multiarch \
-			--disable-bootstrap \
 			--enable-languages=c,c++ \
 			--disable-lto \
 			--disable-libstdcxx-verbose \
 			--disable-option-checking \
 			--without-long-double-128 \
 			--with-system-zlib \
-			--enable-static=yes
+			--enable-gcov-custom-rtio \
+			--enable-libstdcxx-time=yes
 
 NO_TEST =		Yes

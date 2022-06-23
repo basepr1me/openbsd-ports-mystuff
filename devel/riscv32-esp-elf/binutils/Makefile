@@ -8,7 +8,7 @@ GH_TAGNAME =	esp-2021r2-binutils
 
 WANTLIB += c z
 
-CONFIGURE_ARGS +=	--disable-multilib \
+CONFIGURE_ARGS +=	--enable-multilib \
 			--with-gnu-as \
 			--with-gnu-ld \
 			--disable-werror \
