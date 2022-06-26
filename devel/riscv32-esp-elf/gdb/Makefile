@@ -11,8 +11,8 @@ WANTLIB += ${COMPILER_LIBCXX} c curses expat m z
 
 BUILD_DEPENDS =	devel/libtool \
 		devel/bison \
-		devel/xtensa-esp32-elf/binutils
-RUN_DEPENDS +=	devel/xtensa-esp32-elf/binutils
+		devel/riscv32-esp-elf/binutils
+RUN_DEPENDS +=	devel/riscv32-esp-elf/binutils
 
 CONFIGURE_ARGS	+=	--enable-commonbfdlib=no \
 			--with-cross-host=yes \

@@ -1,1 +1,1 @@
-GNU cross compiler suite, configured for the xtensa-esp32c3-elf target.
+GNU cross compiler suite, configured for the riscv32-esp-elf target.
