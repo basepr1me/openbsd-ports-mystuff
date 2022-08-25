@@ -1,11 +1,11 @@
 BROKEN-arm=	ICE: Bus error in unwind-dw2.c
 
-COMMENT=	gcc for ${CONFIG} cross-development, Linaro version
+COMMENT=	gcc-bootstrap for ${CONFIG} cross-development
 
 VERSION=	7.5-2019.12
 DISTNAME=	gcc-linaro-${VERSION}
 EXTRACT_SUFX=	.tar.xz
-PKGNAME=	${CONFIG}-gcc-linaro-${VERSION:S/-/./g}
+PKGNAME=	${CONFIG}-gcc-bootstrap-${VERSION:S/-/./g}
 
 FLAVORS=	aarch64 arm
 FLAVOR?=	arm
@@ -39,12 +39,9 @@ MAKE_ADA=	No
 MASTER_SITE_BASE=https://releases.linaro.org/components
 MASTER_SITES= 	${MASTER_SITE_BASE}/toolchain/gcc-linaro/${VERSION}/
 
-MODULES=	lang/python
-
 BUILD_DEPENDS+=	devel/autoconf/2.13 \
 		devel/metaauto \
-		devel/${CONFIG}/binutils \
-		devel/${CONFIG}/newlib
+		devel/${CONFIG}/binutils
 
 LIB_DEPENDS=	devel/mpfr \
 		devel/libmpc
@@ -59,29 +56,28 @@ RUN_DEPENDS=	devel/${CONFIG}/binutils,arm
 ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 .endif
 
-LANGS=		c,c++
+LANGS=		c
 
-CONFIGURE_ENV+=	AR_FOR_TARGET="${INSTALLDIR}/bin/${CONFIG}-ar" \
-		RANLIB_FOR_TARGET="${INSTALLDIR}/bin/${CONFIG}-ranlib"
-CONFIGURE_ARGS+=--enable-languages=${LANGS} \
+CONFIGURE_ARGS+=--exec-prefix="${INSTALLDIR}/bootstrap" \
 		--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 		--with-ld="${INSTALLDIR}/bin/${CONFIG}-ld" \
-		--with-sysroot="${INSTALLDIR}/${CONFIG}" \
+		--enable-languages=${LANGS} \
 		--enable-multilib \
 		--enable-interwork \
 		--with-gmp=${LOCALBASE} \
 		--with-newlib \
 		--disable-lto \
-		--enable-cpp \
 		--disable-plugin \
 		--without-isl
+
+ALL_TARGET=	all-gcc
+INSTALL_TARGET=	install-gcc
 
 TEST_DEPENDS=devel/dejagnu
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \
 		${PREFIX}/lib/gcc/${CONFIG}/${VERSION}/
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py ${PREFIX}/${CONFIG}/
 
 .include <bsd.port.mk>
 

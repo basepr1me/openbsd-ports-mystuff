@@ -1,6 +1,8 @@
 SUBDIR =
 SUBDIR += binutils
 SUBDIR += binutils,aarch64
+SUBDIR += gcc-bootstrap
+SUBDIR += gcc-bootstrap,aarch64
 SUBDIR += gcc-linaro
 SUBDIR += gcc-linaro,aarch64
 SUBDIR += gdb
