@@ -3,6 +3,7 @@ COMMENT =	software development kit for the Raspberry Pi Pico
 GH_ACCOUNT =	raspberrypi
 GH_PROJECT =	pico-sdk
 GH_TAGNAME =	1.4.0
+PKGNAME =	${GH_ACCOUNT}-${GH_PROJECT}-${GH_TAGNAME}
 
 CATEGORIES =	devel
 
@@ -13,7 +14,8 @@ PERMIT_PACKAGE = Yes
 
 MODULES =	lang/python
 
-RUN_DEPENDS +=	devel/arm-none-eabi/gcc-linaro \
+RUN_DEPENDS +=	devel/arm-none-eabi/binutils \
+		devel/arm-none-eabi/gcc-linaro \
 		devel/arm-none-eabi/newlib \
 		devel/arm-none-eabi/gdb
 
