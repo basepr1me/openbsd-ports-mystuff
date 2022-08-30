@@ -1,7 +1,7 @@
-Index: resolves.cpp
 
 _N is collides with ctypes.h
 
+Index: resolves.cpp
 --- resolves.cpp.orig
 +++ resolves.cpp
 @@ -971,7 +971,7 @@ void getMultilayerN_Foil(double D, double w, double t,

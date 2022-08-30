@@ -1,7 +1,7 @@
-Index: resolves.h
 
 _N is collides with ctypes.h
 
+Index: resolves.h
 --- resolves.h.orig
 +++ resolves.h
 @@ -111,10 +111,10 @@ enum _FormCoil
