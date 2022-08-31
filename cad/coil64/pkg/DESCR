@@ -1,4 +1,4 @@
-Coil64 is inductance coil calculator, that allows to calculate the single-layer
-and multi-layer air core inductors, the ferrite toroid inductors or chokes, flat
-square coils on PCB etc. You can help to translate application by the Crowdin
-Coil64 project.
+Coil64 is a free coil inductor calculator, that allows calculating: single-layer
+and multilayer air core inductors, toroidal air core coil inductance, inductors
+on ferrite rings, in pot core, flat coils on the PCB, and also LC tank
+parameters. The program has additional plugins to calculate any manner of coils.
