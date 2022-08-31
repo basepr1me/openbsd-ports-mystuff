@@ -6,7 +6,7 @@ GH_TAGNAME =		v2.1.24
 
 PKGNAME =		${GH_PROJECT}-${GH_TAGNAME:S/v//}
 
-CATEGORIES =		math
+CATEGORIES =		cad
 
 HOMEPAGE =		https://coil32.net/
 
