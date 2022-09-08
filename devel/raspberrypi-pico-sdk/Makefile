@@ -14,10 +14,9 @@ PERMIT_PACKAGE = Yes
 
 MODULES =	lang/python
 
-RUN_DEPENDS +=	devel/arm-none-eabi/binutils \
-		devel/arm-none-eabi/gcc-linaro \
-		devel/arm-none-eabi/newlib \
-		devel/arm-none-eabi/gdb
+RUN_DEPENDS +=	devel/arm-none-eabi/binutils,arm \
+		devel/arm-none-eabi/gcc-linaro,arm \
+		devel/arm-none-eabi/newlib,arm
 
 MASTER_SITES0 = https://github.com/georgerobotics/cyw43-driver/archive/
 MASTER_SITES1 = https://github.com/lwip-tcpip/lwip/archive/

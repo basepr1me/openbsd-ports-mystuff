@@ -4,9 +4,20 @@ DISTNAME=	gdb-7.12.1
 EXTRACT_SUFX=	.tar.xz
 REVISION=	0
 
+FLAVORS=	aarch64 arm
+FLAVOR?=	arm
+
+.if "${FLAVOR}" == "aarch64"
+CONFIG=		aarch64-none-elf
+.elif "${FLAVOR}" == "arm"
+CONFIG=		arm-none-eabi
+.else
+ERRORS+=	"either aarch64 or arm FLAVOR should be set"
+.endif
+
 HOMEPAGE=	https://www.gnu.org/software/gdb/
 
-WANTLIB=	${COMPILER_LIBCXX} c expat m curses pthread z
+WANTLIB=	${COMPILER_LIBCXX} c expat m curses pthread
 
 MASTER_SITES=	${MASTER_SITE_GNU:=gdb/}
 DIST_SUBDIR=	gdb

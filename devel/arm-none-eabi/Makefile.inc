@@ -8,7 +8,6 @@ CATEGORIES+=	devel
 #   See: ${PREFIX}/share/doc/newlib
 PERMIT_PACKAGE=	Yes
 
-# permits build on sparc64
 COMPILER=	base-clang ports-clang
 
 BUILD_DEPENDS+=	devel/bison \

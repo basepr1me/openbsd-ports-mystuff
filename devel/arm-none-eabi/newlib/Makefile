@@ -5,6 +5,17 @@ VERSION=	2.2.0.1
 PKGNAME=	${CONFIG}-newlib-${VERSION}
 REVISION=	2
 
+FLAVORS=	aarch64 arm
+FLAVOR?=	arm
+
+.if "${FLAVOR}" == "aarch64"
+CONFIG=		aarch64-none-elf
+.elif "${FLAVOR}" == "arm"
+CONFIG=		arm-none-eabi
+.else
+ERRORS+=	"either aarch64 or arm FLAVOR should be set"
+.endif
+
 MAKE_ENV+=	${CONFIGURE_ENV}
 
 HOMEPAGE=	http://sourceware.org/newlib/
@@ -14,9 +25,15 @@ MASTER_SITES=	ftp://sourceware.org/pub/newlib/
 
 EXTRACT_SUFX=	.tar.gz
 
-BUILD_DEPENDS=	devel/${CONFIG}/binutils \
-		devel/${CONFIG}/gcc-bootstrap
-RUN_DEPENDS=	devel/${CONFIG}/binutils
+.if ${FLAVOR:Maarch64}
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,aarch64 \
+		devel/arm-none-eabi/gcc-bootstrap,aarch64
+.elif ${FLAVOR:Marm}
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,arm \
+		devel/arm-none-eabi/gcc-bootstrap,arm
+.else
+ERRORS+=	"either aarch64 or arm FLAVOR should be set"
+.endif
 
 CONFIGURE_ENV=	CC_FOR_TARGET="${INSTALLDIR}/bootstrap/bin/${CONFIG}-gcc" \
 		AR_FOR_TARGET="${INSTALLDIR}/bin/${CONFIG}-ar" \
@@ -27,8 +44,8 @@ CONFIGURE_ARGS+=--enable-interwork \
 		--enable-multilib
 
 post-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/${CONFIG}/newlib
+	${INSTALL_DATA_DIR} ${PREFIX}/${CONFIG}/share/doc/${CONFIG}/newlib
 	${INSTALL_DATA} ${WRKDIST}/COPYING.NEWLIB \
-		${PREFIX}/share/doc/${CONFIG}/newlib
+		${PREFIX}/${CONFIG}/share/doc/${CONFIG}/newlib
 
 .include <bsd.port.mk>

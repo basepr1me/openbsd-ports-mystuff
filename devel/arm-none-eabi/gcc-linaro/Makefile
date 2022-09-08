@@ -42,22 +42,24 @@ MASTER_SITES= 	${MASTER_SITE_BASE}/toolchain/gcc-linaro/${VERSION}/
 MODULES=	lang/python
 
 BUILD_DEPENDS+=	devel/autoconf/2.13 \
-		devel/metaauto \
-		devel/${CONFIG}/binutils \
-		devel/${CONFIG}/newlib
-
-LIB_DEPENDS=	devel/mpfr \
-		devel/libmpc
+		devel/metaauto
 
 .if ${FLAVOR:Maarch64}
-BUILD_DEPENDS+=	devel/${CONFIG}/binutils,aarch64
-RUN_DEPENDS=	devel/${CONFIG}/binutils,aarch64
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,aarch64 \
+		devel/arm-none-eabi/newlib,aarch64
+RUN_DEPENDS=	devel/arm-none-eabi/binutils,aarch64 \
+		devel/arm-none-eabi/newlib,aarch64
 .elif ${FLAVOR:Marm}
-BUILD_DEPENDS+=	devel/${CONFIG}/binutils,arm
-RUN_DEPENDS=	devel/${CONFIG}/binutils,arm
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,arm \
+		devel/arm-none-eabi/newlib,arm
+RUN_DEPENDS=	devel/arm-none-eabi/binutils,arm \
+		devel/arm-none-eabi/newlib,arm
 .else
 ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 .endif
+
+LIB_DEPENDS=	devel/mpfr \
+		devel/libmpc
 
 LANGS=		c,c++
 
@@ -75,6 +77,9 @@ CONFIGURE_ARGS+=--enable-languages=${LANGS} \
 		--enable-cpp \
 		--disable-plugin \
 		--without-isl
+
+ALL_TARGET=	all-gcc all-target-libstdc++-v3
+INSTALL_TARGET=	install-gcc install-target-libstdc++-v3
 
 TEST_DEPENDS=devel/dejagnu
 

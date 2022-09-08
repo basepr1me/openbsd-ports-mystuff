@@ -17,7 +17,7 @@ ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 
 HOMEPAGE=	https://www.gnu.org/software/binutils/
 
-WANTLIB=	c z
+WANTLIB=	c
 
 MASTER_SITES=	${MASTER_SITE_GNU:=binutils/}
 DIST_SUBDIR=	binutils

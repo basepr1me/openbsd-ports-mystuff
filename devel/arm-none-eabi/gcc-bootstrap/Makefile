@@ -40,18 +40,17 @@ MASTER_SITE_BASE=https://releases.linaro.org/components
 MASTER_SITES= 	${MASTER_SITE_BASE}/toolchain/gcc-linaro/${VERSION}/
 
 BUILD_DEPENDS+=	devel/autoconf/2.13 \
-		devel/metaauto \
-		devel/${CONFIG}/binutils
+		devel/metaauto
 
 LIB_DEPENDS=	devel/mpfr \
 		devel/libmpc
 
 .if ${FLAVOR:Maarch64}
-BUILD_DEPENDS+=	devel/${CONFIG}/binutils,aarch64
-RUN_DEPENDS=	devel/${CONFIG}/binutils,aarch64
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,aarch64
+RUN_DEPENDS=	devel/arm-none-eabi/binutils,aarch64
 .elif ${FLAVOR:Marm}
-BUILD_DEPENDS+=	devel/${CONFIG}/binutils,arm
-RUN_DEPENDS=	devel/${CONFIG}/binutils,arm
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,arm
+RUN_DEPENDS=	devel/arm-none-eabi/binutils,arm
 .else
 ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 .endif
@@ -61,6 +60,7 @@ LANGS=		c
 CONFIGURE_ARGS+=--exec-prefix="${INSTALLDIR}/bootstrap" \
 		--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
 		--with-ld="${INSTALLDIR}/bin/${CONFIG}-ld" \
+		--with-sysroot="${INSTALLDIR}/${CONFIG}" \
 		--enable-languages=${LANGS} \
 		--enable-multilib \
 		--enable-interwork \
