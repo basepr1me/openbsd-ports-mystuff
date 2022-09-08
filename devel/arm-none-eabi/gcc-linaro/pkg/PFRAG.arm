@@ -1,87 +1,4 @@
 @pkgpath devel/arm-none-eabi/gcc-linaro,
-${CONFIG}/lib/gcc/${CONFIG}/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtbegin.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtend.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtfastmath.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crti.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtn.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtbegin.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtend.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtfastmath.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crti.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtn.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtbegin.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtend.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtfastmath.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crti.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtn.o
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/libgcc.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/libgcov.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/libgcc.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/libgcov.a
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/README
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/limits.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/syslimits.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_acle.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_cmse.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_fp16.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_neon.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/float.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/gcov.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/iso646.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/mmintrin.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdalign.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdarg.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdatomic.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdbool.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stddef.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdfix.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdint-gcc.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdint.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdnoreturn.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/tgmath.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/unwind-arm-common.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/unwind.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/varargs.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/fixinc_list
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/gsyslimits.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/include/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/include/README
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/include/limits.h
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/macro_list
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/mkheaders.conf
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtbegin.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtend.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtfastmath.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crti.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtn.o
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/libgcc.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/libgcov.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/libgcc.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/libgcov.a
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtbegin.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtend.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtfastmath.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crti.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtn.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtbegin.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtend.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtfastmath.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crti.o
-${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtn.o
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/libgcc.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/libgcov.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/libgcc.a
-@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/libgcov.a
 ${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/algorithm
 ${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/any
 ${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/fpu/
@@ -249,6 +166,89 @@ ${CONFIG}/${CONFIG}/lib/thumb/libstdc++.a-gdb.py
 ${CONFIG}/${CONFIG}/lib/thumb/libstdc++.la
 @static-lib ${CONFIG}/${CONFIG}/lib/thumb/libsupc++.a
 ${CONFIG}/${CONFIG}/lib/thumb/libsupc++.la
+${CONFIG}/lib/gcc/${CONFIG}/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtbegin.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtend.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtfastmath.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crti.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtn.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtbegin.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtend.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtfastmath.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crti.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/crtn.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtbegin.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtend.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtfastmath.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crti.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/crtn.o
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/libgcc.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/interwork/libgcov.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/libgcc.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/fpu/libgcov.a
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/README
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/limits.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include-fixed/syslimits.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_acle.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_cmse.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_fp16.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/arm_neon.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/float.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/gcov.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/iso646.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/mmintrin.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdalign.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdarg.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdatomic.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdbool.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stddef.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdfix.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdint-gcc.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdint.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/stdnoreturn.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/tgmath.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/unwind-arm-common.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/unwind.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/include/varargs.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/fixinc_list
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/gsyslimits.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/include/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/include/README
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/include/limits.h
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/macro_list
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/mkheaders.conf
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtbegin.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtend.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtfastmath.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crti.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/crtn.o
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/libgcc.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/interwork/libgcov.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/libgcc.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/libgcov.a
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtbegin.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtend.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtfastmath.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crti.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/crtn.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtbegin.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtend.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtfastmath.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crti.o
+${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/crtn.o
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/libgcc.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/interwork/libgcov.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/libgcc.a
+@static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/thumb/libgcov.a
 ${CONFIG}/libexec/
 ${CONFIG}/libexec/gcc/
 ${CONFIG}/libexec/gcc/${CONFIG}/
