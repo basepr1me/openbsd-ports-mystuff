@@ -1,3 +1,38 @@
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/atomic_word.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/basic_file.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++allocator.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++config.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++io.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++locale.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/cpu_defines.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/ctype_base.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/ctype_inline.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/cxxabi_tweaks.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/error_constants.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/extc++.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr-default.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr-posix.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr-single.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/messages_members.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/opt_random.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/os_defines.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/stdc++.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/stdtr1c++.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/time_members.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/ext/
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/ext/opt_random.h
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/algorithm
+${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/any
+${CONFIG}/${CONFIG}/lib/ilp32/${MODPY_PYCACHE}/
+${CONFIG}/${CONFIG}/lib/ilp32/${MODPY_PYCACHE}libstdc++.a-gdb.${MODPY_PYC_MAGIC_TAG}pyc
+@static-lib ${CONFIG}/${CONFIG}/lib/ilp32/libstdc++.a
+${CONFIG}/${CONFIG}/lib/ilp32/libstdc++.a-gdb.py
+${CONFIG}/${CONFIG}/lib/ilp32/libstdc++.la
+@static-lib ${CONFIG}/${CONFIG}/lib/ilp32/libsupc++.a
+${CONFIG}/${CONFIG}/lib/ilp32/libsupc++.la
 ${CONFIG}/lib/gcc/${CONFIG}/
 ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/
 ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/crtbegin.o
@@ -46,38 +81,3 @@ ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/macro_list
 ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/install-tools/mkheaders.conf
 @static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/libgcc.a
 @static-lib ${CONFIG}/lib/gcc/${CONFIG}/${GCC_VERSION}/libgcov.a
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/atomic_word.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/basic_file.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++allocator.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++config.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++io.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/c++locale.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/cpu_defines.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/ctype_base.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/ctype_inline.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/cxxabi_tweaks.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/error_constants.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/extc++.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr-default.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr-posix.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr-single.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/gthr.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/messages_members.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/opt_random.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/os_defines.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/stdc++.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/stdtr1c++.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/bits/time_members.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/ext/
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/${CONFIG}/ilp32/ext/opt_random.h
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/algorithm
-${CONFIG}/${CONFIG}/include/c++/${GCC_VERSION}/any
-${CONFIG}/${CONFIG}/lib/ilp32/${MODPY_PYCACHE}/
-${CONFIG}/${CONFIG}/lib/ilp32/${MODPY_PYCACHE}libstdc++.a-gdb.${MODPY_PYC_MAGIC_TAG}pyc
-@static-lib ${CONFIG}/${CONFIG}/lib/ilp32/libstdc++.a
-${CONFIG}/${CONFIG}/lib/ilp32/libstdc++.a-gdb.py
-${CONFIG}/${CONFIG}/lib/ilp32/libstdc++.la
-@static-lib ${CONFIG}/${CONFIG}/lib/ilp32/libsupc++.a
-${CONFIG}/${CONFIG}/lib/ilp32/libsupc++.la
