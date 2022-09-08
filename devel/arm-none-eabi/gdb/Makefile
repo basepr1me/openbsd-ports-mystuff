@@ -2,7 +2,7 @@ COMMENT=	gdb for ${CONFIG} cross-development
 
 DISTNAME=	gdb-7.12.1
 EXTRACT_SUFX=	.tar.xz
-REVISION=	0
+REVISION=	1
 
 FLAVORS=	aarch64 arm
 FLAVOR?=	arm
