@@ -2,6 +2,7 @@ COMMENT=	binutils for ${CONFIG} cross-development
 
 VERSION=	2.31.1
 DISTNAME=	binutils-${VERSION}
+REVISION=	0
 
 FLAVORS=	aarch64 arm
 FLAVOR?=	arm
@@ -16,7 +17,7 @@ ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 
 HOMEPAGE=	https://www.gnu.org/software/binutils/
 
-WANTLIB=	c z
+WANTLIB=	c
 
 MASTER_SITES=	${MASTER_SITE_GNU:=binutils/}
 DIST_SUBDIR=	binutils
