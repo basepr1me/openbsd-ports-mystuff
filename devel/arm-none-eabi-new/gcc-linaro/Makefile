@@ -2,10 +2,11 @@ BROKEN-arm=	ICE: Bus error in unwind-dw2.c
 
 COMMENT=	gcc for ${CONFIG} cross-development, Linaro version
 
-VERSION=	7.5-2019.12
+VERSION=	7.4-2019.02
 DISTNAME=	gcc-linaro-${VERSION}
 EXTRACT_SUFX=	.tar.xz
 PKGNAME=	${CONFIG}-gcc-linaro-${VERSION:S/-/./g}
+REVISION=	0
 
 FLAVORS=	aarch64 arm
 FLAVOR?=	arm
@@ -18,7 +19,7 @@ CONFIG=		arm-none-eabi
 ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 .endif
 
-GCC_VERSION=	7.5.0
+GCC_VERSION=	7.4.1
 SUBST_VARS+=	VERSION CONFIG GCC_VERSION
 
 .if ${MACHINE_ARCH} == "powerpc64"
@@ -27,6 +28,8 @@ PATCH_LIST =	patch-* vecstep-*
 
 WANTLIB=	c m ${COMPILER_LIBCXX} gmp mpfr mpc
 DIST_SUBDIR=	gcc
+
+COMPILER =		base-clang ports-gcc base-gcc
 
 MAKE_GXX=	No
 MAKE_FORTRAN=	No
@@ -39,51 +42,50 @@ MAKE_ADA=	No
 MASTER_SITE_BASE=https://releases.linaro.org/components
 MASTER_SITES= 	${MASTER_SITE_BASE}/toolchain/gcc-linaro/${VERSION}/
 
-MODULES=	lang/python
-
-BUILD_DEPENDS+=	devel/autoconf/2.13 \
+BUILD_DEPENDS+=	devel/autoconf/2.13	\
+		devel/bison				\
 		devel/metaauto
 
+LIB_DEPENDS=	devel/mpfr devel/libmpc
+
 .if ${FLAVOR:Maarch64}
-BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,aarch64 \
-		devel/arm-none-eabi/newlib,aarch64
-RUN_DEPENDS=	devel/arm-none-eabi/binutils,aarch64 \
-		devel/arm-none-eabi/newlib,aarch64
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,aarch64
+RUN_DEPENDS=	devel/arm-none-eabi/binutils,aarch64
 .elif ${FLAVOR:Marm}
-BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,arm \
-		devel/arm-none-eabi/newlib,arm
-RUN_DEPENDS=	devel/arm-none-eabi/binutils,arm \
-		devel/arm-none-eabi/newlib,arm
+BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,arm
+RUN_DEPENDS=	devel/arm-none-eabi/binutils,arm
 .else
 ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 .endif
 
-LIB_DEPENDS=	devel/mpfr \
-		devel/libmpc
-
 LANGS=		c,c++
+CFLAGS=		-O2 -g
 
-CONFIGURE_ENV+=	AR_FOR_TARGET="${INSTALLDIR}/bin/${CONFIG}-ar" \
-		RANLIB_FOR_TARGET="${INSTALLDIR}/bin/${CONFIG}-ranlib"
-CONFIGURE_ARGS+=--enable-languages=${LANGS} \
-		--with-as="${INSTALLDIR}/bin/${CONFIG}-as" \
-		--with-ld="${INSTALLDIR}/bin/${CONFIG}-ld" \
-		--with-sysroot="${INSTALLDIR}/${CONFIG}" \
-		--enable-multilib \
-		--enable-interwork \
-		--with-gmp=${LOCALBASE} \
-		--with-newlib \
-		--disable-lto \
-		--enable-cpp \
-		--disable-plugin \
+CONFIGURE_ARGS+=--enable-languages=${LANGS}	\
+		--enable-multilib		\
+		--enable-interwork		\
+		--with-gmp=${LOCALBASE}		\
+		--with-newlib			\
+		--disable-lto			\
+		--enable-cpp			\
+		--disable-plugin		\
 		--without-isl
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
+
+# cope with user settings in /etc/mk.conf
+MAKE_FLAGS=	LANGUAGES="c c++" CFLAGS="-I${LOCALBASE}/include"
+MAKE_ENV=	MACHINE_ARCH=arm-none-eabi
+
+SEPARATE_BUILD=	Yes
+USE_GMAKE=	Yes
+YACC=		bison
 
 TEST_DEPENDS=devel/dejagnu
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \
 		${PREFIX}/lib/gcc/${CONFIG}/${VERSION}/
-	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py ${PREFIX}/${CONFIG}/
 
 .include <bsd.port.mk>
 
