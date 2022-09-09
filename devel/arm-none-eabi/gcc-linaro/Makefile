@@ -7,13 +7,17 @@ DISTNAME=	gcc-linaro-${VERSION}
 EXTRACT_SUFX=	.tar.xz
 PKGNAME=	${CONFIG}-gcc-linaro-${VERSION:S/-/./g}
 
+SHARED_LIBS+=	lto_plugin		0.0 # 0.0
+
 FLAVORS=	aarch64 arm
 FLAVOR?=	arm
 
 .if "${FLAVOR}" == "aarch64"
 CONFIG=		aarch64-none-elf
+MULTILIB=	default
 .elif "${FLAVOR}" == "arm"
 CONFIG=		arm-none-eabi
+MULTILIB=	rmprofile
 .else
 ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 .endif
@@ -70,10 +74,11 @@ CONFIGURE_ARGS+=--enable-languages=${LANGS} \
 		--with-ld="${INSTALLDIR}/bin/${CONFIG}-ld" \
 		--with-sysroot="${INSTALLDIR}/${CONFIG}" \
 		--enable-multilib \
+		--with-multilib-list=${MULTILIB} \
 		--enable-interwork \
 		--with-gmp=${LOCALBASE} \
 		--with-newlib \
-		--disable-lto \
+		--enable-lto \
 		--enable-cpp \
 		--disable-plugin \
 		--without-isl
@@ -82,8 +87,10 @@ TEST_DEPENDS=devel/dejagnu
 
 post-install:
 	chown -R ${SHAREOWN}:${SHAREGRP} \
-		${PREFIX}/lib/gcc/${CONFIG}/${VERSION}/
+		${PREFIX}/lib/gcc/${CONFIG}/${GCC_VERSION}/
 	${MODPY_BIN} ${MODPY_LIBDIR}/compileall.py ${PREFIX}/${CONFIG}/
+	@cd ${PREFIX}/${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION} && \
+		ln -s liblto_plugin.so.0.0 liblto_plugin.so
 
 .include <bsd.port.mk>
 

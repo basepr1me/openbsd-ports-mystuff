@@ -1,9 +1,8 @@
 COMMENT=	newlib for ${CONFIG} cross-development
 
-DISTNAME=	newlib-2.2.0-1
-VERSION=	2.2.0.1
+DISTNAME=	newlib-3.3.0
+VERSION=	3.3.0
 PKGNAME=	${CONFIG}-newlib-${VERSION}
-REVISION=	2
 
 FLAVORS=	aarch64 arm
 FLAVOR?=	arm

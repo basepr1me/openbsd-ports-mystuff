@@ -802,16 +802,26 @@ ${CONFIG}/${CONFIG}/lib/libsupc++.la
 ${CONFIG}/include/
 ${CONFIG}/lib/
 ${CONFIG}/lib/gcc/
+${CONFIG}/libexec/
+${CONFIG}/libexec/gcc/
+${CONFIG}/libexec/gcc/${CONFIG}/
+${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/
+@bin ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/cc1
+@bin ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/cc1plus
 @bin ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/collect2
 ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/install-tools/
 ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/install-tools/fixinc.sh
 @bin ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/install-tools/fixincl
 ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/install-tools/mkheaders
 ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/install-tools/mkinstalldirs
+${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/liblto_plugin.la
+@so ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/liblto_plugin.so
+@lib ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/liblto_plugin.so.${LIBlto_plugin_VERSION}
 @bin ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/lto-wrapper
 @comment @man ${CONFIG}/man/man7/fsf-funding.7
 @comment @man ${CONFIG}/man/man7/gfdl.7
 @comment @man ${CONFIG}/man/man7/gpl.7
+@bin ${CONFIG}/libexec/gcc/${CONFIG}/${GCC_VERSION}/lto1
 ${CONFIG}/share/gcc-${GCC_VERSION}/
 ${CONFIG}/share/gcc-${GCC_VERSION}/python/
 ${CONFIG}/share/gcc-${GCC_VERSION}/python/libstdcxx/
@@ -826,6 +836,7 @@ ${CONFIG}/share/gcc-${GCC_VERSION}/python/libstdcxx/v6/${MODPY_PYCACHE}printers.
 ${CONFIG}/share/gcc-${GCC_VERSION}/python/libstdcxx/v6/${MODPY_PYCACHE}xmethods.${MODPY_PYC_MAGIC_TAG}pyc
 ${CONFIG}/share/gcc-${GCC_VERSION}/python/libstdcxx/v6/printers.py
 ${CONFIG}/share/gcc-${GCC_VERSION}/python/libstdcxx/v6/xmethods.py
+${CONFIG}/share/info/
 @comment @man ${CONFIG}/share/man/man1/${CONFIG}-cpp.1
 @comment @man ${CONFIG}/share/man/man1/${CONFIG}-g++.1
 @comment @man ${CONFIG}/share/man/man1/${CONFIG}-gcc.1

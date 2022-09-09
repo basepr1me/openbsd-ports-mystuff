@@ -274,4 +274,62 @@ arm-none-eabi/share/doc/
 arm-none-eabi/share/doc/arm-none-eabi/
 arm-none-eabi/share/doc/arm-none-eabi/newlib/
 arm-none-eabi/share/doc/arm-none-eabi/newlib/COPYING.NEWLIB
-arm-none-eabi/share/info/
+arm-none-eabi/arm-none-eabi/include/_newlib_version.h
+arm-none-eabi/arm-none-eabi/include/cpio.h
+arm-none-eabi/arm-none-eabi/include/devctl.h
+arm-none-eabi/arm-none-eabi/include/elf.h
+arm-none-eabi/arm-none-eabi/include/fenv.h
+arm-none-eabi/arm-none-eabi/include/machine/_arc4random.h
+arm-none-eabi/arm-none-eabi/include/machine/_endian.h
+arm-none-eabi/arm-none-eabi/include/machine/_time.h
+arm-none-eabi/arm-none-eabi/include/memory.h
+arm-none-eabi/arm-none-eabi/include/ndbm.h
+arm-none-eabi/arm-none-eabi/include/ssp/
+arm-none-eabi/arm-none-eabi/include/ssp/ssp.h
+arm-none-eabi/arm-none-eabi/include/ssp/stdio.h
+arm-none-eabi/arm-none-eabi/include/ssp/stdlib.h
+arm-none-eabi/arm-none-eabi/include/ssp/string.h
+arm-none-eabi/arm-none-eabi/include/ssp/strings.h
+arm-none-eabi/arm-none-eabi/include/ssp/unistd.h
+arm-none-eabi/arm-none-eabi/include/ssp/wchar.h
+arm-none-eabi/arm-none-eabi/include/sys/_locale.h
+arm-none-eabi/arm-none-eabi/include/sys/_pthreadtypes.h
+arm-none-eabi/arm-none-eabi/include/sys/_sigset.h
+arm-none-eabi/arm-none-eabi/include/sys/_stdint.h
+arm-none-eabi/arm-none-eabi/include/sys/_timespec.h
+arm-none-eabi/arm-none-eabi/include/sys/_timeval.h
+arm-none-eabi/arm-none-eabi/include/sys/fenv.h
+arm-none-eabi/arm-none-eabi/include/sys/select.h
+arm-none-eabi/arm-none-eabi/include/sys/timespec.h
+arm-none-eabi/arm-none-eabi/include/sys/tree.h
+arm-none-eabi/arm-none-eabi/include/threads.h
+arm-none-eabi/arm-none-eabi/lib/aprofile-validation-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/aprofile-ve-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/fpu/aprofile-validation-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/fpu/aprofile-ve-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/fpu/interwork/aprofile-validation-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/fpu/interwork/aprofile-ve-v2m.specs
+@static-lib arm-none-eabi/arm-none-eabi/lib/fpu/interwork/librdimon-v2m.a
+arm-none-eabi/arm-none-eabi/lib/fpu/interwork/rdimon-crt0-v2m.o
+arm-none-eabi/arm-none-eabi/lib/fpu/interwork/rdimon-v2m.specs
+@static-lib arm-none-eabi/arm-none-eabi/lib/fpu/librdimon-v2m.a
+arm-none-eabi/arm-none-eabi/lib/fpu/rdimon-crt0-v2m.o
+arm-none-eabi/arm-none-eabi/lib/fpu/rdimon-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/interwork/aprofile-validation-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/interwork/aprofile-ve-v2m.specs
+@static-lib arm-none-eabi/arm-none-eabi/lib/interwork/librdimon-v2m.a
+arm-none-eabi/arm-none-eabi/lib/interwork/rdimon-crt0-v2m.o
+arm-none-eabi/arm-none-eabi/lib/interwork/rdimon-v2m.specs
+@static-lib arm-none-eabi/arm-none-eabi/lib/librdimon-v2m.a
+arm-none-eabi/arm-none-eabi/lib/rdimon-crt0-v2m.o
+arm-none-eabi/arm-none-eabi/lib/rdimon-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/thumb/aprofile-validation-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/thumb/aprofile-ve-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/thumb/interwork/aprofile-validation-v2m.specs
+arm-none-eabi/arm-none-eabi/lib/thumb/interwork/aprofile-ve-v2m.specs
+@static-lib arm-none-eabi/arm-none-eabi/lib/thumb/interwork/librdimon-v2m.a
+arm-none-eabi/arm-none-eabi/lib/thumb/interwork/rdimon-crt0-v2m.o
+arm-none-eabi/arm-none-eabi/lib/thumb/interwork/rdimon-v2m.specs
+@static-lib arm-none-eabi/arm-none-eabi/lib/thumb/librdimon-v2m.a
+arm-none-eabi/arm-none-eabi/lib/thumb/rdimon-crt0-v2m.o
+arm-none-eabi/arm-none-eabi/lib/thumb/rdimon-v2m.specs
