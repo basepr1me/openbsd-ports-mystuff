@@ -27,9 +27,11 @@ EXTRACT_SUFX=	.tar.gz
 .if ${FLAVOR:Maarch64}
 BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,aarch64 \
 		devel/arm-none-eabi/gcc-bootstrap,aarch64
+RUN_DEPENDS+=	devel/arm-none-eabi/binutils,aarch64
 .elif ${FLAVOR:Marm}
 BUILD_DEPENDS+=	devel/arm-none-eabi/binutils,arm \
 		devel/arm-none-eabi/gcc-bootstrap,arm
+RUN_DEPENDS+=	devel/arm-none-eabi/binutils,arm
 .else
 ERRORS+=	"either aarch64 or arm FLAVOR should be set"
 .endif
