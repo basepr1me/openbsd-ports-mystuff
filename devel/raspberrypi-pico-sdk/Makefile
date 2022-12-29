@@ -16,7 +16,8 @@ MODULES =	lang/python
 
 RUN_DEPENDS +=	devel/arm-none-eabi/binutils,arm \
 		devel/arm-none-eabi/gcc-linaro,arm \
-		devel/arm-none-eabi/newlib,arm
+		devel/arm-none-eabi/newlib,arm \
+		devel/cmake
 
 MASTER_SITES0 = https://github.com/georgerobotics/cyw43-driver/archive/
 MASTER_SITES1 = https://github.com/lwip-tcpip/lwip/archive/
