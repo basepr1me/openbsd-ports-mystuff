@@ -1,0 +1,12 @@
+Index: cvpcb/CMakeLists.txt
+--- cvpcb/CMakeLists.txt.orig
++++ cvpcb/CMakeLists.txt
+@@ -86,7 +86,7 @@ target_include_directories( cvpcb_kiface PRIVATE
+ 
+ if( UNIX AND NOT APPLE )
+     # -lrt must follow Boost
+-    target_link_libraries( cvpcb_kiface rt )
++    target_link_libraries( cvpcb_kiface )
+ endif()
+ 
+ set_source_files_properties( cvpcb.cpp PROPERTIES

@@ -1,0 +1,9 @@
+Index: common/CMakeLists.txt
+--- common/CMakeLists.txt.orig
++++ common/CMakeLists.txt
+@@ -725,4 +725,4 @@ make_lexer(
+ # This one gets made only when testing.
+ # to build it, first enable #define STAND_ALONE at top of dsnlexer.cpp
+ add_executable( dsntest EXCLUDE_FROM_ALL dsnlexer.cpp )
+-target_link_libraries( dsntest common ${wxWidgets_LIBRARIES} rt )
++target_link_libraries( dsntest common ${wxWidgets_LIBRARIES} )
