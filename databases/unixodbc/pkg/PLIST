@@ -13,7 +13,6 @@ include/sqlspi.h
 include/sqltypes.h
 include/sqlucode.h
 include/unixODBC/
-include/unixODBC/config.h
 include/unixODBC/unixodbc_conf.h
 include/unixodbc.h
 include/uodbc_extras.h

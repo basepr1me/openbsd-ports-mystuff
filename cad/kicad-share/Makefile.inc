@@ -5,7 +5,7 @@ NOT_FOR_ARCHS =		powerpc
 
 PKG_ARCH ?=		*
 
-V ?=			7.0.1
+V ?=			7.0.8
 EXTRACT_SUFX ?=		.tar.bz2
 
 DISTNAME=		kicad-${KICAD_PROJECT}-$V
@@ -14,8 +14,7 @@ CATEGORIES ?=		cad
 
 HOMEPAGE ?=		https://kicad.github.io/${KICAD_PROJECT:L}/
 
-MASTER_SITES ?=	\
-	https://gitlab.com/kicad/libraries/kicad-${KICAD_PROJECT}/-/archive/$V/
+SITES = https://gitlab.com/kicad/libraries/kicad-${KICAD_PROJECT}/-/archive/$V/
 
 # CC-BY-SA 4.0
 PERMIT_PACKAGE ?=	Yes

@@ -4,7 +4,7 @@ BROKEN-sparc64 =	missing needed libcontext asm, unsupported by kicad devs
 
 DPB_PROPERTIES =	parallel
 
-V =			7.0.1
+V =			7.0.8
 COMMENT =		schematic and PCB editing software
 DISTNAME =		kicad-${V}
 EPOCH =			0
@@ -33,7 +33,7 @@ WANTLIB += wx_gtk3u_aui-3.2 wx_gtk3u_core-3.2 wx_gtk3u_gl-3.2
 WANTLIB += wx_gtk3u_html-3.2 wx_gtk3u_propgrid-3.2 wx_gtk3u_richtext-3.2
 WANTLIB += wx_gtk3u_stc-3.2 z
 
-MASTER_SITES =		https://gitlab.com/kicad/code/kicad/-/archive/${V}/
+SITES =			https://gitlab.com/kicad/code/kicad/-/archive/${V}/
 
 COMPILER =		base-clang ports-gcc
 
@@ -56,7 +56,7 @@ RUN_DEPENDS =		cad/kicad-share/footprints>=${V} \
 			cad/kicad-share/templates>=${V} \
 			devel/desktop-file-utils \
 			misc/shared-mime-info \
-			x11/gtk+3,-guic
+			x11/gtk+4,-guic
 
 LIB_DEPENDS =		cad/ngspice/libngspice \
 			cad/oce \
@@ -74,11 +74,11 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DKICAD_SCRIPTING_WXPYTHON=OFF \
 			-DKICAD_USE_EGL=ON
 
-DEBUG_PACKAGES =	${BUILD_PACKAGES}
-
 # KHR/khrplatform.h
 CFLAGS +=		-I${X11BASE}/include
 CXXFLAGS +=		-I${X11BASE}/include
+
+DEBUG_PACKAGES =	${BUILD_PACKAGES}
 
 NO_TEST =		Yes
 
