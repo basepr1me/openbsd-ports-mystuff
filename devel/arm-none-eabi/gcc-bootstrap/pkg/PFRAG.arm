@@ -1,3 +1,0 @@
-@conflict arm-none-eabi-gcc-linaro-*
-@pkgpath devel/arm-none-eabi/gcc-linaro,
-@pkgpath devel/arm-none-eabi/gcc-linaro,arm
