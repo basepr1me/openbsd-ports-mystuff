@@ -1,3 +1,0 @@
-@comment $OpenBSD: PLIST,v$
-@bin bin/mdmctl
-@bin bin/micromdm
