@@ -1,0 +1,14 @@
+Index: gcc/system.h
+--- gcc/system.h.orig
++++ gcc/system.h
+@@ -202,7 +202,9 @@ extern int fprintf_unlocked (FILE *, const char *, ...
+ # include <string>
+ #endif
+ #endif
+-
++#ifdef __cplusplus
++# include <locale>
++#endif
+ /* There are an extraordinary number of issues with <ctype.h>.
+    The last straw is that it varies with the locale.  Use libiberty's
+    replacement instead.  */

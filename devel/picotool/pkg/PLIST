@@ -1,0 +1,12 @@
+@bin bin/picotool
+lib/cmake/
+lib/cmake/picotool/
+lib/cmake/picotool/picotoolConfig.cmake
+lib/cmake/picotool/picotoolConfigVersion.cmake
+lib/cmake/picotool/picotoolTargets${MODCMAKE_BUILD_SUFFIX}
+lib/cmake/picotool/picotoolTargets.cmake
+share/picotool/
+share/picotool/enc_bootloader.elf
+share/picotool/enc_bootloader_mbedtls.elf
+share/picotool/rp2350_otp_contents.json
+share/picotool/xip_ram_perms.elf
