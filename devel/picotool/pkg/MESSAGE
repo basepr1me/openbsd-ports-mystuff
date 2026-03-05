@@ -37,7 +37,12 @@ else
 	fi
 fi
 
+# Run make and catch the exit status
 make
+if [[ $? -ne 0 ]]; then
+	printf "\nBuild errors detected! Aborting flash sequence to protect the Pico.\n\n"
+	exit 1
+fi
 
 printf "\nFiles built:\n\n"
 ls -lah .
