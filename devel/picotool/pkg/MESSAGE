@@ -6,21 +6,37 @@ Example make script (make.sh):
 
 ```
 clear
-printf "\nRUNNING THIS WILL DESTROY YOUR BUILD DIRECTORY!!!"
-printf "\nDo you wish to proceed? [Y|n]: "
+printf "\nSelect build type:\n"
+printf "  [c] Clean build (destroys build directory and runs cmake)\n"
+printf "  [i] Incremental build (runs make in existing build directory)\n"
+printf "  [q] Quit\n"
+printf "\nChoice [i]: "
 
-read proceed
+read choice
 
-if [[ $proceed != "y" && $proceed != "Y" && $proceed != "" ]]; then
-	printf "\nExitting!\n"
+if [[ $choice == "q" || $choice == "Q" ]]; then
+	printf "\nExiting!\n"
 	exit
 fi
 
-printf "\nBuilding project...\n\n";
+if [[ $choice == "c" || $choice == "C" ]]; then
+	printf "\nPerforming clean build...\n\n"
+	rm -rf build
+	mkdir build
+	cd build
+	cmake -DPICO_TOOLCHAIN_PATH=/usr/local/bin ..
+else
+	printf "\nPerforming incremental build...\n\n"
+	if [[ ! -d build ]]; then
+		printf "Build directory not found! Creating and running cmake first...\n\n"
+		mkdir build
+		cd build
+		cmake -DPICO_TOOLCHAIN_PATH=/usr/local/bin ..
+	else
+		cd build
+	fi
+fi
 
-rm -rf build
-mkdir build && cd build
-cmake -DPICO_TOOLCHAIN_PATH=/usr/local/bin ..
 make
 
 printf "\nFiles built:\n\n"
@@ -30,12 +46,12 @@ printf "\nRebooting Pico to BOOTSEL mode...\n"
 # Send the 1200 baud magic signal to trigger the bootloader
 doas stty -f /dev/ttyU0 1200
 
-# Give USB stack a moment to drop the tty device and enumerate the Pico
+# Give OpenBSD's USB stack a moment to drop the tty device and enumerate the Pico
 sleep 2
 
 printf "\nFlashing firmware...\n"
-# Load the binary into flash and execute it immediately
-doas picotool load -x blink.uf2
+# Load the binary into flash and execute it immediately using a wildcard
+doas picotool load -x *.uf2
 
-printf "\nDone\n\n";
+printf "\nDone\n\n"
 ```
